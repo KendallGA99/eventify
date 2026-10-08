@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.11 — 2026-10-08
+
+B07/U-03: ensayo de respaldo/restauración exclusivo de QA. Exporta SQL con mysqldump y dos archivos persistentes del alcance actual; compara recuentos/hashes de nueve tablas y archivos/galería contra destino nuevo y vacío, con claves/proyecto/volúmenes propios. Detiene temporalmente solo web QA para consistencia y la reinicia también ante fallos. No transfiere sesiones/cache/secretos del entorno, no borra datos/volúmenes. No es restauración general sobre instalaciones existentes ni certificación Windows.
+
+verify-qa-linux.sh reúne actualización/persistencia y ensayo en un comando con registro privado. Sintaxis PHP/Bash/Compose y 40 checks de orquestación con Docker simulado aprobados; tres guardas PHP rechazaron entornos/destinos no permitidos. MySQL/Docker real del ensayo y activación dev.10/dev.11 pendientes.
+
 ## 0.1.0-dev.10 — 2026-10-08
 
 B07/RF-08/RNF-04: confirmación AJAX con espera máxima de 15 s, incluyendo lectura del JSON. Evita doble submit pendiente; ante timeout, red/JSON inválido o HTTP 5xx indica consultar experiencias y bloquea reenvío desde ese formulario. Interrumpir la espera no cancela una reserva confirmada en MySQL. Errores de negocio permiten corregir datos; éxito conserva navegación al ticket. Sin cambios de backend/esquema.

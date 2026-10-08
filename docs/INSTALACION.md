@@ -2,7 +2,7 @@
 
 ## Estado de esta guía
 
-B01: configuración y scripts preparados. Todavía falta ejecutar el stack Docker con MySQL en este equipo y probar Windows. La página inicial es una vista en construcción; no hay registro, reservas ni cuentas demo todavía. El modelo B02 y la siembra opcional están preparados, pendientes de ejecución real; consulte [DATOS.md](DATOS.md).
+Stack Docker Linux con PHP/MySQL, autenticación, reservas y administración implementados y probados parcialmente; ver [ESTADO.md](ESTADO.md). QA comprobó persistencia tras recrear contenedores. Windows, copia limpia del repositorio y ensayo real de restauración siguen pendientes. La página inicial conserva el aviso de construcción hasta cerrar los requisitos.
 
 ## Requisitos comunes
 
@@ -78,11 +78,13 @@ Scripts preparados para Windows PowerShell 5.1+, sin requerir bash/PHP/MySQL loc
 
 ## Configuración y persistencia
 
+Para el ensayo aislado de exportación/restauración y sus resultados reales, consultar [RESPALDO.md](RESPALDO.md). No restaurar sobre la instancia normal ni confundir una preparación de scripts con una prueba aprobada.
+
 - `.env.example` contiene marcadores, no contraseñas utilizables. Los scripts crean `.env` y tres claves aleatorias diferentes. Nunca subir `.env` a GitHub ni incluirlo en el paquete público.
 - Si `.env` ya existe, no se sobrescribe. Si contiene marcadores, el inicio falla y solicita corregirlo.
 - APP_PORT configura puerto; APP_TIMEZONE define la zona de presentación futura. PHP/MySQL operan en UTC.
 - Los datos MySQL residen en el volumen `mysql_data`, los archivos en `app_storage`.
-- Detener/iniciar y reconstruir la imagen no deben borrar esos volúmenes. Esa persistencia todavía requiere una prueba real con Docker.
+- Detener/iniciar y reconstruir la imagen no deben borrar esos volúmenes. Persistencia por recreación comprobada en QA; la instalación receptora sigue requiriendo su propia validación.
 - No ejecutar `docker compose down -v`, `docker volume prune` ni eliminar `.env` para reparar errores. Puede perder datos o romper acceso al volumen existente.
 - Las variables MYSQL_* crean el usuario/base solo en el primer volumen vacío; cambiar la contraseña en `.env` no cambia la almacenada en una base existente. Planificar una rotación real, no resetear datos.
 - Transferir código a otra computadora crea una instalación independiente. Para transferir datos existentes se necesitará exportación/restauración, prevista para bloques posteriores.

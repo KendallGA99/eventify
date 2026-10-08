@@ -46,7 +46,7 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 | RT-09 / U-02 | docs/ARQUITECTURA.md | Proveedor gratuito y URL pública sin validar; localhost no cumple este entregable |
 | RT-07 / U-05 | GitHub privado; docs/VERSIONADO.md; CHANGELOG.md | Historial/push/etiquetas reales; acceso de evaluador, CI si procede y entrega final pendientes |
 | RT-08 | README.md; docs/INSTALACION.md | Manual/tecnologías/comandos preparados; enlace público y paquete final pendientes |
-| U-03 | docs/INSTALACION.md; scripts | Arranque documentado; exportar/restaurar y ensayar transferencia/copia limpia pendientes |
+| U-03 | docs/INSTALACION.md; docs/RESPALDO.md; scripts/test-restore-qa-linux.sh; bin/qa-transfer.php | Ensayo QA preparado en dev.11; 40 checks de orquestación simulada correctos. Dump/import MySQL real, transferencia/copia limpia y Windows pendientes |
 | U-04/06 | AGENTS.md; PLAN/ESTADO/MATRIZ/evidencias | Protocolo aplicado; estado breve e historial conservado. No certificar pruebas pendientes |
 | ENT / defensa | docs/REQUISITOS.md | PDF técnico/paquete/cuentas/evidencia humana de comprensión y defensa pendientes |
 
