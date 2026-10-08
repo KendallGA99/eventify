@@ -4,6 +4,14 @@
 
 Stack Docker Linux con PHP/MySQL, autenticación, reservas y administración implementados y probados parcialmente; ver [ESTADO.md](ESTADO.md). QA comprobó persistencia tras recrear contenedores. Arranque desde ZIP Linux dev.17 y restauración de datos QA comprobados; Windows, HTTP del destino restaurado y criterios finales siguen pendientes. La página inicial conserva el aviso de construcción hasta cerrar los requisitos.
 
+## Entrega al compañero y cuentas externas
+
+La entrega local consiste en un ZIP limpio y su manual. El receptor instala/configura Docker con contenedores Linux una vez, descomprime el paquete y ejecuta `iniciar-windows.cmd` en Windows o `bash scripts/start-linux.sh` en Linux. Compose inicia PHP y un MySQL propio en su computador; `DB_HOST: db` no utiliza Aiven. No necesita cuentas de Aiven, Render o GitHub ni iniciar sesión con la cuenta del desarrollador. Las cuentas de administrador/usuario de EVENTIFY son cuentas internas de prueba, gestionadas según la guía de datos.
+
+La URL pública es un entregable adicional del enunciado y se administra por separado mediante Render/Aiven. Abrir esa URL no exige cuentas de hosting; gestionar o trasladar su alojamiento sí requiere acceso administrativo autorizado al proveedor. No compartir la contraseña personal del desarrollador ni incluir producción `.env`, certificados/credenciales privados, registros de `storage/` o asociaciones de GitHub en el ZIP. El paquete usa configuración local propia, generada por los scripts.
+
+El primer arranque necesita Internet para imágenes/dependencias; la API meteorológica también requiere conexión. La entrega no debe describirse como ejecutable sin preparación del equipo: Docker/virtualización son requisitos del host. La instalación completa en Windows sigue pendiente de prueba real; los controles del paquete final deben confirmar que arranca sin configuración del desarrollador ni acceso al alojamiento público.
+
 ## Requisitos comunes
 
 - Docker con Compose v2 que admita `up --wait` (v2.20 o posterior como base de esta guía).
