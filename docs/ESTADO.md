@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b08-arranque-publico (preparación B08; B07 continúa abierto). Código actual dev.20; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
+- Rama activa: codex/b08-tls-aislado (preparación B08; B07 continúa abierto). Código actual dev.21; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
@@ -159,3 +159,11 @@ python3 tests/orchestration/public_start.py:25 comprobaciones simuladas (puerto 
 Usuario ejecutó test-public-linux.sh. Registro storage/public-start-vxriCKan, inicio2026-10-08T19:23:27Z/exit_code=0. Docker construyó18 pasos y etiquetó eventify-public-test:0.1.0-dev.20, imagenbcc9357d2751. PHP8.4 dentro de imagen: public-preflight.php sin errores sintácticos. Tres contenedores --network none/sin puertos/volúmenes rechazaron configuración ausente, APP_ENV=local yPORTinválido; logs individuales contienen mensajes previstos sin valores privados. Mensaje final y status comprobados por agente.
 
 Se superó la brecha de build/lintPHP/rechazos reales de dev.20. No se ejecutó arranque positivo, configtestApache real con configuración válida, migración pública, handshakeTLS ni URL externa. Aprovisionamiento explícito de cuentas únicas también pendiente. Sin cambios de aplicación/VERSION/etiquetas por documentar resultado; no repetir219 integración. Próximo incremento técnico: ensayo aislado TLS/arranque positivo antes de servicios externos y aprovisionamiento controlado, conservando bases existentes.
+
+## Dev.21: ensayo TLS/arranque válido preparado
+
+Compose separado docker-compose.tls-test.yml: proyecto aleatorio eventify-tls-ID, MySQL8.4 con certificados propios/require_secure_transport, DBeventify_tls_test en tmpfs, red interna, sin puertos ni volúmenes persistentes. Scripts generan claves nuevas/certificados ficticios2 días en directorio privado, no CA real externa. Guardas de config efectivo comprueban aislamiento/base/montajes antes de iniciar. Limpieza solo del proyecto creado, datos efímeros previstos del ensayo; archivos/logs/certificados privados se conservan. No toca eventify/QA/restore/clean.
+
+Probe production mediante Database real: TLS válido con tres migraciones; CA ajena y hostnameincorrecto deben lanzarPDOException; Apache /salud e /ingresarHTTP200 interno; recrear solo web y confirmar tres migraciones/conexión nuevamente. No se sembrarán cuentas ni harán reservas. OpenSSL host real verificó positivo/dosnegativos y permisos700/600; Compose config efectivo comprobó nombre/redtmpfs/sinpuertos, Bash/diff correctos. Docker/PHP/TLS real del ensayo sin ejecutar; no afirmar negociación externa ni servidor sinTLS probado (este caso aún falta).
+
+Próximo comando: cd "/home/usuario/Documentos/ChatGPT/Proyecto U" && bash scripts/test-public-tls-linux.sh. Requiere sudo en terminal del usuario; resultados storage/public-tls-ID privados. Aprovisionamiento, TLSproveedor/HTTPS/URL, Firefox/Windows y entrega final siguen pendientes.

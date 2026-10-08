@@ -47,3 +47,9 @@ Usar Dockerfile.public para el servicio público; el Dockerfile local sigue sepa
 ### Evidencia real dev.20
 
 2026-10-08T19:23:27Z, public-start-vxriCKan/exit0: imagen eventify-public-test:0.1.0-dev.20 construida (bcc9357d2751), lintPHP8.4 correcto y tres rechazos reales previstos (configuración ausente, entorno local, puerto inválido) sin red/puertos/volúmenes. No prueba arranque positivo, configtestApache real, handshakeTLS/migración externa ni URL pública. Las25 guardas simuladas siguen separadas de esos resultados.
+
+## Ensayo TLS aislado dev.21
+
+Preparado: `bash scripts/test-public-tls-linux.sh`. PHP8.4 production/MySQL8.4, CA/clave propias y certificados ficticios2 días, red interna y DBtmpfs sin puertos/volúmenes persistentes. Comprueba migración/arranque válido/HTTP interno, PDO conCAincorrecta y hostnameincorrecto, recreación deweb. Conserva registros privados y retira exclusivamente contenedores/red efímeros del ensayo. No utilizar sus certificados como CA del proveedor público.
+
+OpenSSL/configCompose/sintaxisBash correctos; ejecución Docker/TLS real pendiente. No sustituye TLS conAiven, HTTPS externo, caso servidor sinTLS, cuentas únicas ni URL pública.

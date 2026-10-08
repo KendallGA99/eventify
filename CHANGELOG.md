@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.21 — 2026-10-08
+
+B08/RNF-03/RT-09: ensayo público TLS aislado con PHP8.4/MySQL8.4, certificados ficticios de2 días generados por ejecución, red interna/sin puertos y DBtmpfs. Verifica arranqueproduction/migraciones/ApacheHTTPinterno, CA ajena/hostname incorrecto rechazados por PDO, recreación web. Solo recursos del ensayo efímero; sin servicios externos ni bases existentes.
+
+OpenSSL real confirmó CA/nombre válidos y dos negativos; permisos privados de claves/directorio correctos; Compose config efectivo (sin daemon) y Bash/diff correctos. Ejecución PHP/MySQL/TLS real pendiente; no certifica conexión externa, HTTPS público o entrega. Comando test-public-tls-linux.sh requiere Docker en terminal.
+
 ## 0.1.0-dev.20 — 2026-10-08
 
 B08/RT-09/RNF-03/04: Dockerfile.public separado del Compose local; puerto runtime validado (10000 por defecto), preflight exigeproduction/configuración explícita/secreto mínimo32 caracteres/TLS verificado. Apache configtest y migraciones coordinadas preceden a servir; cualquier fallo detiene arranque. Sin seeder, import/reset o endpoint instalador. Misma imagen PHP/dependencias fijadas que Dockerfile local; revisar ambas al actualizar.
