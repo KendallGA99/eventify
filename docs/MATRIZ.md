@@ -4,7 +4,7 @@ Revisión 2026-10-08. IDs y criterios completos en [REQUISITOS.md](REQUISITOS.md
 
 ## Funciones
 
-Rutas de código y pruebas relativas a la raíz del repositorio. Integración vigente: 211 comprobaciones en MySQL/HTTP; 266 unidades y QR. Navegador Chrome parcial sobre QA actual; cambio JS dev.10 activado y reserva con navegación automática comprobada.
+Rutas de código y pruebas relativas a la raíz del repositorio. Integración vigente: 219 comprobaciones en MySQL/HTTP; 266 unidades y QR. Navegador Chrome parcial sobre QA actual; cambio JS dev.10 activado y reserva con navegación automática comprobada.
 
 | ID | Código principal | Prueba pertinente | Evidencia vigente / falta |
 | --- | --- | --- | --- |
@@ -46,7 +46,7 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 | RT-09 / U-02 | docs/ARQUITECTURA.md; docs/PUBLICACION.md | Render PHP + Aiven MySQL: candidata; TLS PDO preparado (40 guardas), presupuesto API MySQL aprobado en integración y persistencia dev.13; TLS externo/concurrencia específica y URL real pendientes. InfinityFree no seleccionada por MariaDB; localhost no cumple |
 | RT-07 / U-05 | GitHub privado; docs/VERSIONADO.md; CHANGELOG.md | Historial/push/etiquetas reales; acceso de evaluador, CI si procede y entrega final pendientes |
 | RT-08 | README.md; docs/INSTALACION.md | Manual/tecnologías/comandos preparados; enlace público y paquete final pendientes |
-| U-03 | docs/INSTALACION.md; docs/RESPALDO.md; docs/PAQUETE.md; scripts/package-source.py; scripts/test-restore-qa-linux.sh; bin/qa-transfer.php | ZIP dev.14 real con 153 huellas correctas; 13 checks de empaquetado. 40 checks de orquestación simulada y dump/import MySQL real aprobados; comparación exacta de diez tablas/archivos. ZIP Linux dev.17 con flujo Chrome aprobado; HTTP restaurado, transferencia al receptor y Windows pendientes |
+| U-03 | docs/INSTALACION.md; docs/RESPALDO.md; docs/PAQUETE.md; scripts/package-source.py; scripts/test-restore-qa-linux.sh; bin/qa-transfer.php | ZIP dev.14 real con 153 huellas correctas; 13 checks de empaquetado. 40 checks de orquestación simulada y dump/import MySQL real aprobados; comparación exacta de diez tablas/archivos. ZIP Linux dev.17 con flujo Chrome aprobado; HTTP restaurado autenticado y persistencia posterior al flujo Linux aprobados (existing-iAQixJNV); transferencia al receptor y Windows pendientes |
 | U-04/06 | AGENTS.md; PLAN/ESTADO/MATRIZ/evidencias | Protocolo aplicado; estado breve e historial conservado. No certificar pruebas pendientes |
 | ENT / defensa | docs/REQUISITOS.md | PDF técnico/paquete/cuentas/evidencia humana de comprensión y defensa pendientes |
 

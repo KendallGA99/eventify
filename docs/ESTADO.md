@@ -26,7 +26,8 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 | Integración actual | verify-integration-linux.sh, 16:31:25 UTC, exit0: 219 comprobaciones MySQL/HTTP; migración003, 41 checks secuenciales y ocho aserciones de carreras meteorológicas | No certifica entorno público ni Windows |
 | Concurrencia | Dos carreras de reserva, cuatro admin-reserva y dos de presupuesto meteorológico con procesos/conexiones/locks reales | No equivale a todas las carreras posibles |
 | Persistencia QA | verify-qa-linux.sh, 15:40:41 UTC, exit 0: diez tablas, marcador, credenciales e imágenes conservados al recrear contenedores | No certifica copia limpia ni Windows |
-| Restauración real | restore-20261008154106-a2a37282, inicio 15:41:06 UTC, exit 0: exportación/importación MySQL y fingerprints before/after exactamente iguales, diez tablas incluida weather_budget | Sin recorrido HTTP del destino restaurado; volúmenes conservados |
+| Restauración real | Restore aislado con igualdad exacta de diez tablas/archivos; existing-iAQixJNV exit0, Chrome8082: login/logout usuario/admin, historial, ticket/QR y dashboard | No se repitieron escrituras de reserva/admin en el destino restaurado; volúmenes conservados |
+| Copia limpia Linux | ZIP dev.17: arranque y reserva/cancelación Chrome; recreación posterior16:41:44UTC exit0 conserva snapshots exactos de diez tablas, ocho reservas/ocho tickets y archivos | Windows y matriz de UI final pendientes |
 | Chrome usuario actual | Login/logout, reserva gratuita de dos entradas → navegación automática al ticket → QR cargado; búsqueda AJAX SQL a 360 px | No provocar fallo de red ni repetir reservas para simular evidencia |
 | API | Pronóstico Open-Meteo real visible para evento MySQL con presupuesto actualizado | Caída externa UI real pendiente |
 | Chrome admin/permisos anteriores | Categoría desactivada, evento BORRADOR → PUBLICADO → CANCELADO, dashboard/filtros, USUARIO rechazado en /admin y ticket ajeno 404 | Finalización/edición con reservas y rutas restantes pendientes |
@@ -45,7 +46,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 ## Próxima acción
 
 1. Continuar los casos restantes de navegador y revisión de seguridad; no repetir la suite extensa aprobada sin cambio/fallo.
-2. Copia limpia Linux dev.17 ya arrancó y completó reserva/cancelación en Chrome; resta comprobar una reserva nueva tras recreación y funcionamiento HTTP del destino restaurado. Mantener datos/volúmenes y secretos fuera de Git. Windows requiere equipo compatible real.
+2. Copia limpia Linux dev.17 ya arrancó y completó reserva/cancelación en Chrome; persistencia posterior al flujo y HTTP autenticado restaurado aprobados; continuar matriz de interfaz y Firefox. Mantener datos/volúmenes y secretos fuera de Git. Windows requiere equipo compatible real.
 3. Actualizar el PDF técnico con esta evidencia y generar paquete desde una referencia posterior cuando corresponda.
 4. Completar la viabilidad pública y obtener autorización de servicios concretos antes de crear cuentas/desplegar. La URL pública es obligatoria y sigue pendiente.
 
@@ -118,3 +119,11 @@ Usuario ejecutó verify-integration-linux.sh: inicio2026-10-08T16:31:25Z, exit_c
 verify-existing-linux.sh recibe IDs explícitos y exige ensayos previos exit0, configuración local/proyectos/puertos/base aislados, volúmenes existentes y etiquetas de propiedad. Copia limpia se pausa, fotografía, recrea, fotografía y compara; restaura web incluso ante fallo. Arranca el destino restaurado existente sin importar/sembrar/migrar/build; compara su snapshot con el posterior a restore y realiza seis checks HTTP200, sin certificar flujo autenticado. Mantiene registros/credenciales privados en storage/existing-ID. Sin cambios de negocio/esquema. Bash/diff y ocho comprobaciones de preflight simuladas correctos; argumento inválido rechazado. Docker real pendiente por sudo requerido en terminal.
 
 Próximo comando: bash scripts/verify-existing-linux.sh 20261008160801-e96614c4 20261008154302-2b8eb996. No repetir pruebas219 ya aprobadas; leer status/snapshots y continuar navegador en8082. PDF/ZIP anteriores siguen referidos a dev.17 y requieren actualización final cuando se consolide evidencia.
+
+## Dev.19: destinos existentes y navegador restaurado aprobados
+
+Usuario ejecutó verify-existing-linux.sh con clean20261008160801-e96614c4 y restore20261008154302-2b8eb996. Registro storage/existing-iAQixJNV inicio2026-10-08T16:41:44Z/exit_code=0; mensaje final seisHTTP correctos. Comparación privada clean-before/after exacta de diez tablas/archivos, ocho reservas y ocho tickets (incluye nueva reserva/cancelación del flujo dev.17). Restore-current coincide exactamente con after original antes del navegador. No hubo importación/siembra/migración/build ni borrado de volúmenes.
+
+Chrome en8082: usuario restaurado ingresó, mostró cinco experiencias (incluida reserva gratuita de dos entradas), abrió ticket existente y QR cargado (complete/naturalWidth>0), cerró sesión. Admin ingresó y dashboard mostró9 eventos/5 activos/6 reservas activas/17 entradas/18,28%/₡133.000; cerró sesión. No se modificaron reservas/eventos en el destino ni se fabricó evidencia por duplicar operaciones. Dos observaciones AX después del login agotaron tiempo; la observación posterior confirmó cuenta correcta sin repetir envío. Capturas privadas /tmp/eventify-restaurado-ticket.png y /tmp/eventify-restaurado-admin.png. Auth/sesiones generan su actividad normal, por lo que la igualdad registrada corresponde a antes del navegador.
+
+Brechas específicas de persistencia posterior al flujo y recorrido HTTP autenticado restaurado cerradas con este alcance. B07 sigue por Firefox/Windows/casos restantes de UI/seguridad; B08 por URL/HTTPS/TLS público; B09 por PDF/ZIP finales y revisión/defensa humana. No se repitieron219 pruebas ni cambió VERSION/etiqueta dev.19 por documentación.
