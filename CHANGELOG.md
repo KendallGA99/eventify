@@ -2,7 +2,7 @@
 
 ## 0.1.0-dev.26 — 2026-10-08
 
-B08/RF-15/RNF-04/B09: documentación de entrega actualizada y comentarios orientados a explicar decisiones. Cliente meteorológico más legible y diagnóstico limitado a motivo/código HTTP, sin URL, coordenadas o contenido de la respuesta. Mantiene TLS, destino fijo, timeout, límite y fallback. Imagen pública comprueba sintaxis y pruebas existentes de clima/presupuesto durante la construcción. Diagnóstico y verificación en Render pendientes; no se atribuye una causa al fallo sin evidencia.
+B08/RF-15/RNF-04/B09: documentación de entrega actualizada y comentarios orientados a explicar decisiones. Cliente meteorológico más legible y diagnóstico limitado a motivo/código HTTP, sin URL, coordenadas o contenido de la respuesta. Mantiene TLS, destino fijo, timeout, límite y fallback. Imagen pública comprueba sintaxis y pruebas existentes de clima/presupuesto durante la construcción. Render publicó cabd6f3 y pasó sintaxis más 39 comprobaciones de clima y 44 de presupuesto. El diagnóstico registra HTTP 429 del proveedor; el pronóstico público sigue pendiente y las reservas continúan disponibles.
 
 ## 0.1.0-dev.25 — 2026-10-08
 

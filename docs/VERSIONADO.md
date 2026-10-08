@@ -63,3 +63,6 @@ Dev.24 publicado y verificado por git ls-remote: `codex/b08-rechazo-sin-tls` y e
 
 
 Dev.25 → fb461ade36531e3c61710321372e3b307eba6977: corrección de acceso CA del trabajador; push de rama confirmado, desplegada manualmente en Render Free y flujos públicos básicos/reinicio/persistencia verificados. Etiqueta de desarrollo, sin estable. Main conserva referencia previa; Git rollback no restaura MySQL. Primer deploy dev.24 cancelado conservado como incidencia.
+
+
+Dev.26 → cabd6f335d8952332ce6d0a71fcc515bb6f5b176: redacción inicial y diagnóstico seguro del clima. Render Live, lint y 83 comprobaciones de clima/presupuesto aprobadas en construcción. Respuesta externa HTTP429 identificada; pronóstico público pendiente. Etiqueta de desarrollo, sin marcar estable ni mover main. No modifica esquema o datos.
