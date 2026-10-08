@@ -66,3 +66,10 @@ Inspección actual: Dockerfile expone80/ApacheListen80; storage se crea para www
 ## Ensayo real previo a proveedores
 
 Dev.21,2026-10-08T19:31:50Z/public-tls-LeWppmpW exit0: TLSPHP8.4/MySQL8.4 válido, CAajena/hostnameincorrecto rechazados, tres migraciones/ApacheHTTPinterno y recreación pública aprobados en red aislada con certificados ficticios. Esto supera la preparación de arranque y negociación local; no sustituye CA/hostname/motor del proveedor ni HTTPS/URL externa. Aprovisionamiento único y caso servidor sinTLS siguen pendientes.
+
+
+## Dev.24: ensayo sin TLS completo aprobado
+
+`public-no-tls-QnTPzu56`, inicio `2026-10-08T19:55:27Z`, exit_code=0; proyecto `eventify-no-tls-bedcc85fc265`. PHP 8.4 lint correcto; dos probes TCP antes/después: MySQL 8.4 disponible sin TLS, Database production rechaza, base vacía. State real: exited/no Running/ExitCode 1/sin OOM/Error, terminado 19:55:41 UTC. Preflight y Apache Syntax OK; fallo de conexión impide migrar/servir. Código Compose 124 indica espera agotada del wrapper y se conserva por separado; aplicación terminó antes con rechazo esperado.
+
+Job/db/red efímeros propios retirados; archivos privados conservados, sin cambios en bases existentes. Caso servidor sin TLS cerrado en este entorno, sin relajar controles ni repetir 219 pruebas. No certifica proveedor/CA externa, HTTPS/URL ni Windows/Firefox. VERSION/etiqueta dev.24 conservadas.
