@@ -7,7 +7,7 @@ Fecha de referencia: 2026-10-08, zona del usuario America/Costa_Rica.
 - Usuario autorizó iniciar la construcción por bloques.
 - B00: commit inicial creado: 44da548. Se conservó el snapshot documental que estaba en el índice.
 - B01: stack Docker ejecutado por el usuario; salud PDO/MySQL 200 y nueve comprobaciones HTTP verificadas. Persistencia/reinicio todavía pendiente.
-- Git local: rama activa `codex/b05-clima` (base previa `codex/plan-eventify`); identidad reutilizada de Código Tico y verificada con cuenta GitHub USUARIO_DESTINO. Código B01–B04 guardado como 0.1.0-dev.1; B05 parcial en 0.1.0-dev.3 (catálogo/jQuery/API clima). Ninguna es estable. Repositorio privado creado: USUARIO_DESTINO/eventify. Push inicial confirmado en main y codex/plan-eventify, ambas a0e0102; etiquetas checkpoint-b00 → 44da548 y v0.1.0-dev.1 → a0e0102. Referencias verificadas mediante git ls-remote.
+- Git local: rama activa `codex/b06-admin` (base previa `codex/plan-eventify`); identidad reutilizada de Código Tico y verificada con cuenta GitHub USUARIO_DESTINO. Código B01–B04 guardado como 0.1.0-dev.1; B05 en 0.1.0-dev.3 y B06 parcial en 0.1.0-dev.4 (gestión de categorías/eventos). Ninguna es estable. Repositorio privado creado: USUARIO_DESTINO/eventify. Push inicial confirmado en main y codex/plan-eventify, ambas a0e0102; etiquetas checkpoint-b00 → 44da548 y v0.1.0-dev.1 → a0e0102. Referencias verificadas mediante git ls-remote.
 - Usuario autorizó versionado/push progresivo. Remoto: REPOSITORIO_DESTINO_PENDIENTE. No se modificó Código Tico ni se inventaron fechas de commits.
 - Linux Mint 22.3: el usuario instaló Docker 29.1.3 y Compose 2.40.3. Codex no tiene acceso directo al socket; sudo requiere contraseña interactiva en la terminal del usuario. PHP/MySQL objetivo se ejecutarán dentro de contenedores.
 - Herramientas temporales de verificación: PHP CLI 8.3.6 y Compose 2.40.3 extraídos de paquetes Ubuntu en /tmp, sin instalación global.
@@ -49,7 +49,7 @@ El comando activa el modo de desarrollo con montajes de código de solo lectura,
 | B03 | Implementado; cierre pendiente | [Evidencia B03](evidencias/B03.md) | Corrección cookie/CSRF preparada; repetir integración |
 | B04 | Implementación parcial | [Evidencia B04](evidencias/B04.md) | QR independiente comprobado; integración/concurrencia y navegador pendientes |
 | B05 | Implementación parcial | [Evidencia B05](evidencias/B05.md): catálogo/filtros/historial jQuery | API real independiente comprobada; integración MySQL/imagen pendiente; B04 sin cerrar |
-| B06 | Pendiente | CRUD/admin/dashboard | Depende B04 |
+| B06 | Implementación parcial | [Evidencia B06](evidencias/B06.md): categorías/eventos/estados | MySQL/permisos/concurrencia, reservas admin y dashboard pendientes |
 | B07 | Pendiente | QA integral/Linux/Windows/persistencia | Depende B05/B06 |
 | B08 | Pendiente | GitHub/publicación | Requiere autorizaciones externas y proveedor viable |
 | B09 | Pendiente | PDF/paquete/defensa | Requiere versión final comprobada |
@@ -130,3 +130,15 @@ Caché privada 1 h; errores con espera 10 min; datos anteriores etiquetados y m�
 Evidencia ejecutada: 34 reglas de clima en PHP temporal 8.3.6, sintaxis PHP/JS/Bash y revisión diff. Consulta REAL HTTPS del cliente PHP a San José/2026-10-10: datos recibidos y guardados en /tmp/eventify-weather-live-result.json, luego visibles en panel real renderizado con fixture de evento sin MySQL. Navegador in-app: pronóstico/atribución, fallo simulado con botón reserva habilitado y fecha lejana sin datos correctos. Móvil 390×844 sin desbordamiento, consola sin errores. Capturas /tmp/eventify-weather-desktop.png, failure.png y mobile.png. Esta evidencia no equivale a imagen PHP 8.4 ni evento leído de MySQL. Total de reglas: 115, repetidas correctamente en este turno. Compose normal/test/dev válidos con variables ficticias y --env-file /dev/null, sin leer secretos ni requerir daemon.
 
 storage/verification-status.txt sigue ausente al comprobar; mantener pendientes de integración y no cerrar B04/B05. Próximo: ejecutar verify-dev-linux.sh, comprobar flujo real y continuar B06 administración. Push confirmado: codex/b05-clima y etiqueta v0.1.0-dev.3 → 9ad4df4; git ls-remote comprobado. main sigue 3da680b. Commits documentales posteriores no mueven la etiqueta.
+
+## Administración B06 parcial — 2026-10-08
+
+RF-17/18/19/21, RF-03 y RNF-01/03/04: creación/consulta/edición/desactivación de categorías, creación/consulta/edición de eventos y cancelación/finalización separadas. Control ADMINISTRADOR y CSRF en servidor en todas las acciones; rutas de estado solo POST. Precio decimal exacto/cero, capacidad positiva, fecha Costa Rica con segundos conservados, coordenadas opcionales validadas y galería local de imágenes con lista permitida. Listas paginadas de 50. Sin nuevos uploads ni servicios externos.
+
+Decisiones de protección: no eliminación física; categoría desactivada conserva eventos y no se ofrece para nuevos; eventos cancelados/finalizados son históricos y no reactivables por edición. Slug de evento inmutable; fecha y retorno a borrador bloqueados cuando hay cualquier reserva histórica. Aforo comprobado contra cantidades CONFIRMADAS y estado coordinado con fila del evento FOR UPDATE, igual que reservar/cancelar. Precio histórico de reservas no se modifica. Creación/edición con fecha futura; finalizar solo tras el inicio. Son decisiones adicionales, no todas exigencias literales del PDF.
+
+Verificado: 37 reglas de AdminInput correctas (total 152), sintaxis PHP completa, Bash y diff correctos. Vista real con fixtures sin MySQL: formularios/eventos/categorías, galería, escritorio 1280×900 (dos columnas) y móvil 390×844 (una), ancho 1265/375 sin exceder viewport, consola sin errores. Capturas temporales /tmp/eventify-admin-desktop.png, mobile.png y categories.png. No se guardaron eventos desde estas fixtures ni se verificó autorización real en ellas.
+
+Pruebas MySQL/HTTP ampliadas para crear/editar, reducir aforo, preservar precio/fecha/historial, desactivar categoría, cancelar/finalizar e idempotencia, permiso directo, CSRF y escape. Preparadas sin ejecutar. Carreras admin contra reserva todavía requieren ampliación/verificación. Dashboard y consulta administrativa de reservas pendientes. No cerrar B06 ni declarar estable. storage/verification-status.txt sigue ausente; activación Docker necesita terminal del usuario con sudo. Sin migraciones ni borrado de datos.
+
+Versionado: codex/b06-admin / 0.1.0-dev.4; publicar y comprobar referencias; main conserva base anterior.

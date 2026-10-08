@@ -11,9 +11,12 @@ header("Content-Security-Policy: default-src 'self'; style-src 'self'; script-sr
 
 $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
-$authRoutes = ['/registro', '/ingresar', '/cuenta', '/admin', '/salir'];
+$authRoutes = ['/registro', '/ingresar', '/cuenta', '/salir'];
 $reserveApi = $path === '/api/reservas' || preg_match('#\A/api/reservas/([1-9][0-9]{0,9})/cancelar\z#', (string) $path, $cancelMatch);
-$allowed = in_array($path, ['/registro', '/ingresar'], true) ? ['GET', 'HEAD', 'POST'] : ($path === '/salir' || $reserveApi ? ['POST'] : ['GET', 'HEAD']);
+$adminRoute = $path === '/admin' || str_starts_with((string) $path, '/admin/');
+$adminWrite = $path === '/admin/categorias' || preg_match('#\A/admin/(categorias/[1-9][0-9]{0,9}/editar|eventos/(nuevo|[1-9][0-9]{0,9}/editar))\z#', (string) $path);
+$adminState = preg_match('#\A/admin/eventos/[1-9][0-9]{0,9}/estado\z#', (string) $path);
+$allowed = $adminState ? ['POST'] : ($adminWrite ? ['GET', 'HEAD', 'POST'] : (in_array($path, ['/registro', '/ingresar'], true) ? ['GET', 'HEAD', 'POST'] : ($path === '/salir' || $reserveApi ? ['POST'] : ['GET', 'HEAD'])));
 if (!in_array($method, $allowed, true)) {
     http_response_code(405);
     header('Allow: ' . implode(', ', $allowed));
@@ -26,6 +29,10 @@ if ($path === '/salud') {
     exit;
 }
 header('Content-Type: text/html; charset=utf-8');
+if ($adminRoute) {
+    (new Eventify\Http\AdminController())->respond($path, $method);
+    exit;
+}
 if ($reserveApi) {
     (new Eventify\Http\ReservationController())->api(isset($cancelMatch[1]) ? (int) $cancelMatch[1] : null);
     exit;

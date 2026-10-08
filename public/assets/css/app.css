@@ -67,3 +67,16 @@ select:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 .weather-panel { margin-block: 28px; padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: #fffef9; }
 .weather-panel p { line-height: 1.65; }
 [hidden] { display: none !important; }
+.admin-form-card { padding: 24px; margin-block: 28px; border: 1px solid var(--line); border-radius: 10px; background: #fffef9; }
+.admin-form, .admin-form fieldset { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; min-width: 0; }
+.admin-form fieldset { grid-column: 1 / -1; border: 0; padding: 0; }
+.admin-form legend { font-weight: 600; padding-block: 0 20px; }
+.admin-form label { display: block; margin-bottom: 8px; font-weight: 600; }
+.admin-form input:not([type="hidden"]), .admin-form textarea, .admin-form select, .state-form select { width: 100%; min-width: 0; padding: 12px; border: 1px solid #8c9388; border-radius: 5px; font: inherit; color: var(--ink); background: white; }
+.admin-form input[readonly] { background: #ebeee2; }
+textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.form-wide { grid-column: 1 / -1; }
+.admin-list { margin-top: 32px; }
+.state-form { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.state-form select { width: auto; max-width: 100%; }
+@media (max-width: 650px) { .admin-form, .admin-form fieldset { grid-template-columns: 1fr; } .admin-form-card { padding: 18px; } }

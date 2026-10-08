@@ -82,6 +82,10 @@ try {
     $assert($status === 200 && str_contains($history['html'], 'Aún no tiene reservas'), 'Historial AJAX vacío pertenece al usuario autenticado');
     [$status] = $request('/admin');
     $assert($status === 403, 'Usuario rechaza URL administrativa directa');
+    [$status] = $request('/admin/eventos/nuevo');
+    $assert($status === 403, 'Formulario de eventos exige administrador');
+    [$status] = $request('/admin/categorias', ['csrf' => $logoutToken, 'name' => 'Intento', 'slug' => 'intento']);
+    $assert($status === 403, 'Escritura administrativa rechaza rol usuario');
     $musicId = (int) $pdo->query("SELECT id FROM events WHERE slug = 'musica-ultimos-cupos'")->fetchColumn();
     [$status, $body] = $request('/api/reservas', ['csrf' => $logoutToken, 'event_id' => $musicId, 'quantity' => '1', 'price' => '0', 'total' => '0']);
     $created = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
@@ -108,6 +112,15 @@ try {
     $assert($status === 303, 'Administrador ingresa por HTTP');
     [$status] = $request('/admin');
     $assert($status === 200, 'Administrador autorizado por HTTP');
+    [$status, $body] = $request('/admin/categorias');
+    $adminToken = $csrf($body);
+    [$status] = $request('/admin/categorias', ['name' => 'Categoría HTTP de prueba', 'slug' => 'http-admin-probe']);
+    $assert($status === 403, 'Escritura admin requiere CSRF');
+    [$status] = $request('/admin/categorias', ['csrf' => $adminToken, 'name' => 'Categoría HTTP de prueba', 'slug' => 'http-admin-probe', 'is_active' => '1']);
+    $assert($status === 303 && (int) $pdo->query("SELECT COUNT(*) FROM categories WHERE slug = 'http-admin-probe'")->fetchColumn() === 1, 'Alta administrativa HTTP persistida');
+    [$status, $body] = $request('/admin/eventos/nuevo', ['csrf' => $adminToken, 'name' => '<script>prueba</script>', 'slug' => '../invalido']);
+    $assert($status === 422 && str_contains($body, '&lt;script&gt;') && !str_contains($body, '<script>prueba</script>'), 'Evento manipulado rechazado y valores escapados');
+
     [$status] = $request($created['ticket_url']);
     $assert($status === 404, 'Ticket de otra cuenta rechazado');
     [$status] = $request($created['ticket_url'] . '/qr.svg');

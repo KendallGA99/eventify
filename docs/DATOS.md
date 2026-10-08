@@ -65,3 +65,7 @@ Linux: `bash scripts/test-database-linux.sh`. Windows: `powershell -ExecutionPol
 Usan `docker-compose.test.yml`, proyecto `eventify-tests`, base `eventify_test` en memoria temporal, sin puertos ni volúmenes de la aplicación. Al finalizar se retiran únicamente sus contenedores y red; los datos de prueba son efímeros. No ejecutarlas contra una base de negocio.
 
 La suite verifica migraciones repetibles, siembra no destructiva, hashes, cupos derivados, restricciones, historial cancelado, bloqueo de semillas en producción y detección de migraciones alteradas/incompletas. No reemplaza las pruebas de concurrencia ni de permisos de B03/B04.
+
+## Edición administrativa (B06 parcial)
+
+No cambia esquema. Evento actualizado bajo bloqueo FOR UPDATE: capacidad >= entradas confirmadas; slug se conserva. Cualquier historial de reservas fija fecha y prohíbe volver a BORRADOR. Cancelados/finalizados conservan datos y no se reactivan. Cancelar evento no cancela individualmente sus reservas: tickets muestran invalidez por estado del evento, con historial/precio conservados. Finalización explícita solo después del inicio; el catálogo ya trata PUBLICADO pasado como finalizado sin modificar fila automáticamente. Categoría desactivada conserva referencias; no se asigna a un nuevo evento. Precio nuevo no actualiza unit_price/total de reservas. Confirmar estas reglas en MySQL y carreras antes de cierre.

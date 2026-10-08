@@ -94,3 +94,13 @@ Cliente PHP con TLS verificado, redirects deshabilitados, timeout de lectura 3 s
 storage/weather queda fuera de Git/raíz web, volumen persistente. Caché 3600 s, backoff 600 s tras fallo/cuota, datos previos máximo 21600 s. Locks no bloqueantes evitan llamadas simultáneas por misma ubicación/fecha; presupuesto común máximo 30 requests/h y 10/min, contando intentos. Si no se puede mantener caché/presupuesto, se presenta indisponibilidad. Archivos son caché descartable; mantenimiento futuro no debe tocar sesiones, credenciales ni MySQL.
 
 Condiciones oficiales consultadas 2026-10-08: API gratuita solo no comercial, menos de 10.000 llamadas/día, 5.000/h y 600/min, límite publicado 300.000/mes; sin garantía de disponibilidad. Datos CC BY 4.0 con atribución. Sin registro/clave/tarjeta ni planes de pago activados. Selección válida para demostración educativa, no promesa de explotación comercial gratuita. Fuentes: [condiciones](https://open-meteo.com/en/terms), [documentación](https://open-meteo.com/en/docs), [planes](https://open-meteo.com/en/pricing).
+
+## Administración de categorías y eventos (B06 parcial)
+
+AdminController autoriza rol desde MySQL en cada petición y verifica CSRF antes de escribir. AdminInput normaliza campos; AdminService coordina transacciones. No se confía en selectores/readonly del navegador. Estado solo por POST y acciones explícitas. Consultas/errores siguen política PDO/escape/redacción del proyecto. Admin consulta borradores; catálogo público no. Listas paginadas (50).
+
+Sin DELETE: categoría se desactiva y evento se cancela conservando reservas/tickets. Cancelado/finalizado son terminales para este alcance. Categorías inactivas pueden conservarse en eventos existentes; no asignarse a nuevos ni sustituir otra categoría. Slug de evento inmutable; fecha y paso a borrador no modificables con historial. Edición precio afecta reservas futuras; unit_price/total histórico no se toca. Cancelar evento no cambia estado ni precio de las reservas existentes.
+
+Lock evento FOR UPDATE compartido con ReservationService, luego categoría FOR SHARE; comprobar suma confirmadas después del bloqueo antes de reducir capacidad. Transiciones cancelado/finalizado con el mismo lock; finalizar exige inicio <= UTC actual. No afirmar resistencia a carrera verificada hasta ejecutar pruebas concurrentes.
+
+Fecha de formularios Costa Rica con precisión segundos, convertida a UTC. No perder segundos de datos sembrados al editar sin cambios. Eventos nuevos/editables deben ser futuros; es decisión de protección. Galería SVG local generada para el proyecto, paths estrictamente permitidos, sin URL libre ni uploads. Esta selección implementa campo imagen; cargas de archivos no forman parte de este incremento.

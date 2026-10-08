@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.4 — 2026-10-08
+
+B06 parcial: categorías crear/consultar/editar/desactivar; eventos crear/consultar/editar/cancelar/finalizar; galería local, formularios adaptables y listas paginadas. Permisos/CSRF servidor, precios/fechas/cupos validados, protección de historial y bloqueos compartidos con reservas. No eliminación física ni nuevas migraciones.
+
+Verificado: 37 reglas nuevas (152 total), sintaxis y formularios con fixtures móvil/escritorio. MySQL/HTTP/permisos/carreras preparados o pendientes; dashboard/consulta admin de reservas pendientes. No es versión estable.
+
 ## 0.1.0-dev.3 — 2026-10-08
 
 B05: pronóstico diario Open-Meteo en detalle, API útil para evaluación no comercial con atribución. Panel AJAX independiente, datos validados, caché/backoff/límites, TLS/timeout y fallback; horizonte de 16 días respetado. WEATHER_ENABLED=false desactiva, pruebas aisladas sin red externa.

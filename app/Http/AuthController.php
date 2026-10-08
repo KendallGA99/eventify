@@ -25,16 +25,10 @@ final class AuthController
         }
         $auth = new Auth(Database::connect());
         $user = $auth->user();
-        if (in_array($path, ['/cuenta', '/admin'], true)) {
+        if ($path === '/cuenta') {
             if ($user === null) { $this->redirect('/ingresar'); }
-            if ($path === '/admin' && $user['role'] !== 'ADMINISTRADOR') {
-                http_response_code(403);
-                $title = 'Acceso restringido';
-                $content = 'Su cuenta no tiene permiso para abrir la administración.';
-            } else {
-                $title = $path === '/admin' ? 'Administración' : 'Mi cuenta';
-                $content = $path === '/admin' ? 'Su acceso administrativo está activo. Estamos preparando las herramientas de gestión de eventos.' : 'Su cuenta está lista. Consulte sus experiencias para ver las reservas y los tickets.';
-            }
+            $title = 'Mi cuenta';
+            $content = 'Su cuenta está lista. Consulte sus experiencias para ver las reservas y los tickets.';
             require PROJECT_ROOT . '/app/Views/account.php';
             return;
         }
