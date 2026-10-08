@@ -4,7 +4,7 @@ Plataforma académica PHP/MySQL para descubrir eventos, reservar entradas, consu
 
 ## Avance actual
 
-Implementados autenticación/roles, catálogo con jQuery/AJAX, clima Open-Meteo, reservas/cancelación con cupos transaccionales, tickets QR privados y administración de categorías/eventos/reservas/dashboard. Versión de desarrollo vigente: **0.1.0-dev.8**, con cuatro carreras administrativas aprobadas.
+Implementados autenticación/roles, catálogo con jQuery/AJAX, clima Open-Meteo, reservas/cancelación con cupos transaccionales, tickets QR privados y administración de categorías/eventos/reservas/dashboard. Versión de desarrollo vigente: **0.1.0-dev.9**, con entorno separado de evaluación/persistencia preparado; cuatro carreras administrativas aprobadas en dev.8.
 
 Verificación real en Docker Linux aprobada el 2026-10-08: **177 comprobaciones de reglas**, QR y **170 comprobaciones de integración MySQL/HTTP** (ampliación aprobada a las 13:52 UTC), incluidas dos carreras de reservas y cuatro administrativas, precio histórico, permisos y dataset del dashboard. [Evidencia y límites](docs/evidencias/B07.md).
 

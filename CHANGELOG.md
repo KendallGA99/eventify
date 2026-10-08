@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.9 — 2026-10-08
+
+B07: entorno QA separado mediante proyecto Compose eventify-qa, puerto local 8081, base/volúmenes/claves propios y datos ficticios. Script inicializa/migra/siembra explícitamente, compara snapshot y recrea contenedores conservando volúmenes, valida persistencia y deja servidor listo para navegador. Nueve tablas con recuentos y hashes, marcador privado, credenciales e imágenes comparados; no imprime registros/claves.
+
+Sintaxis PHP/Bash, Compose estático y diff correctos. Ejecución real/persistencia/navegador pendientes; la suite anterior mantiene evidencia de 177 reglas/QR y 170 checks de integración. Sin cambiar negocio, base local existente ni ampliar permisos.
+
 ## 0.1.0-dev.8 — 2026-10-08
 
 B06/B07: cuatro carreras administrativas preparadas con conexiones/procesos independientes y ambos órdenes de bloqueo del evento: reducción de aforo frente a reserva y cancelación frente a reserva. Instrumentación PDO exclusiva de prueba mantiene el lock real del servicio mientras la otra conexión intenta adquirirlo. Verificar resultados, aforo/estado, tickets e historial previo. No modifica código de aplicación, esquema ni datos locales.

@@ -109,3 +109,10 @@ Las condiciones pueden cambiar; comprobar nuevamente antes de preparar la entreg
 La imagen instala temporalmente `unzip` para extraer los paquetes de Composer durante el build y lo retira después. No se requiere instalarlo en Linux/Windows del receptor. Si aparece «zip extension and unzip/7z commands are both missing», comprobar que se está construyendo el Dockerfile vigente (dev.6 o posterior) y repetir la verificación; no borrar volúmenes para corregir este fallo de construcción.
 
 Para comprobar únicamente un cambio en las pruebas de integración/MySQL, use `bash scripts/verify-integration-linux.sh` en Linux. Ejecuta el stack aislado de pruebas y guarda `storage/integration-status.txt` e `storage/integration.log` privados; conserva los volúmenes/datos de la aplicación. Este resultado es independiente del registro de verify-dev-linux.sh. Requiere acceso Docker y puede solicitar sudo en esa terminal. No sustituye pruebas unitarias o de entrega final cuando cambió la aplicación.
+
+
+## Entorno separado de evaluación en Linux
+
+`bash scripts/start-qa-linux.sh` levanta el proyecto Compose `eventify-qa` en http://localhost:8081 con base/volúmenes y configuración propios. No usa el override de desarrollo: el código se copia a la imagen. El script aplica migraciones, crea datos ficticios de forma idempotente y ensaya recreación de contenedores conservando volúmenes; compara nueve tablas y archivos. No interactúe con QA hasta que termine la comparación para no alterar el snapshot durante la prueba. La instancia normal en 8080 conserva sus datos. Si 8081 está ocupado, resolver el conflicto antes de continuar; no detener servicios ajenos por inferencia.
+
+Credenciales QA: `storage/qa/demo-credentials.json`, privadas/mode 600, nunca subir a Git o compartir. Claves de base: `storage/qa/qa.env`; registro/resultado: `storage/qa/start.log` y `status.txt`. La repetición conserva configuración/demostración existente. No usar down -v/reset para repetir. Es una preparación de QA: una ejecución correcta no certifica Windows, restauración, navegador completo ni URL pública.
