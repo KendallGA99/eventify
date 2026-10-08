@@ -35,3 +35,10 @@ GET /.env, /storage/demo-credentials.json, /composer.lock y /app/bootstrap.php d
 - HTTPS público/cookies Secure, TLS MySQL externo real y persistencia de sesiones en proveedor.
 - Casos restantes de UI, permisos y errores; Firefox/Windows, copia tras nueva reserva/recreación y HTTP restaurado.
 - Revisar avisos otra vez antes de entregar si cambia una dependencia o transcurre tiempo relevante. Mantener las licencias BSD de dependencias dentro del vendor instalado por Composer y los avisos MIT de jQuery al redistribuir.
+
+
+## Verificación de la web pública
+
+En dev.26 se ejecutaron 81 controles HTTPS con `tests/public_security.py`: cookies y sesión, CSRF, accesos administrativos, historial y propiedad de ticket/QR. El script exige un origen HTTPS y cuentas ficticias privadas; no sigue redirecciones ni muestra credenciales. Los POST de negocio se rechazan por CSRF inválido y no crean reservas. Véase ESTADO para el alcance y el comando. Las sesiones propias de la prueba se cerraron.
+
+La revisión de 505 blobs únicos del historial no encontró los secretos reales conocidos de configuración/cuentas ni rutas de datos privados. Esta revisión dirigida complementa la exclusión de archivos; no sustituye el escaneo de vulnerabilidades de las imágenes, que sigue pendiente.

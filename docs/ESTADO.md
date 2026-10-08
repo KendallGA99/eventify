@@ -6,11 +6,11 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 
 - Proyecto académico PHP/MySQL, HTML/CSS/JS/jQuery/AJAX; desarrollo Linux, entrega Docker Compose Linux/Windows. Sin gastos autorizados.
 - Construcción por bloques y commits/push progresivos autorizados. Repositorio privado [USUARIO_DESTINO/eventify](https://github.com/USUARIO_DESTINO/eventify), remoto SSH. No modificar Código Tico.
-- URL pública publicada: https://eventify-academico.onrender.com; aceptación final todavía parcial. Usuario autorizó Render Free + Aiven MySQL Free e integración Render limitada a USUARIO_DESTINO/eventify al responder «dale» el 2026-10-08; gasto máximo ₡0, sin tarjeta ni planes pagados. MySQL Free y Render Free creados; dev.25 Live verificada. No certificar Windows, publicación ni defensa por inferencia.
+- URL pública publicada: https://eventify-academico.onrender.com; aceptación final todavía parcial. Usuario autorizó Render Free + Aiven MySQL Free e integración Render limitada a USUARIO_DESTINO/eventify al responder «dale» el 2026-10-08; gasto máximo ₡0, sin tarjeta ni planes pagados. MySQL Free y Render Free creados; dev.26 Live verificada. No certificar Windows, publicación ni defensa por inferencia.
 
 ## Versión e instancias
 
-- Rama: `codex/b08-rechazo-sin-tls`. VERSION `0.1.0-dev.25`, commit `fb461ad` (Render Live); dev.24 `6baa754` y etiqueta `v0.1.0-dev.24` publicados y referencias remotas verificadas (ensayo sin TLS aprobado); dev.23 `3badc85`/`v0.1.0-dev.23` publicado, ensayo parcial y fallo del evaluador; cuentas verificadas en dev.22 (`4947823`, etiqueta `v0.1.0-dev.22`). Ninguna versión estable; CI manual preparado, no ejecutado.
+- Rama: `codex/b08-rechazo-sin-tls`. VERSION `0.1.0-dev.27` (pruebas/documentación); aplicación Render dev.26 `cabd6f3` Live; dev.24 `6baa754` y etiqueta `v0.1.0-dev.24` publicados y referencias remotas verificadas (ensayo sin TLS aprobado); dev.23 `3badc85`/`v0.1.0-dev.23` publicado, ensayo parcial y fallo del evaluador; cuentas verificadas en dev.22 (`4947823`, etiqueta `v0.1.0-dev.22`). Ninguna versión estable; CI manual preparado, no ejecutado.
 - `main`: `3da680b74b41fa3da4069879edc1f649de9b97f2`. No reescribir historial ni hacer push forzado. Rollback de código no restaura MySQL.
 - Destinos existentes, según última verificación: normal `localhost:8080`; QA `localhost:8081` / `eventify-qa`; copia limpia `localhost:8083` / `eventify-clean-20261008160801-e96614c4`; restauración `localhost:8082` / `eventify-restore-20261008154302-2b8eb996`. No afirmar disponibilidad actual sin consultar; conservar sus volúmenes y datos.
 - Docker 29.1.3 / Compose 2.40.3. El agente no tiene acceso al socket y sudo no interactivo exige contraseña; las operaciones Docker necesarias se ejecutan en terminal del usuario. No modificar grupos/socket/sudoers para eludirlo.
@@ -37,7 +37,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 - B01/B02: stack, esquema y migraciones comprobados. Portabilidad final permanece abierta.
 - B03–B06: implementación e integración aprobadas; aceptación de navegador parcial. Consultar [MATRIZ.md](MATRIZ.md).
 - B07 abierto: completar Firefox/Windows y casos restantes de UI/seguridad. No repetir la suite extensa sin cambios, fallos o dudas relevantes.
-- B08 activo: GitHub privado y preparación pública operativos; TLS y cuentas comprobados en ensayo aislado. Ensayo sin TLS dev.24 aprobado. Propuesta PUBLICACION-SOLICITUD.md autorizada. Render conectado solo a EVENTIFY y formulario Free preparado sin desplegar. MySQL/Render Free, HTTPS y flujos centrales externos verificados en dev.25; pendientes clima exitoso desde Render, cookies/controles externos restantes y revisión final.
+- B08 activo: GitHub privado y preparación pública operativos; TLS y cuentas comprobados en ensayo aislado. Ensayo sin TLS dev.24 aprobado. Propuesta PUBLICACION-SOLICITUD.md autorizada. Render conectado solo a EVENTIFY y servicio Free publicado. MySQL/Render Free, HTTPS y flujos centrales externos verificados en dev.25; pendientes clima exitoso desde Render, cookies/controles externos restantes y revisión final.
 - B09 abierto: actualizar documento técnico y paquete cuando la evidencia se consolide; entrega final exige instalación del receptor, entregables completos y evidencia humana real.
 
 ## Último resultado y límites
@@ -166,3 +166,18 @@ Render confirma Deploy succeeded | Live para cabd6f335d8952332ce6d0a71fcc515bb6f
 Nueva visita IAB al evento ficticio devuelve fallo controlado. Logs de aplicación a 14:59:40 CST: eventify_weather reason=http_status status=429. El proveedor responde, pero rechaza por límite; no hay evidencia de fallo TLS o de agotamiento del presupuesto propio. No se conoce qué límite exacto del proveedor se alcanzó. IP compartida es una hipótesis, no una causa comprobada. La documentación oficial describe límites gratuitos y posibles cuotas compartidas por IP: https://open-meteo.com/en/pricing y https://github.com/open-meteo/open-meteo/discussions/115. No cambiar destino, aumentar reintentos ni contratar un servicio para eludirlo.
 
 Evidencia visual /tmp/eventify-clima-diagnostico-dev26.png, fuera de Git. RF-15 en publicación continúa pendiente de una respuesta útil real. Próxima acción: evaluar una integración gratuita compatible si persiste el límite, manteniendo el manejo de errores, presupuesto cero y entrega local independiente. Revisión editorial inicial concluida; revisión completa de documento técnico/paquete sigue pendiente. Dev.26 es una versión de desarrollo, no una entrega estable.
+
+
+## B07/B08: controles HTTPS e historial, dev.27
+
+Objetivo: verificar RNF-03/04, RF-03/12/14 y SEG-01/03 en la web publicada, sin crear datos de negocio ni cambiar permisos. Revisados Session, AuthController, ReservationController, rutas y consultas de propiedad antes del ensayo.
+
+Ejecutado: `python3 tests/public_security.py --base https://eventify-academico.onrender.com --accounts storage/aiven-evaluacion/cuentas/accounts.json`. Resultado: 81 comprobaciones correctas contra dev.26. Cuenta ficticia propietaria y segunda cuenta: login con sesión regenerada, cookies Secure/HttpOnly/SameSite=Lax/path, CSP/nosniff/frame DENY, cuenta no-store, CSRF ausente y token de otra sesión rechazados, API privada sin login401, GET de escritura405, archivos privados404, ticket/QR ajenos404, historial ajeno sin ticket, administración403, logout y reutilización de sesión destruida rechazados. Todos los POST de negocio se enviaron con CSRF inválido; no se enviaron reservas ni cancelaciones válidas. Login/logout generan actividad de autenticación y sesiones. El ensayo no demuestra todos los escenarios de ataque ni la matriz de navegadores.
+
+Sintaxis Python y diff-check aprobados. Script usa biblioteca estándar, HTTPS validado, no sigue redirecciones ni imprime claves/cookies/respuestas. Las cuentas son entrada privada; no forman parte de Git ni del paquete. El receptor no necesita Python para ejecutar la aplicación, únicamente para este ensayo opcional.
+
+Revisión de historial de todas las referencias locales: 505 blobs únicos comparados con secretos reales conocidos de los dos entornos privados y las tres cuentas de evaluación; cero coincidencias. Sin .env privados, storage privado o backups en objetos del historial. Es una comprobación dirigida, no un detector universal de secretos ni escáner de vulnerabilidades de imágenes.
+
+Alternativa meteorológica revisada: MET Norway Locationforecast. Requiere identificación real en User-Agent, atribución CC BY4.0, caché respetando Expires/Last-Modified, compresión y gestión de redirecciones. No es compatible directamente con el adaptador diario actual: series horarias y horizonte distinto. No se activó, no se enviaron coordenadas ni se cambió proveedor. Fuentes: https://docs.api.met.no/doc/TermsOfService y https://docs.api.met.no/doc/ForecastJSON.html. Mantener RF-15 público pendiente; preparar adaptación y pruebas antes de reemplazar la integración.
+
+Dev.27 añade pruebas/documentación; aplicación pública permanece en dev.26, sin nuevo despliegue necesario para este incremento. Próximos pendientes: respuesta útil real de API, imagen/dependencias, Firefox/Windows y actualización PDF/paquete. No marcar B07/B08 completos.
