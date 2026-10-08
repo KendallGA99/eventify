@@ -4,7 +4,7 @@
 
 B07: entorno QA separado mediante proyecto Compose eventify-qa, puerto local 8081, base/volúmenes/claves propios y datos ficticios. Script inicializa/migra/siembra explícitamente, compara snapshot y recrea contenedores conservando volúmenes, valida persistencia y deja servidor listo para navegador. Nueve tablas con recuentos y hashes, marcador privado, credenciales e imágenes comparados; no imprime registros/claves.
 
-Sintaxis PHP/Bash, Compose estático y diff correctos. Ejecución real/persistencia/navegador pendientes; la suite anterior mantiene evidencia de 177 reglas/QR y 170 checks de integración. Sin cambiar negocio, base local existente ni ampliar permisos.
+Sintaxis PHP/Bash, Compose estático y diff correctos. Ejecución real/persistencia QA aprobadas posteriormente (14:02:55 UTC, exit_code=0). Chrome real comprobó búsqueda, login, reserva/ticket/QR, cancelación, dashboard/filtros y ticket responsive; primera respuesta visual de reserva pendiente de diagnóstico. Firefox/Windows/restauración y navegador completo pendientes. La suite anterior mantiene evidencia de 177 reglas/QR y 170 checks de integración. Sin cambiar negocio, base local existente ni ampliar permisos.
 
 ## 0.1.0-dev.8 — 2026-10-08
 

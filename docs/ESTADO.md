@@ -1,5 +1,20 @@
 # EVENTIFY: estado y continuidad
 
+## QA real: persistencia y Chrome — 2026-10-08
+
+Dev.9: start-qa-linux.sh terminó con exit_code=0 (storage/qa/status.txt, inicio 14:02:55 UTC). Log confirma volúmenes QA nuevos y comparación aprobada tras recrear web/db: nueve tablas, marcador, credenciales e imágenes conservados. Supera el pendiente de persistencia QA anterior; no equivale a restauración ni instalación desde copia limpia del repositorio.
+
+Chrome 154.0.8037.97 contra 127.0.0.1:8081 con PHP objetivo/MySQL real: búsqueda AJAX SQL mostró un evento; login/logout de usuario ficticio e ingreso de administrador correctos. Panel del Taller de SQL mostró pronóstico real y atribución Open-Meteo para fecha leída de MySQL. Cantidad 2 actualizó total a 30.000 colones.
+
+Primera confirmación SQL quedó visualmente en «Procesando», pero el historial confirmó reserva guardada. No se repitió el POST. Cancelación posterior por UI: POST 200 y GET experiencias 200, lista CANCELADA conservando importe/ticket; catálogo volvió a 28 espacios. Segunda creación (Encuentro de tecnología gratuito) completó: POST /api/reservas 201, navegación automática a ticket 200 y QR SVG privado 200/cargado. Primera respuesta visual conserva incidencia abierta; causa no demostrada. Hubo también timeouts del control CDP/capturas, que no se atribuyen a PHP por inferencia.
+
+Dashboard administrativo visible: 8 eventos conservados, 5 activos, 5 reservas activas, 15 entradas/93 espacios (16,13 %), ingreso potencial histórico 133.000 colones. Filtros SQL + otro@eventify.test + CANCELADA devolvieron dos reservas esperadas, incluida la creada/cancelada en este ensayo. No afirmar CRUD administrativo completo.
+
+Ticket/QR comprobado a 360/390/768/1280/1440 px: scrollWidth inferior a innerWidth y QR cargado en todos. Dashboard a 768 sin desbordamiento. No cubre matriz completa de páginas, zoom/orientación/teclado ni Firefox. Capturas temporales /tmp/eventify-qa-ticket-mobile.png, /tmp/eventify-qa-ticket-desktop.png, /tmp/eventify-qa-cancel-mobile.png y /tmp/eventify-qa-admin-tablet.png. Tamaño del navegador restablecido al terminar.
+
+Solo datos ficticios QA en 8081; instancia 8080 y esquema intactos. Credenciales/logs privados fuera de Git. Suites previas conservan evidencia de 177 reglas/QR y 170 checks de integración; no se repitieron por este registro documental. B07 permanece abierto. Próximo: investigar y acotar espera de confirmación, CRUD administrativo y matriz responsive/Firefox completos, exportación/restauración aislada y copia limpia Linux/Windows. URL pública/PDF/defensa siguen pendientes. Docker desde el agente sigue requiriendo autorización sudo de la terminal del usuario; no cambiar permisos para eludirla.
+
+
 Fecha de referencia: 2026-10-08, zona del usuario America/Costa_Rica.
 
 ## Resumen actual
