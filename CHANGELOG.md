@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.6 — 2026-10-08
+
+Corrección de construcción: instalar unzip dentro de la imagen mientras Composer extrae dependencias dist y retirarlo al finalizar. Mantener lockfile, checksum de Composer, validación de plataforma y controles de plugins/scripts. No requiere instalar PHP/unzip en el host ni cambia datos/esquema.
+
+La ejecución del usuario registrada a las 13:31:03 UTC terminó con exit_code=1 antes de iniciar los servicios/pruebas: faltaban ext-zip o unzip/7z. Compose normal/dev/test y sintaxis Bash comprobados estáticamente después de la corrección; reconstrucción objetivo pendiente de repetición. Versión de desarrollo.
+
 ## 0.1.0-dev.5 — 2026-10-08
 
 B06: dashboard con cinco indicadores base, rankings de evento/categoría e ingresos potenciales históricos, conjunto activo coherente y consulta MySQL única. Consulta administrativa de reservas con filtros combinados por nombre de evento, nombre/correo del usuario y estado; paginación y detalle histórico de solo lectura. Autorización ADMINISTRADOR en servidor. Sin migraciones ni cambios en datos existentes.

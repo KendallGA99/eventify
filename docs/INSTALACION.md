@@ -105,3 +105,5 @@ Scripts preparados para Windows PowerShell 5.1+, sin requerir bash/PHP/MySQL loc
 - [Docker Compose](https://docs.docker.com/compose/).
 
 Las condiciones pueden cambiar; comprobar nuevamente antes de preparar la entrega Windows final.
+
+La imagen instala temporalmente `unzip` para extraer los paquetes de Composer durante el build y lo retira después. No se requiere instalarlo en Linux/Windows del receptor. Si aparece «zip extension and unzip/7z commands are both missing», comprobar que se está construyendo el Dockerfile vigente (dev.6 o posterior) y repetir la verificación; no borrar volúmenes para corregir este fallo de construcción.

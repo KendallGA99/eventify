@@ -10,11 +10,16 @@ COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
 COPY docker/php.ini /usr/local/etc/php/conf.d/eventify.ini
 WORKDIR /var/www/html
 COPY composer.json composer.lock ./
-RUN curl -fsSL https://getcomposer.org/download/2.10.3/composer.phar -o /tmp/composer.phar \
+# Composer instala archivos dist ZIP; extractor solo durante la construcción.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends unzip \
+    && curl -fsSL https://getcomposer.org/download/2.10.3/composer.phar -o /tmp/composer.phar \
     && echo '7a2d379d5b8ffdaa028580ef26494c36d2feef4b178d3dd1473a4dbc5e17c8d6  /tmp/composer.phar' | sha256sum -c - \
     && php /tmp/composer.phar install --no-dev --no-plugins --no-scripts --prefer-dist --no-interaction --no-progress --optimize-autoloader \
     && php /tmp/composer.phar check-platform-reqs --no-dev \
-    && rm /tmp/composer.phar
+    && apt-get purge -y unzip \
+    && rm /tmp/composer.phar \
+    && rm -rf /var/lib/apt/lists/*
 COPY app/ app/
 COPY config/ config/
 COPY database/ database/

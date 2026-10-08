@@ -7,7 +7,7 @@ Fecha de referencia: 2026-10-08, zona del usuario America/Costa_Rica.
 - Usuario autorizó iniciar la construcción por bloques.
 - B00: commit inicial creado: 44da548. Se conservó el snapshot documental que estaba en el índice.
 - B01: stack Docker ejecutado por el usuario; salud PDO/MySQL 200 y nueve comprobaciones HTTP verificadas. Persistencia/reinicio todavía pendiente.
-- Git local: rama activa `codex/b06-dashboard` (base previa `codex/plan-eventify`); identidad reutilizada de Código Tico y verificada con cuenta GitHub USUARIO_DESTINO. Código B01–B04 guardado como 0.1.0-dev.1; B05 en 0.1.0-dev.3 y B06 parcial en 0.1.0-dev.5 (categorías/eventos, dashboard y consulta de reservas). Ninguna es estable. Repositorio privado creado: USUARIO_DESTINO/eventify. Push inicial confirmado en main y codex/plan-eventify, ambas a0e0102; etiquetas checkpoint-b00 → 44da548 y v0.1.0-dev.1 → a0e0102. Referencias verificadas mediante git ls-remote.
+- Git local: rama activa `codex/b07-build-fix` (base previa `codex/plan-eventify`); identidad reutilizada de Código Tico y verificada con cuenta GitHub USUARIO_DESTINO. Código B01–B04 guardado como 0.1.0-dev.1; B05 en 0.1.0-dev.3 y B06 parcial en 0.1.0-dev.5 (categorías/eventos, dashboard y consulta de reservas). Ninguna es estable. Repositorio privado creado: USUARIO_DESTINO/eventify. Push inicial confirmado en main y codex/plan-eventify, ambas a0e0102; etiquetas checkpoint-b00 → 44da548 y v0.1.0-dev.1 → a0e0102. Referencias verificadas mediante git ls-remote.
 - Usuario autorizó versionado/push progresivo. Remoto: REPOSITORIO_DESTINO_PENDIENTE. No se modificó Código Tico ni se inventaron fechas de commits.
 - Linux Mint 22.3: el usuario instaló Docker 29.1.3 y Compose 2.40.3. Codex no tiene acceso directo al socket; sudo requiere contraseña interactiva en la terminal del usuario. PHP/MySQL objetivo se ejecutarán dentro de contenedores.
 - Herramientas temporales de verificación: PHP CLI 8.3.6 y Compose 2.40.3 extraídos de paquetes Ubuntu en /tmp, sin instalación global.
@@ -49,7 +49,7 @@ El comando activa el modo de desarrollo con montajes de código de solo lectura,
 | B03 | Implementado; cierre pendiente | [Evidencia B03](evidencias/B03.md) | Corrección cookie/CSRF preparada; repetir integración |
 | B04 | Implementación parcial | [Evidencia B04](evidencias/B04.md) | QR independiente comprobado; integración/concurrencia y navegador pendientes |
 | B05 | Implementación parcial | [Evidencia B05](evidencias/B05.md): catálogo/filtros/historial jQuery | API real independiente comprobada; integración MySQL/imagen pendiente; B04 sin cerrar |
-| B06 | Implementación parcial | [Evidencia B06](evidencias/B06.md): categorías/eventos/estados | MySQL/permisos/concurrencia, reservas admin y dashboard pendientes |
+| B06 | Implementación parcial | [Evidencia B06](evidencias/B06.md): categorías/eventos/estados | Dashboard/reservas admin implementados; MySQL/permisos/concurrencia pendientes |
 | B07 | Pendiente | QA integral/Linux/Windows/persistencia | Depende B05/B06 |
 | B08 | Pendiente | GitHub/publicación | Requiere autorizaciones externas y proveedor viable |
 | B09 | Pendiente | PDF/paquete/defensa | Requiere versión final comprobada |
@@ -154,3 +154,11 @@ Ejecución real: 25 unidades nuevas, total 177 de reglas correctas con PHP tempo
 Prueba aislada preparada antes de siembra: dashboard vacío, seis eventos en estados/fechas diferentes, 21 entradas/202 espacios = 10,40 %, tres reservas activas y ₡2.200,00 histórico con precio actual diferente; empates, filtros literales/correo, detalle, 53 canceladas paginadas 50+3 y rollback de fixtures. HTTP ampliado para rechazar rol usuario, filtrar/consultar como administrador, filtro inválido, inexistente y POST prohibido. Estas pruebas MySQL/HTTP NO ejecutadas. sudo -n docker info volvió a requerir contraseña; storage/verification-status.txt ausente. Mantener B06 abierto, Windows/URL pública y concurrencia pendientes. Próximo: integración Docker actualizada y carreras administrativas; comprobar luego instalación/persistencia.
 
 Push confirmado y referencias verificadas con git ls-remote: codex/b06-dashboard y v0.1.0-dev.5 → b5bc7846bb5580b0c6c09621c34b340687e9e3e8. main conserva 3da680b74b41fa3da4069879edc1f649de9b97f2. Etiqueta de desarrollo, sin ejecutar CI ni desplegar. Commits documentales posteriores no mueven la etiqueta.
+
+## Corrección de construcción — 2026-10-08, dev.6
+
+El usuario ejecutó verify-dev-linux.sh; resultado REAL storage/verification-status.txt: inicio 2026-10-08T13:31:03Z, exit_code=1. Log: Composer 2.10.3 descargado con checksum correcto; instalación detenida al extraer dasprid/enum porque la imagen carece de ext-zip y unzip/7z. Falló durante build, antes del arranque/migraciones/pruebas de esta ejecución; no equivale al fallo HTTP anterior ni a prueba aprobada. El aviso buildx/Bake no fue la causa fatal.
+
+Corrección Dockerfile: apt-get install --no-install-recommends unzip solo dentro de la capa de construcción, Composer conserva lock/checksum/plugins/scripts deshabilitados/plataforma, purge de unzip y limpieza de índices apt al terminar. No instalar paquetes en host ni ampliar permisos Docker; no modificar base/volúmenes. Objetivo RT-06/U-01: desbloquear reconstrucción reproducible del stack con dependencias QR.
+
+Verificado después de editar: Compose normal/dev y aislado válidos con variables ficticias y --env-file /dev/null; Bash -n verify-dev-linux.sh y git diff --check correctos. No repetir unidades sin cambios PHP ni afirmar build corregido hasta ejecutarlo. sudo -n todavía requiere contraseña; se pidió repetir el script en terminal del usuario. B02–B06, imagen objetivo y B07 permanecen abiertos.
