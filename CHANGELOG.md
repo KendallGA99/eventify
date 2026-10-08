@@ -4,7 +4,7 @@
 
 B06/B07: cuatro carreras administrativas preparadas con conexiones/procesos independientes y ambos órdenes de bloqueo del evento: reducción de aforo frente a reserva y cancelación frente a reserva. Instrumentación PDO exclusiva de prueba mantiene el lock real del servicio mientras la otra conexión intenta adquirirlo. Verificar resultados, aforo/estado, tickets e historial previo. No modifica código de aplicación, esquema ni datos locales.
 
-Nuevo verify-integration-linux.sh ejecuta solo integración aislada y guarda resultado/log privados. Sintaxis PHP/Bash y diff correctos; nuevas 18 comprobaciones MySQL pendientes. La suite dev.7 previa aprobó 177 reglas/QR y 152 checks MySQL/HTTP; no atribuir su evidencia automáticamente a estas carreras.
+Nuevo verify-integration-linux.sh ejecuta solo integración aislada y guarda resultado/log privados. Sintaxis PHP/Bash y diff correctos; nuevas 18 comprobaciones MySQL aprobadas posteriormente a las 13:52:00 UTC: integración total 170, exit_code=0. La suite dev.7 previa aprobó 177 reglas/QR y 152 checks MySQL/HTTP; las carreras dev.8 tienen su propio registro de integración aprobado.
 
 ## 0.1.0-dev.7 — 2026-10-08
 

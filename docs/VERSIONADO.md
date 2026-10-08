@@ -52,3 +52,5 @@ Administración B06 parcial publicada y verificada: v0.1.0-dev.4 → 779d4e9, ra
 Dashboard y consulta B06 publicados y verificados: v0.1.0-dev.5 → b5bc784, rama codex/b06-dashboard; main conserva 3da680b. 177 reglas en herramienta temporal, integración objetivo pendiente; sin CI ni despliegue.
 
 Dev.7 → 994ec41 fue verificada después de publicar: ejecución Docker Linux 2026-10-08T13:40:03Z exit_code=0, 177 reglas/QR y 152 checks MySQL/HTTP. No mover etiqueta ni main por registrar evidencia. Próximos cambios de código necesitan pruebas afectadas; no repetir suite por cambios puramente documentales.
+
+Dev.8 → 27c91bf verificada en integración Docker Linux el 2026-10-08T13:52:00Z: exit_code=0, 170 checks MySQL/HTTP con cuatro carreras administrativas. Unidades/QR mantienen evidencia dev.7 porque la ampliación modifica solo tests/wrapper. Registrar aprobación sin mover etiqueta ni main; entrega estable sigue pendiente.

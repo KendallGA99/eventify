@@ -14,15 +14,15 @@ Fecha de referencia: 2026-10-08, zona del usuario America/Costa_Rica.
 - Stack objetivo PHP 8.4/Apache + MySQL 8.4 LTS actualizado y ejecutado en Linux mediante Docker. Correcciones de Composer y prueba de rollback incluidas en dev.7; suite vigente aprobada el 2026-10-08, 13:40:03 UTC (exit_code=0).
 - Aplicación local disponible en http://localhost:8080 con override de desarrollo; conserva volúmenes. Las vistas temporales con fixtures de turnos anteriores no son el servidor de entrega.
 - Verificado en imagen objetivo: sintaxis PHP, 177 comprobaciones de reglas, QR SVG/identificadores y conexión PDO/MySQL. Suite aislada: 152 comprobaciones correctas de migraciones/siembra/integridad, autenticación/permisos HTTP, catálogo, reservas/tickets/cancelación, dashboard/filtros y gestión administrativa.
-- Concurrencia de reservas comprobada con dos procesos/conexiones: último cupo y duplicado activo del mismo usuario. Carreras de administración contra reserva preparadas en dev.8, pendientes de ejecutar; no confundirlas con esas dos pruebas aprobadas.
+- Concurrencia de reservas comprobada con dos procesos/conexiones: último cupo y duplicado activo del mismo usuario. Carreras de administración contra reserva comprobadas en dev.8: ambos órdenes de aforo y cancelación; no confundirlas con esas dos pruebas aprobadas.
 - B02 integración aprobada; B03–B06 integración pertinente aprobada, cierre completo pendiente de flujos navegador reales y cobertura restante. API Open-Meteo real comprobada independientemente; en tests se desactiva para mantener aislamiento.
 - Windows: scripts preparados; instalación limpia en equipo compatible pendiente. Chrome/Firefox, tableta, persistencia/recreación, respaldo/restauración y URL pública pendientes.
-- Dependencias QR locales instaladas en imagen objetivo desde composer.lock; QR privado y propiedad comprobados por HTTP. Código vigente etiquetado v0.1.0-dev.7 → 994ec41361e2cb45bdfe6c40207773e760c21467; sigue siendo versión de desarrollo.
+- Dependencias QR locales instaladas en imagen objetivo desde composer.lock; QR privado y propiedad comprobados por HTTP. Código vigente etiquetado v0.1.0-dev.8 → 27c91bfe36255cb048a0cb1c7a0ff1cd1e516067; sigue siendo versión de desarrollo.
 - Publicación: InfinityFree es candidata de investigación; PHP/MySQL real, API, secretos y límites aún no verificados. No se creó cuenta ni URL.
 
 ## Próxima acción necesaria
 
-No pedir repetir la misma verificación sin un cambio o fallo que lo justifique: la ejecución vigente terminó correctamente. Continuar con B06/B07: carreras de edición/cancelación administrativa contra reservas, navegador real con datos ficticios, matriz de requisitos y persistencia/instalación limpia. El acceso Docker sigue requiriendo sudo interactivo del usuario; solicitarlo solo cuando haga falta ejecutar nuevas pruebas/reinicios. No modificar permisos para evitarlo.
+No pedir repetir la misma verificación sin un cambio o fallo que lo justifique: la ejecución vigente terminó correctamente. Continuar con B06/B07: navegador real con datos ficticios, matriz de requisitos y persistencia/instalación limpia. Las cuatro carreras administrativas ya pasaron. El acceso Docker sigue requiriendo sudo interactivo del usuario; solicitarlo solo cuando haga falta ejecutar nuevas pruebas/reinicios. No modificar permisos para evitarlo.
 
 El script verify-dev-linux.sh guarda registro y resultado privados en storage/verification.log y storage/verification-status.txt, ignorados por Git y fuera de public. La contraseña se introduce solo en la terminal del usuario. Reinicios/instalaciones de prueba deben conservar volúmenes existentes y usar aislamiento para probar restauración.
 
@@ -44,7 +44,7 @@ El script verify-dev-linux.sh guarda registro y resultado privados en storage/ve
 | B03 | Implementado; cierre pendiente | [Evidencia B03](evidencias/B03.md) | HTTP/login/roles/CSRF aprobados; navegador real pendiente |
 | B04 | Implementación parcial | [Evidencia B04](evidencias/B04.md) | QR/HTTP/MySQL y dos carreras aprobados; navegador real pendiente |
 | B05 | Implementación parcial | [Evidencia B05](evidencias/B05.md): catálogo/filtros/historial jQuery | API real independiente y catálogo MySQL/HTTP aprobados; navegador real completo pendiente |
-| B06 | Implementación parcial | [Evidencia B06](evidencias/B06.md): categorías/eventos/estados | Dashboard/reservas/admin MySQL/HTTP aprobados; carreras admin y navegador pendientes |
+| B06 | Implementación parcial | [Evidencia B06](evidencias/B06.md): categorías/eventos/estados | Dashboard/reservas/admin MySQL/HTTP y cuatro carreras aprobados; navegador real pendiente |
 | B07 | En revisión | [Evidencia B07](evidencias/B07.md) | Suite vigente aprobada; portabilidad/persistencia/navegador pendientes |
 | B08 | Pendiente | GitHub/publicación | Requiere autorizaciones externas y proveedor viable |
 | B09 | Pendiente | PDF/paquete/defensa | Requiere versión final comprobada |
@@ -193,3 +193,11 @@ Verificado: sintaxis de los PHP afectados, Bash -n scripts/verify-integration-li
 No se alteró base local, esquema, volúmenes ni permisos. Próximo: leer integration-status/log, corregir fallos si existen y registrar evidencia; seguir navegador/persistencia/Windows/publicación. No cerrar B06 aún.
 
 Push confirmado y referencias verificadas con git ls-remote: codex/b06-admin-races y v0.1.0-dev.8 → 27c91bfe36255cb048a0cb1c7a0ff1cd1e516067; main conserva 3da680b. integration-status.txt todavía ausente al comprobar. Sin CI/despliegue; registros posteriores no mueven etiqueta.
+
+## Carreras administrativas aprobadas — 2026-10-08
+
+Evidencia REAL leída de storage/integration-status.txt: inicio 2026-10-08T13:52:00Z, exit_code=0. integration.log: «MySQL: 170 comprobaciones correctas», tests exit 0 y «Verificaciones de integración terminadas correctamente». Comando ejecutado por el usuario: bash scripts/verify-integration-linux.sh. Código dev.8 en 27c91bf, HEAD documental eb5640b, árbol limpio al leer. No copiar registros privados a Git.
+
+Pasaron las 152 comprobaciones previas y 18 nuevas: cuatro carreras con conexión/proceso separados y solapamiento comprobado bajo lock real; aforo primero/reserva primero, cancelación primero/reserva primero. Resultados esperados, capacidad/cantidad/estado, un ticket por reserva conservada e historial monetario anterior intactos. Sin cambios de aplicación, permisos globales, esquema o volúmenes locales. La suite de reglas 177 y QR sigue teniendo evidencia de la ejecución dev.7 anterior; este comando dirigido no los repitió y no se suman falsamente al resultado de integración.
+
+Queda superada la ejecución pendiente de carreras descrita arriba. B06 conserva pendiente el flujo navegador real; B07 conserva Chrome/Firefox/tableta, instalación limpia Linux/Windows, persistencia y respaldo/restauración. URL pública, PDF y defensa siguen pendientes. Registrar esta evidencia documental en GitHub sin mover etiquetas ni main. No pedir repetir pruebas por este cambio de documentos.
