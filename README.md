@@ -49,7 +49,7 @@ Actualizar y verificar Linux: `bash scripts/verify-linux.sh`. **Pendiente:** com
 
 ## Condiciones
 
-Desarrollo Linux y entrega Linux/Windows; HTML/CSS/JavaScript/jQuery/AJAX + PHP + MySQL; herramientas gratuitas para uso académico; diseño adaptable; seguridad en servidor; pruebas e historial progresivo. URL pública requerida por suficiencia: proveedor y despliegue todavía pendientes. Versionado progresivo autorizado; identidad configurada, primer commit creado y repositorio privado [USUARIO_DESTINO/eventify](https://github.com/USUARIO_DESTINO/eventify) creado; push inicial en preparación. Ver [VERSIONADO.md](docs/VERSIONADO.md).
+Desarrollo Linux y entrega Linux/Windows; HTML/CSS/JavaScript/jQuery/AJAX + PHP + MySQL; herramientas gratuitas para uso académico; diseño adaptable; seguridad en servidor; pruebas e historial progresivo. URL pública requerida por suficiencia: proveedor y despliegue todavía pendientes. Versionado progresivo autorizado; identidad configurada, primer commit creado y repositorio privado [USUARIO_DESTINO/eventify](https://github.com/USUARIO_DESTINO/eventify) creado y push inicial verificado: ramas main/codex y etiquetas checkpoint-b00/v0.1.0-dev.1. Ver [VERSIONADO.md](docs/VERSIONADO.md).
 
 ## Se completará por bloques
 

@@ -7,7 +7,7 @@ Fecha de referencia: 2026-10-08, zona del usuario America/Costa_Rica.
 - Usuario autorizó iniciar la construcción por bloques.
 - B00: commit inicial creado: 44da548. Se conservó el snapshot documental que estaba en el índice.
 - B01: stack Docker ejecutado por el usuario; salud PDO/MySQL 200 y nueve comprobaciones HTTP verificadas. Persistencia/reinicio todavía pendiente.
-- Git local: rama `codex/plan-eventify`; identidad reutilizada de Código Tico y verificada con cuenta GitHub USUARIO_DESTINO. Código B01–B04 se prepara como 0.1.0-dev.1; no es estable. Repositorio privado creado: USUARIO_DESTINO/eventify. Push inicial en preparación.
+- Git local: rama `codex/plan-eventify`; identidad reutilizada de Código Tico y verificada con cuenta GitHub USUARIO_DESTINO. Código B01–B04 se prepara como 0.1.0-dev.1; no es estable. Repositorio privado creado: USUARIO_DESTINO/eventify. Push inicial confirmado en main y codex/plan-eventify, ambas a0e0102; etiquetas checkpoint-b00 → 44da548 y v0.1.0-dev.1 → a0e0102. Referencias verificadas mediante git ls-remote.
 - Usuario autorizó versionado/push progresivo. Remoto: REPOSITORIO_DESTINO_PENDIENTE. No se modificó Código Tico ni se inventaron fechas de commits.
 - Linux Mint 22.3: el usuario instaló Docker 29.1.3 y Compose 2.40.3. Codex no tiene acceso directo al socket; sudo requiere contraseña interactiva en la terminal del usuario. PHP/MySQL objetivo se ejecutarán dentro de contenedores.
 - Herramientas temporales de verificación: PHP CLI 8.3.6 y Compose 2.40.3 extraídos de paquetes Ubuntu en /tmp, sin instalación global.
@@ -32,7 +32,7 @@ El comando activa el modo de desarrollo con montajes de código de solo lectura,
 
 ## Pendientes no resueltos por inferencia
 
-1. Publicar y verificar ramas/etiquetas de Eventify; no dar por hecho push hasta comparar SHA remoto.
+1. Próximos incrementos: commits/push/etiquetas progresivos, revisión y validación antes de versiones estables.
 2. Windows/arquitectura/equipo receptor y posibilidad de validación real.
 3. Proveedor público gratuito validado con MySQL, persistencia y API; localhost no reemplaza la URL pública.
 4. Fecha de entrega, participación del estudiante y evidencia humana de defensa.
@@ -107,3 +107,5 @@ Actualizar con hechos; evidencias extensas en docs/evidencias/Bxx.md. No duplica
 ## Versionado adoptado
 
 Ver [VERSIONADO.md](VERSIONADO.md) y CHANGELOG.md. Workflow manual preparado; no se ejecutó ni se habilitó despliegue. Rollback real de código/datos pendiente de ensayo aislado.
+
+Publicación inicial: https://github.com/USUARIO_DESTINO/eventify (privado). SSH autenticado y push verificado; sin .env/vendor/datos privados en el índice. CI manual preparado y no ejecutado. No se desplegó la aplicación ni se restauró/borró MySQL.

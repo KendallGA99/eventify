@@ -35,3 +35,7 @@ No borrar volúmenes. Conservar imagen/commit anterior y respaldo antes de una a
 Workflow preparado con permisos mínimos, checkout fijado, Docker/MySQL aislado, unidades, HTTP y JavaScript. Inicialmente solo ejecución manual (`workflow_dispatch`), sin despliegue ni servicios de negocio. No se dispara al publicar este checkpoint. Activación automática pendiente de confirmar cuota gratuita/política de gasto de Actions para el repositorio privado.
 
 Registrar URL del remoto, rama/SHA/etiquetas publicados y resultados reales de checks en ESTADO. Si falla un check, conservar la versión previa y corregir; no marcarla estable por tener push exitoso.
+
+## Referencias publicadas
+
+Push inicial verificado: main y codex/plan-eventify en a0e0102; checkpoint-b00 apunta a 44da548 y v0.1.0-dev.1 a a0e0102. Los commits documentales posteriores registran esta evidencia sin mover las etiquetas.
