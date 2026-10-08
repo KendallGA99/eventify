@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.3 — 2026-10-08
+
+B05: pronóstico diario Open-Meteo en detalle, API útil para evaluación no comercial con atribución. Panel AJAX independiente, datos validados, caché/backoff/límites, TLS/timeout y fallback; horizonte de 16 días respetado. WEATHER_ENABLED=false desactiva, pruebas aisladas sin red externa.
+
+Verificado: 34 pruebas nuevas de clima (115 reglas), consulta PHP HTTPS real y datos visibles en vista con fixture, error y fecha lejana, móvil, sintaxis. MySQL/imagen PHP 8.4 y B04 pendientes; versión de desarrollo, sin cambios de esquema/datos.
+
 ## 0.1.0-dev.2 — 2026-10-08
 
 B05 parcial: catálogo con búsqueda, categoría, rango de fechas Costa Rica, cupos, estados y páginas; jQuery 4.0.0 local; actualización autenticada de Mis experiencias tras cancelación. Borradores privados y eventos cancelados/finalizados visibles sin reserva. No cambia esquema ni datos.

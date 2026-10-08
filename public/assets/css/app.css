@@ -63,3 +63,7 @@ select:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 [data-catalog-feedback] { min-height: 24px; line-height: 1.6; }
 @media (max-width: 900px) { .catalog-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .catalog-filters { grid-template-columns: 1fr; } }
+
+.weather-panel { margin-block: 28px; padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: #fffef9; }
+.weather-panel p { line-height: 1.65; }
+[hidden] { display: none !important; }

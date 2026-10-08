@@ -6,6 +6,7 @@ services:
     command: ["php", "tests/integration/database.php"]
     environment:
       APP_ENV: test
+      WEATHER_ENABLED: "false"
       APP_SECRET: ${APP_SECRET:?Falta APP_SECRET}
       DB_HOST: db
       DB_PORT: 3306

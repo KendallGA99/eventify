@@ -30,6 +30,10 @@ if ($reserveApi) {
     (new Eventify\Http\ReservationController())->api(isset($cancelMatch[1]) ? (int) $cancelMatch[1] : null);
     exit;
 }
+if (preg_match('#\A/api/eventos/([a-z0-9-]+)/clima\z#', (string) $path, $weatherMatch)) {
+    (new Eventify\Http\WeatherController())->respond($weatherMatch[1]);
+    exit;
+}
 if ($path === '/api/experiencias') {
     (new Eventify\Http\ReservationController())->experiencesApi();
     exit;

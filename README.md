@@ -4,7 +4,7 @@ Plataforma académica PHP/MySQL para descubrir eventos, reservar entradas, consu
 
 ## Avance actual
 
-Construcción por bloques iniciada. B00 documentado; B01 tiene base Docker/PHP, vista inicial y scripts Linux/Windows. Compose, sintaxis, configuración y respuestas HTTP verificadas parcialmente. B02 incorpora esquema, migraciones y demostración opcional; 81 comprobaciones de configuración/reglas correctas en herramientas temporales. El arranque Docker y la conexión MySQL de la versión inicial ya se comprobaron. B03 prepara registro, ingreso, roles y cuenta; su integración está pendiente. B04 parcial agrega reservas/cancelación, historial y consulta privada de ticket; QR local implementado y comprobado de forma independiente; integración objetivo pendiente. B05 parcial agrega catálogo, filtros/paginación y actualización del historial con jQuery; probado con fixtures, pendiente MySQL/API externa. Administración completa aún por implementar.
+Construcción por bloques iniciada. B00 documentado; B01 tiene base Docker/PHP, vista inicial y scripts Linux/Windows. Compose, sintaxis, configuración y respuestas HTTP verificadas parcialmente. B02 incorpora esquema, migraciones y demostración opcional; 115 comprobaciones de configuración/reglas correctas en herramientas temporales. El arranque Docker y la conexión MySQL de la versión inicial ya se comprobaron. B03 prepara registro, ingreso, roles y cuenta; su integración está pendiente. B04 parcial agrega reservas/cancelación, historial y consulta privada de ticket; QR local implementado y comprobado de forma independiente; integración objetivo pendiente. B05 parcial agrega catálogo, filtros/paginación y actualización del historial con jQuery; probado con fixtures, API de clima real comprobada independientemente; MySQL objetivo pendiente. Administración completa aún por implementar.
 
 ## Inicio local
 
@@ -28,7 +28,7 @@ Detener: `bash scripts/stop-linux.sh` o `detener-windows.cmd`. Pruebas B01: `bas
 
 Pruebas MySQL aisladas: `bash scripts/test-database-linux.sh`; demostración opcional: `bash scripts/demo-linux.sh`. Consulte [DATOS.md](docs/DATOS.md).
 
-Actualizar y verificar Linux: `bash scripts/verify-linux.sh`. **Pendiente:** comprobar integración actualizada, persistencia y Windows. El receptor no necesita PHP/MySQL instalados aparte de Docker. Internet es necesario en la preparación inicial y para la futura API.
+Actualizar y verificar Linux: `bash scripts/verify-linux.sh`. **Pendiente:** comprobar integración actualizada, persistencia y Windows. El receptor no necesita PHP/MySQL instalados aparte de Docker. Internet es necesario en la preparación inicial y para la API de clima.
 
 ## Documentación y continuidad
 

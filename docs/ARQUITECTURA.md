@@ -16,7 +16,7 @@ flowchart LR
     W --> P[PHP / controladores y servicios]
     P -->|PDO / red interna| D[(MySQL / volumen persistente)]
     P --> S[Archivos / volumen persistente]
-    P -. Integración futura .-> A[API externa gratuita académica]
+    P -. Clima en detalle .-> A[Open-Meteo: API académica gratuita]
 ```
 
 ## Imágenes resueltas
@@ -51,7 +51,7 @@ No hay todavía login, categorías, eventos persistidos, reservas, tickets o das
 | jQuery 4.0.0 completo | MIT; copia local con licencia, sin CDN en ejecución. | Catálogo/historial preparados y probados con fixtures; MySQL pendiente. |
 | chillerlan/php-qrcode 6.0.1 | MIT/Apache-2.0; requiere PHP >=8.2 y mbstring según metadatos de Packagist. | Candidata elegida para B04; instalar/extensiones/lockfile pendientes. |
 | PHPUnit 13.4.1 | BSD-3-Clause; requiere PHP >=8.4.1 y extensiones. | Candidato consultado; no instalado. Las pruebas B01 son scripts mínimos sin dependencia externa. |
-| Open-Meteo | Modalidad gratuita no comercial; 10.000 llamadas/día, sin garantía de disponibilidad. | Candidata para evaluación académica; validar atribución, caché y uso antes de integrar. |
+| Open-Meteo | Modalidad gratuita no comercial; 10.000 llamadas/día, sin garantía de disponibilidad. | Integrada para evaluación no comercial con atribución/caché/límites; prueba real independiente correcta. |
 
 La venta del trabajo de desarrollo no determina por sí sola que la operación futura de la plataforma cumpla una licencia API no comercial. Antes de uso empresarial, revisar condiciones o elegir una API compatible; no convertirlo automáticamente en un servicio de pago.
 
@@ -81,6 +81,16 @@ BaconQrCode 3.1.1 y dasprid/enum 1.0.7 (BSD-2-Clause), composer.lock versionable
 
 Filtros validados en CatalogFilter, consultas PDO en CatalogRepository, renderizado escapado en fragmentos PHP. Listados de 12 registros, consulta de 13 para detectar siguiente página sin COUNT repetido. Fechas inclusivas en hora Costa Rica traducidas a límites UTC [inicio, día siguiente); comodines LIKE de usuario tratados literalmente. Borradores privados; publicados pasados aparecen como finalizados sin modificar automáticamente la base. Cancelados/finalizados consultables y sin formulario de reserva. Disponibilidad se calcula con reservas CONFIRMADAS.
 
-jQuery: (1) catálogo con debounce, aborto y secuencia que descarta respuestas anteriores incluso mientras el usuario escribe; (2) Mis experiencias con consulta autenticada y actualización tras cancelar. AJAX: GET /api/eventos, POST /api/reservas, POST /api/reservas/{id}/cancelar y GET /api/experiencias. Las rutas de historial/cancelación conservan autorización y CSRF de escritura; las consultas públicas no necesitan sesión. La API externa sigue pendiente.
+jQuery: (1) catálogo con debounce, aborto y secuencia que descarta respuestas anteriores incluso mientras el usuario escribe; (2) Mis experiencias con consulta autenticada y actualización tras cancelar. AJAX: GET /api/eventos, POST /api/reservas, POST /api/reservas/{id}/cancelar y GET /api/experiencias. Las rutas de historial/cancelación conservan autorización y CSRF de escritura; las consultas públicas no necesitan sesión. API meteorológica integrada; comprobación con MySQL/imagen objetivo pendiente.
 
 Dependencia: [jQuery 4.0.0 oficial](https://jquery.com/download/), [licencia MIT](https://jquery.com/license/); fuente https://code.jquery.com/jquery-4.0.0.min.js. SHA-256: 39a546ea9ad97f8bfaf5d3e0e8f8556adb415e470e59007ada9759dce472adaa. Archivos locales public/assets/lib/jquery-4.0.0.min.js y jquery-LICENSE.txt; conservar encabezado y licencia.
+
+## API meteorológica y disponibilidad del flujo central
+
+WeatherController busca un evento público mediante CatalogRepository y llama EventWeather. El navegador pide el endpoint AJAX después de renderizar el detalle; la reserva no espera al proveedor ni comparte su sesión/CSRF con él. Endpoint externo fijo api.open-meteo.com/v1/forecast; acepta solamente coordenadas numéricas validadas del evento. WEATHER_ENABLED=false desactiva la integración sin afectar reservas. El stack de pruebas la desactiva para no depender de Internet.
+
+Cliente PHP con TLS verificado, redirects deshabilitados, timeout de lectura 3 s, máximo 128 KiB, JSON/unidades/rangos/fecha revisados. Datos diarios seleccionados por fecha Costa Rica; no se confunden con el clima exacto de la hora del evento. Solo próximos eventos públicos hasta +15 días. Coordenadas se redondean a 4 decimales. Panel usa texto seguro y atribución Open-Meteo/CC BY 4.0, con marca temporal y aviso si se muestra información anterior.
+
+storage/weather queda fuera de Git/raíz web, volumen persistente. Caché 3600 s, backoff 600 s tras fallo/cuota, datos previos máximo 21600 s. Locks no bloqueantes evitan llamadas simultáneas por misma ubicación/fecha; presupuesto común máximo 30 requests/h y 10/min, contando intentos. Si no se puede mantener caché/presupuesto, se presenta indisponibilidad. Archivos son caché descartable; mantenimiento futuro no debe tocar sesiones, credenciales ni MySQL.
+
+Condiciones oficiales consultadas 2026-10-08: API gratuita solo no comercial, menos de 10.000 llamadas/día, 5.000/h y 600/min, límite publicado 300.000/mes; sin garantía de disponibilidad. Datos CC BY 4.0 con atribución. Sin registro/clave/tarjeta ni planes de pago activados. Selección válida para demostración educativa, no promesa de explotación comercial gratuita. Fuentes: [condiciones](https://open-meteo.com/en/terms), [documentación](https://open-meteo.com/en/docs), [planes](https://open-meteo.com/en/pricing).

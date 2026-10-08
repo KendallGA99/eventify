@@ -26,6 +26,7 @@ jobs:
           node --check public/assets/js/reservations.js
           node --check public/assets/js/catalog.js
           node --check public/assets/js/experiences.js
+          node --check public/assets/js/weather.js
       - name: Detener servicios sin borrar volúmenes
         if: always()
         run: docker compose stop

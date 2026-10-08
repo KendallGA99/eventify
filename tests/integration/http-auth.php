@@ -40,6 +40,11 @@ try {
     [$status, $body] = $request('/api/eventos?q=%25');
     $catalog = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
     $assert($status === 200 && str_contains($catalog['html'], 'No encontramos'), 'Comodín del usuario tratado literalmente');
+    [$status, $body] = $request('/api/eventos/taller-sql/clima');
+    $weather = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
+    $assert($status === 200 && $weather['status'] === 'disabled', 'API clima aislada sin llamadas externas en tests');
+    [$status] = $request('/api/eventos/carrera-borrador/clima');
+    $assert($status === 404, 'Clima de borrador privado rechazado');
     [$status] = $request('/api/eventos?from=2026-02-29');
     $assert($status === 422, 'Fecha inválida rechazada por API');
     [$status] = $request('/api/eventos?q%5B%5D=x');
