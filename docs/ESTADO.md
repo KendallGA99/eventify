@@ -10,11 +10,11 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b09-documento-tecnico (documentación; B07 continúa abierto). Código de referencia dev.14: c915142. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
+- Rama activa: codex/b07-verificacion-actual (evidencia; B07 continúa abierto). Código de referencia dev.14: c915142. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
-- QA todavía sirve reservations.js dev.9 al comprobar en este turno: no contiene AbortController/15000. status QA conserva inicio 14:02:55 UTC, exit_code=0. Dev.10 no activado aún.
+- QA actualizado: migración 003 aplicada; reservations.js servido incluye AbortController y espera de 15000 ms de dev.10. Verificación conjunta de QA iniciada 15:42:38 UTC, exit_code=0 (repetición posterior también correcta).
 - Docker 29.1.3 / Compose 2.40.3 instalados por usuario. Desde agente, socket denegado y sudo -n requiere contraseña. Autorización temporal de su terminal no se comparte con el agente; no cambiar grupos/socket/sudoers para eludirla.
 - Secretos/resultados privados: storage/qa/qa.env, demo-credentials.json, status.txt/start.log; storage/verification-status.txt/verification.log e integration-status.txt/integration.log. Ignorados por Git y fuera de raíz web.
 
@@ -22,79 +22,39 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 | Área | Comprobado | Límite |
 | --- | --- | --- |
-| Reglas/PHP/QR | verify-dev-linux.sh, 13:40:03 UTC, exit 0: 177 reglas, sintaxis/QR/PDO MySQL | No demuestra entrega completa |
-| Integración | verify-integration-linux.sh, 13:52:00 UTC, exit 0: 170 checks MySQL/HTTP | No incluye navegador ni Windows |
-| Concurrencia | Dos carreras reserva (último cupo/duplicado) y cuatro admin-reserva (dos órdenes de aforo/cancelación) con conexiones/procesos/lock reales | Conservar evidencia, no repetir sin cambio/fallo |
-| Persistencia QA | start-qa-linux.sh, 14:02:55 UTC, exit 0: volúmenes nuevos y recreación web/db conservan nueve tablas, marcador, credenciales e imágenes | No equivale a restore ni copia limpia del repo |
-| Chrome usuario | 154.0.8037.97: búsqueda AJAX, login/logout, total dinámico, reserva gratuita POST 201 → ticket/QR 200, cancelación POST/actualización historial 200 | Primera reserva SQL guardada, UI quedó Procesando; causa no demostrada |
-| API | Pronóstico Open-Meteo real visible para evento de MySQL, con atribución | Errores/cuotas probados en reglas/fixtures; fallo real UI pendiente |
-| Chrome admin | Categoría creada/desactivada y evento nuevo BORRADOR → PUBLICADO → CANCELADO; búsqueda AJAX lo encontró, detalle se conserva sin reserva/pronóstico. Dashboard/filtros y detalle histórico observados | Finalización/edición con reservas/matriz de permisos completa pendientes |
-| Chrome permisos | Logout → /admin conduce a login; USUARIO rechazado en /admin; ticket de otra cuenta muestra 404 sin contenido | No certificar todas las rutas/HTTPS por estos tres casos |
-| Responsive | Ticket/QR 360/390/768/1280/1440 sin desbordamiento; dashboard 768 | Formularios/páginas restantes, zoom/orientación/foco y Firefox pendientes |
-| Cliente dev.10 | node tests/client/reservation-feedback.cjs: 14 checks correctos; sintaxis JS/diff correctos | Transporte/DOM controlados, no navegador objetivo ni MySQL |
-| Transferencia dev.11 | PHP/Bash/Compose estáticos correctos; tres guardas rechazadas y 40 checks de orquestación aprobados con Docker simulado | Dump/import MySQL real, comparación real y flujo restaurado pendientes |
-
-## Cambio dev.10 pendiente de activar
-
-Confirmación AJAX acotada a 15 s, incluyendo lectura JSON. Previene doble submit; ante timeout/red/JSON/5xx orienta a consultar experiencias y bloquea reenvío desde ese formulario. Abortar la espera no revierte una transacción ya confirmada. Errores de negocio permiten corregir datos; éxito mantiene navegación al ticket. Backend/esquema/locks/precios/permisos intactos. Node solo herramienta de prueba, sin dependencia nueva de aplicación o entrega.
+| Desarrollo actual | verify-dev-linux.sh, 15:39:53 UTC, exit 0: sintaxis PHP 8.4, QR, conexión y 266 comprobaciones unitarias | Las 40 guardas TLS prueban configuración, no negociación externa |
+| Integración actual | 211 comprobaciones MySQL/HTTP correctas; migración 003 y 41 checks del presupuesto meteorológico incluidos | Sin carrera simultánea específica de weather_budget |
+| Concurrencia | Dos carreras de reserva y cuatro admin-reserva con procesos/conexiones/locks reales | No equivale a todas las carreras posibles |
+| Persistencia QA | verify-qa-linux.sh, 15:40:41 UTC, exit 0: diez tablas, marcador, credenciales e imágenes conservados al recrear contenedores | No certifica copia limpia ni Windows |
+| Restauración real | restore-20261008154106-a2a37282, inicio 15:41:06 UTC, exit 0: exportación/importación MySQL y fingerprints before/after exactamente iguales, diez tablas incluida weather_budget | Sin recorrido HTTP del destino restaurado; volúmenes conservados |
+| Chrome usuario actual | Login/logout, reserva gratuita de dos entradas → navegación automática al ticket → QR cargado; búsqueda AJAX SQL a 360 px | No provocar fallo de red ni repetir reservas para simular evidencia |
+| API | Pronóstico Open-Meteo real visible para evento MySQL con presupuesto actualizado | Caída externa UI real pendiente |
+| Chrome admin/permisos anteriores | Categoría desactivada, evento BORRADOR → PUBLICADO → CANCELADO, dashboard/filtros, USUARIO rechazado en /admin y ticket ajeno 404 | Finalización/edición con reservas y rutas restantes pendientes |
+| Responsive | Ticket/QR 360/390/768/1280/1440 y dashboard 768 anteriores; catálogo/cuenta/registro 360 y registro 768 actuales sin desbordamiento | Registro observado, sin crear cuenta; foco/zoom/orientación/Firefox pendientes |
+| Paquete dev.14 | ZIP real de 153 archivos, CRC y huellas correctas; 13 checks del generador | No incluye documentación posterior; sin arranque de copia limpia |
+| PDF técnico | Borrador local de 14 páginas generado/revisado, 21 RF y 7 RNF presentes | Sus resultados de QA anteriores deben actualizarse antes de entregar |
 
 ## Bloques y pendientes
 
-- B00: documentación/versionado inicial. B01/B02: stack/esquema/integración comprobados; cierre de portabilidad/copia limpia pendiente.
-- B03–B06: implementados con integración aprobada y navegador parcial; consultar [MATRIZ.md](MATRIZ.md) para cobertura y faltantes.
-- B07 activo: QA/seguridad/concurrencia/persistencia comprobadas parcialmente; sigue abierto.
-- B08: GitHub privado operativo; viabilidad documental Render/Aiven revisada en PUBLICACION.md. TLS PDO preparado en dev.12 con guardas unitarias; negociación real, sesiones públicas y publicación/pruebas externas pendientes; presupuesto API MySQL preparado en dev.13, integración real pendiente.
-- B09: paquete/PDF técnico/cuentas de evaluación/preparación y defensa humana pendientes.
+- B01/B02: stack/esquema/migraciones/integración actual comprobados; copia limpia/portabilidad pendientes.
+- B03–B06: implementación e integración aprobadas, navegador parcial; consultar MATRIZ.md.
+- B07 activo: las verificaciones actuales de desarrollo, persistencia y restauración aprobaron. Continúan casos de interfaz, Firefox, instalación limpia Linux/Windows y revisión final.
+- B08: GitHub privado operativo; TLS PDO preparado y guardas aprobadas en PHP objetivo. Negociación TLS externa, sesiones persistentes públicas, proveedor/URL y prueba externa pendientes. Presupuesto MySQL aprobado en integración secuencial/persistencia, concurrencia específica pendiente.
+- B09: paquete de fuente y borrador técnico preparados; actualizar evidencia del PDF y paquete, completar entrega y revisión/preparación/defensa humana.
 
 ## Próxima acción
 
-1. Activar versión actual y ensayar restore: usuario ejecuta bash scripts/verify-qa-linux.sh desde el proyecto (sustituye el comando anterior start-qa-linux.sh). El agente leerá storage/qa/verification-status.txt/log, registros restore-ID y JS servido. No pedir suites extensas sin cambio/fallo.
-2. Continuar navegador: confirmación actualizada, permisos restantes, administración con reservas, finalización y matriz responsive/Firefox.
-3. Exportación/restauración QA preparada en dev.11: comprobarla realmente. Después preparar entrega y copia limpia Linux/Windows en equipo compatible; ensayo QA no certifica transferencia final.
-4. Preparar adaptaciones de PUBLICACION.md y verificarlas; después obtener autorización externa para los servicios gratuitos. Completar documentación técnica y entrega.
+1. Continuar los casos restantes de navegador y revisión de seguridad; no repetir la suite extensa aprobada sin cambio/fallo.
+2. Probar arranque de copia limpia Linux y funcionamiento HTTP del destino restaurado. Mantener datos/volúmenes y secretos fuera de Git. Windows requiere equipo compatible real.
+3. Actualizar el PDF técnico con esta evidencia y generar paquete desde una referencia posterior cuando corresponda.
+4. Completar la viabilidad pública y obtener autorización de servicios concretos antes de crear cuentas/desplegar. La URL pública es obligatoria y sigue pendiente.
 
-El arranque QA conserva sus claves/volúmenes y datos ficticios creados (categoría 5/evento 9, reservas de pruebas); no resetear para repetir. Cuenta actual Chrome: usuario@eventify.test. No guardar claves en docs/Git. Las capturas locales temporales se relacionan en evidencias/B07.md.
+## Registro actual, 2026-10-08
 
-## Registro de este turno
+El usuario ejecutó el comando conjunto en su terminal. El agente leyó ambos status con exit_code=0 y mensajes finales, y comparó privadamente los snapshots de restauración: diez tablas con igualdad exacta. No se publicaron logs, dumps ni credenciales. QA conserva las cuentas, reservas y fechas de demostración; el destino de restauración queda detenido con volúmenes conservados.
 
-QA continúa en dev.9: JS sin AbortController/15000 y status anterior comprobados. Dev.11 prepara bin/qa-transfer.php, test-restore-qa-linux.sh y wrapper verify-qa-linux.sh; ver RESPALDO.md/evidencias B07. Guardas de base/entorno/destino vacío; proyectos/volúmenes nuevos, claves nuevas, pausa temporal solo QA web, reinicio ante fallos, snapshots/SQL/archivos privados. Transfiere credenciales demo/marcador; galería del código se compara; sesiones/cache/secretos del entorno no se transfieren. No ejecutado contra Docker/MySQL por falta de sudo del agente. Sin mutaciones de datos locales. Pruebas estáticas/40 simuladas correctas; código/etiqueta dev.11 publicados, referencias verificadas. El nuevo comando conjunto permite activar dev.10 y probar restore con una intervención.
+Chrome 154.0.8037.97: se inició sesión con cuenta ficticia existente usuario, se reservaron dos entradas gratuitas de Encuentro de tecnología, se abrió automáticamente el ticket y se cargó el QR. La reserva queda conservada como evidencia ficticia. Catálogo búsqueda SQL a 360 px produjo un único resultado. Cuenta y registro sin desbordamiento a 360; registro también a 768. Logout real correcto; al terminar se restableció el viewport y se dejó el catálogo. Capturas privadas temporales referidas en evidencias/B07.md.
 
-## Viabilidad pública revisada
+Los mensajes de persistencia/restauración conservaban el texto histórico “nueve tablas” aunque sus snapshots incluían diez. Se corrige únicamente ese texto para referirse al esquema verificado, sin alterar comparación, datos ni migraciones. Este commit de verificación conserva VERSION/etiqueta dev.14; no crea versión estable. El registro anterior íntegro se trasladó a HISTORIAL.md para evitar que resultados ya superados se confundan con el estado actual.
 
-Fuentes oficiales consultadas 2026-10-08: Render admite PHP Docker pero su disco gratuito es efímero; Aiven documenta MySQL Free sin tarjeta/plazo fijo, con límites/inactividad. Combinación candidata, conexión entre proveedores y versión real aún no probadas. InfinityFree usa MariaDB según administrador (17-10-2025); no seleccionar para MySQL obligatorio. Inspección del código detectó TLS externo ausente en Database.php, sesiones y presupuesto weather en disco, DemoSeeder bloqueado correctamente en production. PUBLICACION.md detalla secuencia y aceptación. No cambiaron código, datos, VERSION ni etiquetas; solo documentación. QA todavía sin verification-status/log nuevos; no certificar restore real.
-
-Push documental B08 verificado: codex/b08-publicacion-plan → 1a724513f0c2a43e2690347a7cdea9bf50d12060, HEAD y git ls-remote coincidentes. Enlaces locales y git diff --check correctos. Código/tag dev.11 conservados, sin nuevas pruebas de aplicación por tratarse solo de documentación.
-
-## Incremento dev.12: configuración TLS MySQL
-
-RNF-04/RT-09: DatabaseConfig valida DSN/entorno/modo/CA antes de conectar; production exige verificación del servidor, sin opción de degradar TLS. Database comprueba Ssl_cipher antes de configurar la zona horaria y devolver PDO. Local/test mantienen conexión interna sin CA por defecto. Sin migraciones ni mutaciones de datos ni servicios externos.
-
-40 comprobaciones unitarias de configuración/guardas correctas con PHP 8.3 temporal, extensiones PDO/mysqlnd/pdo_mysql/ctype reales y CA efímera. Prueba añadida a scripts Linux/Windows. Sintaxis PHP y Bash/diff correctos. PHP 8.4 Docker, negociación TLS con servidor válido/CA errónea/hostname erróneo/sin TLS y regresión MySQL local pendientes. Estos resultados no se suman a las 177 reglas antiguas ni certifican nueva versión en ejecución. QA sigue sin registro verification-status nuevo; sudo no interactivo del agente denegado.
-
-Código dev.12 publicado y verificado: f0dbe0faa2eebb066a308cac2c318269bce2a696, rama codex/b08-mysql-tls y etiqueta anotada v0.1.0-dev.12 (referencia peeled coincidente). Dev.11 y main conservados. Sin CI ni despliegue público.
-
-## Incremento dev.13: presupuesto meteorológico persistente
-
-B08/RNF-04/RT-09: nueva tabla weather_budget mediante migración aditiva 003, sin alterar firmas anteriores. WeatherController inyecta WeatherBudget PDO en EventWeather: una fila global, transacción/FOR UPDATE, 30 intentos/h y 10/min, consume antes de llamar; rechaza reloj atrasado o transacción ajena, falla cerrado ante errores. Caché efímera puede perderse, pero no debe reiniciar cuota guardada en MySQL. Sin servicios externos nuevos ni cambios de datos ejecutados.
-
-Ejecutado: PHP 8.3 temporal, 44 checks de política y 39 de clima correctos; 11 archivos PHP con sintaxis correcta, Bash/diff correctos; 40 checks de orquestación restauración con Docker simulado correctos. Integración MySQL ampliada/preparada, no ejecutada; concurrencia/persistencia real pendientes. Los snapshots QA/restore ahora incluyen diez tablas. Restore, migración 003 y versión actual aún no aplicados: agente sigue sin sudo no interactivo y no existen registros QA nuevos.
-
-Próxima verificación necesaria por el cambio de conexión/esquema: bash scripts/verify-dev-linux.sh y, si termina bien, bash scripts/verify-qa-linux.sh. El primero cubre unidades/TLS-config/integración MySQL local; el segundo actualiza QA y ensaya restore. Ninguno certifica negociación TLS con proveedor ni Windows. Conservar registros privados; no borrar volúmenes ni historial. Tras aplicar 003, revisar compatibilidad antes de volver a versiones que no contienen esa migración.
-
-Dev.13 publicado y comprobado con git ls-remote: rama codex/b08-weather-budget y etiqueta anotada v0.1.0-dev.13 → cfb914bee7fe394940d38d002b7b63fcf6d3caf3. main/dev.12/etiquetas anteriores conservados. Sin CI ni migraciones ejecutadas.
-
-## Incremento dev.14: paquete de fuente
-
-B09/U-03/ENT-B: package-source.py exporta commit Git exacto a ZIP de desarrollo y manifiesto SHA-256 por archivo, sin copiar carpeta local ni datos MySQL. Guardas de archivos/secretos por nombre, links/submódulos, cambios sin commit, referencia completa y no sobrescritura. Datos, restauración y credenciales se entregan separadamente. Python/Git solo en generador; receptor sigue Docker Linux/Windows del manual.
-
-13 checks de empaquetado correctos con repositorios temporales ficticios; git diff --check correcto. No cambia aplicación ni esquema respecto de dev.13. Exportación real/integridad se registrarán tras el commit. Docker sigue sin registros nuevos: verification-status conserva 13:40:03 UTC y QA no tiene verification-status; sudo no interactivo denegado. Migración 003, integración actual y restore reales siguen pendientes.
-
-Dev.14 publicado: c915142b7c902a0024bba574aa3477643e4a11a2, rama codex/b09-source-package y etiqueta anotada v0.1.0-dev.14, referencias remotas coincidentes. ZIP real generado en backups/entrega/eventify-desarrollo-c915142b7c90/eventify-source.zip: 258958 bytes, 153 archivos con huellas correctas, VERSION/migración 003/manual presentes; sha256sum -c correcto. SHA-256: 2971946c8fd9a53d9eebd8317ac7ad692d9349634e9eb57699f62b86247e4bdb. Archivo ignorado por Git; no se sube ZIP ni datos privados. Es exportación de fuente, no arranque de copia limpia ni entrega final. El ZIP refleja el estado del commit etiquetado; este registro documental posterior no cambia esa etiqueta.
-
-## B09: documento técnico borrador
-
-Fuente editable docs/TECNICO.md y generador scripts/build-technical-pdf.py (ReportLab, solo documentación). PDF local output/pdf/EVENTIFY_Documento_Tecnico_Borrador.pdf: 14 páginas. Contiene portada sin autoría inventada, índice con páginas, descripción/tecnologías, arquitectura y ER vectoriales, navegación, diccionario de diez tablas, 21 RF y 7 RNF, historias/aceptación, seguridad, endpoints/AJAX/API, instalación/transferencia, evidencia y preparación de defensa/referencias.
-
-Generado con Python/ReportLab del runtime de documentación, renderizado con pdftoppm y revisado visualmente en todas las páginas mediante hoja de contacto, con detalle de diccionario y tabla RNF. Pypdf comprobó presencia de 21 RF y 7 RNF. No se inventaron pruebas ni participación humana. PDF SHA-256: 04b28cd454bc9eb05184426330212efd32412acfe265b2e8186799c233ecf5d8. output y PNG temporales ignorados por Git; fuente/generador versionables. Borrador, no ENT-C final aprobado; faltan actualización de resultados, responsable/docente y revisión humana.
-
-Sin cambios de aplicación, VERSION ni etiquetas dev.14. El ZIP dev.14 anterior no contiene estos documentos posteriores; regenerar paquete de una referencia nueva cuando proceda. Docker mantiene registros antiguos y QA sin verification-status nuevo; sudo no interactivo sigue denegado. No certificar actualización/restauración actuales.
+Nueva ejecución detectada al revisar antes del commit: registros conjuntos sobrescritos con inicio 15:42:00 UTC (desarrollo) y 15:42:38 UTC (QA), ambos exit_code=0 y mensajes finales correctos. Desarrollo mantiene 266 unidades/211 MySQL. Restore adicional 20261008154302-2b8eb996, inicio 15:43:02 UTC, exit 0: snapshots de diez tablas exactamente iguales. No se suman resultados entre ejecuciones ni se eliminan destinos. Las horas de la tabla anterior identifican la primera ejecución observada.

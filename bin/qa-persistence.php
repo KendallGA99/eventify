@@ -35,7 +35,7 @@ try {
     } else {
         $expected=json_decode((string)file_get_contents($baseline),true,512,JSON_THROW_ON_ERROR);
         if ($snapshot !== $expected) { throw new RuntimeException('Persistencia distinta al snapshot.'); }
-        echo "Persistencia QA: nueve tablas, marcador, credenciales e imágenes conservados tras recreación.\n";
+        echo "Persistencia QA: tablas del esquema, marcador, credenciales e imágenes conservados tras recreación.\n";
     }
 } catch(Throwable $error) {
     fwrite(STDERR,'Verificación de persistencia QA falló ('.get_class($error)."). No se muestran datos ni credenciales.\n"); exit(1);

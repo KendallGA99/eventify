@@ -61,5 +61,5 @@ EVENTIFY_DEST_STARTED=true
 "${EVENTIFY_DEST[@]}" run --rm --no-deps -T --entrypoint tar web -xf - -C /var/www/html/storage < "$EVENTIFY_RESTORE_DIR/storage.tar"
 "${EVENTIFY_DEST[@]}" run --rm --no-deps -T --entrypoint php web bin/qa-transfer.php snapshot > "$EVENTIFY_RESTORE_DIR/after.json"
 cmp --silent "$EVENTIFY_RESTORE_DIR/before.json" "$EVENTIFY_RESTORE_DIR/after.json" || { echo 'El contenido restaurado difiere; ensayo rechazado.' >&2; exit 1; }
-echo 'Restauración QA: nueve tablas, credenciales, marcador e imágenes coinciden con origen.'
+echo 'Restauración QA: tablas del esquema, credenciales, marcador e imágenes coinciden con origen.'
 echo 'No se transfirieron sesiones, caché ni claves del entorno original.'

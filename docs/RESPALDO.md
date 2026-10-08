@@ -1,6 +1,6 @@
 # Ensayo de respaldo y restauración QA
 
-Preparado en dev.11, pendiente de Docker/MySQL real. Objetivo B07/U-03: comprobar conservación antes de diseñar la entrega de datos a otra computadora. No usar este ensayo para restaurar datos sobre la instancia normal, producción o una base existente.
+Preparado en dev.11 y ejecutado con Docker/MySQL real el 2026-10-08: verificación QA 15:40:41 UTC y restauración 15:41:06 UTC, ambas exit_code=0. Diez tablas y archivos comparados con igualdad exacta. Objetivo B07/U-03: comprobar conservación antes de diseñar la entrega de datos a otra computadora. No usar este ensayo para restaurar datos sobre la instancia normal, producción o una base existente.
 
 ## Comando único en Linux
 
@@ -39,4 +39,4 @@ Las 40 aserciones del segundo comando usan Docker simulado para fallos de export
 
 Se consultó el [manual oficial de mysqldump MySQL 8.4](https://dev.mysql.com/doc/refman/8.4/en/mysqldump.html): respaldo lógico reproducible, single-transaction para InnoDB y no-tablespaces/GTID OFF para evitar exigir privilegios globales innecesarios. Se omiten DROP TABLE y locks de carga; el destino debe ser vacío. SQL se transmite por bytes dentro de Linux/contenedores; una futura implementación PowerShell debe evitar redirección UTF-16 y validarse en Windows.
 
-Dev.13 añade weather_budget al esquema y a las huellas de persistencia/transferencia. La evidencia anterior de nueve tablas pertenece a dev.9; el ensayo actualizado de diez tablas sigue pendiente. No omitir la nueva tabla al transferir ni alterar registros de migraciones para simular rollback.
+Dev.13 añade weather_budget al esquema y a las huellas de persistencia/transferencia. La evidencia anterior de nueve tablas pertenece a dev.9; el ensayo actualizado de diez tablas aprobó el 2026-10-08. No omitir la nueva tabla al transferir ni alterar registros de migraciones para simular rollback.

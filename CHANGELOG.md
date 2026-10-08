@@ -1,5 +1,9 @@
 # Historial de versiones de Eventify
 
+## Verificación real B07 — 2026-10-08
+
+Dev.14 actualizado y comprobado: 266 unidades y 211 checks MySQL, persistencia/restauración real de diez tablas y archivos, confirmación de reserva/ticket/QR en Chrome y formularios adaptables. Corrige texto histórico de éxito sin cambiar reglas, comparaciones ni esquema. VERSION/etiquetas conservadas; instalación limpia, Windows/Firefox, TLS externo y URL pública pendientes.
+
 ## Documentación técnica B09 — 2026-10-08
 
 Fuente editable y generador PDF del documento técnico, referido a código dev.14. Borrador de 14 páginas con arquitectura/ER, navegación/diccionario, 21 RF/7 RNF, historias/aceptación, seguridad/API, despliegue, evidencia y defensa. Render y revisión visual completos; cobertura textual comprobada. Sin cambios de aplicación/VERSION/etiquetas. Autoría, pruebas nuevas, URL, Windows, revisión humana y entrega final permanecen pendientes.

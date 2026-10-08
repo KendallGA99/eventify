@@ -4,7 +4,7 @@ Revisión 2026-10-08. IDs y criterios completos en [REQUISITOS.md](REQUISITOS.md
 
 ## Funciones
 
-Rutas de código y pruebas relativas a la raíz del repositorio. Integración vigente: 170 comprobaciones en MySQL/HTTP; reglas: 177 y QR. Navegador Chrome parcial sobre QA dev.9; cambio JS dev.10 aún no activado.
+Rutas de código y pruebas relativas a la raíz del repositorio. Integración vigente: 211 comprobaciones en MySQL/HTTP; 266 unidades y QR. Navegador Chrome parcial sobre QA actual; cambio JS dev.10 activado y reserva con navegación automática comprobada.
 
 | ID | Código principal | Prueba pertinente | Evidencia vigente / falta |
 | --- | --- | --- | --- |
@@ -15,7 +15,7 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 | RF-05 | public/assets/js/catalog.js; app/Http/CatalogController.php | tests/integration/catalog.php; tests/unit/catalog-filter.php | Búsqueda AJAX SQL/evento nuevo real; respuestas tardías en navegador real pendientes |
 | RF-06 | app/Domain/CatalogFilter.php; public/assets/js/catalog.js | tests/unit/catalog-filter.php; tests/integration/catalog.php | Filtros servidor aprobados; combinación completa y errores Chrome/Firefox pendientes |
 | RF-07 | app/Views/experiences.php; app/Infrastructure/CatalogRepository.php | tests/integration/catalog.php; tests/integration/reservations.php | Detalle real/cupos tras cancelación y evento cancelado visibles; fallo API UI real pendiente |
-| RF-08 | app/Domain/ReservationService.php; public/assets/js/reservations.js | tests/unit/reservation-input.php; tests/integration/reservations.php; tests/client/reservation-feedback.cjs | Reserva real/ticket aprobados; primera respuesta visual incierta. Dev.10: 14 checks cliente aprobados, activación QA pendiente |
+| RF-08 | app/Domain/ReservationService.php; public/assets/js/reservations.js | tests/unit/reservation-input.php; tests/integration/reservations.php; tests/client/reservation-feedback.cjs | Reserva actual de dos entradas → ticket automático/QR aprobada en Chrome; dev.10 activado. Error de transporte real pendiente |
 | RF-09 | app/Domain/ReservationService.php; app/Domain/AdminService.php | tests/integration/reservations.php; tests/integration/admin-races.php | Cupos/rollback/último cupo y aforo concurrente aprobados; no depender del botón deshabilitado |
 | RF-10 | app/Domain/ReservationPolicy.php; app/Views/catalog-results.php | tests/unit/reservation-policy.php; tests/integration/catalog.php | Regla/umbral probado; tarjeta de últimos espacios observada en catálogo real |
 | RF-11 | app/Domain/ReservationService.php; database/migrations/001_initial_schema.php | tests/integration/reservations.php | Duplicado secuencial/concurrente aprobado; recorrido UI duplicado pendiente |
@@ -34,19 +34,19 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 
 | IDs | Código/documentación | Evidencia y pendiente |
 | --- | --- | --- |
-| RNF-01/02 | public/assets/css/app.css; app/Views | Ticket móvil/tableta/escritorio y dashboard tableta; matriz de páginas/estados, teclado/foco, zoom y orientación pendientes |
+| RNF-01/02 | public/assets/css/app.css; app/Views | Ticket móvil/tableta/escritorio y dashboard tableta; catálogo/cuenta/registro 360 y registro 768 sin desbordamiento; matriz de páginas/estados, teclado/foco, zoom y orientación pendientes |
 | RNF-03 | app/Security; controladores; migraciones | HTTP propiedad/roles/CSRF, SQL parametrizado/escape; completar revisión final de secretos/dependencias y cookies HTTPS |
-| RNF-04 | bootstrap/controladores/clientes AJAX | Errores de negocio y API controlados; dev.10 espera acotada probada en cliente controlado, QA pendiente |
+| RNF-04 | bootstrap/controladores/clientes AJAX | Errores de negocio y API controlados; dev.10 espera acotada probada en cliente controlado, flujo exitoso actual Chrome aprobado; timeout real pendiente |
 | RNF-05 | CatalogRepository/AdminReadRepository; EventWeather | Paginación/índices/snapshot de dashboard/caché y presupuesto API implementados; no afirmar benchmark no medido |
 | RNF-06 | Chrome QA | Chrome 154.0.8037.97 parcial; Firefox real pendiente |
 | RNF-07 | app/Domain, Http, Infrastructure, Security, Views | Responsabilidades separadas; revisión final pendiente |
 | RT-01/02/03 | reservations.js; catalog.js; experiences.js; weather.js | Dos funcionalidades jQuery (catálogo e historial) y operaciones AJAX significativas observadas; pruebas de estados restantes pendientes |
 | RT-04/05 | PHP/MySQL; docs/DATOS.md; database/migrations | Migraciones/relaciones/CRUD e integración aprobados; no sustituir tecnologías |
 | RT-06 / U-01 | Dockerfile; docker-compose.yml; scripts Linux/Windows | Stack Linux real/persistencia QA aprobados; copia limpia Linux/Windows pendientes |
-| RT-09 / U-02 | docs/ARQUITECTURA.md; docs/PUBLICACION.md | Render PHP + Aiven MySQL: candidata; TLS PDO preparado (40 guardas), presupuesto API MySQL preparado dev.13; conexión real/persistencia/concurrencia y URL real pendientes. InfinityFree no seleccionada por MariaDB; localhost no cumple |
+| RT-09 / U-02 | docs/ARQUITECTURA.md; docs/PUBLICACION.md | Render PHP + Aiven MySQL: candidata; TLS PDO preparado (40 guardas), presupuesto API MySQL aprobado en integración y persistencia dev.13; TLS externo/concurrencia específica y URL real pendientes. InfinityFree no seleccionada por MariaDB; localhost no cumple |
 | RT-07 / U-05 | GitHub privado; docs/VERSIONADO.md; CHANGELOG.md | Historial/push/etiquetas reales; acceso de evaluador, CI si procede y entrega final pendientes |
 | RT-08 | README.md; docs/INSTALACION.md | Manual/tecnologías/comandos preparados; enlace público y paquete final pendientes |
-| U-03 | docs/INSTALACION.md; docs/RESPALDO.md; docs/PAQUETE.md; scripts/package-source.py; scripts/test-restore-qa-linux.sh; bin/qa-transfer.php | ZIP dev.14 real con 153 huellas correctas; 13 checks de empaquetado. Ensayo QA preparado; 40 checks de orquestación simulada correctos. Dump/import MySQL real, transferencia/copia limpia y Windows pendientes |
+| U-03 | docs/INSTALACION.md; docs/RESPALDO.md; docs/PAQUETE.md; scripts/package-source.py; scripts/test-restore-qa-linux.sh; bin/qa-transfer.php | ZIP dev.14 real con 153 huellas correctas; 13 checks de empaquetado. 40 checks de orquestación simulada y dump/import MySQL real aprobados; comparación exacta de diez tablas/archivos. HTTP restaurado, transferencia/copia limpia y Windows pendientes |
 | U-04/06 | AGENTS.md; PLAN/ESTADO/MATRIZ/evidencias | Protocolo aplicado; estado breve e historial conservado. No certificar pruebas pendientes |
 | ENT / defensa | docs/REQUISITOS.md | PDF técnico/paquete/cuentas/evidencia humana de comprensión y defensa pendientes |
 
