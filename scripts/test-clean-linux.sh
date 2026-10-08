@@ -40,16 +40,27 @@ PY
 EVENTIFY_CLEAN_COPY="$EVENTIFY_CLEAN_DIR/Copia limpia con espacios/Eventify"
 # Evitar que variables del host cambien puerto, secretos o proyecto de prueba.
 unset APP_ENV APP_PORT APP_TIMEZONE APP_SECRET MYSQL_DATABASE MYSQL_USER MYSQL_PASSWORD MYSQL_ROOT_PASSWORD WEATHER_ENABLED COMPOSE_FILE COMPOSE_PROJECT_NAME
-export COMPOSE_PROJECT_NAME="eventify-clean-$EVENTIFY_CLEAN_ID"
+EVENTIFY_CLEAN_PROJECT="eventify-clean-$EVENTIFY_CLEAN_ID"
 # El arranque del manual se ejecuta desde el ZIP, sin Git, vendor ni bind de código.
-bash "$EVENTIFY_CLEAN_COPY/scripts/start-linux.sh"
-EVENTIFY_CLEAN_COMPOSE=("${EVENTIFY_DOCKER[@]}" compose --env-file "$EVENTIFY_CLEAN_COPY/.env" -p "$COMPOSE_PROJECT_NAME" -f "$EVENTIFY_CLEAN_COPY/docker-compose.yml")
+EVENTIFY_CLEAN_COMPOSE=("${EVENTIFY_DOCKER[@]}" compose --env-file "$EVENTIFY_CLEAN_COPY/.env" -p "$EVENTIFY_CLEAN_PROJECT" -f "$EVENTIFY_CLEAN_COPY/docker-compose.yml")
+# sudo puede eliminar variables de entorno: pasar -p como argumento explícito.
+# Rechazar ZIP anteriores que no admiten el arranque aislado antes de cualquier up.
+grep -q -- '--project' "$EVENTIFY_CLEAN_COPY/scripts/start-linux.sh" || { echo 'Referencia antigua sin soporte de proyecto explícito; no se iniciará.' >&2; exit 1; }
+"${EVENTIFY_CLEAN_COMPOSE[@]}" config --format json | python3 -c '
+import json,sys
+c=json.load(sys.stdin); expected=sys.argv[1]
+assert c["name"]==expected, "Proyecto inesperado"
+assert all(v["name"].startswith(expected+"_") and not v.get("external",False) for v in c["volumes"].values()), "Volúmenes ajenos"
+assert c["services"]["web"]["ports"][0]["published"]=="8083", "Puerto inesperado"
+assert all(v["type"]=="volume" for service in c["services"].values() for v in service.get("volumes",[])), "Montaje no aislado"
+' "$EVENTIFY_CLEAN_PROJECT"
+bash "$EVENTIFY_CLEAN_COPY/scripts/start-linux.sh" --project "$EVENTIFY_CLEAN_PROJECT"
 "${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web php bin/seed-demo.php
 "${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web php bin/qa-persistence.php before
 "${EVENTIFY_CLEAN_COMPOSE[@]}" up --force-recreate --detach --wait --wait-timeout 180
 "${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web php bin/qa-persistence.php after
 "${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web cat storage/demo-credentials.json > "$EVENTIFY_CLEAN_DIR/demo-credentials.json"
-printf '%s\n' "$COMPOSE_PROJECT_NAME" > "$EVENTIFY_CLEAN_DIR/project.txt"
+printf '%s\n' "$EVENTIFY_CLEAN_PROJECT" > "$EVENTIFY_CLEAN_DIR/project.txt"
 echo 'Copia limpia iniciada en http://localhost:8083; falta comprobar el flujo en navegador.'
 echo "Resultado/credenciales privados: storage/clean-$EVENTIFY_CLEAN_ID"
 echo 'Destino conservado. Si 8083 estaba ocupado, no detenga otras instancias: revise el fallo.'

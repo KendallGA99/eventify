@@ -5,7 +5,7 @@ B07/U-01/U-03: comprobar la entrega desde una referencia Git concreta en una rut
 Desde el repositorio, con Docker/Compose, Python 3, Git y openssl disponibles para el desarrollador:
 
 ```bash
-bash scripts/test-clean-linux.sh v0.1.0-dev.15
+bash scripts/test-clean-linux.sh v0.1.0-dev.16
 ```
 
 El receptor no requiere Python/Git: estas herramientas preparan el ensayo y ZIP. Su arranque normal sigue siendo `bash scripts/start-linux.sh` desde la carpeta extraída según INSTALACION.md.
@@ -18,4 +18,4 @@ Deja la aplicación disponible para comprobar en navegador: catálogo, login de 
 
 No borra volúmenes ni detiene otras instancias. Cada ejecución usa un destino nuevo; si 8083 ya está ocupado, la nueva aplicación fallará al iniciar. Inspeccionar y gestionar los destinos previos como tarea separada, nunca eliminar datos para conseguir que el ensayo pase. Detener el destino probado con Docker Compose stop si procede, usando project.txt y el .env de esa copia; conservarlo para evidencia.
 
-Estado inicial: script preparado, ejecución Docker/arranque desde ZIP y flujo de navegador pendientes. La portabilidad Windows sigue requiriendo un equipo compatible real.
+Dev.15 falló: sudo eliminó COMPOSE_PROJECT_NAME y el arranque recreó contenedores eventify con otra configuración, conservando volúmenes. No repetir esa versión. Dev.16 pasa --project explícito y comprueba el nombre/volúmenes/montajes/puerto del Compose efectivo antes de arrancar. Recuperar primero la instancia normal con bash scripts/start-dev-linux.sh desde el repositorio original. Corrección probada con sudo/Docker simulados; ejecución real de copia limpia y navegador pendientes. La portabilidad Windows sigue requiriendo un equipo compatible real.

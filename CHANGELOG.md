@@ -1,5 +1,9 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.16 — 2026-10-08
+
+Corrige aislamiento del ensayo B07: sudo eliminaba COMPOSE_PROJECT_NAME y el arranque dev.15 usaba eventify. start-linux.sh admite --project y pasa -p explícitamente; el ensayo comprueba proyecto/volúmenes/montajes/puerto antes de iniciar y rechaza copias antiguas. Dev.15 no debe usarse para este ensayo. Nueve checks con sudo/Docker simulados aprobados; recuperación normal y nueva ejecución real pendientes. Sin borrado de datos ni cambio de esquema.
+
 ## 0.1.0-dev.15 — 2026-10-08
 
 B07/U-01/U-03: ensayo de arranque desde un ZIP Git exacto en ruta con espacios, claves nuevas y proyecto/volúmenes separados. Ejecuta el inicio del manual, siembra explícita y recreación con comparación de persistencia; conserva destino para navegador. Preparado, no ejecutado contra Docker ni Windows. Sin cambios de reglas/esquema.
