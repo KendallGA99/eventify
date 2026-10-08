@@ -37,7 +37,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 - B01/B02: stack, esquema y migraciones comprobados. Portabilidad final permanece abierta.
 - B03–B06: implementación e integración aprobadas; aceptación de navegador parcial. Consultar [MATRIZ.md](MATRIZ.md).
 - B07 abierto: completar Firefox/Windows y casos restantes de UI/seguridad. No repetir la suite extensa sin cambios, fallos o dudas relevantes.
-- B08 activo: GitHub privado y preparación pública operativos; TLS y cuentas comprobados en ensayo aislado. Ensayo sin TLS dev.24 aprobado. Propuesta PUBLICACION-SOLICITUD.md autorizada. Próximo paso: acceso a las cuentas, planes gratuitos reales y permisos GitHub restringidos; después proveedor/HTTPS/URL/flujos/persistencia externos.
+- B08 activo: GitHub privado y preparación pública operativos; TLS y cuentas comprobados en ensayo aislado. Ensayo sin TLS dev.24 aprobado. Propuesta PUBLICACION-SOLICITUD.md autorizada. Render conectado solo a EVENTIFY y formulario Free preparado sin desplegar. Próximo paso: usuario complete registro Aiven, luego MySQL Free/versión/CA reales y proveedor/HTTPS/URL/flujos/persistencia externos.
 - B09 abierto: actualizar documento técnico y paquete cuando la evidencia se consolide; entrega final exige instalación del receptor, entregables completos y evidencia humana real.
 
 ## Último resultado y límites
@@ -87,3 +87,14 @@ Instalación de Render en USUARIO_DESTINO preparada con **Only select repositori
 Aiven quedó en OAuth GitHub con Full access a datos personales y explicación «read and write all user data» (emails privados/perfil/followers). Agente canceló; no concedió permisos. Se preparó alternativa `/signup/email`, sin introducir nombre/email/contraseña ni enviar formulario. Usuario debe completar personalmente credencial/términos y llegar al panel; no activar servicios trial ni añadir tarjeta. Pestaña conservada.
 
 Autorización general Render Free/Aiven MySQL Free vigente, ₡0; siguen pendientes instalación concreta, cuenta Aiven, plan/version/CA externos, publicación y aceptación. No certificar URL ni servicios por preparar formularios. Capturas privadas temporales /tmp/eventify-render-permisos.png y /tmp/eventify-aiven-correo.png; no se añaden a Git.
+
+
+## B08: integración Render confirmada y formulario Free preparado
+
+2026-10-08: al retomar, formulario antiguo Install seguía abierto; pulsarlo con selección única mostró «GitHub App has already been installed». Se inspeccionó instalación existente Render 169376729: tenía All repositories seleccionado y Render listaba Código Tico y otros repositorios. Se corrigió según alcance autorizado: Only select repositories → USUARIO_DESTINO/eventify → Save. Nueva navegación a configuración confirmó All=false, Only selected=true y único USUARIO_DESTINO/eventify. Render recargado mostró solo EVENTIFY; no se modificó código de otros proyectos ni otras integraciones.
+
+Formulario New Web Service preparado, sin pulsar Deploy: nombre eventify-academico, Docker, rama codex/b08-rechazo-sin-tls, Dockerfile.public, health /salud, Auto-Deploy Off, contexto/raíz predeterminados. Plan inicial estaba en $7/mes; agente seleccionó Free y UI confirmó $0/mes, 0.1 CPU/512MB. No se creó servicio ni se añadió tarjeta. No tomar formulario no enviado como configuración persistida o URL desplegada; verificar campos de nuevo al retomar. Región provisional Ohio, ajustar si la oferta MySQL requiere otra decisión.
+
+Aiven aún muestra formulario signup/email vacío y Register with email deshabilitado. Usuario debe completar nombre/correo/contraseña y términos, verificar correo si procede y llegar al panel, sin tarjeta ni crear servicios. No se vuelve a pedir autorización general. Después inspeccionar MySQL Free, versión/CA y preparar base nueva antes de desplegar. Publicación real/aceptación externa continúan pendientes.
+
+Captura privada de alcance guardado /tmp/eventify-render-acceso-restringido.png; formulario /tmp/eventify-render-preparado-free.png. Pestañas marcadas para continuidad, sin almacenar claves ni capturas en Git.
