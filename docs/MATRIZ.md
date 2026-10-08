@@ -42,11 +42,11 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 | RNF-07 | app/Domain, Http, Infrastructure, Security, Views | Responsabilidades separadas; revisión final pendiente |
 | RT-01/02/03 | reservations.js; catalog.js; experiences.js; weather.js | Dos funcionalidades jQuery (catálogo e historial) y operaciones AJAX significativas observadas; pruebas de estados restantes pendientes |
 | RT-04/05 | PHP/MySQL; docs/DATOS.md; database/migrations | Migraciones/relaciones/CRUD e integración aprobados; no sustituir tecnologías |
-| RT-06 / U-01 | Dockerfile; docker-compose.yml; scripts Linux/Windows | Stack Linux real/persistencia QA aprobados; copia limpia Linux/Windows pendientes |
+| RT-06 / U-01 | Dockerfile; docker-compose.yml; scripts Linux/Windows | Stack Linux/persistencia QA y arranque desde ZIP Linux dev.17 con reserva/ticket/cancelación aprobados; recreación tras reserva nueva y Windows pendientes |
 | RT-09 / U-02 | docs/ARQUITECTURA.md; docs/PUBLICACION.md | Render PHP + Aiven MySQL: candidata; TLS PDO preparado (40 guardas), presupuesto API MySQL aprobado en integración y persistencia dev.13; TLS externo/concurrencia específica y URL real pendientes. InfinityFree no seleccionada por MariaDB; localhost no cumple |
 | RT-07 / U-05 | GitHub privado; docs/VERSIONADO.md; CHANGELOG.md | Historial/push/etiquetas reales; acceso de evaluador, CI si procede y entrega final pendientes |
 | RT-08 | README.md; docs/INSTALACION.md | Manual/tecnologías/comandos preparados; enlace público y paquete final pendientes |
-| U-03 | docs/INSTALACION.md; docs/RESPALDO.md; docs/PAQUETE.md; scripts/package-source.py; scripts/test-restore-qa-linux.sh; bin/qa-transfer.php | ZIP dev.14 real con 153 huellas correctas; 13 checks de empaquetado. 40 checks de orquestación simulada y dump/import MySQL real aprobados; comparación exacta de diez tablas/archivos. HTTP restaurado, transferencia/copia limpia y Windows pendientes |
+| U-03 | docs/INSTALACION.md; docs/RESPALDO.md; docs/PAQUETE.md; scripts/package-source.py; scripts/test-restore-qa-linux.sh; bin/qa-transfer.php | ZIP dev.14 real con 153 huellas correctas; 13 checks de empaquetado. 40 checks de orquestación simulada y dump/import MySQL real aprobados; comparación exacta de diez tablas/archivos. ZIP Linux dev.17 con flujo Chrome aprobado; HTTP restaurado, transferencia al receptor y Windows pendientes |
 | U-04/06 | AGENTS.md; PLAN/ESTADO/MATRIZ/evidencias | Protocolo aplicado; estado breve e historial conservado. No certificar pruebas pendientes |
 | ENT / defensa | docs/REQUISITOS.md | PDF técnico/paquete/cuentas/evidencia humana de comprensión y defensa pendientes |
 

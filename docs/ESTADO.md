@@ -45,7 +45,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 ## Próxima acción
 
 1. Continuar los casos restantes de navegador y revisión de seguridad; no repetir la suite extensa aprobada sin cambio/fallo.
-2. Probar arranque de copia limpia Linux y funcionamiento HTTP del destino restaurado. Mantener datos/volúmenes y secretos fuera de Git. Windows requiere equipo compatible real.
+2. Copia limpia Linux dev.17 ya arrancó y completó reserva/cancelación en Chrome; resta comprobar una reserva nueva tras recreación y funcionamiento HTTP del destino restaurado. Mantener datos/volúmenes y secretos fuera de Git. Windows requiere equipo compatible real.
 3. Actualizar el PDF técnico con esta evidencia y generar paquete desde una referencia posterior cuando corresponda.
 4. Completar la viabilidad pública y obtener autorización de servicios concretos antes de crear cuentas/desplegar. La URL pública es obligatoria y sigue pendiente.
 
@@ -76,3 +76,11 @@ Dev.16 corrige start-linux.sh con --project validado y -p explícito incluso baj
 clean-20261008160307-84bddf1e (16:03:07 UTC) exit0: commit52494299fef8b63d2f408a52281da7f737dd97fe, ZIP159 archivos/sha464e3ab86345cd0ed8d0b6afcc7c874aae96cd0b41155136d2fe28ddecc6f5f4. Proyecto eventify-clean-ID correcto, migraciones001–003 y recreación/comparación aprobadas. Instancia normal8080 responde HTTP200 tras recuperación; esto no certifica todos sus datos/funciones. Copia8083 devuelve HTTP500 en / y /salud: instalación funcional no aprobada.
 
 Se comprobó que Python extractall bajo umask077 creó archivos600/directorios700, copiados a imagen como root; Apache no puede leerlos. Dev.17 normaliza solo fuente a644/directorios755 y scripts ejecutables755 desde el ZIP antes de generar .env600; padre privado700 conservado. Prueba real de extracción temporal: siete guardas correctas; nueve de proyecto sudo simulado correctas; Bash/diff correctos. Nuevo arranque Docker/HTTP pendiente; no modificar permisos de secretos ni borrar destinos para resolverlo.
+
+## Copia limpia dev.17 verificada, 2026-10-08
+
+clean-20261008160801-e96614c4, inicio16:08:01 UTC/exit0: ZIP del commit b604f0eb3f26f1d9fa8141d9c7d0566d4474bdc5 (160 archivos, sha4e581bbfbe61b3e5af98a79ea7bdd40c57682b597e74c2b3fc1368137a9640a7). Log confirma proyecto aislado, migraciones001–003, demostración explícita y diez tablas/archivos conservados tras recreación. HTTP normal8080 y limpia8083 responden200. Fallo de permisos superado; destinos previos conservados, web del dev.16 detenido por usuario.
+
+Chrome: login usuario ficticio, catálogo, reserva nueva de dos entradas gratuitas → ticket automático/QR cargado. Código ficticio ce3c48d29933151052ea0b8008b0111d; cancelación solo de esa reserva confirmó CANCELADA y mantuvo historial mediante AJAX. Login/logout de usuario y login admin correctos; dashboard muestra8 eventos/5 activos/4 reservas activas/14 entradas/15,05%/₡133.000 potenciales. API desactivada según ensayo y no bloqueó reserva. Capturas privadas /tmp/eventify-clean-ticket.png y /tmp/eventify-clean-cancelacion.png. No cambió la aplicación; documentación posterior no altera etiqueta dev.17.
+
+Arranque y flujo central desde ZIP en ruta con espacios aprobados en Linux. La recreación comprobó datos iniciales antes de la reserva nueva, no su persistencia tras una segunda recreación. Windows/Firefox, HTTP del destino restaurado, casos restantes de UI/seguridad, TLS público/URL y documentación/defensa finales permanecen pendientes.
