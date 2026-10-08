@@ -11,7 +11,7 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 | RF-01 | app/Http/AuthController.php; app/Domain/RegistrationInput.php | tests/unit/registration.php; tests/integration/http-auth.php | Integración aprobada; flujo completo de registro en navegador pendiente |
 | RF-02 | app/Security/Auth.php; app/Security/Session.php | tests/integration/http-auth.php | HTTP y Chrome login/logout; tras logout admin conduce a login |
 | RF-03 | app/Http/AdminController.php; app/Security/Auth.php | tests/integration/http-auth.php; tests/integration/admin.php | HTTP roles/CSRF; Chrome USUARIO rechazado en /admin; rutas restantes UI pendientes |
-| RF-04 | app/Infrastructure/CatalogRepository.php; app/Views/catalog-results.php | tests/integration/catalog.php | Catálogo real Chrome/DB y estados; matriz completa vacío/errores UI pendiente |
+| RF-04 | app/Infrastructure/CatalogRepository.php; app/Views/catalog-results.php | tests/integration/catalog.php | Catálogo real Chrome/DB; vacío y recuperación al limpiar comprobados390px; matriz completa de errores pendiente |
 | RF-05 | public/assets/js/catalog.js; app/Http/CatalogController.php | tests/integration/catalog.php; tests/unit/catalog-filter.php | Búsqueda AJAX SQL/evento nuevo real; respuestas tardías en navegador real pendientes |
 | RF-06 | app/Domain/CatalogFilter.php; public/assets/js/catalog.js | tests/unit/catalog-filter.php; tests/integration/catalog.php | Filtros servidor aprobados; combinación completa y errores Chrome/Firefox pendientes |
 | RF-07 | app/Views/experiences.php; app/Infrastructure/CatalogRepository.php | tests/integration/catalog.php; tests/integration/reservations.php | Detalle real/cupos tras cancelación y evento cancelado visibles; fallo API UI real pendiente |
@@ -34,16 +34,16 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 
 | IDs | Código/documentación | Evidencia y pendiente |
 | --- | --- | --- |
-| RNF-01/02 | public/assets/css/app.css; app/Views | Ticket móvil/tableta/escritorio y dashboard tableta; catálogo/cuenta/registro 360 y registro 768 sin desbordamiento; matriz de páginas/estados, teclado/foco, zoom y orientación pendientes |
+| RNF-01/02 | public/assets/css/app.css; app/Views | Ticket móvil/tableta/escritorio y dashboard tableta; catálogo/cuenta/registro 360 y registro 768 sin desbordamiento; catálogo/detalle agotado390x844 y844x390 sin desbordamiento; matriz restante, teclado/foco y zoom pendientes |
 | RNF-03 | app/Security; controladores; migraciones | HTTP propiedad/roles/CSRF, SQL parametrizado/escape; auditoría Composer/huella jQuery/15 checks HTTP aprobados en SEGURIDAD.md; revisión completa de imágenes/historial y cookies HTTPS pendientes |
 | RNF-04 | bootstrap/controladores/clientes AJAX | Errores de negocio y API controlados; dev.10 espera acotada probada en cliente controlado, flujo exitoso actual Chrome aprobado; timeout real pendiente |
 | RNF-05 | CatalogRepository/AdminReadRepository; EventWeather | Paginación/índices/snapshot de dashboard/caché y presupuesto API implementados; no afirmar benchmark no medido |
-| RNF-06 | Chrome QA | Chrome 154.0.8037.97 parcial; Firefox real pendiente |
+| RNF-06 | Chrome QA | Chrome 154.0.8037.97 parcial; Firefox157.0 instalado, sin acceso por CUA; flujo Firefox real pendiente |
 | RNF-07 | app/Domain, Http, Infrastructure, Security, Views | Responsabilidades separadas; revisión final pendiente |
 | RT-01/02/03 | reservations.js; catalog.js; experiences.js; weather.js | Dos funcionalidades jQuery (catálogo e historial) y operaciones AJAX significativas observadas; pruebas de estados restantes pendientes |
 | RT-04/05 | PHP/MySQL; docs/DATOS.md; database/migrations | Migraciones/relaciones/CRUD e integración aprobados; no sustituir tecnologías |
 | RT-06 / U-01 | Dockerfile; docker-compose.yml; scripts Linux/Windows | Stack Linux/persistencia QA y arranque desde ZIP Linux dev.17 con reserva/ticket/cancelación aprobados; recreación tras reserva nueva y ejecución Windows pendientes; seis scripts con sintaxis aprobada en PowerShell5.1 real |
-| RT-09 / U-02 | docs/ARQUITECTURA.md; docs/PUBLICACION.md | Render PHP + Aiven MySQL: candidata; TLS PDO preparado (40 guardas), presupuesto API MySQL aprobado en integración y persistencia dev.13; TLS externo/concurrencia específica y URL real pendientes. InfinityFree no seleccionada por MariaDB; localhost no cumple |
+| RT-09 / U-02 | docs/ARQUITECTURA.md; docs/PUBLICACION.md | Render PHP + Aiven MySQL: candidata; TLS PDO preparado (40 guardas), presupuesto API MySQL aprobado en integración y persistencia dev.13; carreras meteorológicas minuto/hora aprobadas; TLS externo y URL real pendientes. InfinityFree no seleccionada por MariaDB; localhost no cumple |
 | RT-07 / U-05 | GitHub privado; docs/VERSIONADO.md; CHANGELOG.md | Historial/push/etiquetas reales; acceso de evaluador, CI si procede y entrega final pendientes |
 | RT-08 | README.md; docs/INSTALACION.md | Manual/tecnologías/comandos preparados; enlace público y paquete final pendientes |
 | U-03 | docs/INSTALACION.md; docs/RESPALDO.md; docs/PAQUETE.md; scripts/package-source.py; scripts/test-restore-qa-linux.sh; bin/qa-transfer.php | ZIP dev.14 real con 153 huellas correctas; 13 checks de empaquetado. 40 checks de orquestación simulada y dump/import MySQL real aprobados; comparación exacta de diez tablas/archivos. ZIP Linux dev.17 con flujo Chrome aprobado; HTTP restaurado autenticado y persistencia posterior al flujo Linux aprobados (existing-iAQixJNV); transferencia al receptor y Windows pendientes |
