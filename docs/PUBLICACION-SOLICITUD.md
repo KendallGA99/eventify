@@ -1,6 +1,6 @@
 # Propuesta concreta para autorizar publicación académica
 
-Preparada 2026-10-08; todavía sin servicios externos creados ni aplicación publicada. Consulta operativa para B08/RT-09/ENT-A/D; no equivale a autorización. Referencia de código revisada: `6baa754` / `v0.1.0-dev.24`; evidencia de cuentas dev.22, TLS válido/CA/hostname dev.21–22 y servidor sin TLS dev.24. B07 y entrega final siguen abiertos.
+Preparada 2026-10-08; usuario autorizó expresamente esta propuesta respondiendo «dale» el 2026-10-08. Todavía sin servicios externos creados ni aplicación publicada. Consulta operativa para B08/RT-09/ENT-A/D; aplicar solo el alcance aprobado. Referencia de código revisada: `6baa754` / `v0.1.0-dev.24`; evidencia de cuentas dev.22, TLS válido/CA/hostname dev.21–22 y servidor sin TLS dev.24. B07 y entrega final siguen abiertos.
 
 ## Acción propuesta y costo
 
@@ -44,6 +44,11 @@ Fuentes oficiales reabiertas 2026-10-08: [Render Free](https://render.com/docs/f
 
 Si cualquiera de los proveedores requiere tarjeta o pago, no continuar ese paso. Si la combinación gratuita no funciona con MySQL real y la carga académica, registrar la incompatibilidad y mantener la URL obligatoria pendiente; la ejecución local no la reemplaza.
 
-## Permiso pendiente
+## Autorización recibida
 
-Autorizar expresamente la creación/configuración de estos servicios gratuitos, la integración Render–GitHub limitada al repositorio indicado y la publicación HTTPS de EVENTIFY con datos ficticios. AGENTS.md exige «No emitir mensajes, subir datos personales, crear servicios externos, publicar repositorios o activar gastos sin autorización correspondiente». La necesidad de autorización se limita aquí a servicios externos/integración/publicación; no es una nueva aprobación del desarrollo local ya autorizado.
+El usuario autorizó expresamente la creación/configuración de estos servicios gratuitos, la integración Render–GitHub limitada al repositorio indicado y la publicación HTTPS de EVENTIFY con datos ficticios al responder «dale» a la solicitud concreta. No repetir esta aprobación mientras no cambie el alcance; registrar y resolver permisos adicionales que aparezcan en el panel antes de aceptarlos. AGENTS.md exige «No emitir mensajes, subir datos personales, crear servicios externos, publicar repositorios o activar gastos sin autorización correspondiente». La necesidad de autorización se limita aquí a servicios externos/integración/publicación; no es una nueva aprobación del desarrollo local ya autorizado.
+
+
+## Inicio de ejecución
+
+Navegador integrado: Render Dashboard redirige a login; se eligió GitHub y abrió su formulario de acceso para Render. Cuenta prevista USUARIO_DESTINO; no se introdujo contraseña ni se otorgaron permisos. Aiven Console muestra login, sin sesión disponible. Pestañas conservadas para que el usuario complete login/registro y términos si procede. Aún no se pudieron inspeccionar cuotas/servicios/planes de sus cuentas. No crear servicios ni certificar publicación por haber abierto las páginas.
