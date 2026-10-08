@@ -1,5 +1,9 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.25 — 2026-10-08
+
+B08/RNF-03/04: Render construyó dev.24 y migró con usuario limitado, pero health HTTP503. Arranque público prepara una copia privada de la CA para www-data fuera del DocumentRoot (directorio700/archivo600); conserva verificación de CA/hostname y montaje original. Comprueba preflight y conexión real con la identidad del trabajador antes de servir; falla de forma segura si ese usuario no puede conectar. Sintaxis Bash y diff comprobados; despliegue real y verificación HTTP pendientes. No modifica datos ni aplica nuevas migraciones.
+
 ## 0.1.0-dev.24 — 2026-10-08
 
 B08: corrige la evaluación del rechazo de arranque sin TLS. El ensayo dev.23 construyó la imagen, pasó sintaxis PHP 8.4 y confirmó rechazo de Database/base vacía, pero terminó exit 1 en la expectativa del código de Docker Compose. Log de arranque muestra preflight/Apache válidos y fallo de conexión antes de migrar; código exacto del wrapper no quedó registrado, ni hubo probe final.
