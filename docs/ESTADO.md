@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b08-publicacion-validada (preparación B08; B07 continúa abierto). Código actual dev.19; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
+- Rama activa: codex/b08-arranque-publico (preparación B08; B07 continúa abierto). Código actual dev.20; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
@@ -147,3 +147,9 @@ Tras logout ingresó otro usuario ficticio: ticket ajeno y /qr.svg mostraron pá
 2026-10-08: documentos oficiales Render Free/web-services y Aiven MySQL Free reabiertos, combinación sigue candidata documental, sin conexión entre proveedores ni URL probadas. PUBLICACION actualizado a219 checks/carreras/restore reales; DESPLIEGUE-PUBLICO detalla puertas de aceptación/configuración/TLS/cuentas/persistencia y permisos. Decisión propia para instancia académica única: sesiones PHP de archivos, reautenticación tras reinicios efímeros; entre peticiones siguen persistiendo normalmente. CookieSecure ya obligatoria enproduction. No se modifica código ni VERSION/dev.19 ni se crean cuentas/servicios/gastos.
 
 Faltan arranque público que falle antes de servir ante migración/configuración inválidas, CA privada en ejecución, aprovisionamiento explícito y TLS externo. Se requiere implementarlos/probarlos antes de pedir autorización de creación de servicios concretos. URL/Firefox/Windows/entrega final permanecen pendientes. Fuentes enlazadas en documentos; nueva revisión no garantiza cuota disponible en la cuenta ni disponibilidad continua.
+
+## Dev.20: arranque público implementado y prueba preparada
+
+Dockerfile.public conserva runtime/dependencias del Dockerfile local y agrega entrypoint público. bin/public-preflight.php exigeproduction, variablesDB/TLS explícitas y secreto≥32 caracteres, valida DatabaseConfig sin conectar. Entry validaPORT10000 por defecto, prepara storage parawww-data, Listen/VirtualHost, configtestApache y migración existente antes de servir; error en cualquier paso aborta. Sin seeder/reset/import ni endpoint instalador. Dockerfile/Compose locales conservados, reglas/esquema sin cambios.
+
+python3 tests/orchestration/public_start.py:25 comprobaciones simuladas (puerto válido/inválido, orden y fallos de preflight/Apache/migración) correctas; Bash/diff correctos. RuntimePHP temporal previo no existe y Docker sigue requiriendo sudo en terminal: no se ejecutó lintPHP ni build real en este incremento. scripts/test-public-linux.sh prepara build separado, lintPHP8.4 y tres rechazos reales con --network none, sin puertos/volúmenes/claves reales. Comando necesario: bash scripts/test-public-linux.sh. Registros storage/public-start-ID privados; no repetir219 integración sin cambios de reglas. Arranque positivo/TLS externo/cuentas únicas/URL siguen pendientes.

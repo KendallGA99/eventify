@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.20 — 2026-10-08
+
+B08/RT-09/RNF-03/04: Dockerfile.public separado del Compose local; puerto runtime validado (10000 por defecto), preflight exigeproduction/configuración explícita/secreto mínimo32 caracteres/TLS verificado. Apache configtest y migraciones coordinadas preceden a servir; cualquier fallo detiene arranque. Sin seeder, import/reset o endpoint instalador. Misma imagen PHP/dependencias fijadas que Dockerfile local; revisar ambas al actualizar.
+
+25 comprobaciones de orquestación simulada correctas; sintaxis Bash/diff correctos. scripts/test-public-linux.sh prepara build/sintaxis PHP8.4 y tres rechazos reales sin red/volúmenes/puertos ni claves reales; ejecución Docker pendiente. PHP temporal anterior ya no está disponible y no se afirma lintPHP nuevo. Arranque válido/TLS externo/aprovisionamiento/URL pública pendientes.
+
 ## 0.1.0-dev.19 — 2026-10-08
 
 B07/U-01/U-03: verify-existing-linux.sh comprueba destinos de ensayo existentes, proyecto/base/puerto/montajes y propiedad de volúmenes antes de mutar. Compara snapshots de copia limpia alrededor de una recreación posterior al flujo de navegador y arranca la restaurada sin reimportar/sembrar/migrar/reconstruir. Conserva volúmenes y deja ambos destinos para navegador, con registros/credenciales privados. Bash/diff y ocho guardas simuladas correctos; ejecución Docker nueva pendiente. Dev.18 ya aprobó integración real: 219 comprobaciones, incluidas dos carreras meteorológicas.
