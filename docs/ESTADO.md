@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b08-weather-budget (preparación técnica; B07 continúa abierto). Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
+- Rama activa: codex/b09-source-package (preparación técnica; B07 continúa abierto). Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
@@ -82,3 +82,9 @@ Ejecutado: PHP 8.3 temporal, 44 checks de política y 39 de clima correctos; 11 
 Próxima verificación necesaria por el cambio de conexión/esquema: bash scripts/verify-dev-linux.sh y, si termina bien, bash scripts/verify-qa-linux.sh. El primero cubre unidades/TLS-config/integración MySQL local; el segundo actualiza QA y ensaya restore. Ninguno certifica negociación TLS con proveedor ni Windows. Conservar registros privados; no borrar volúmenes ni historial. Tras aplicar 003, revisar compatibilidad antes de volver a versiones que no contienen esa migración.
 
 Dev.13 publicado y comprobado con git ls-remote: rama codex/b08-weather-budget y etiqueta anotada v0.1.0-dev.13 → cfb914bee7fe394940d38d002b7b63fcf6d3caf3. main/dev.12/etiquetas anteriores conservados. Sin CI ni migraciones ejecutadas.
+
+## Incremento dev.14: paquete de fuente
+
+B09/U-03/ENT-B: package-source.py exporta commit Git exacto a ZIP de desarrollo y manifiesto SHA-256 por archivo, sin copiar carpeta local ni datos MySQL. Guardas de archivos/secretos por nombre, links/submódulos, cambios sin commit, referencia completa y no sobrescritura. Datos, restauración y credenciales se entregan separadamente. Python/Git solo en generador; receptor sigue Docker Linux/Windows del manual.
+
+13 checks de empaquetado correctos con repositorios temporales ficticios; git diff --check correcto. No cambia aplicación ni esquema respecto de dev.13. Exportación real/integridad se registrarán tras el commit. Docker sigue sin registros nuevos: verification-status conserva 13:40:03 UTC y QA no tiene verification-status; sudo no interactivo denegado. Migración 003, integración actual y restore reales siguen pendientes.

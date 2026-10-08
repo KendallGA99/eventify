@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.14 — 2026-10-08
+
+B09/U-03/ENT-B: exportación limpia desde referencia Git a ZIP de desarrollo con manifiesto/huellas SHA-256 e instrucciones. Rechaza secretos/datos/logs versionados por nombre, enlaces/submódulos, cambios sin commit, referencias incompletas y sobrescritura. No incluye MySQL ni credenciales personales. Receptor no requiere Python/Git; usa Docker según manual.
+
+13 checks de empaquetado correctos en repositorios ficticios; exportación real se registra posteriormente. Sin cambios de aplicación/esquema respecto de dev.13. No certifica copia limpia Linux/Windows, integración, restore ni entrega final.
+
 ## 0.1.0-dev.13 — 2026-10-08
 
 B08/RNF-04/RT-09: presupuesto meteorológico global en MySQL, máximo 30 intentos/hora y 10/minuto, consumido dentro de transacción con lock de fila antes de contactar al proveedor. Migración aditiva 003_weather_budget; no modifica migraciones previas ni datos existentes. El controlador usa este presupuesto en todos los entornos; falla cerrado sin llamadas externas ni detalles privados. Caché local conserva su función; reiniciarla no reinicia el presupuesto MySQL.
