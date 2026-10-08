@@ -1,5 +1,9 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.15 — 2026-10-08
+
+B07/U-01/U-03: ensayo de arranque desde un ZIP Git exacto en ruta con espacios, claves nuevas y proyecto/volúmenes separados. Ejecuta el inicio del manual, siembra explícita y recreación con comparación de persistencia; conserva destino para navegador. Preparado, no ejecutado contra Docker ni Windows. Sin cambios de reglas/esquema.
+
 ## Verificación real B07 — 2026-10-08
 
 Dev.14 actualizado y comprobado: 266 unidades y 211 checks MySQL, persistencia/restauración real de diez tablas y archivos, confirmación de reserva/ticket/QR en Chrome y formularios adaptables. Corrige texto histórico de éxito sin cambiar reglas, comparaciones ni esquema. VERSION/etiquetas conservadas; instalación limpia, Windows/Firefox, TLS externo y URL pública pendientes.
