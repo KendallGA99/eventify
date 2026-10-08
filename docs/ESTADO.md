@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b07-revision-seguridad (revisión dirigida; B07 continúa abierto). Código actual dev.17; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
+- Rama activa: codex/b09-tecnico-actualizado (documentación; B07 continúa abierto). Código actual dev.17; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
@@ -32,7 +32,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 | Chrome admin/permisos anteriores | Categoría desactivada, evento BORRADOR → PUBLICADO → CANCELADO, dashboard/filtros, USUARIO rechazado en /admin y ticket ajeno 404 | Finalización/edición con reservas y rutas restantes pendientes |
 | Responsive | Ticket/QR 360/390/768/1280/1440 y dashboard 768 anteriores; catálogo/cuenta/registro 360 y registro 768 actuales sin desbordamiento | Registro observado, sin crear cuenta; foco/zoom/orientación/Firefox pendientes |
 | Paquete dev.14 | ZIP real de 153 archivos, CRC y huellas correctas; 13 checks del generador | No incluye documentación posterior; sin arranque de copia limpia |
-| PDF técnico | Borrador local de 14 páginas generado/revisado, 21 RF y 7 RNF presentes | Sus resultados de QA anteriores deben actualizarse antes de entregar |
+| PDF técnico | Borrador actualizado de 15 páginas generado/revisado, 21 RF/7 RNF y resultados actuales presentes | Revisión humana y criterios de entrega pendientes |
 
 ## Bloques y pendientes
 
@@ -88,3 +88,7 @@ Arranque y flujo central desde ZIP en ruta con espacios aprobados en Linux. La r
 ## Revisión dirigida de seguridad, 2026-10-08
 
 SEGURIDAD.md registra licencias/procedencia/huella jQuery, Composer audit --locked sin plugins/scripts exit0 (sin avisos ni paquetes abandonados), revisión Auth/Session/CSRF/escape/cliente API y exclusiones Git actuales. Quince comprobaciones HTTP reales de lectura en copia8083 correctas: cabeceras/cookie HTTP local, archivos privados404, admin303 a login y métodos405. Primera expectativa302 corregida al comprobar303 y destino reales, sin modificar controles. No se escanearon imágenes ni todo el historial, ni se certificó HTTPS/TLS público; sin cambios de aplicación/VERSION/etiquetas o datos. Próximo trabajo independiente: actualizar documento técnico y continuar verificaciones restantes.
+
+## Documento técnico actualizado, 2026-10-08
+
+Fuente TECNICO.md/generador actualizados a dev.17: integración266/211, migración/persistencia/restore real de diez tablas, ZIP Linux160 archivos con reserva/cancelación, revisión dirigida de dependencias/15 checks HTTP y límites de cada evidencia. Conserva incidencias dev.15/16 y pendientes reales sin certificar entrega. PDF local regenerado15 páginas, renderizado con pdftoppm; revisión visual de todas las páginas en contacto y portada/tabla de pruebas en detalle. Presencia21 RF/7 RNF/266/211/dev.17 comprobada con pypdf. SHA-256 7ded2684a59fd7b552990fc6a8ee0c70765ef055176d8189baf689e5484e6e53. Sin cambio de aplicación/VERSION/etiquetas, ni nuevas suites de negocio; PDF/output y renders fuera de Git. Documento final/autoría y dominio/defensa humana siguen pendientes.

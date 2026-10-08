@@ -1,9 +1,9 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 8 de octubre de 2026. Código de referencia: v0.1.0-dev.14. Estudiante, docente y fecha de entrega: pendientes de completar por la persona responsable. No se atribuye autoría ni participación que no esté documentada.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 8 de octubre de 2026. Código de referencia: v0.1.0-dev.17. Estudiante, docente y fecha de entrega: pendientes de completar por la persona responsable. No se atribuye autoría ni participación que no esté documentada.
 
-Este documento describe la implementación y sus límites. El sistema público, la instalación limpia Windows, la restauración real y las verificaciones nuevas de Docker siguen pendientes. No constituye certificación de entrega completa.
+Este documento describe la implementación y sus límites. La integración actual, restauración de datos y arranque desde ZIP en Linux tienen evidencia real. El sistema público, Windows, Firefox y los criterios restantes de entrega siguen pendientes. No constituye certificación de entrega completa.
 
 ## 1. Descripción y resultado esperado
 
@@ -56,7 +56,7 @@ roles -> users -> reservations -> tickets
 categories -> events -> reservations
 ```
 
-Una categoría agrupa muchos eventos; un usuario realiza muchas reservas; un evento recibe muchas reservas; una reserva tiene como máximo un ticket. Las claves foráneas restringen eliminación y conservan historia. Las diez tablas incluyen seis entidades de negocio y cuatro técnicas. La migración 003 añade weather_budget; su aplicación real todavía está pendiente.
+Una categoría agrupa muchos eventos; un usuario realiza muchas reservas; un evento recibe muchas reservas; una reserva tiene como máximo un ticket. Las claves foráneas restringen eliminación y conservan historia. Las diez tablas incluyen seis entidades de negocio y cuatro técnicas. La migración 003 añade weather_budget; su aplicación real está comprobada en desarrollo y QA.
 
 ### Diccionario y reglas
 | Tabla | Campos y reglas relevantes |
@@ -255,11 +255,11 @@ Errores de negocio usan códigos HTTP acordes (401, 403, 404, 409, 422); método
 
 jQuery aporta dos funciones significativas: catálogo con debounce/aborto/control de secuencia e historial actualizado tras cancelar. AJAX tiene más de tres operaciones. El total visual orienta al usuario; el precio definitivo lo calcula PHP/MySQL.
 
-La confirmación cliente tiene espera máxima de 15 s incluyendo JSON. Bloquea doble envío; ante timeout/red/5xx o respuesta inválida dirige a consultar experiencias y evita reintento inmediato desde el formulario. Abortar la espera no cancela una reserva ya confirmada en MySQL. Su activación en QA sigue pendiente.
+La confirmación cliente tiene espera máxima de 15 s incluyendo JSON. Bloquea doble envío; ante timeout/red/5xx o respuesta inválida dirige a consultar experiencias y evita reintento inmediato desde el formulario. Abortar la espera no cancela una reserva ya confirmada en MySQL. Su activación en QA y navegación automática al ticket fueron comprobadas en Chrome.
 
 Open-Meteo se consulta desde PHP por HTTPS, coordenadas validadas y destino fijo. Lectura acotada a 3 s y 128 KiB, sin seguir redirects; unidades/rangos/fecha revisados. Pronóstico diario solo para evento público futuro dentro de 15 días, con atribución. Caché positiva 1 h, negativa 10 min y resultado anterior hasta 6 h. El fallo permite continuar con la reserva.
 
-Dev.13 prepara cuota global MySQL de 30 intentos/h y 10/min, consumida antes del HTTP externo bajo lock de fila. Los errores externos cuentan; falla de presupuesto omite la llamada. La caché puede perderse en alojamiento efímero, pero la cuota MySQL debe conservarse. Reglas/callback probados; migración, concurrencia y persistencia real pendientes.
+Dev.13 prepara cuota global MySQL de 30 intentos/h y 10/min, consumida antes del HTTP externo bajo lock de fila. Los errores externos cuentan; falla de presupuesto omite la llamada. La caché puede perderse en alojamiento efímero, pero la cuota MySQL debe conservarse. Reglas/callback, migración, límites en MySQL y persistencia/restauración comprobados. Carrera simultánea específica del presupuesto pendiente.
 
 ## 9. Despliegue, instalación y transferencia
 
@@ -267,9 +267,9 @@ Linux usa scripts/start-linux.sh; Windows usa la guía PowerShell de INSTALACION
 
 Volúmenes locales mysql_data y app_storage conservan datos y archivos al recrear contenedores. Migraciones mantienen firma SHA-256 y progreso DDL; una incompleta bloquea reintento inseguro. No alterar firmas ni borrar historial para arrancar. Git conserva código, no los datos de la base.
 
-El ZIP dev.14 exporta un commit Git, 153 archivos con manifiesto y SHA-256 comprobados. No incluye secretos, .git ni MySQL. El receptor no necesita Python/Git para ejecutar. El primer build necesita Internet y descarga dependencias desde composer.lock. Ese ZIP no acredita instalación limpia ni restaura reservas existentes.
+El ZIP dev.17 exporta el commit b604f0e, 160 archivos con manifiesto y SHA-256 comprobados. No incluye secretos, .git ni MySQL. El receptor no necesita Python/Git para ejecutar. El primer build necesita Internet y descarga dependencias desde composer.lock. Ese ZIP arrancó en Linux desde ruta con espacios, proyecto y volúmenes propios; Chrome comprobó login de ambos roles, reserva/ticket/QR y cancelación con historial. No restaura reservas existentes ni certifica Windows.
 
-Restore QA está preparado: nueva base/proyecto/volúmenes, dump consistente, copia privada de credenciales ficticias/marcador y comparación de filas por PK. No importa sobre una base existente y conserva volúmenes. La versión actual compara diez tablas. Su ejecución MySQL real sigue pendiente; pruebas de orquestación simulada no la sustituyen.
+Restore QA se ejecutó: nueva base/proyecto/volúmenes, dump consistente, copia privada de credenciales ficticias/marcador y comparación de filas por PK. No importa sobre una base existente y conserva volúmenes. La versión actual compara diez tablas. Exportación/importación MySQL real y comparación exacta de diez tablas/archivos aprobaron. El flujo HTTP del destino restaurado sigue pendiente; las pruebas simuladas se registran por separado.
 
 La candidata pública es PHP Docker en Render y MySQL gratuito en Aiven, según PUBLICACION.md. No hay cuentas nuevas, URL ni conexión entre proveedores verificadas. TLS real, sesiones, arranque/migraciones públicas, cuentas de evaluación y cuotas necesitan validarse antes de publicar. El objetivo cero gasto no elimina límites/inactividad de los planes gratuitos.
 
@@ -277,17 +277,19 @@ La candidata pública es PHP Docker en Render y MySQL gratuito en Aiven, según 
 
 | Evidencia ejecutada | Resultado | Qué no demuestra |
 | --- | --- | --- |
-| Docker Linux dev.7, 13:40:03 UTC | 177 reglas, QR y 152 checks MySQL/HTTP aprobados. | Versión actual completa, Windows o alojamiento público. |
-| Integración dev.8, 13:52 UTC | 170 checks, carreras de último cupo/duplicado y cuatro admin-reserva. | Nuevas migraciones o carreras de presupuesto meteorológico. |
-| QA dev.9, 14:02:55 UTC | Recreación conserva nueve tablas y archivos/imágenes de prueba. | Restore ni copia limpia del ZIP. |
-| Chrome 154.0.8037.97 | Flujos usuario/admin/permisos parciales y ticket sin overflow en varios tamaños. | Firefox, toda la matriz responsive o flujo actualizado dev.10. |
-| Cliente dev.10 | 14 checks con DOM/transporte controlados. | Navegador y MySQL objetivo. |
-| TLS config dev.12 | 40 checks PHP 8.3/PDO mysqlnd y 4 de configuración. | Negociación real TLS o PHP 8.4 objetivo actual. |
-| Clima dev.13 | 44 checks de presupuesto y 39 de clima. | Persistencia/concurrencia MySQL del contador nuevo. |
-| Restore preparado | 40 checks de orquestación Docker simulada. | Dump/import real. |
-| Paquete dev.14 | 13 checks ficticios y ZIP real con 153 huellas/SHA-256 correctas. | Aplicación instalada en máquina receptora. |
+| Desarrollo actual, 8 octubre | 266 unidades, sintaxis PHP 8.4, QR y 211 checks MySQL/HTTP aprobados. | Windows, URL pública ni ausencia de toda vulnerabilidad. |
+| Concurrencia MySQL | Dos carreras de reserva y cuatro admin-reserva aprobadas con procesos/locks reales. | Carrera específica de cuota meteorológica. |
+| QA actual y restore | Migración 003, recreación y dump/import reales; diez tablas/archivos idénticos. | Flujo HTTP del destino restaurado. |
+| Chrome 154.0.8037.97 | Reserva actual → ticket automático/QR; cancelación/historial, admin y permisos parciales. | Firefox ni matriz completa de casos adversos. |
+| Responsive real | Ticket 360/390/768/1280/1440; catálogo/cuenta/registro 360 y registro768 sin desbordamiento. | Toda la matriz, zoom, orientación y foco. |
+| TLS configuración | 40 guardas incluidas en PHP8.4 de la suite actual. | Negociación externa TLS válida/CA/hostname incorrectos. |
+| Clima y presupuesto | 44 reglas, 39 checks clima y 41 checks MySQL del presupuesto incluidos en las suites actuales. | Carrera simultánea específica y caída externa en UI. |
+| ZIP Linux dev.17 | 160 archivos, referencia exacta, arranque y recreación/persistencia inicial; reserva/ticket/cancelación Chrome. | Reserva nueva tras otra recreación, Windows o receptor real. |
+| Auditoría dirigida | Composer sin avisos/abandonados, huella jQuery y 15 checks HTTP correctos. | Escaneo de imagen, historial completo, HTTPS público. |
 
-No sumar ejecuciones/versiones diferentes como una única suite aprobada. Los comandos pendientes por cambios de conexión/esquema son verify-dev-linux.sh y verify-qa-linux.sh. El agente no dispone de sudo no interactivo; la contraseña se introduce solo en la terminal del usuario. Los registros privados permiten recoger los resultados sin compartir claves.
+No sumar las filas como pruebas adicionales: los checks de TLS/clima/presupuesto forman parte de las suites indicadas. Evidencia privada detallada en ESTADO.md, B07 y SEGURIDAD.md. El agente no dispone de sudo no interactivo; las operaciones Docker que lo requieren se ejecutan en la terminal del usuario sin compartir claves.
+
+El ensayo dev.15 perdió el nombre del proyecto bajo sudo y recreó contenedores normales conservando volúmenes; se recuperó el arranque normal. Dev.16 corrigió aislamiento, pero la extracción600/700 impedía lectura de Apache. Dev.17 corrigió permisos de fuente manteniendo secretos privados y aprobó el arranque/flujo. Se conservaron versiones y destinos; no eliminar evidencia de fallos ni considerarlos aprobación de versiones anteriores.
 
 ## 11. Preparación de defensa y conclusiones
 
@@ -295,12 +297,12 @@ La persona responsable debe explicar ruta navegador-PHP-PDO-MySQL, sesión/rol/C
 
 Ejercicios sugeridos: explicar por qué un ticket ajeno devuelve 404; demostrar rechazo a exactamente 24 h; localizar el cálculo del precio y contrastarlo con el total visual; recorrer una migración y explicar qué pasa si se interrumpe; mostrar que el clima falla sin impedir reservar. Son propuestas de preparación, no evidencias ejecutadas.
 
-La base funcional está implementada y tiene evidencia parcial real. Para cerrar faltan actualización/integración actual, restore, copia limpia Linux/Windows, Firefox/controles responsive restantes, TLS/sesiones públicas, URL externa, documento revisado por el estudiante y defensa. Este borrador se actualizará con hechos verificados, sin eliminar limitaciones para aparentar cumplimiento.
+La base funcional está implementada y tiene evidencia parcial real. Para cerrar faltan persistencia de la reserva nueva tras recreación, HTTP del destino restaurado, Windows, Firefox/casos responsive y seguridad restantes, TLS/sesiones públicas, URL externa, documento revisado por el estudiante y defensa. Este borrador se actualizará con hechos verificados, sin eliminar limitaciones para aparentar cumplimiento.
 
 ## 12. Referencias y trazabilidad
 
-Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.14. Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
+Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.17. Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
 
-Documentos operativos: INSTALACION.md, ARQUITECTURA.md, DATOS.md, PUBLICACION.md, RESPALDO.md, VERSIONADO.md y PAQUETE.md. Los documentos históricos pueden describir etapas anteriores: las migraciones/código y el estado vigente prevalecen al comprobar una afirmación técnica.
+Documentos operativos: INSTALACION.md, ARQUITECTURA.md, DATOS.md, PUBLICACION.md, RESPALDO.md, VERSIONADO.md, PAQUETE.md, COPIA-LIMPIA.md y SEGURIDAD.md. Los documentos históricos pueden describir etapas anteriores: las migraciones/código y el estado vigente prevalecen al comprobar una afirmación técnica.
 
 Repositorio privado: https://github.com/USUARIO_DESTINO/eventify. La visibilidad privada no garantiza acceso del evaluador; gestionarlo cuando se acuerde. No se incluyen claves ni datos personales de cuentas de prueba en este documento.
