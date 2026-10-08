@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b07-windows-diagnostico (diagnóstico; B07 continúa abierto). Código actual dev.17; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
+- Rama activa: codex/b07-presupuesto-concurrente (B07 continúa abierto). Código actual dev.18; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
@@ -23,8 +23,8 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 | Área | Comprobado | Límite |
 | --- | --- | --- |
 | Desarrollo actual | verify-dev-linux.sh, 15:39:53 UTC, exit 0: sintaxis PHP 8.4, QR, conexión y 266 comprobaciones unitarias | Las 40 guardas TLS prueban configuración, no negociación externa |
-| Integración actual | 211 comprobaciones MySQL/HTTP correctas; migración 003 y 41 checks del presupuesto meteorológico incluidos | Sin carrera simultánea específica de weather_budget |
-| Concurrencia | Dos carreras de reserva y cuatro admin-reserva con procesos/conexiones/locks reales | No equivale a todas las carreras posibles |
+| Integración actual | verify-integration-linux.sh, 16:31:25 UTC, exit0: 219 comprobaciones MySQL/HTTP; migración003, 41 checks secuenciales y ocho aserciones de carreras meteorológicas | No certifica entorno público ni Windows |
+| Concurrencia | Dos carreras de reserva, cuatro admin-reserva y dos de presupuesto meteorológico con procesos/conexiones/locks reales | No equivale a todas las carreras posibles |
 | Persistencia QA | verify-qa-linux.sh, 15:40:41 UTC, exit 0: diez tablas, marcador, credenciales e imágenes conservados al recrear contenedores | No certifica copia limpia ni Windows |
 | Restauración real | restore-20261008154106-a2a37282, inicio 15:41:06 UTC, exit 0: exportación/importación MySQL y fingerprints before/after exactamente iguales, diez tablas incluida weather_budget | Sin recorrido HTTP del destino restaurado; volúmenes conservados |
 | Chrome usuario actual | Login/logout, reserva gratuita de dos entradas → navegación automática al ticket → QR cargado; búsqueda AJAX SQL a 360 px | No provocar fallo de red ni repetir reservas para simular evidencia |
@@ -39,7 +39,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 - B01/B02: stack/esquema/migraciones/integración actual comprobados; copia limpia/portabilidad pendientes.
 - B03–B06: implementación e integración aprobadas, navegador parcial; consultar MATRIZ.md.
 - B07 activo: las verificaciones actuales de desarrollo, persistencia y restauración aprobaron. Continúan casos de interfaz, Firefox, instalación limpia Linux/Windows y revisión final.
-- B08: GitHub privado operativo; TLS PDO preparado y guardas aprobadas en PHP objetivo. Negociación TLS externa, sesiones persistentes públicas, proveedor/URL y prueba externa pendientes. Presupuesto MySQL aprobado en integración secuencial/persistencia, concurrencia específica pendiente.
+- B08: GitHub privado operativo; TLS PDO preparado y guardas aprobadas en PHP objetivo. Negociación TLS externa, sesiones persistentes públicas, proveedor/URL y prueba externa pendientes. Presupuesto MySQL aprobado en integración secuencial/persistencia y carreras específicas de minuto/hora.
 - B09: paquete de fuente y borrador técnico preparados; actualizar evidencia del PDF y paquete, completar entrega y revisión/preparación/defensa humana.
 
 ## Próxima acción
@@ -108,3 +108,7 @@ Usuario mostró VM Windows11 en QEMU/KVM. Diagnóstico por agente QEMU existente
 B07/RF-15/RNF-04: tests/integration/weather-budget-races.php y worker incorporados a database.php. Dos casos, último permiso de minuto/hora, usan dos procesos y conexiones reales con barreras y lock de la fila retenido por el padre. Criterios: solapamiento, exactamente un ALLOW/un DENY, un incremento persistido y límite vigente en conexión nueva. Solo base eventify_test; fixture restaurada al terminar, archivos temporales propios retirados, sin proveedor externo ni cambios de negocio/esquema.
 
 Agente ejecutó lint de los tres archivos afectados con PHP8.3 temporal, 44 reglas unitarias de presupuesto y git diff --check: correctos. Docker info denegado por socket; sudo -n docker info exige contraseña. No ejecutó carreras/MySQL8.4 y no se eleva el total confirmado de 211. Próxima intervención necesaria: bash scripts/verify-integration-linux.sh en terminal del usuario; comprobar storage/integration-status.txt y log redactado antes de cerrar esta brecha. VERSION dev.18 corresponde al incremento de pruebas, no a entrega estable. Windows, HTTP restaurado/persistencia de reserva nueva, Firefox y URL pública siguen pendientes.
+
+## Dev.18: carreras meteorológicas aprobadas
+
+Usuario ejecutó verify-integration-linux.sh: inicio2026-10-08T16:31:25Z, exit_code=0, log MySQL219 comprobaciones correctas y mensaje final. Incluye las ocho nuevas aserciones de carreras minuto/hora (dos procesos con conexiones independientes), sin cambiar controles ni efectuar llamadas externas. Suite anterior211 reemplazada por esta ejecución219, sin sumar ejecuciones. Etiqueta v0.1.0-dev.18/commit e5ab0e645ec33ae783b270266c30182ba5a41f1d publicados y referencias verificadas. Concurrencia específica meteorológica cerrada; B07 integral continúa abierto.
