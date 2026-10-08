@@ -42,7 +42,7 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 | RNF-07 | app/Domain, Http, Infrastructure, Security, Views | Responsabilidades separadas; revisión final pendiente |
 | RT-01/02/03 | reservations.js; catalog.js; experiences.js; weather.js | Dos funcionalidades jQuery (catálogo e historial) y operaciones AJAX significativas observadas; pruebas de estados restantes pendientes |
 | RT-04/05 | PHP/MySQL; docs/DATOS.md; database/migrations | Migraciones/relaciones/CRUD e integración aprobados; no sustituir tecnologías |
-| RT-06 / U-01 | Dockerfile; docker-compose.yml; scripts Linux/Windows | Stack Linux/persistencia QA y arranque desde ZIP Linux dev.17 con reserva/ticket/cancelación aprobados; recreación tras reserva nueva y Windows pendientes |
+| RT-06 / U-01 | Dockerfile; docker-compose.yml; scripts Linux/Windows | Stack Linux/persistencia QA y arranque desde ZIP Linux dev.17 con reserva/ticket/cancelación aprobados; recreación tras reserva nueva y ejecución Windows pendientes; seis scripts con sintaxis aprobada en PowerShell5.1 real |
 | RT-09 / U-02 | docs/ARQUITECTURA.md; docs/PUBLICACION.md | Render PHP + Aiven MySQL: candidata; TLS PDO preparado (40 guardas), presupuesto API MySQL aprobado en integración y persistencia dev.13; TLS externo/concurrencia específica y URL real pendientes. InfinityFree no seleccionada por MariaDB; localhost no cumple |
 | RT-07 / U-05 | GitHub privado; docs/VERSIONADO.md; CHANGELOG.md | Historial/push/etiquetas reales; acceso de evaluador, CI si procede y entrega final pendientes |
 | RT-08 | README.md; docs/INSTALACION.md | Manual/tecnologías/comandos preparados; enlace público y paquete final pendientes |

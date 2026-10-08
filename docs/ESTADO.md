@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b09-guia-entrega (documentación; B07 continúa abierto). Código actual dev.17; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
+- Rama activa: codex/b07-windows-diagnostico (diagnóstico; B07 continúa abierto). Código actual dev.17; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
@@ -98,3 +98,7 @@ Fuente TECNICO.md/generador actualizados a dev.17: integración266/211, migraci�
 README/INSTALACION actualizados a evidencia dev.17/266 unidades/211 MySQL y diez tablas, sin referencias que presenten como pendientes resultados ya comprobados. DEFENSA.md añade demo propuesta, doce temas con referencias de código, cuatro ejercicios sugeridos y registro humano vacío. VERIFICACION-WINDOWS.md prepara aceptación desde ZIP, versiones del host/backend y recorridos/persistencia/pruebas; Windows sigue sin ejecutar. Requisitos Docker oficiales revisados2026-10-08. Solo documentación, sin aplicación/VERSION/datos nuevos; no afirma participación/defensa ni compatibilidad real.
 
 Paquete actualizado generado desde commit e03973238467: backups/entrega/eventify-desarrollo-e03973238467/eventify-source.zip, 163 archivos/CRC/huellas comprobados, guías Windows/defensa incluidas. Sigue código dev.17; documentación nueva no repite prueba Docker ni certifica Windows. PDF se entrega separado, no está incluido en este ZIP de fuente.
+
+## Windows disponible: diagnóstico y sintaxis reales
+
+Usuario mostró VM Windows11 en QEMU/KVM. Diagnóstico por agente QEMU existente: Enterprise LTSC Evaluation64bits/build26100, RAM4GiB, virtualización/SLAT expuestos; hostnestedY/host-passthrough y aproximadamente8GB físicos. WSL no instalado; Docker no encontrado en ruta habitual, sin auditoría de todos los perfiles. No se instaló software, cambió memoria, apagó/reinició VM ni copiaron secretos. PowerShell5.1.26100.1591 parser real: seis scripts Windows sin errores sintácticos, sin ejecutar sus operaciones. VERIFICACION-WINDOWS detalla evidencia y límite de recursos/soporte KVM; ejecución completa de EVENTIFY Windows pendiente. Sin cambio de aplicación/VERSION/etiquetas.
