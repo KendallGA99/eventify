@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.18 — 2026-10-08
+
+B07/RF-15/RNF-04: agrega dos carreras de presupuesto meteorológico en MySQL aislado. Dos procesos PHP con conexiones independientes compiten por el último permiso del minuto y de la hora; la prueba retiene la fila hasta que ambos intentan consumir, comprueba un permiso/una denegación, contadores persistidos y denegación posterior. Restaura la fixture y no realiza llamadas externas. Sin cambios en reglas, esquema o datos de aplicación.
+
+Sintaxis de los tres archivos afectados, diff y 44 reglas unitarias correctos con PHP8.3 temporal. Ejecución concurrente en MySQL8.4/PHP8.4 pendiente: Docker deniega acceso al agente y sudo no interactivo exige contraseña. No sustituye la evidencia anterior de 211 checks por resultados aún no ejecutados.
+
 ## 0.1.0-dev.17 — 2026-10-08
 
 B07: corrige permisos de fuente extraída bajo umask077 antes de copiarla a Docker. Código644/directorios755 y ejecutables755; padre privado700 y .env600 conservados. Dev.16 aisló y pasó migraciones/persistencia, pero HTTP500 por fuente ilegible para Apache. Siete verificaciones reales de extracción y nueve de proyecto simulado correctas; arranque HTTP corregido pendiente.
