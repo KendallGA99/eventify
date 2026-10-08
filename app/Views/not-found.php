@@ -1,0 +1,3 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Página no encontrada — Eventify</title><link rel="icon" href="/assets/icon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/css/app.css"></head>
+<body><header class="site-header"><a class="brand" href="/">eventify<span>.</span></a></header><main class="hero"><p class="eyebrow">404</p><h1>No encontramos<br>esta página.</h1><p class="hero-copy">Puede que la dirección haya cambiado.</p><a class="return-link" href="/">Volver al inicio</a></main></body></html>

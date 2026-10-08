@@ -4,9 +4,9 @@
 
 Construir incrementos verificables, primero infraestructura y datos, después un flujo completo y finalmente cobertura administrativa/presentación/entrega. Aplicar el protocolo de AGENTS en cada bloque y actualizar ESTADO con hechos. El plan no fija fechas sin conocer la entrega real.
 
-Ningún bloque está implementado al redactar este archivo. B00 prepara documentación; los demás se inician cuando el usuario solicite desarrollo. Las elecciones pendientes pueden resolverse mediante trabajo independiente; una dependencia que requiere datos del receptor o autorización externa permanece explícita.
+El usuario autorizó iniciar la construcción. B00 dejó documentación y B01 tiene una base implementada con verificaciones parciales; consultar ESTADO para el avance real. Las elecciones pendientes pueden resolverse mediante trabajo independiente; una dependencia que requiere datos del receptor o autorización externa permanece explícita.
 
-## B00 — Base documental (intervención actual)
+## B00 — Base documental
 
 - Crear AGENTS, requisitos, plan, estado y README.
 - Verificar cobertura RF/RNF/tecnologías/entregables y enlaces internos.

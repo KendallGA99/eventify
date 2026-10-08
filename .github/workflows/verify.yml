@@ -1,0 +1,29 @@
+name: Verificar Eventify
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Construir y verificar PHP/MySQL
+        run: bash scripts/verify-linux.sh
+      - name: Verificar HTTP y JavaScript
+        run: |
+          python3 tests/smoke_http.py --base http://127.0.0.1:8080
+          node --check public/assets/js/reservations.js
+      - name: Detener servicios sin borrar volúmenes
+        if: always()
+        run: docker compose stop

@@ -1,64 +1,93 @@
 # EVENTIFY: estado y continuidad
 
-Fecha de referencia: 2026-10-07, zona del usuario America/Costa_Rica.
+Fecha de referencia: 2026-10-08, zona del usuario America/Costa_Rica.
 
 ## Resumen actual
 
-- Etapa: planificación documental; bloque B00 completado localmente.
-- Aplicación: no implementada.
-- Git local: inicializado; rama encontrada `master`, sin commits al inicio del trabajo.
-- Rama documental: `codex/plan-eventify`; consultar `git log` para el historial local actualizado.
-- Primer commit pendiente: `git commit` rechazado porque falta identidad de autor (nombre/correo). Archivos preparados en el índice; se solicitó identidad al usuario, sin inventarla ni modificar configuración global.
-- GitHub: sin remoto configurado; cuenta/nombre/visibilidad pendientes.
-- Docker y pruebas de aplicación: no preparados ni ejecutados.
-- Linux: entorno de desarrollo del usuario, no validación de producto todavía.
-- Windows: versión, arquitectura, requisitos del equipo receptor y prueba real pendientes.
-- Publicación: URL y proveedor pendientes; debe respetar PHP/MySQL y presupuesto gratuito.
-- Documentación: AGENTS, requisitos, plan, estado y README creados.
+- Usuario autorizó iniciar la construcción por bloques.
+- B00: commit inicial creado: 44da548. Se conservó el snapshot documental que estaba en el índice.
+- B01: stack Docker ejecutado por el usuario; salud PDO/MySQL 200 y nueve comprobaciones HTTP verificadas. Persistencia/reinicio todavía pendiente.
+- Git local: rama `codex/plan-eventify`; identidad reutilizada de Código Tico y verificada con cuenta GitHub USUARIO_DESTINO. Código B01–B04 se prepara como 0.1.0-dev.1; no es estable. Repositorio privado creado: USUARIO_DESTINO/eventify. Push inicial en preparación.
+- Usuario autorizó versionado/push progresivo. Remoto: REPOSITORIO_DESTINO_PENDIENTE. No se modificó Código Tico ni se inventaron fechas de commits.
+- Linux Mint 22.3: el usuario instaló Docker 29.1.3 y Compose 2.40.3. Codex no tiene acceso directo al socket; sudo requiere contraseña interactiva en la terminal del usuario. PHP/MySQL objetivo se ejecutarán dentro de contenedores.
+- Herramientas temporales de verificación: PHP CLI 8.3.6 y Compose 2.40.3 extraídos de paquetes Ubuntu en /tmp, sin instalación global.
+- Stack objetivo: PHP 8.4/Apache + MySQL 8.4 LTS en Docker; imágenes fijadas por digest. El usuario inició web/db saludables; imagen B02/B03 ejecutada; corrección HTTP posterior pendiente de reconstrucción.
+- Vista inicial en construcción: comprobada por navegador en móvil/escritorio. Vista temporal en http://127.0.0.1:8085, sin base de datos; puede terminar al cerrar procesos/sesión. El proyecto Docker utiliza 8080.
+- B02: esquema, migraciones, siembra opcional y reglas preparados; Migraciones 001/002 aplicadas en MySQL; suite aislada falló en comprobación HTTP de cookie. B03: pantallas/endpoints de registro, ingreso, cuenta, roles y salida preparados; imagen actualizada/integración pendientes. B04 parcial: reservas/cancelación transaccionales, AJAX, catálogo mínimo, historial y consulta privada de ticket preparados; QR SVG integrado y decodificado en prueba independiente; integración objetivo pendiente. Dashboard pendiente.
+- Windows: scripts preparados, versión/equipo/prueba real pendientes.
+- QR: BaconQrCode 3.1.1/enum 1.0.7 instalados, lockfile y auditoría preparados; contenedor actualizado pendiente. API/jQuery y otros módulos pendientes.
+- Publicación: InfinityFree es candidata de investigación; PHP/MySQL real, API, secretos y límites aún no verificados. No se creó cuenta ni URL.
 
-## Condiciones ya acordadas
+## Próxima acción necesaria
 
-PHP + MySQL; HTML/CSS/JavaScript + jQuery/AJAX; Docker; responsividad; seguridad; pruebas por riesgo; historial GitHub real; entrega portable Linux/Windows; herramientas gratuitas como objetivo. El sistema completo debe cumplir el enunciado de suficiencia.
+El usuario ejecuta en su terminal, desde la carpeta del proyecto:
 
-## Decisiones de implementación propuestas
+```bash
+bash scripts/verify-dev-linux.sh
+```
 
-Ver D-01 a D-09 en `REQUISITOS.md`. Son decisiones iniciales revisables, no características ya implementadas. Versiones, bibliotecas y proveedor se elegirán con evidencia en B01.
+La contraseña de sudo se introduce solo en esa terminal; no enviarla al chat. El arranque inicial ya ocurrió; falta reconstruir la imagen actualizada y ejecutar suites. El script no agrega permisos de grupo Docker ni elimina instalaciones/datos existentes.
 
-## Pendientes antes de partes dependientes
+El comando activa el modo de desarrollo con montajes de código de solo lectura, aplica migraciones y ejecuta pruebas de unidades y MySQL/HTTP aisladas. Permite comprobar siguientes cambios PHP/HTML/CSS sin reconstruir cada vez. Guarda resultado en storage/verification-status.txt y registro privado en storage/verification.log para consultar sin copiar todo al chat. Después verificar navegador y persistencia mediante reinicio conservando volúmenes.
 
-1. El usuario debe solicitar iniciar la implementación; el alcance de esta intervención fue crear el plan.
-2. Identificar Windows/arquitectura/equipo receptor y posibilidad de validar instalación allí.
-3. Definir repositorio GitHub y visibilidad antes de publicar código externamente.
-4. Verificar proveedor público gratuito con persistencia MySQL; ninguna opción confirmada.
-5. Seleccionar API/biblioteca QR/dependencias y comprobar uso gratuito/licencias/cuotas.
-6. Definir fecha real de entrega; el documento específico no fija calendario.
-7. Resolver definiciones operativas propuestas antes de codificar sus pruebas y consultas.
-8. Configurar nombre/correo Git local con los datos indicados por el usuario y registrar el primer commit documental.
+## Pendientes no resueltos por inferencia
 
-Los pendientes 2 a 6 no impiden preparar partes independientes cuando se autorice desarrollo. No simular aprobación ni sustituir una verificación real por el paso del tiempo.
-
-## Próximo paso
-
-Cuando el usuario solicite desarrollar: B01, verificar herramientas del host, fijar arquitectura/versiones, comprobar opciones gratuitas y preparar Git/Docker básico. Avanzar de forma independiente donde no falten datos obligatorios.
-
-## Evidencia de esta intervención
-
-- Revisión de requisitos usando la extracción completa del PDF de suficiencia previamente leído.
-- Verificación del repositorio local vacío y ausencia de remoto.
-- Inspección del AGENTS actual de Código Tico: contiene reglas específicas de Next.js; no se trasladan a PHP.
-- Preparación documental; no se ejecutaron pruebas funcionales de una aplicación inexistente.
-- Comprobación documental ejecutada: 21 RF, 7 RNF, 9 RT, 6 U, 6 ENT y 10 bloques presentes; títulos RF únicos, enlaces relativos válidos y bloques de código cerrados.
-- Esta comprobación valida la estructura documental; no certifica implementación, Windows, despliegue ni defensa.
-- `git diff --cached --check` correcto; cinco archivos preparados. Intento de commit sin éxito por identidad Git ausente; no hay commit ni push realizado.
+1. Publicar y verificar ramas/etiquetas de Eventify; no dar por hecho push hasta comparar SHA remoto.
+2. Windows/arquitectura/equipo receptor y posibilidad de validación real.
+3. Proveedor público gratuito validado con MySQL, persistencia y API; localhost no reemplaza la URL pública.
+4. Fecha de entrega, participación del estudiante y evidencia humana de defensa.
+5. Adoptar definiciones de estados/ocupación/cancelación/QR al implementar cada bloque.
 
 ## Registro de bloques
 
 | Bloque | Estado | Evidencia | Limitación |
 | --- | --- | --- | --- |
-| B00 | Documentación completada; commit pendiente | Cinco documentos; cobertura, enlaces y bloques comprobados | Falta identidad Git; sin implementación ni publicación GitHub |
-| B01–B09 | Pendientes | Ninguna | No afirmar cumplimiento |
+| B00 | Commit creado | 44da548: documentación inicial | No certifica implementación ni entrega |
+| B01 | Implementado parcialmente; cierre pendiente | [Evidencia B01](evidencias/B01.md), [arquitectura](ARQUITECTURA.md), [manual](INSTALACION.md) | Persistencia sin probar; Windows no probado |
+| B02 | Implementado; cierre pendiente | [Modelo de datos](DATOS.md), [evidencia B02](evidencias/B02.md) | Migraciones aplicadas; suite aislada sin aprobar |
+| B03 | Implementado; cierre pendiente | [Evidencia B03](evidencias/B03.md) | Corrección cookie/CSRF preparada; repetir integración |
+| B04 | Implementación parcial | [Evidencia B04](evidencias/B04.md) | QR independiente comprobado; integración/concurrencia y navegador pendientes |
+| B05 | Pendiente | Catálogo/jQuery/AJAX/API | Depende B04 |
+| B06 | Pendiente | CRUD/admin/dashboard | Depende B04 |
+| B07 | Pendiente | QA integral/Linux/Windows/persistencia | Depende B05/B06 |
+| B08 | Pendiente | GitHub/publicación | Requiere autorizaciones externas y proveedor viable |
+| B09 | Pendiente | PDF/paquete/defensa | Requiere versión final comprobada |
 
-## Plantilla para actualizar después de un bloque
+## Verificaciones de B01
+
+- Compose config válido, redes/puertos comprobados; sintaxis de scripts Linux correcta.
+- 11 archivos PHP con sintaxis correcta usando CLI temporal 8.3, no imagen objetivo 8.4.
+- 4 comprobaciones de configuración + 7 de claves/persistencia de configuración/redes + 9 respuestas HTTP correctas; alcance limitado a B01.
+- Navegador in-app: móvil 390×844 (una columna) y escritorio 1280×900 (tres), sin desbordamiento horizontal observado.
+- Salud 503 segura cuando no hay MySQL; no afirmar conexión funcional.
+- Arranque Docker y salud real comprobados; persistencia, Windows, URL pública y defensa pendientes.
+- El usuario ejecutó la instalación de Docker. No se borraron datos, no hubo gastos, commits ni publicación.
+
+## Verificaciones de B02
+
+- 19 archivos PHP con sintaxis válida mediante CLI temporal 8.3.6.
+- 4 comprobaciones de configuración y 19 de reglas correctas.
+- Scripts Bash y Compose de pruebas comprobados estáticamente.
+- Suite MySQL ejecutada por el usuario: llegó hasta HTTP y falló en la comprobación de emisión de cookie. Corrección preparada, suite completa aún no aprobada.
+- Migraciones 001/002 ejecutadas; demo se ejecutó en la suite aislada antes del fallo HTTP. No cerrar B02 hasta repetir y completar la suite.
+
+## Verificaciones de B03
+
+- Sintaxis PHP válida con CLI temporal 8.3.6; 16 comprobaciones de registro/CSRF correctas. Total de unidades: 39.
+- Nueve respuestas HTTP comprobadas en el Docker anterior a B03, salud 200.
+- Suite MySQL ampliada ejecutada por el usuario: falló al esperar Set-Cookie en una sesión ya existente. Corrección de test y respuesta CSRF 403 preparadas; repetir.
+- No marcar autenticación terminada hasta comprobar la imagen actualizada y navegador.
+
+## Verificaciones de B04
+
+- 19 unidades nuevas de cantidades/importes correctas; total vigente 58.
+- Suite preparada con rollback y dos carreras de conexiones independientes; no ejecutada todavía.
+- Sitio HTTP continúa respondiendo 500 ante CSRF inválido: versión anterior sigue activa. Activación del modo dev/corrección aún pendiente.
+
+- QR SVG real generado con dependencia compatible en entorno temporal y decodificado con ZBar, identificador exacto sin datos personales. Plataforma del proyecto ^8.4 permanece intacta; imagen objetivo pendiente.
+- Composer validate/audit correctos con advertencias documentadas; JS reservations.js con sintaxis válida.
+
+## Plantilla después de cada bloque
 
 ```text
 Fecha y bloque:
@@ -73,4 +102,8 @@ Riesgos/pendientes:
 Próxima acción:
 ```
 
-Registrar evidencias más extensas en `docs/evidencias/Bxx.md` cuando existan y enlazarlas aquí. No llenar la plantilla con resultados supuestos.
+Actualizar con hechos; evidencias extensas en docs/evidencias/Bxx.md. No duplicar estados contradictorios ni marcar compatibilidad/defensa sin comprobación.
+
+## Versionado adoptado
+
+Ver [VERSIONADO.md](VERSIONADO.md) y CHANGELOG.md. Workflow manual preparado; no se ejecutó ni se habilitó despliegue. Rollback real de código/datos pendiente de ensayo aislado.

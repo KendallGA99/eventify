@@ -1,0 +1,78 @@
+# Arquitectura inicial — B01
+
+## Decisiones adoptadas
+
+- PHP 8.4 + Apache, MySQL 8.4 LTS; imágenes oficiales con digest multi-arquitectura fijado. No usar `latest`.
+- PHP organizado por responsabilidades, sin framework para la base inicial; autoload del namespace Eventify. Composer/QR se incorporarán al implementar tickets con versiones bloqueadas.
+- PDO MySQL, consultas preparadas nativas, utf8mb4 y hora UTC. Regla de negocio/ER pendientes de B02.
+- Docker Compose con web y db; red backend interna, MySQL sin puerto publicado, web local en 127.0.0.1.
+- Raíz HTTP `public/`; código interno, configuración y scripts fuera del directorio servido. La imagen no incluye .env.
+- Volúmenes separados para MySQL y archivos; arranque/reconstrucción no ejecutan eliminación de datos.
+- HTML/CSS locales; jQuery/AJAX pendientes de sus funcionalidades, no importar bibliotecas decorativamente para afirmar cumplimiento.
+
+```mermaid
+flowchart LR
+    B[Navegador en Linux o Windows] -->|localhost:8080| W[Apache / public]
+    W --> P[PHP / controladores y servicios]
+    P -->|PDO / red interna| D[(MySQL / volumen persistente)]
+    P --> S[Archivos / volumen persistente]
+    P -. Integración futura .-> A[API externa gratuita académica]
+```
+
+## Imágenes resueltas
+
+Digest consultado en el registro oficial Docker Hub durante B01:
+
+```text
+php:8.4-apache@sha256:901b0dbcd2419cc9cd307ea05e57403449ce722ccd5b32335da6e8d39f2b1ee0
+mysql:8.4@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242
+```
+
+Compatibilidad Windows significa ejecutar estas imágenes Linux a través de Docker Desktop; no construir un backend diferente para Windows. El digest fija la base, no certifica la instalación ni elimina la necesidad de revisar actualizaciones de seguridad. PDO MySQL se compila al construir la imagen.
+
+## Rutas disponibles en B01
+
+| Ruta | Comportamiento |
+| --- | --- |
+| `/` | Página inicial explícitamente en construcción. |
+| `/assets/css/app.css` | Estilos locales. |
+| `/salud` | SELECT 1 real por PDO; 200 si conecta, 503 si no; no muestra credenciales/error SQL. |
+| Ruta no existente | 404 con enlace al inicio. |
+| Método distinto de GET/HEAD en rutas PHP | 405. No hay operaciones de escritura implementadas. |
+
+No hay todavía login, categorías, eventos persistidos, reservas, tickets o dashboard. La página inicial no representa aceptación de RF-04 ni una simulación presentada como sistema terminado.
+
+## Dependencias gratuitas y candidatas
+
+| Componente | Condición | Estado |
+| --- | --- | --- |
+| PHP / MySQL Community / Apache | Software disponible sin pago para este uso; conservar avisos de licencias aplicables al redistribuir. | Base elegida; ejecutar Docker pendiente. |
+| Docker Engine / Compose | Open source; Desktop contempla uso académico gratuito según sus condiciones. | Compose validado de forma portable; daemon no instalado. |
+| jQuery | MIT; servir copia local de versión seleccionada. | Integración en B05. |
+| chillerlan/php-qrcode 6.0.1 | MIT/Apache-2.0; requiere PHP >=8.2 y mbstring según metadatos de Packagist. | Candidata elegida para B04; instalar/extensiones/lockfile pendientes. |
+| PHPUnit 13.4.1 | BSD-3-Clause; requiere PHP >=8.4.1 y extensiones. | Candidato consultado; no instalado. Las pruebas B01 son scripts mínimos sin dependencia externa. |
+| Open-Meteo | Modalidad gratuita no comercial; 10.000 llamadas/día, sin garantía de disponibilidad. | Candidata para evaluación académica; validar atribución, caché y uso antes de integrar. |
+
+La venta del trabajo de desarrollo no determina por sí sola que la operación futura de la plataforma cumpla una licencia API no comercial. Antes de uso empresarial, revisar condiciones o elegir una API compatible; no convertirlo automáticamente en un servicio de pago.
+
+## Publicación con presupuesto gratuito
+
+- Render gratuito no aporta discos persistentes para un MySQL propio; no es una solución completa confirmada para este stack.
+- InfinityFree anuncia PHP 8.4 y MySQL 8.0/MariaDB 11.4, subdominio y SSL gratuitos sin tarjeta. Es una candidata de investigación, no un despliegue seleccionado/validado.
+- Confirmar MySQL real (no reemplazarlo por MariaDB sin resolver el requisito), variables/secretos fuera de raíz pública, extensiones, API saliente, cuotas, sesiones, importación y persistencia. Su BD gratuita no permite conexiones externas: PHP y BD deben residir allí.
+- Docker puede cubrir ejecución local aunque el proveedor publique archivos PHP sin contenedores; RT-06 exige poder ejecutar con Docker, no que cada proveedor use Compose.
+- No crear cuentas ni aceptar términos en esta intervención. No hay URL pública verificada.
+
+## Fuentes de las decisiones
+
+- [Soporte PHP](https://www.php.net/supported-versions.php).
+- [MySQL LTS](https://dev.mysql.com/doc/refman/8.4/en/mysql-releases.html).
+- [chillerlan/php-qrcode](https://github.com/chillerlan/php-qrcode) y metadatos públicos de Packagist.
+- [Open-Meteo: condiciones de planes](https://open-meteo.com/en/pricing).
+- [InfinityFree: características anunciadas](https://www.infinityfree.com/).
+- [Restricción MySQL externo de InfinityFree](https://forum.infinityfree.com/t/connecting-to-mysql-from-an-external-application/49339).
+- [Limitaciones gratuitas de Render](https://render.com/docs/free).
+
+## Dependencia QR adoptada en B04
+
+BaconQrCode 3.1.1 y dasprid/enum 1.0.7 (BSD-2-Clause), composer.lock versionable. SVG generado localmente desde la matriz codificada, sin servicio externo, datos privados ni URL pública en payload. Requiere ctype/iconv y PHP objetivo 8.4; las dependencias por sí mismas admiten ^8.1. Docker descarga Composer 2.10.3 con SHA-256 fijado e instala desde lock con plugins/scripts deshabilitados, comprobando la plataforma real. Vendor no se versiona.

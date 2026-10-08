@@ -16,7 +16,7 @@ Los documentos locales son la referencia operativa; releer los PDF únicamente p
 - Para el alcance de EVENTIFY, el enunciado de suficiencia es la fuente específica; el programa general aporta contenidos y contexto. Si aparece una contradicción material, registrarla y resolverla antes de implementar la parte afectada.
 - Identificar como tales las exigencias del PDF, las condiciones del usuario y las decisiones propias. No presentar recomendaciones como exigencias del docente.
 - Proyecto individual académico: acompañar la comprensión, explicar las decisiones y registrar aportes reales; no fabricar autoría, commits, pruebas ni evidencia de defensa.
-- La tarea actual consiste en planificar y documentar. No iniciar la implementación de la aplicación hasta que el usuario solicite avanzar.
+- El usuario autorizó iniciar la construcción por bloques. Avanzar según PLAN, verificar cada incremento y mantener ESTADO; no confundir esa autorización con publicar código, contratar servicios o borrar datos.
 
 ## Condiciones obligatorias
 
@@ -72,7 +72,8 @@ No ejecutar una suite extensa después de cada edición trivial. Seleccionar pru
 - Trabajar en este repositorio; no modificar Código Tico como parte de EVENTIFY.
 - Usar prefijo `codex/` al crear ramas de trabajo, salvo indicación distinta del usuario.
 - Mantener secretos, dependencias descargadas, volúmenes, logs y temporales fuera del repositorio; conservar archivos de bloqueo de dependencias.
-- GitHub está pendiente de elegir cuenta, nombre y visibilidad. No confundir Git local con un repositorio ya publicado.
+- El usuario autorizó commits y push progresivo el 2026-10-08. Ver cuenta/remoto/visibilidad y referencias reales en docs/ESTADO.md y docs/VERSIONADO.md; no confundir Git local con un push confirmado.
+- Versionar incrementos coherentes y registrar VERSION/CHANGELOG. Etiquetas de desarrollo conservan código; solo marcar estable con evidencia de pruebas. Rollback de código no restaura MySQL: revisar compatibilidad y respaldos antes de actualizar.
 - No reescribir ni borrar historial ajeno. No hacer push forzado.
 - Registrar limitaciones y bloqueos concretos sin convertirlos en afirmaciones de cumplimiento.
 

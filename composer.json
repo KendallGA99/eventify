@@ -1,0 +1,18 @@
+{
+    "name": "eventify/eventify",
+    "description": "Proyecto académico de eventos y reservaciones",
+    "type": "project",
+    "require": {
+        "bacon/bacon-qr-code": "3.1.1",
+        "ext-ctype": "*",
+        "ext-iconv": "*",
+        "php": "^8.4"
+    },
+    "config": {
+        "platform": {
+            "php": "8.4.0"
+        },
+        "allow-plugins": false,
+        "sort-packages": true
+    }
+}

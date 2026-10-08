@@ -206,7 +206,7 @@ Estado de todas: propuestas para comenzar; revisables con justificación antes d
 
 | ID | Decisión propuesta | Motivo / límite |
 | --- | --- | --- |
-| D-01 | Aplicación PHP organizada por controladores, servicios/reglas, acceso PDO a MySQL y vistas; HTML/CSS/JS/jQuery locales. Framework opcional, no elegido. | Evidenciar aprendizaje y mantener separación; ninguna versión fijada todavía. |
+| D-01 | Aplicación PHP organizada por controladores, servicios/reglas, acceso PDO a MySQL y vistas; HTML/CSS/JS/jQuery locales. Base sin framework, PHP 8.4/Apache y MySQL 8.4 fijados por digest en B01. | Evidenciar aprendizaje y mantener separación; ejecución del stack todavía pendiente. |
 | D-02 | Borradores privados; publicados futuros reservables; cancelados/finalizados distinguibles; eventos pasados no reservables aunque su estado no se haya actualizado. | Evitar publicación accidental y reservas de experiencias terminadas; definir transición FINALIZADO. |
 | D-03 | Activo = PUBLICADO y futuro; reservas activas = confirmadas de esos eventos para indicadores operativos. Ocupación = suma entradas de ese conjunto / suma capacidades × 100. Total de eventos = registros conservados, separado del conjunto activo. | Conjuntos coherentes; especificar derivados y empates; cero capacidad agregada produce 0 %, no error. |
 | D-04 | Reserva CONFIRMADA/CANCELADA; ticket persistido por reserva, invalidado visual/operativamente por cancelación de reserva o evento, conservado en historial. QR sin datos privados expuestos. | El PDF no fija nombres de estados de reserva ni contenido QR. Cancelar evento no borra ni cambia retroactivamente el precio de las reservas. |

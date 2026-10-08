@@ -1,0 +1,11 @@
+.git
+.env
+.env.*
+node_modules
+vendor
+storage/*
+backups
+tmp
+test-results
+playwright-report
+*.log

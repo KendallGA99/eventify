@@ -1,0 +1,10 @@
+# Uso local de desarrollo. La entrega normal utiliza docker-compose.yml.
+services:
+  web:
+    volumes:
+      - ./app:/var/www/html/app:ro
+      - ./public:/var/www/html/public:ro
+      - ./config:/var/www/html/config:ro
+      - ./bin:/var/www/html/bin:ro
+      - ./tests:/var/www/html/tests:ro
+      - ./database:/var/www/html/database:ro
