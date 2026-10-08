@@ -71,3 +71,6 @@ public-tls-LeWppmpW,19:31:50UTC/exit0: PHP8.4/MySQL8.4 conTLSválido y rechazoCA
 ## Actualización dev.22: ENT-D / RNF-03 / SEG-08
 
 CLI explícito y ensayo aislado `public-tls-5NcIVnVj`, 19:39:57 UTC / exit 0: tres cuentas ficticias con roles/hashes correctos; repetición, entorno local y plan inválido rechazados sin cambios. Cuentas conservadas tras recrear web. TLS válido y rechazos de CA/hostname nuevamente aprobados. Actualiza los pendientes históricos de aprovisionamiento anteriores: ensayo local aprobado; ENT-D sigue pendiente de cuentas funcionales en entorno público y entrega privada del acceso. ENT-A/RT-09, servidor sin TLS y login público permanecen pendientes.
+
+
+Dev.23 prepara el caso servidor sin TLS mediante ensayo separado y controles TCP de disponibilidad/base vacía. Configuración Compose/Bash verificadas; ejecución PHP 8.4/MySQL y arranque negativo pendiente. RNF-03/04/RT-09 no se elevan a completos por preparar la prueba.

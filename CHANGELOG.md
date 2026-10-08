@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.23 — 2026-10-08
+
+B08/RNF-03/04: prueba específica de MySQL 8.4 sin TLS, proyecto/red internos propios, base tmpfs vacía y sin puertos ni volúmenes persistentes. Control PDO por TCP confirma servidor disponible sin cifrado; Database production debe rechazarlo. Arranque público debe salir con error de migración antes de servir; nueva conexión de control confirma base vacía. Sin cambios de controles, reglas ni esquema.
+
+Compose config real sin daemon y sintaxis Bash/diff correctos; opciones MySQL 8.4 contrastadas con manual oficial (tls_version vacío, no opciones eliminadas skip-ssl/have_ssl). PHP 8.4/MySQL y arranque negativos aún pendientes de ejecución: agente sin acceso Docker/sudo no interactivo. Script test-public-no-tls-linux.sh registra resultado privado y retira únicamente recursos efímeros del ensayo. No certifica proveedor/HTTPS/URL pública ni entrega estable.
+
 ## 0.1.0-dev.22 — 2026-10-08
 
 B08/ENT-D/RNF-03: plan privado con tres cuentas ficticias/claves independientes, CLI explícita production/TLS y tablausersvacía, transacciónSERIALIZABLE/GET_LOCK, hashesPASSWORD_DEFAULT. Rechaza repetición/usuariosprevios/planesinválidos; no UPDATE, seederauto, endpoint ni logs de claves. DemoSeeder sigue bloqueado enproduction. Plan montado solo en jobCLI, no servicio web.

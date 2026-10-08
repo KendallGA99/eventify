@@ -70,3 +70,14 @@ El plan no contiene eventos nireservas: se crean desdeadmin en evaluacióncontro
 Registro `storage/public-tls-5NcIVnVj`, inicio `2026-10-08T19:39:57Z`, `exit_code=0`; proyecto `eventify-tls-ee40bb5ec1e6`. PHP 8.4/MySQL 8.4 con TLS válido y tres migraciones. El job CLI explícito creó tres cuentas ficticias: un ADMINISTRADOR y dos USUARIO, hashes válidos y claves distintas del texto almacenado. Repetición, entorno local y plan inválido rechazados sin cambios; probe aprobado nuevamente tras recrear solo web. CA ajena y hostname incorrecto rechazados por PDO; HTTP interno y recreación aprobados.
 
 Solo se retiraron contenedores/red/base tmpfs efímeros propios. Plan, certificados y registros privados conservados fuera de Git; no se modificaron bases existentes ni se crearon cuentas externas. Se verificaron roles/hashes mediante PHP, no login público. Servidor sin TLS, concurrencia del aprovisionamiento, TLS del proveedor, HTTPS/URL pública y aceptación de navegador externa siguen pendientes. No repetir ni sumar estos resultados a las 219 pruebas de integración; VERSION/etiqueta dev.22 conservadas.
+
+
+## Dev.23: rechazo de servidor sin TLS preparado
+
+Prueba separada con MySQL 8.4/PHP 8.4 y configuración production. Control TCP directo limitado a `eventify_no_tls_test` exige tls_version y Ssl_cipher vacíos, versión correcta y cero tablas. Database debe rechazar conexión sin TLS; solo PDOException o RuntimeException específica de TLS cuentan, no cualquier fallo de configuración. Nueva conexión prueba que el servidor continúa disponible. Arranque público limitado a 60 segundos debe salir con código 1 y mensaje de conexión/TLS tras preflight/configtest; base continúa vacía después.
+
+Compose `docker-compose.no-tls-test.yml` sin puertos/volúmenes persistentes, red interna y datos tmpfs; proyecto aleatorio con -p explícito incluso sudo. Secretos nuevos privados; limpieza solo después de guardas y exclusivamente del ensayo. Bash/diff y config Compose real sin daemon aprobados; PHP/MySQL/arranque negativo pendientes por acceso Docker en terminal del usuario. Sin cambios de reglas/esquema ni creación de servicios externos.
+
+Referencia contrastada: [MySQL 8.4 variables TLS](https://dev.mysql.com/doc/refman/8.4/en/server-system-variables.html#sysvar_tls_version), [opciones eliminadas en 8.4](https://dev.mysql.com/doc/relnotes/mysql/8.4/en/news-8-4-0.html) y [verificación de Ssl_cipher](https://dev.mysql.com/doc/refman/8.4/en/using-encrypted-connections.html). No usar skip-ssl/have_ssl, eliminados en 8.4.
+
+Comando: `cd "/home/usuario/Documentos/ChatGPT/Proyecto U" && bash scripts/test-public-no-tls-linux.sh`. Evidencia privada en storage/public-no-tls-ID; no declarar aprobado sin leer status/log. No sustituye TLS del proveedor, HTTPS público ni ENT-A/RT-09.
