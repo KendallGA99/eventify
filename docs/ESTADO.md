@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b09-source-package (preparación técnica; B07 continúa abierto). Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
+- Rama activa: codex/b09-documento-tecnico (documentación; B07 continúa abierto). Código de referencia dev.14: c915142. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
@@ -90,3 +90,11 @@ B09/U-03/ENT-B: package-source.py exporta commit Git exacto a ZIP de desarrollo 
 13 checks de empaquetado correctos con repositorios temporales ficticios; git diff --check correcto. No cambia aplicación ni esquema respecto de dev.13. Exportación real/integridad se registrarán tras el commit. Docker sigue sin registros nuevos: verification-status conserva 13:40:03 UTC y QA no tiene verification-status; sudo no interactivo denegado. Migración 003, integración actual y restore reales siguen pendientes.
 
 Dev.14 publicado: c915142b7c902a0024bba574aa3477643e4a11a2, rama codex/b09-source-package y etiqueta anotada v0.1.0-dev.14, referencias remotas coincidentes. ZIP real generado en backups/entrega/eventify-desarrollo-c915142b7c90/eventify-source.zip: 258958 bytes, 153 archivos con huellas correctas, VERSION/migración 003/manual presentes; sha256sum -c correcto. SHA-256: 2971946c8fd9a53d9eebd8317ac7ad692d9349634e9eb57699f62b86247e4bdb. Archivo ignorado por Git; no se sube ZIP ni datos privados. Es exportación de fuente, no arranque de copia limpia ni entrega final. El ZIP refleja el estado del commit etiquetado; este registro documental posterior no cambia esa etiqueta.
+
+## B09: documento técnico borrador
+
+Fuente editable docs/TECNICO.md y generador scripts/build-technical-pdf.py (ReportLab, solo documentación). PDF local output/pdf/EVENTIFY_Documento_Tecnico_Borrador.pdf: 14 páginas. Contiene portada sin autoría inventada, índice con páginas, descripción/tecnologías, arquitectura y ER vectoriales, navegación, diccionario de diez tablas, 21 RF y 7 RNF, historias/aceptación, seguridad, endpoints/AJAX/API, instalación/transferencia, evidencia y preparación de defensa/referencias.
+
+Generado con Python/ReportLab del runtime de documentación, renderizado con pdftoppm y revisado visualmente en todas las páginas mediante hoja de contacto, con detalle de diccionario y tabla RNF. Pypdf comprobó presencia de 21 RF y 7 RNF. No se inventaron pruebas ni participación humana. PDF SHA-256: 04b28cd454bc9eb05184426330212efd32412acfe265b2e8186799c233ecf5d8. output y PNG temporales ignorados por Git; fuente/generador versionables. Borrador, no ENT-C final aprobado; faltan actualización de resultados, responsable/docente y revisión humana.
+
+Sin cambios de aplicación, VERSION ni etiquetas dev.14. El ZIP dev.14 anterior no contiene estos documentos posteriores; regenerar paquete de una referencia nueva cuando proceda. Docker mantiene registros antiguos y QA sin verification-status nuevo; sudo no interactivo sigue denegado. No certificar actualización/restauración actuales.

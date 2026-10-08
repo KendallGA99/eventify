@@ -1,5 +1,9 @@
 # Historial de versiones de Eventify
 
+## Documentación técnica B09 — 2026-10-08
+
+Fuente editable y generador PDF del documento técnico, referido a código dev.14. Borrador de 14 páginas con arquitectura/ER, navegación/diccionario, 21 RF/7 RNF, historias/aceptación, seguridad/API, despliegue, evidencia y defensa. Render y revisión visual completos; cobertura textual comprobada. Sin cambios de aplicación/VERSION/etiquetas. Autoría, pruebas nuevas, URL, Windows, revisión humana y entrega final permanecen pendientes.
+
 ## 0.1.0-dev.14 — 2026-10-08
 
 B09/U-03/ENT-B: exportación limpia desde referencia Git a ZIP de desarrollo con manifiesto/huellas SHA-256 e instrucciones. Rechaza secretos/datos/logs versionados por nombre, enlaces/submódulos, cambios sin commit, referencias incompletas y sobrescritura. No incluye MySQL ni credenciales personales. Receptor no requiere Python/Git; usa Docker según manual.
