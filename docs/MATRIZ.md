@@ -58,3 +58,7 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 4. Resolver URL pública gratuita y documentación/entrega/defensa; no cerrar B07 ni marcar estable mientras falten criterios.
 
 | ENT-C / ENT-E/F | docs/TECNICO.md; scripts/build-technical-pdf.py | PDF borrador actualizado dev.17 de 15 páginas generado/revisado visualmente; 21 RF/7 RNF presentes. Documento final y revisión/dominio/defensa humana pendientes |
+
+## Preparación pública dev.20
+
+Dockerfile.public/entrypoint/preflight:25 guardas simuladas y buildPHP8.4/tres rechazos reales aprobados (public-start-vxriCKan,19:23:27UTC/exit0). Sin proveedor/URL; arranque positivo, TLS real y aprovisionamiento aún pendientes. Esta evidencia no cierraRT-09/ENT-A ni sustituye Windows/Firefox.

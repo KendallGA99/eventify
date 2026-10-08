@@ -43,3 +43,7 @@ Fuentes revalidadas: [Render gratis](https://render.com/docs/free), [servicios/p
 Usar Dockerfile.public para el servicio público; el Dockerfile local sigue separado. PORT por defecto10000, validado antes de configurarApache. Preflight exigeproduction y DB_HOST/PORT/DATABASE/USERNAME/PASSWORD/TLS_MODE/TLS_CA explícitos, APP_SECRET mínimo32 caracteres y DatabaseConfig conTLSverificado; CA privada de ejecución. No imprime secretos. Apache configtest y migraciones preceden a servir; un fallo aborta, sin reintentos infinitos/seeder/reset/import. El aprovisionamiento único de evaluación aún no está implementado.
 
 25 checks de orquestación simulada correctos. Para probar imagen y tres rechazos reales aislados: bash scripts/test-public-linux.sh. No conecta MySQL ni abrepuertos, usa --network none y no monta datos. Esta prueba no certifica arranque válido, negociación TLS ni URL; falta ejecutarla enDocker. Runtime/dependencias de Dockerfile.public duplican las del local por elección de variante separada: actualizar/revisar ambos al cambiar versiones.
+
+### Evidencia real dev.20
+
+2026-10-08T19:23:27Z, public-start-vxriCKan/exit0: imagen eventify-public-test:0.1.0-dev.20 construida (bcc9357d2751), lintPHP8.4 correcto y tres rechazos reales previstos (configuración ausente, entorno local, puerto inválido) sin red/puertos/volúmenes. No prueba arranque positivo, configtestApache real, handshakeTLS/migración externa ni URL pública. Las25 guardas simuladas siguen separadas de esos resultados.
