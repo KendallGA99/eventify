@@ -53,3 +53,5 @@ Usar Dockerfile.public para el servicio público; el Dockerfile local sigue sepa
 Preparado: `bash scripts/test-public-tls-linux.sh`. PHP8.4 production/MySQL8.4, CA/clave propias y certificados ficticios2 días, red interna y DBtmpfs sin puertos/volúmenes persistentes. Comprueba migración/arranque válido/HTTP interno, PDO conCAincorrecta y hostnameincorrecto, recreación deweb. Conserva registros privados y retira exclusivamente contenedores/red efímeros del ensayo. No utilizar sus certificados como CA del proveedor público.
 
 OpenSSL/configCompose/sintaxisBash correctos; ejecución Docker/TLS real pendiente. No sustituye TLS conAiven, HTTPS externo, caso servidor sinTLS, cuentas únicas ni URL pública.
+
+Resultado real dev.21: public-tls-LeWppmpW,2026-10-08T19:31:50Z/exit0. Arranqueproduction, Apacheconfigtest/HTTPinterno, migraciones y TLSválido PHP8.4/MySQL8.4 aprobados; CAajena/hostnameincorrecto rechazados porPDO, recreación web aprobada sin repetir migraciones. Red/tmpfs efímeros propios retirados; entorno externo/HTTPS público/caso sinTLS siguen pendientes.

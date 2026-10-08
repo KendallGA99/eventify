@@ -62,3 +62,7 @@ El controlador meteorológico utiliza WeatherBudget con la misma conexión PDO: 
 Fuentes oficiales Render free/web-services y Aiven mysql-free-tier abiertas nuevamente2026-10-08: planes y límites anteriores siguen documentados. Aiven permite solo un servicio de cada tipo por organización; comprobar si ya existe uno para evitar asumir una segunda base gratuita. Respaldo incluido no prueba exportación/recuperación de esta aplicación. Render puede suspender por tráfico saliente elevado a BD/API; no hay umbral público que permita garantizar disponibilidad. Son riesgos de evaluación, no un costo activado.
 
 Inspección actual: Dockerfile expone80/ApacheListen80; storage se crea para www-data; Session usa archivos y cookieSecure obligatoria enproduction. MigrationRunner ya usa lock MySQL para coordinar migraciones. Faltan arranque público que falle antes de servir si configuración/migración falla, CA secreta montada en ejecución, cuentas de evaluación únicas y negociación TLS real. No basta elegir planes ni crear servicios para cerrar esos puntos. Ver [DESPLIEGUE-PUBLICO.md](DESPLIEGUE-PUBLICO.md).
+
+## Ensayo real previo a proveedores
+
+Dev.21,2026-10-08T19:31:50Z/public-tls-LeWppmpW exit0: TLSPHP8.4/MySQL8.4 válido, CAajena/hostnameincorrecto rechazados, tres migraciones/ApacheHTTPinterno y recreación pública aprobados en red aislada con certificados ficticios. Esto supera la preparación de arranque y negociación local; no sustituye CA/hostname/motor del proveedor ni HTTPS/URL externa. Aprovisionamiento único y caso servidor sinTLS siguen pendientes.

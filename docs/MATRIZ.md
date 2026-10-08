@@ -62,3 +62,7 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 ## Preparación pública dev.20
 
 Dockerfile.public/entrypoint/preflight:25 guardas simuladas y buildPHP8.4/tres rechazos reales aprobados (public-start-vxriCKan,19:23:27UTC/exit0). Sin proveedor/URL; arranque positivo, TLS real y aprovisionamiento aún pendientes. Esta evidencia no cierraRT-09/ENT-A ni sustituye Windows/Firefox.
+
+## TLS y arranque público aislado dev.21
+
+public-tls-LeWppmpW,19:31:50UTC/exit0: PHP8.4/MySQL8.4 conTLSválido y rechazoCAajena/hostnameincorrecto, tres migraciones/ApacheSyntaxOK/HTTPinterno, recreaciónwebsinmigracionesrepetidas. Cumple el ensayo local de estos controles; RT-09/ENT-A siguen pendientes por proveedor/URLHTTPS real y aprovisionamiento. No certifica caso servidor sinTLS.

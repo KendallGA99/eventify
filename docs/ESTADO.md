@@ -167,3 +167,9 @@ Compose separado docker-compose.tls-test.yml: proyecto aleatorio eventify-tls-ID
 Probe production mediante Database real: TLS válido con tres migraciones; CA ajena y hostnameincorrecto deben lanzarPDOException; Apache /salud e /ingresarHTTP200 interno; recrear solo web y confirmar tres migraciones/conexión nuevamente. No se sembrarán cuentas ni harán reservas. OpenSSL host real verificó positivo/dosnegativos y permisos700/600; Compose config efectivo comprobó nombre/redtmpfs/sinpuertos, Bash/diff correctos. Docker/PHP/TLS real del ensayo sin ejecutar; no afirmar negociación externa ni servidor sinTLS probado (este caso aún falta).
 
 Próximo comando: cd "/home/usuario/Documentos/ChatGPT/Proyecto U" && bash scripts/test-public-tls-linux.sh. Requiere sudo en terminal del usuario; resultados storage/public-tls-ID privados. Aprovisionamiento, TLSproveedor/HTTPS/URL, Firefox/Windows y entrega final siguen pendientes.
+
+## Dev.21: TLS y arranque público aislados aprobados
+
+Usuario ejecutó test-public-tls-linux.sh. Registro storage/public-tls-LeWppmpW, inicio2026-10-08T19:31:50Z/exit_code=0, proyecto eventify-tls-8114c17f00f1. Log confirma build/healthy, lintPHP8.4 del probe, Database real conTLS/certificado válido/MySQL8.4 y tres migraciones, CAajena y hostnameincorrecto rechazados porPDOException, HTTPinterno /salud e /ingresar200, recreación solo web y nuevo positivo. web.log confirma Configuración pública validada, ApacheSyntaxOK y esquema actualizado sin repetir migraciones tras recrear.
+
+Sin puertos públicos ni servicios externos; solo proyecto/red/tmpfs efímeros del ensayo retirados, certificados/logs privados conservados. Sin cambio de controles/datos existentes/VERSION ni repetir219 checks. Se cierran con este alcance negociaciónTLS local y arranque público positivo/recreación. TLS conproveedor/HTTPS público, servidor sinTLS, aprovisionamiento único, URL, Windows/Firefox y entrega final siguen pendientes.
