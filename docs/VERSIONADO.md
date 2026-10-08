@@ -54,3 +54,6 @@ Dashboard y consulta B06 publicados y verificados: v0.1.0-dev.5 → b5bc784, ram
 Dev.7 → 994ec41 fue verificada después de publicar: ejecución Docker Linux 2026-10-08T13:40:03Z exit_code=0, 177 reglas/QR y 152 checks MySQL/HTTP. No mover etiqueta ni main por registrar evidencia. Próximos cambios de código necesitan pruebas afectadas; no repetir suite por cambios puramente documentales.
 
 Dev.8 → 27c91bf verificada en integración Docker Linux el 2026-10-08T13:52:00Z: exit_code=0, 170 checks MySQL/HTTP con cuatro carreras administrativas. Unidades/QR mantienen evidencia dev.7 porque la ampliación modifica solo tests/wrapper. Registrar aprobación sin mover etiqueta ni main; entrega estable sigue pendiente.
+
+
+Dev.23 publicado: rama `codex/b08-rechazo-sin-tls` y etiqueta anotada `v0.1.0-dev.23` apuntan al commit `3badc8517d3a57edb6cd234711f82ecdd1115202`; push y referencias verificados con git ls-remote. Incremento de ensayo, no estable: PHP/MySQL y arranque sin TLS pendientes de ejecución. Dev.22 y anteriores conservados; main sin cambios.
