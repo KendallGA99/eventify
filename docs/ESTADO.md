@@ -162,3 +162,5 @@ El usuario ejecutó verify-dev-linux.sh; resultado REAL storage/verification-sta
 Corrección Dockerfile: apt-get install --no-install-recommends unzip solo dentro de la capa de construcción, Composer conserva lock/checksum/plugins/scripts deshabilitados/plataforma, purge de unzip y limpieza de índices apt al terminar. No instalar paquetes en host ni ampliar permisos Docker; no modificar base/volúmenes. Objetivo RT-06/U-01: desbloquear reconstrucción reproducible del stack con dependencias QR.
 
 Verificado después de editar: Compose normal/dev y aislado válidos con variables ficticias y --env-file /dev/null; Bash -n verify-dev-linux.sh y git diff --check correctos. No repetir unidades sin cambios PHP ni afirmar build corregido hasta ejecutarlo. sudo -n todavía requiere contraseña; se pidió repetir el script en terminal del usuario. B02–B06, imagen objetivo y B07 permanecen abiertos.
+
+Push de corrección confirmado y git ls-remote verificado: codex/b07-build-fix y v0.1.0-dev.6 → 5fe196b6fa0bf398f68504a61019c1e334b91f4b. main conserva 3da680b. No se ejecutó CI ni se desplegó; etiqueta conserva el código y este registro documental no la mueve.
