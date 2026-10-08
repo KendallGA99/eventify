@@ -107,3 +107,5 @@ Scripts preparados para Windows PowerShell 5.1+, sin requerir bash/PHP/MySQL loc
 Las condiciones pueden cambiar; comprobar nuevamente antes de preparar la entrega Windows final.
 
 La imagen instala temporalmente `unzip` para extraer los paquetes de Composer durante el build y lo retira después. No se requiere instalarlo en Linux/Windows del receptor. Si aparece «zip extension and unzip/7z commands are both missing», comprobar que se está construyendo el Dockerfile vigente (dev.6 o posterior) y repetir la verificación; no borrar volúmenes para corregir este fallo de construcción.
+
+Para comprobar únicamente un cambio en las pruebas de integración/MySQL, use `bash scripts/verify-integration-linux.sh` en Linux. Ejecuta el stack aislado de pruebas y guarda `storage/integration-status.txt` e `storage/integration.log` privados; conserva los volúmenes/datos de la aplicación. Este resultado es independiente del registro de verify-dev-linux.sh. Requiere acceso Docker y puede solicitar sudo en esa terminal. No sustituye pruebas unitarias o de entrega final cuando cambió la aplicación.

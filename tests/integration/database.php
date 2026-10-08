@@ -129,6 +129,7 @@ try {
     // Simular archivos alterados y DDL incompleto únicamente al final, en el stack efímero.
     require __DIR__ . '/reservations.php';
     require __DIR__ . '/admin.php';
+    require __DIR__ . '/admin-races.php';
     $temporary = sys_get_temp_dir() . '/eventify-migrations-' . bin2hex(random_bytes(8));
     mkdir($temporary, 0700);
     $original = PROJECT_ROOT . '/database/migrations/001_initial_schema.php';
