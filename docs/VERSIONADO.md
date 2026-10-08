@@ -46,3 +46,5 @@ Push inicial verificado: main y codex/plan-eventify en a0e0102; checkpoint-b00 a
 Incremento B05 parcial publicado y verificado: v0.1.0-dev.2 → bbae88b; rama codex/b05-catalogo en ese código antes de commits documentales de evidencia. main conserva 3da680b. No se ejecutó CI ni se marcó estable.
 
 API B05 publicada y verificada: v0.1.0-dev.3 → 9ad4df4, rama codex/b05-clima; main sigue 3da680b. Integración MySQL/imagen pendiente, sin CI ni despliegue público.
+
+Administración B06 parcial publicada y verificada: v0.1.0-dev.4 → 779d4e9, rama codex/b06-admin; main conserva 3da680b. MySQL/permisos/carreras y resto de B06 pendientes; sin CI ni despliegue.

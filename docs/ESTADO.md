@@ -141,4 +141,4 @@ Verificado: 37 reglas de AdminInput correctas (total 152), sintaxis PHP completa
 
 Pruebas MySQL/HTTP ampliadas para crear/editar, reducir aforo, preservar precio/fecha/historial, desactivar categoría, cancelar/finalizar e idempotencia, permiso directo, CSRF y escape. Preparadas sin ejecutar. Carreras admin contra reserva todavía requieren ampliación/verificación. Dashboard y consulta administrativa de reservas pendientes. No cerrar B06 ni declarar estable. storage/verification-status.txt sigue ausente; activación Docker necesita terminal del usuario con sudo. Sin migraciones ni borrado de datos.
 
-Versionado: codex/b06-admin / 0.1.0-dev.4; publicar y comprobar referencias; main conserva base anterior.
+Push confirmado y git ls-remote verificado: rama codex/b06-admin y etiqueta v0.1.0-dev.4 → 779d4e9. main conserva 3da680b. Las 152 comprobaciones de reglas se repitieron correctamente en este turno con PHP temporal 8.3.6. Commits documentales posteriores conservan la etiqueta.
