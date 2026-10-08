@@ -57,3 +57,6 @@ Dev.8 → 27c91bf verificada en integración Docker Linux el 2026-10-08T13:52:00
 
 
 Dev.23 publicado: rama `codex/b08-rechazo-sin-tls` y etiqueta anotada `v0.1.0-dev.23` apuntan al commit `3badc8517d3a57edb6cd234711f82ecdd1115202`; push y referencias verificados con git ls-remote. Incremento de ensayo, no estable: PHP/MySQL y arranque sin TLS pendientes de ejecución. Dev.22 y anteriores conservados; main sin cambios.
+
+
+Dev.24 publicado y verificado por git ls-remote: `codex/b08-rechazo-sin-tls` y etiqueta anotada `v0.1.0-dev.24` apuntan a `6baa7548fb0d6af0761c58be6c5bbdf98bba48b8`. Corrige evaluador tras ensayo dev.23 parcial; nuevo ensayo real pendiente. Etiquetas anteriores/main conservados, sin versión estable.
