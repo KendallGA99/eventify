@@ -25,7 +25,15 @@ if len(packages) != 1:
     raise SystemExit('Paquete de ensayo ambiguo.')
 manifest = json.loads(packages[0].read_text())
 with zipfile.ZipFile(packages[0].parent / manifest['archive']) as archive:
-    archive.extractall(root / 'Copia limpia con espacios')
+    extraction = root / 'Copia limpia con espacios'
+    archive.extractall(extraction)
+    # extractall hereda umask 077 e ignora los permisos Git del ZIP.
+    # El padre privado sigue 700; el código copiado a Docker debe ser legible por Apache.
+    for directory in [extraction, *[p for p in extraction.rglob('*') if p.is_dir()]]:
+        directory.chmod(0o755)
+    for info in archive.infolist():
+        if not info.is_dir():
+            (extraction / info.filename).chmod(0o755 if (info.external_attr >> 16) & 0o111 else 0o644)
 copy = root / 'Copia limpia con espacios' / 'Eventify'
 # Solo claves nuevas. Nunca leer/copiar .env ni datos del desarrollador.
 env = ('APP_ENV=local\nAPP_PORT=8083\nAPP_TIMEZONE=America/Costa_Rica\n'

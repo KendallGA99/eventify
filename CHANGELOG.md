@@ -1,5 +1,9 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.17 — 2026-10-08
+
+B07: corrige permisos de fuente extraída bajo umask077 antes de copiarla a Docker. Código644/directorios755 y ejecutables755; padre privado700 y .env600 conservados. Dev.16 aisló y pasó migraciones/persistencia, pero HTTP500 por fuente ilegible para Apache. Siete verificaciones reales de extracción y nueve de proyecto simulado correctas; arranque HTTP corregido pendiente.
+
 ## 0.1.0-dev.16 — 2026-10-08
 
 Corrige aislamiento del ensayo B07: sudo eliminaba COMPOSE_PROJECT_NAME y el arranque dev.15 usaba eventify. start-linux.sh admite --project y pasa -p explícitamente; el ensayo comprueba proyecto/volúmenes/montajes/puerto antes de iniciar y rechaza copias antiguas. Dev.15 no debe usarse para este ensayo. Nueve checks con sudo/Docker simulados aprobados; recuperación normal y nueva ejecución real pendientes. Sin borrado de datos ni cambio de esquema.

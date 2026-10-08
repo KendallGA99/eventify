@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b07-copia-limpia (preparación de entrega; B07 continúa abierto). Código de referencia dev.14: c915142. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
+- Rama activa: codex/b07-copia-limpia (preparación de entrega; B07 continúa abierto). Código actual dev.17; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
@@ -70,3 +70,9 @@ Dev.15 publicado en rama codex/b07-copia-limpia y etiqueta v0.1.0-dev.15, commit
 Ensayos clean-20261008155351-f43d6a3b y clean-20261008155556-10008909 terminaron exit 255. Log muestra eventify-db-1/eventify-web-1 recreados: sudo descartó COMPOSE_PROJECT_NAME del script hijo. Esto afectó contenedores de la instancia normal, no sus volúmenes; no afirmar aislamiento/instalación limpia ni ausencia de impacto. Usuario confirmó Ctrl+C. Recuperación pendiente con start-dev-linux.sh desde repositorio original y .env original; no borrar bases/volúmenes ni resembrar. QA eventify-qa no es el proyecto observado en esos logs.
 
 Dev.16 corrige start-linux.sh con --project validado y -p explícito incluso bajo sudo. Ensayo verifica config JSON: nombre, volúmenes no externos con prefijo, puerto8083 y ausencia de binds; rechaza script antiguo antes de up. Nueve comprobaciones con Docker/sudo simulados aprobadas, sintaxis Bash/diff correctos. Ensayo y recuperación reales siguen pendientes por sudo requerido en terminal. Etiqueta dev.15 se conserva por historial; no repetir su ensayo.
+
+## Copia dev.16 y permisos corregidos dev.17
+
+clean-20261008160307-84bddf1e (16:03:07 UTC) exit0: commit52494299fef8b63d2f408a52281da7f737dd97fe, ZIP159 archivos/sha464e3ab86345cd0ed8d0b6afcc7c874aae96cd0b41155136d2fe28ddecc6f5f4. Proyecto eventify-clean-ID correcto, migraciones001–003 y recreación/comparación aprobadas. Instancia normal8080 responde HTTP200 tras recuperación; esto no certifica todos sus datos/funciones. Copia8083 devuelve HTTP500 en / y /salud: instalación funcional no aprobada.
+
+Se comprobó que Python extractall bajo umask077 creó archivos600/directorios700, copiados a imagen como root; Apache no puede leerlos. Dev.17 normaliza solo fuente a644/directorios755 y scripts ejecutables755 desde el ZIP antes de generar .env600; padre privado700 conservado. Prueba real de extracción temporal: siete guardas correctas; nueve de proyecto sudo simulado correctas; Bash/diff correctos. Nuevo arranque Docker/HTTP pendiente; no modificar permisos de secretos ni borrar destinos para resolverlo.
