@@ -52,3 +52,6 @@ El usuario autorizó expresamente la creación/configuración de estos servicios
 ## Inicio de ejecución
 
 Navegador integrado: Render Dashboard redirige a login; se eligió GitHub y abrió su formulario de acceso para Render. Cuenta prevista USUARIO_DESTINO; no se introdujo contraseña ni se otorgaron permisos. Aiven Console muestra login, sin sesión disponible. Pestañas conservadas para que el usuario complete login/registro y términos si procede. Aún no se pudieron inspeccionar cuotas/servicios/planes de sus cuentas. No crear servicios ni certificar publicación por haber abierto las páginas.
+
+
+Actualización de ejecución: Render Dashboard ya accesible. Instalación GitHub preparada solo para USUARIO_DESTINO/eventify; permisos de escritura sobre recursos del repositorio visibles y pendientes de aceptación concreta por usuario. Aiven OAuth Full access a datos personales cancelado; registro por correo preparado y pendiente de usuario. Sin servicios creados. Consultar ESTADO.md para evidencia vigente.
