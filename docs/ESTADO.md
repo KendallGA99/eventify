@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b07-reservation-feedback. Código dev.10: d82dab04780c2cf8201d3a85fb1d30b0e6778a9e; etiqueta anotada v0.1.0-dev.10 publicada y verificada por git ls-remote. Ninguna versión estable.
+- Rama activa: codex/b07-restore-qa. Código dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
@@ -32,6 +32,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 | Chrome permisos | Logout → /admin conduce a login; USUARIO rechazado en /admin; ticket de otra cuenta muestra 404 sin contenido | No certificar todas las rutas/HTTPS por estos tres casos |
 | Responsive | Ticket/QR 360/390/768/1280/1440 sin desbordamiento; dashboard 768 | Formularios/páginas restantes, zoom/orientación/foco y Firefox pendientes |
 | Cliente dev.10 | node tests/client/reservation-feedback.cjs: 14 checks correctos; sintaxis JS/diff correctos | Transporte/DOM controlados, no navegador objetivo ni MySQL |
+| Transferencia dev.11 | PHP/Bash/Compose estáticos correctos; tres guardas rechazadas y 40 checks de orquestación aprobados con Docker simulado | Dump/import MySQL real, comparación real y flujo restaurado pendientes |
 
 ## Cambio dev.10 pendiente de activar
 
@@ -47,13 +48,13 @@ Confirmación AJAX acotada a 15 s, incluyendo lectura JSON. Previene doble submi
 
 ## Próxima acción
 
-1. Activar dev.10: usuario ejecuta bash scripts/start-qa-linux.sh desde el proyecto. El agente comprobará automáticamente status/log y JS servido; no pedir suites extensas ni repetir prueba anterior sin motivo.
+1. Activar versión actual y ensayar restore: usuario ejecuta bash scripts/verify-qa-linux.sh desde el proyecto (sustituye el comando anterior start-qa-linux.sh). El agente leerá storage/qa/verification-status.txt/log, registros restore-ID y JS servido. No pedir suites extensas sin cambio/fallo.
 2. Continuar navegador: confirmación actualizada, permisos restantes, administración con reservas, finalización y matriz responsive/Firefox.
-3. Implementar y comprobar exportación/restauración en destino aislado; copia limpia Linux y Windows en equipo compatible.
+3. Exportación/restauración QA preparada en dev.11: comprobarla realmente. Después preparar entrega y copia limpia Linux/Windows en equipo compatible; ensayo QA no certifica transferencia final.
 4. Validar proveedor gratuito PHP/MySQL/API/persistencia y autorizar publicación cuando exista propuesta concreta; completar documentación técnica y entrega.
 
 El arranque QA conserva sus claves/volúmenes y datos ficticios creados (categoría 5/evento 9, reservas de pruebas); no resetear para repetir. Cuenta actual Chrome: usuario@eventify.test. No guardar claves en docs/Git. Las capturas locales temporales se relacionan en evidencias/B07.md.
 
 ## Registro de este turno
 
-QA continúa en dev.9: ausencia de JS actualizado y registro antiguo comprobados. Tres controles de acceso verificados en Chrome real, captura /tmp/eventify-qa-ticket-owner-denied.png. Sin mutaciones nuevas de MySQL salvo sesiones/login/logout. HISTORIAL conserva el archivo anterior íntegro; MATRIZ aporta trazabilidad de RF-01 a RF-21 y RNF/entrega. Solo documentación modificada: no repetir suites por estos cambios.
+QA continúa en dev.9: JS sin AbortController/15000 y status anterior comprobados. Dev.11 prepara bin/qa-transfer.php, test-restore-qa-linux.sh y wrapper verify-qa-linux.sh; ver RESPALDO.md/evidencias B07. Guardas de base/entorno/destino vacío; proyectos/volúmenes nuevos, claves nuevas, pausa temporal solo QA web, reinicio ante fallos, snapshots/SQL/archivos privados. Transfiere credenciales demo/marcador; galería del código se compara; sesiones/cache/secretos del entorno no se transfieren. No ejecutado contra Docker/MySQL por falta de sudo del agente. Sin mutaciones de datos locales. Pruebas estáticas/40 simuladas correctas; código/etiqueta dev.11 publicados, referencias verificadas. El nuevo comando conjunto permite activar dev.10 y probar restore con una intervención.
