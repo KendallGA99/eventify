@@ -48,3 +48,5 @@ Incremento B05 parcial publicado y verificado: v0.1.0-dev.2 → bbae88b; rama co
 API B05 publicada y verificada: v0.1.0-dev.3 → 9ad4df4, rama codex/b05-clima; main sigue 3da680b. Integración MySQL/imagen pendiente, sin CI ni despliegue público.
 
 Administración B06 parcial publicada y verificada: v0.1.0-dev.4 → 779d4e9, rama codex/b06-admin; main conserva 3da680b. MySQL/permisos/carreras y resto de B06 pendientes; sin CI ni despliegue.
+
+Dashboard y consulta B06 publicados y verificados: v0.1.0-dev.5 → b5bc784, rama codex/b06-dashboard; main conserva 3da680b. 177 reglas en herramienta temporal, integración objetivo pendiente; sin CI ni despliegue.
