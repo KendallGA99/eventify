@@ -11,7 +11,7 @@ use Throwable;
 final class EventWeather
 {
     private readonly Closure $fetch;
-    public function __construct(private readonly string $directory, ?Closure $fetch = null, private readonly ?DateTimeImmutable $clock = null, private readonly bool $enabled = true)
+    public function __construct(private readonly string $directory, ?Closure $fetch = null, private readonly ?DateTimeImmutable $clock = null, private readonly bool $enabled = true, private readonly ?Closure $budget = null)
     {
         $this->fetch = $fetch ?? (new WeatherClient())->fetch(...);
     }
@@ -119,6 +119,10 @@ final class EventWeather
 
     private function allowRequest(int $time): bool
     {
+        if ($this->budget !== null) {
+            try { return ($this->budget)($time) === true; }
+            catch (Throwable) { return false; }
+        }
         // Presupuesto compartido entre eventos: máximo 30/h y 10/min (muy inferior a la cuota externa).
         $path = $this->directory . '/budget.json';
         $lock = @fopen($this->directory . '/budget.lock', 'c');

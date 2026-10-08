@@ -54,6 +54,20 @@ try {
         for ($i = 0; $i < 11; ++$i) { $quota->forEvent([...$event, 'latitude' => (string) (10 + $minute + $i / 100)]); }
         $assert($quotaCalls === min(30, ($minute + 1) * 10));
     }
+    // Un presupuesto persistente inyectado manda; no hay fallback al archivo local.
+    $deniedCalls = 0;
+    $deniedFetch = static function () use (&$deniedCalls, $response): array { ++$deniedCalls; return $response; };
+    $assert((new EventWeather($root . '/denied', $deniedFetch, $now, budget: static fn (int $time): bool => false))->forEvent($event)['status'] === 'unavailable');
+    $assert($deniedCalls === 0);
+    $brokenBudget = static function (int $time): bool { throw new RuntimeException('Detalle privado de MySQL'); };
+    $broken = (new EventWeather($root . '/broken-budget', $deniedFetch, $now, budget: $brokenBudget))->forEvent($event);
+    $assert($broken['status'] === 'unavailable' && $deniedCalls === 0 && !str_contains(json_encode($broken), 'MySQL'));
+    $budgetAttempts = 0;
+    $allowed = static function (int $time) use (&$budgetAttempts): bool { ++$budgetAttempts; return true; };
+    $injected = new EventWeather($root . '/injected', $deniedFetch, $now, budget: $allowed);
+    $assert($injected->forEvent($event)['status'] === 'available');
+    $injected->forEvent($event);
+    $assert($budgetAttempts === 1 && $deniedCalls === 1 && !is_file($root . '/injected/budget.json'));
     // Caché corrupta se ignora, sin emitir HTML/datos externos.
     $key = hash('sha256', '9.9281|-84.0907|2026-10-10');
     file_put_contents($root . '/' . $key . '.json', '{incorrecto');

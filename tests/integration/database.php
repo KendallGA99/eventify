@@ -29,8 +29,9 @@ try {
     $pdo = Database::connect();
     $assert(str_starts_with((string) $pdo->query('SELECT VERSION()')->fetchColumn(), '8.4.'), 'MySQL objetivo 8.4');
     $runner = new MigrationRunner($pdo, PROJECT_ROOT . '/database/migrations');
-    $assert($runner->run() === ['001_initial_schema', '002_auth_limits'], 'Primera migración');
+    $assert($runner->run() === ['001_initial_schema', '002_auth_limits', '003_weather_budget'], 'Primera migración');
     $assert($runner->run() === [], 'Repetición sin modificar esquema');
+    require __DIR__ . '/weather-budget.php';
     require __DIR__ . '/admin-read.php';
     $credentialsPath = PROJECT_ROOT . '/storage/test-credentials.json';
     $seeder = new DemoSeeder($pdo, $credentialsPath);
@@ -136,6 +137,7 @@ try {
     $copyPath = $temporary . '/001_initial_schema.php';
     copy($original, $copyPath);
     copy(PROJECT_ROOT . '/database/migrations/002_auth_limits.php', $temporary . '/002_auth_limits.php');
+    copy(PROJECT_ROOT . '/database/migrations/003_weather_budget.php', $temporary . '/003_weather_budget.php');
     file_put_contents($copyPath, "\n// Alteración de prueba\n", FILE_APPEND);
     $denied = false;
     try {
@@ -145,7 +147,7 @@ try {
     }
     $assert($denied, 'Historial alterado rechazado');
     copy($original, $copyPath);
-    file_put_contents($temporary . '/003_failure.php', "<?php return ['CREATE TABLE isolated_probe (id INT PRIMARY KEY)', 'SQL_INVALIDO_DE_PRUEBA'];");
+    file_put_contents($temporary . '/004_failure.php', "<?php return ['CREATE TABLE isolated_probe (id INT PRIMARY KEY)', 'SQL_INVALIDO_DE_PRUEBA'];");
     $denied = false;
     try {
         (new MigrationRunner($pdo, $temporary))->run();
@@ -153,7 +155,7 @@ try {
         $denied = true;
     }
     $assert($denied, 'Migración incompleta detectada');
-    $assert((int) $pdo->query("SELECT statements_applied FROM schema_migrations WHERE version = '003_failure' AND status = 'EN_PROCESO'")->fetchColumn() === 1, 'Progreso DDL conservado');
+    $assert((int) $pdo->query("SELECT statements_applied FROM schema_migrations WHERE version = '004_failure' AND status = 'EN_PROCESO'")->fetchColumn() === 1, 'Progreso DDL conservado');
     $denied = false;
     try {
         (new MigrationRunner($pdo, $temporary))->run();

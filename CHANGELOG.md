@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.13 — 2026-10-08
+
+B08/RNF-04/RT-09: presupuesto meteorológico global en MySQL, máximo 30 intentos/hora y 10/minuto, consumido dentro de transacción con lock de fila antes de contactar al proveedor. Migración aditiva 003_weather_budget; no modifica migraciones previas ni datos existentes. El controlador usa este presupuesto en todos los entornos; falla cerrado sin llamadas externas ni detalles privados. Caché local conserva su función; reiniciarla no reinicia el presupuesto MySQL.
+
+44 reglas de presupuesto, 39 checks del flujo de clima y 40 de orquestación Docker simulada correctos; sintaxis PHP/Bash/diff correctos. Integración MySQL preparada para conexiones nuevas, límites, reloj atrasado, transacción ajena y almacenamiento caído: no ejecutada. Persistencia/restore QA incluyen la nueva tabla. Migración real, concurrencia del presupuesto, TLS, Docker y Windows pendientes. Código antiguo sin migración 003 no es rollback compatible automáticamente.
+
 ## 0.1.0-dev.12 — 2026-10-08
 
 B08/RNF-04/RT-09: conexión PDO con configuración TLS verificada obligatoria en production, CA de archivo fuera de public y comprobación de cifrado negociado antes de usar MySQL. Valida entorno/modo/DSN/CA y rechaza degradación o CA ignorada; local/test conservan configuración interna por defecto. Sin cambios de esquema/datos ni servicios creados.

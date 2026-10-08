@@ -11,6 +11,7 @@ prepare_env
 "${EVENTIFY_DOCKER[@]}" compose run --rm --no-deps web php tests/unit/reservation-input.php
 "${EVENTIFY_DOCKER[@]}" compose run --rm --no-deps web php tests/unit/catalog-filter.php
 "${EVENTIFY_DOCKER[@]}" compose run --rm --no-deps web php tests/unit/event-weather.php
+"${EVENTIFY_DOCKER[@]}" compose run --rm --no-deps web php tests/unit/weather-budget.php
 "${EVENTIFY_DOCKER[@]}" compose run --rm --no-deps web php tests/unit/admin-input.php
 "${EVENTIFY_DOCKER[@]}" compose run --rm --no-deps web php tests/unit/admin-read.php
 "${EVENTIFY_DOCKER[@]}" compose run --rm --no-deps web php tests/unit/ticket-qr.php

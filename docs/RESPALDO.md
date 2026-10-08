@@ -16,10 +16,10 @@ Primero actualiza QA con el código actual y comprueba persistencia. Después ex
 
 - Origen fijo eventify-qa, base eventify_qa; puerto 8081. La instancia normal 8080 queda intacta.
 - Solo web QA se detiene durante snapshot/exportación para que no entren escrituras mientras se comparan los datos. Se reinicia después de exportar y en la salida por fallo cuando haya quedado detenida. No ejecutar migraciones/otras escrituras manuales mientras corre el ensayo.
-- Exportación de las nueve tablas del esquema actual mediante mysqldump. SQL privado conserva cuentas ficticias y sus hashes, eventos, reservas/tickets, migraciones y límites; no imprimir ni subir este archivo a Git.
+- Exportación de las diez tablas del esquema actual mediante mysqldump. SQL privado conserva cuentas ficticias y sus hashes, eventos, reservas/tickets, migraciones y límites; no imprimir ni subir este archivo a Git.
 - Archivos duraderos transferidos: demo-credentials.json y qa-persistence-marker.bin. Galería SVG pertenece al código/imagen de la misma versión, no a uploads. Sesiones, caché meteorológica y locks no se transfieren. Si se agregan uploads u otros archivos persistentes, ampliar el protocolo antes de considerar completa una entrega.
 - Destino: proyecto eventify-restore-fecha-aleatorio, base eventify_restore y volúmenes nuevos. Verifica que esté vacía antes de importar; claves del destino nuevas. No importa una copia de .env ni concede privilegios globales.
-- Compara recuentos y hash de filas ordenadas por PK para nueve tablas, hash de los dos archivos y galería. Diferencias rechazan el ensayo. No implica prueba funcional HTTP del sistema restaurado ni ensayo de rollback de versiones.
+- Compara recuentos y hash de filas ordenadas por PK para diez tablas, hash de los dos archivos y galería. Diferencias rechazan el ensayo. No implica prueba funcional HTTP del sistema restaurado ni ensayo de rollback de versiones.
 - Detiene db del destino al finalizar, conservando sus volúmenes para inspección; no ejecuta down -v ni prune. Repetir crea otro destino y consume espacio, no reemplaza el anterior. La limpieza queda como acción separada expresamente autorizada.
 
 ## Resultado privado y límites
@@ -38,3 +38,5 @@ python3 tests/orchestration/qa_restore.py
 Las 40 aserciones del segundo comando usan Docker simulado para fallos de exportación/destino/comparación, reinicio de origen, rechazo de importaciones y privacidad de archivos. No descargan imágenes ni acceden a MySQL.
 
 Se consultó el [manual oficial de mysqldump MySQL 8.4](https://dev.mysql.com/doc/refman/8.4/en/mysqldump.html): respaldo lógico reproducible, single-transaction para InnoDB y no-tablespaces/GTID OFF para evitar exigir privilegios globales innecesarios. Se omiten DROP TABLE y locks de carga; el destino debe ser vacío. SQL se transmite por bytes dentro de Linux/contenedores; una futura implementación PowerShell debe evitar redirección UTF-16 y validarse en Windows.
+
+Dev.13 añade weather_budget al esquema y a las huellas de persistencia/transferencia. La evidencia anterior de nueve tablas pertenece a dev.9; el ensayo actualizado de diez tablas sigue pendiente. No omitir la nueva tabla al transferir ni alterar registros de migraciones para simular rollback.

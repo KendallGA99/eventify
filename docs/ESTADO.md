@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b08-mysql-tls (preparación técnica; B07 continúa abierto). Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
+- Rama activa: codex/b08-weather-budget (preparación técnica; B07 continúa abierto). Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
@@ -43,7 +43,7 @@ Confirmación AJAX acotada a 15 s, incluyendo lectura JSON. Previene doble submi
 - B00: documentación/versionado inicial. B01/B02: stack/esquema/integración comprobados; cierre de portabilidad/copia limpia pendiente.
 - B03–B06: implementados con integración aprobada y navegador parcial; consultar [MATRIZ.md](MATRIZ.md) para cobertura y faltantes.
 - B07 activo: QA/seguridad/concurrencia/persistencia comprobadas parcialmente; sigue abierto.
-- B08: GitHub privado operativo; viabilidad documental Render/Aiven revisada en PUBLICACION.md. TLS PDO preparado en dev.12 con guardas unitarias; negociación real, almacenamiento de sesiones/presupuesto API y publicación/pruebas externas pendientes.
+- B08: GitHub privado operativo; viabilidad documental Render/Aiven revisada en PUBLICACION.md. TLS PDO preparado en dev.12 con guardas unitarias; negociación real, sesiones públicas y publicación/pruebas externas pendientes; presupuesto API MySQL preparado en dev.13, integración real pendiente.
 - B09: paquete/PDF técnico/cuentas de evaluación/preparación y defensa humana pendientes.
 
 ## Próxima acción
@@ -72,3 +72,11 @@ RNF-04/RT-09: DatabaseConfig valida DSN/entorno/modo/CA antes de conectar; produ
 40 comprobaciones unitarias de configuración/guardas correctas con PHP 8.3 temporal, extensiones PDO/mysqlnd/pdo_mysql/ctype reales y CA efímera. Prueba añadida a scripts Linux/Windows. Sintaxis PHP y Bash/diff correctos. PHP 8.4 Docker, negociación TLS con servidor válido/CA errónea/hostname erróneo/sin TLS y regresión MySQL local pendientes. Estos resultados no se suman a las 177 reglas antiguas ni certifican nueva versión en ejecución. QA sigue sin registro verification-status nuevo; sudo no interactivo del agente denegado.
 
 Código dev.12 publicado y verificado: f0dbe0faa2eebb066a308cac2c318269bce2a696, rama codex/b08-mysql-tls y etiqueta anotada v0.1.0-dev.12 (referencia peeled coincidente). Dev.11 y main conservados. Sin CI ni despliegue público.
+
+## Incremento dev.13: presupuesto meteorológico persistente
+
+B08/RNF-04/RT-09: nueva tabla weather_budget mediante migración aditiva 003, sin alterar firmas anteriores. WeatherController inyecta WeatherBudget PDO en EventWeather: una fila global, transacción/FOR UPDATE, 30 intentos/h y 10/min, consume antes de llamar; rechaza reloj atrasado o transacción ajena, falla cerrado ante errores. Caché efímera puede perderse, pero no debe reiniciar cuota guardada en MySQL. Sin servicios externos nuevos ni cambios de datos ejecutados.
+
+Ejecutado: PHP 8.3 temporal, 44 checks de política y 39 de clima correctos; 11 archivos PHP con sintaxis correcta, Bash/diff correctos; 40 checks de orquestación restauración con Docker simulado correctos. Integración MySQL ampliada/preparada, no ejecutada; concurrencia/persistencia real pendientes. Los snapshots QA/restore ahora incluyen diez tablas. Restore, migración 003 y versión actual aún no aplicados: agente sigue sin sudo no interactivo y no existen registros QA nuevos.
+
+Próxima verificación necesaria por el cambio de conexión/esquema: bash scripts/verify-dev-linux.sh y, si termina bien, bash scripts/verify-qa-linux.sh. El primero cubre unidades/TLS-config/integración MySQL local; el segundo actualiza QA y ensaya restore. Ninguno certifica negociación TLS con proveedor ni Windows. Conservar registros privados; no borrar volúmenes ni historial. Tras aplicar 003, revisar compatibilidad antes de volver a versiones que no contienen esa migración.

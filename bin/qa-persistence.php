@@ -12,7 +12,7 @@ try {
     if ($argv[1]==='before' && !is_file($marker)) {
         if (file_put_contents($marker,random_bytes(32)) !== 32 || !chmod($marker,0600)) { throw new RuntimeException('No se pudo guardar marcador.'); }
     }
-    $tables=['roles'=>'id','users'=>'id','categories'=>'id','events'=>'id','reservations'=>'id','tickets'=>'id','schema_migrations'=>'version','demo_seed_runs'=>'seed_key','auth_limits'=>'bucket'];
+    $tables=['roles'=>'id','users'=>'id','categories'=>'id','events'=>'id','reservations'=>'id','tickets'=>'id','schema_migrations'=>'version','demo_seed_runs'=>'seed_key','auth_limits'=>'bucket','weather_budget'=>'scope'];
     $snapshot=['tables'=>[], 'files'=>[]];
     $pdo->beginTransaction();
     try {

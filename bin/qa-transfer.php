@@ -27,7 +27,7 @@ try {
     }
     $keys = ['roles'=>'id', 'users'=>'id', 'categories'=>'id', 'events'=>'id',
         'reservations'=>'id', 'tickets'=>'id', 'schema_migrations'=>'version',
-        'demo_seed_runs'=>'seed_key', 'auth_limits'=>'bucket'];
+        'demo_seed_runs'=>'seed_key', 'auth_limits'=>'bucket', 'weather_budget'=>'scope'];
     $actual = $pdo->query('SHOW TABLES')->fetchAll(PDO::FETCH_COLUMN);
     $expected = array_keys($keys);
     sort($actual); sort($expected);
