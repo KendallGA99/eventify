@@ -40,3 +40,5 @@ Registrar URL del remoto, rama/SHA/etiquetas publicados y resultados reales de c
 ## Referencias publicadas
 
 Push inicial verificado: main y codex/plan-eventify en a0e0102; checkpoint-b00 apunta a 44da548 y v0.1.0-dev.1 a a0e0102. Los commits documentales posteriores registran esta evidencia sin mover las etiquetas.
+
+Incremento B05 parcial publicado y verificado: v0.1.0-dev.2 → bbae88b; rama codex/b05-catalogo en ese código antes de commits documentales de evidencia. main conserva 3da680b. No se ejecutó CI ni se marcó estable.

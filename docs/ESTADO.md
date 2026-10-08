@@ -7,7 +7,7 @@ Fecha de referencia: 2026-10-08, zona del usuario America/Costa_Rica.
 - Usuario autorizó iniciar la construcción por bloques.
 - B00: commit inicial creado: 44da548. Se conservó el snapshot documental que estaba en el índice.
 - B01: stack Docker ejecutado por el usuario; salud PDO/MySQL 200 y nueve comprobaciones HTTP verificadas. Persistencia/reinicio todavía pendiente.
-- Git local: rama `codex/plan-eventify`; identidad reutilizada de Código Tico y verificada con cuenta GitHub USUARIO_DESTINO. Código B01–B04 se prepara como 0.1.0-dev.1; no es estable. Repositorio privado creado: USUARIO_DESTINO/eventify. Push inicial confirmado en main y codex/plan-eventify, ambas a0e0102; etiquetas checkpoint-b00 → 44da548 y v0.1.0-dev.1 → a0e0102. Referencias verificadas mediante git ls-remote.
+- Git local: rama activa `codex/b05-catalogo` (base previa `codex/plan-eventify`); identidad reutilizada de Código Tico y verificada con cuenta GitHub USUARIO_DESTINO. Código B01–B04 guardado como 0.1.0-dev.1; B05 parcial en 0.1.0-dev.2. Ninguna es estable. Repositorio privado creado: USUARIO_DESTINO/eventify. Push inicial confirmado en main y codex/plan-eventify, ambas a0e0102; etiquetas checkpoint-b00 → 44da548 y v0.1.0-dev.1 → a0e0102. Referencias verificadas mediante git ls-remote.
 - Usuario autorizó versionado/push progresivo. Remoto: REPOSITORIO_DESTINO_PENDIENTE. No se modificó Código Tico ni se inventaron fechas de commits.
 - Linux Mint 22.3: el usuario instaló Docker 29.1.3 y Compose 2.40.3. Codex no tiene acceso directo al socket; sudo requiere contraseña interactiva en la terminal del usuario. PHP/MySQL objetivo se ejecutarán dentro de contenedores.
 - Herramientas temporales de verificación: PHP CLI 8.3.6 y Compose 2.40.3 extraídos de paquetes Ubuntu en /tmp, sin instalación global.
@@ -119,4 +119,4 @@ Pruebas: 23 unidades nuevas correctas en PHP temporal 8.3.6 (total de reglas vig
 
 La suite HTTP/MySQL incorpora validación de filtros combinados, estados, comodín literal y propiedad del historial; ejecución pendiente por sudo interactivo. storage/verification-status.txt todavía no existe al comprobar este incremento. No cerrar B02–B05 ni declarar estable hasta tener evidencia real. Próximo: integración B04/B05, API externa útil y administración.
 
-Versionado del incremento: rama codex/b05-catalogo, versión de desarrollo 0.1.0-dev.2; publicar commit/etiqueta y verificar SHA remoto al terminar. main conserva la base anterior.
+Versionado del incremento: push confirmado y referencias verificadas con git ls-remote. Rama codex/b05-catalogo y etiqueta v0.1.0-dev.2 apuntan al commit de código bbae88b; main conserva 3da680b. Las 81 comprobaciones de reglas se repitieron correctamente en este turno. Commits documentales posteriores no mueven la etiqueta.
