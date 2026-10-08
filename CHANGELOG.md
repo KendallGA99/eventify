@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.10 — 2026-10-08
+
+B07/RF-08/RNF-04: confirmación AJAX con espera máxima de 15 s, incluyendo lectura del JSON. Evita doble submit pendiente; ante timeout, red/JSON inválido o HTTP 5xx indica consultar experiencias y bloquea reenvío desde ese formulario. Interrumpir la espera no cancela una reserva confirmada en MySQL. Errores de negocio permiten corregir datos; éxito conserva navegación al ticket. Sin cambios de backend/esquema.
+
+14 comprobaciones de comportamiento del cliente correctas en Node de desarrollo, sintaxis JS y diff correctos. Activación/verificación en imagen QA pendiente. Administración Chrome real en dev.9: crear categoría/borrador, publicar y encontrar por AJAX, cancelar evento conservando detalle y desactivar categoría conservando evento correctos. Sin modificar datos de la instancia 8080 ni eventos demo anteriores.
+
 ## 0.1.0-dev.9 — 2026-10-08
 
 B07: entorno QA separado mediante proyecto Compose eventify-qa, puerto local 8081, base/volúmenes/claves propios y datos ficticios. Script inicializa/migra/siembra explícitamente, compara snapshot y recrea contenedores conservando volúmenes, valida persistencia y deja servidor listo para navegador. Nueve tablas con recuentos y hashes, marcador privado, credenciales e imágenes comparados; no imprime registros/claves.

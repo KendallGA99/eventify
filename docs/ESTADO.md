@@ -1,5 +1,15 @@
 # EVENTIFY: estado y continuidad
 
+## Incremento dev.10 — respuesta de reservas y administración real
+
+Rama codex/b07-reservation-feedback. RF-08/09 y RNF-04: reservations.js acota fetch/lectura JSON a 15 s mediante AbortController, bloquea submit concurrente y evita reenvío desde el mismo formulario ante resultado incierto (timeout/red/JSON/5xx). Mensaje manda consultar experiencias: abortar navegador no revierte la transacción del servidor. HTTP de negocio permite corregir datos; éxito navega al ticket manteniendo bloqueo durante navegación. No modifica backend, precios, locks, permisos o esquema. La causa exacta del primer atasco sigue sin demostrar.
+
+Prueba dirigida tests/client/reservation-feedback.cjs: 14 comprobaciones correctas, transporte/DOM controlados, timeout tanto antes de respuesta como durante cuerpo, doble envío/Enter, error 422/500, JSON inválido, éxito y formulario inválido. Ejecutada con Node incluido en runtime Codex; Node es solo herramienta de pruebas y no dependencia de aplicación/entrega. Comando reproducible con Node instalado: node tests/client/reservation-feedback.cjs. Sintaxis JS y git diff --check correctos. No equivale a navegador/MySQL ni sustituye suites previas. Imagen QA conserva JS dev.9 hasta reconstruir; no afirmar corrección activada aún.
+
+Chrome 154.0.8037.97 en QA dev.9: crear categoría Prueba navegador B07 (id 5), evento ficticio (id 9) 20/11/2026 10:00, capacidad 5/precio 2500; borrador guardado, editar a PUBLICADO, búsqueda AJAX encontró una tarjeta con datos exactos. Cancelación desde administración conservó registro y detalle público, sin formulario de reserva y sin pronóstico; desactivar categoría conservó evento. Se verificaron mensajes de guardado y resultados visibles, sin repetir POST por árbol AX inicial aún desactualizado. Captura /tmp/eventify-qa-admin-event-cancelled.png; siguiente captura pública abajo en evidencias. Solo mutaciones ficticias propias en base QA; instancia 8080 intacta. Finalización, edición con reservas y permisos navegador completos siguen pendientes.
+
+Próxima acción: reconstruir QA mediante bash scripts/start-qa-linux.sh para activar dev.10, luego comprobar JS servido y flujo de navegador. Requiere sudo del usuario porque sudo -n desde agente sigue rechazado; no pedir suites extensas ni cambiar permisos Docker. Continúan pendientes restore/copia limpia Linux/Windows, Firefox/matriz completa, URL pública/PDF/defensa. B07 sigue abierto.
+
 ## QA real: persistencia y Chrome — 2026-10-08
 
 Dev.9: start-qa-linux.sh terminó con exit_code=0 (storage/qa/status.txt, inicio 14:02:55 UTC). Log confirma volúmenes QA nuevos y comparación aprobada tras recrear web/db: nueve tablas, marcador, credenciales e imágenes conservados. Supera el pendiente de persistencia QA anterior; no equivale a restauración ni instalación desde copia limpia del repositorio.
