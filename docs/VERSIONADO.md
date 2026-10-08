@@ -60,3 +60,6 @@ Dev.23 publicado: rama `codex/b08-rechazo-sin-tls` y etiqueta anotada `v0.1.0-de
 
 
 Dev.24 publicado y verificado por git ls-remote: `codex/b08-rechazo-sin-tls` y etiqueta anotada `v0.1.0-dev.24` apuntan a `6baa7548fb0d6af0761c58be6c5bbdf98bba48b8`. Corrige evaluador tras ensayo dev.23 parcial; nuevo ensayo real pendiente. Etiquetas anteriores/main conservados, sin versión estable.
+
+
+Dev.25 → fb461ade36531e3c61710321372e3b307eba6977: corrección de acceso CA del trabajador; push de rama confirmado, desplegada manualmente en Render Free y flujos públicos básicos/reinicio/persistencia verificados. Etiqueta de desarrollo, sin estable. Main conserva referencia previa; Git rollback no restaura MySQL. Primer deploy dev.24 cancelado conservado como incidencia.

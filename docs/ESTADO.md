@@ -6,11 +6,11 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 
 - Proyecto académico PHP/MySQL, HTML/CSS/JS/jQuery/AJAX; desarrollo Linux, entrega Docker Compose Linux/Windows. Sin gastos autorizados.
 - Construcción por bloques y commits/push progresivos autorizados. Repositorio privado [USUARIO_DESTINO/eventify](https://github.com/USUARIO_DESTINO/eventify), remoto SSH. No modificar Código Tico.
-- URL pública obligatoria y pendiente. Usuario autorizó Render Free + Aiven MySQL Free e integración Render limitada a USUARIO_DESTINO/eventify al responder «dale» el 2026-10-08; gasto máximo ₡0, sin tarjeta ni planes pagados. MySQL Free externo creado; Render aún no desplegado. No certificar Windows, publicación ni defensa por inferencia.
+- URL pública publicada: https://eventify-academico.onrender.com; aceptación final todavía parcial. Usuario autorizó Render Free + Aiven MySQL Free e integración Render limitada a USUARIO_DESTINO/eventify al responder «dale» el 2026-10-08; gasto máximo ₡0, sin tarjeta ni planes pagados. MySQL Free y Render Free creados; dev.25 Live verificada. No certificar Windows, publicación ni defensa por inferencia.
 
 ## Versión e instancias
 
-- Rama: `codex/b08-rechazo-sin-tls`. VERSION `0.1.0-dev.24`, commit `6baa754` y etiqueta `v0.1.0-dev.24` publicados y referencias remotas verificadas (ensayo sin TLS aprobado); dev.23 `3badc85`/`v0.1.0-dev.23` publicado, ensayo parcial y fallo del evaluador; cuentas verificadas en dev.22 (`4947823`, etiqueta `v0.1.0-dev.22`). Ninguna versión estable; CI manual preparado, no ejecutado.
+- Rama: `codex/b08-rechazo-sin-tls`. VERSION `0.1.0-dev.25`, commit `fb461ad` (Render Live); dev.24 `6baa754` y etiqueta `v0.1.0-dev.24` publicados y referencias remotas verificadas (ensayo sin TLS aprobado); dev.23 `3badc85`/`v0.1.0-dev.23` publicado, ensayo parcial y fallo del evaluador; cuentas verificadas en dev.22 (`4947823`, etiqueta `v0.1.0-dev.22`). Ninguna versión estable; CI manual preparado, no ejecutado.
 - `main`: `3da680b74b41fa3da4069879edc1f649de9b97f2`. No reescribir historial ni hacer push forzado. Rollback de código no restaura MySQL.
 - Destinos existentes, según última verificación: normal `localhost:8080`; QA `localhost:8081` / `eventify-qa`; copia limpia `localhost:8083` / `eventify-clean-20261008160801-e96614c4`; restauración `localhost:8082` / `eventify-restore-20261008154302-2b8eb996`. No afirmar disponibilidad actual sin consultar; conservar sus volúmenes y datos.
 - Docker 29.1.3 / Compose 2.40.3. El agente no tiene acceso al socket y sudo no interactivo exige contraseña; las operaciones Docker necesarias se ejecutan en terminal del usuario. No modificar grupos/socket/sudoers para eludirlo.
@@ -37,7 +37,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 - B01/B02: stack, esquema y migraciones comprobados. Portabilidad final permanece abierta.
 - B03–B06: implementación e integración aprobadas; aceptación de navegador parcial. Consultar [MATRIZ.md](MATRIZ.md).
 - B07 abierto: completar Firefox/Windows y casos restantes de UI/seguridad. No repetir la suite extensa sin cambios, fallos o dudas relevantes.
-- B08 activo: GitHub privado y preparación pública operativos; TLS y cuentas comprobados en ensayo aislado. Ensayo sin TLS dev.24 aprobado. Propuesta PUBLICACION-SOLICITUD.md autorizada. Render conectado solo a EVENTIFY y formulario Free preparado sin desplegar. Aiven autenticado y MySQL Free creado; pendiente servidor disponible, base nueva, TLS externo/migraciones/cuentas, Render y HTTPS/flujos/persistencia públicos.
+- B08 activo: GitHub privado y preparación pública operativos; TLS y cuentas comprobados en ensayo aislado. Ensayo sin TLS dev.24 aprobado. Propuesta PUBLICACION-SOLICITUD.md autorizada. Render conectado solo a EVENTIFY y formulario Free preparado sin desplegar. MySQL/Render Free, HTTPS y flujos centrales externos verificados en dev.25; pendientes clima exitoso desde Render, cookies/controles externos restantes y revisión final.
 - B09 abierto: actualizar documento técnico y paquete cuando la evidencia se consolide; entrega final exige instalación del receptor, entregables completos y evidencia humana real.
 
 ## Último resultado y límites
@@ -137,3 +137,16 @@ permisos-status exit1, inicio20:35:36UTC: sintaxis PHP válida y CREATE USER/GRA
 Conexión independiente como eventify_app confirma Ssl_cipher, hostname/CA, USAGE global solamente y SELECT/INSERT/UPDATE/DELETE/CREATE en una sola base, tres cuentas y tres migraciones. Evidencia privada permisos-python.json. No afirmar probe PHP aprobado: validación en arranque Render pendiente. permisos.sh bloqueado preventivamente para no repetir creación.
 
 Render preparado con application.env (usuario limitado, nunca avnadmin), SecretFile mysql-ca.pem real, Free$0, Oregon, Docker/Dockerfile.public, rama codex/b08-rechazo-sin-tls, /salud, AutoDeployOff. Deploy web service pulsado dentro de publicación previamente autorizada; esperar resultado visible e inspeccionar versión/logs/HTTPS antes de cerrar. No nueva VERSION por cambios de documentación/configuración privada.
+
+
+## B08: dev.25 Live, flujos públicos y persistencia real
+
+Servicio Render srv-db3vutm7bikc73ajj6og, URL https://eventify-academico.onrender.com; Free, Docker, Oregon. Primer deploy dep-db3vutu7bikc73ajj920/69c9d4e cancelado: construcción/migración PHP8.4 correctas, /salud HTTP503 bajo Apache. Se preparó dev.25/fb461ade36531e3c61710321372e3b307eba6977: copia CA de ejecución para www-data (700/600 fuera de public), preflight y health como trabajador antes de servir. No rebajar TLS ni cambiar SQL/datos. Bash/diff correctos; ensayo TLS aislado de esta modificación aún pendiente.
+
+Despliegue manual dep-db400dui0phs73eg6dng: Deploy succeeded|Live, 2026-10-08 14:42:31CST, duración32.1s; logs confirman preflight root/trabajador, configtest, esquema actualizado sin repetir migraciones y Apache operativo. Código fb461ad coincide con referencia desplegada. No versión estable ni suite219 repetida.
+
+Navegador IAB HTTPS real: portada/catálogo; login administrador, dashboard, crear categoría y evento ficticio publicado para12oct18h, capacidad30/precio2500; logout; login usuario, reservaAJAX de2 entradas/total5000, ticket/QR visible, historial; cancelaciónAJAX conserva registro y catálogo vuelve a30espacios. Clima externo mostró fallo controlado y reserva continuó: acredita manejo de error, no pronóstico exitoso desde Render. Usuario rechazado al navegar directamente a /admin. Datos ficticios explícitos, sin pagos reales.
+
+Restart service real confirmado en Events:8oct14:46CST. Snapshot privado antes/después con conexión TLS independiente coincide en filas/sha256 de diez tablas; reserva cancelada/ticket/evento/usuarios conservados. Sesión expiró por almacenamiento efímero de Render; nuevo login funciona e historial conserva cancelación. No prometer sesión persistente ni equiparar restart a todas las variantes de redeploy/restauración. Archivos snapshot-before/after-restart.json privados. Screenshot /tmp/eventify-publicado.png y ticket privado /tmp/eventify-public-ticket.png; no subir capturas/secretos a Git. Sesión final cerrada; pestaña catálogo entregable.
+
+Pendientes para aceptación final: pronóstico exitoso/proveedor y diagnóstico de fallo; cookies HTTPS/CSRF/propiedad externos completos; nueva copia limpia y Windows/Firefox reales; actualización PDF/ZIP final, revisión seguridad/imágenes/historial y evidencia humana. No solicitar intervención para Docker si diagnóstico independiente seguro permite avanzar; herramienta PyMySQL temporal no sustituye PHP/MySQL ni se entrega como dependencia.
