@@ -4,7 +4,7 @@
 
 Corrección de integración: prueba de rollback de reserva ante fallo de ticket mediante indisponibilidad temporal de tabla, preservada y restaurada en finally solo en eventify_test. Evita depender de privilegios globales para CREATE TRIGGER. Diagnóstico de fallos con fase, SQLSTATE, código MySQL y cantidad de comprobaciones previas; sin mensajes SQL, parámetros o credenciales.
 
-Construcción dev.6, 177 reglas/QR/conexión aprobadas en ejecución del usuario. Integración avanzó hasta preparación de fallo de ticket y terminó con PDOException; hipótesis de privilegios del trigger, código exacto no registrado por diagnóstico anterior. Nueve comprobaciones HTTP del stack real correctas después de la corrección. Repetición de integración pendiente.
+Construcción dev.6, 177 reglas/QR/conexión aprobadas en ejecución del usuario. Integración avanzó hasta preparación de fallo de ticket y terminó con PDOException; hipótesis de privilegios del trigger, código exacto no registrado por diagnóstico anterior. Nueve comprobaciones HTTP del stack real correctas después de la corrección. Repetición aprobada posteriormente a las 13:40:03 UTC: exit_code=0, 177 reglas + QR y 152 comprobaciones MySQL/HTTP. Persistencia/Windows/navegador completo/carreras administrativas siguen pendientes.
 
 ## 0.1.0-dev.6 — 2026-10-08
 

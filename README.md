@@ -4,7 +4,11 @@ Plataforma académica PHP/MySQL para descubrir eventos, reservar entradas, consu
 
 ## Avance actual
 
-Construcción por bloques iniciada. B00 documentado; B01 tiene base Docker/PHP, vista inicial y scripts Linux/Windows. Compose, sintaxis, configuración y respuestas HTTP verificadas parcialmente. B02 incorpora esquema, migraciones y demostración opcional; 177 comprobaciones de configuración/reglas correctas en herramientas temporales. El arranque Docker y la conexión MySQL de la versión inicial ya se comprobaron. B03 prepara registro, ingreso, roles y cuenta; su integración está pendiente. B04 parcial agrega reservas/cancelación, historial y consulta privada de ticket; QR local implementado y comprobado de forma independiente; integración objetivo pendiente. B05 parcial agrega catálogo, filtros/paginación y actualización del historial con jQuery; probado con fixtures, API de clima real comprobada independientemente; MySQL objetivo pendiente. B06 parcial incorpora gestión protegida de categorías y eventos, galería local y cancelación/finalización; MySQL/permisos/carreras pendientes. Dashboard con indicadores/rankings e ingresos potenciales, filtros de reservas y detalle de solo lectura preparados; 25 reglas nuevas y vistas con fixtures verificadas. Integración MySQL/HTTP pendiente.
+Implementados autenticación/roles, catálogo con jQuery/AJAX, clima Open-Meteo, reservas/cancelación con cupos transaccionales, tickets QR privados y administración de categorías/eventos/reservas/dashboard. Versión de desarrollo vigente: **0.1.0-dev.7**.
+
+Verificación real en Docker Linux aprobada el 2026-10-08: **177 comprobaciones de reglas**, QR y **152 comprobaciones de integración MySQL/HTTP**, incluidas dos carreras de reservas, precio histórico, permisos y dataset del dashboard. [Evidencia y límites](docs/evidencias/B07.md).
+
+Pendientes: carreras administrativas, flujos completos de navegador Chrome/Firefox, persistencia/instalación limpia Linux y Windows, respaldo/restauración, URL pública gratuita, documentación técnica y defensa. La suite aprobada no certifica entrega final ni versión estable.
 
 ## Inicio local
 
@@ -53,4 +57,4 @@ Desarrollo Linux y entrega Linux/Windows; HTML/CSS/JavaScript/jQuery/AJAX + PHP 
 
 ## Se completará por bloques
 
-Validación real del esquema/migraciones y datos demo (B02), cuentas/auth (B03), reservas/tickets (B04), catálogo/API (B05), administración (B06), QA portable (B07), GitHub/publicación (B08) y PDF/paquete/defensa (B09). No hay credenciales de prueba ni URL pública para entregar todavía.
+Completar flujos reales de navegador y carreras administrativas (B03–B06), QA portable/persistencia/restauración (B07), publicación (B08) y PDF/paquete/defensa (B09). Esquema/migraciones/demo y suite vigente de integración ya aprobados; GitHub privado con versiones publicado. No hay credenciales de prueba ni URL pública para entregar todavía.

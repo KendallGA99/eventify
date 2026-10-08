@@ -11,25 +11,20 @@ Fecha de referencia: 2026-10-08, zona del usuario America/Costa_Rica.
 - Usuario autorizó versionado/push progresivo. Remoto: REPOSITORIO_DESTINO_PENDIENTE. No se modificó Código Tico ni se inventaron fechas de commits.
 - Linux Mint 22.3: el usuario instaló Docker 29.1.3 y Compose 2.40.3. Codex no tiene acceso directo al socket; sudo requiere contraseña interactiva en la terminal del usuario. PHP/MySQL objetivo se ejecutarán dentro de contenedores.
 - Herramientas temporales de verificación: PHP CLI 8.3.6 y Compose 2.40.3 extraídos de paquetes Ubuntu en /tmp, sin instalación global.
-- Stack objetivo: PHP 8.4/Apache + MySQL 8.4 LTS en Docker; imágenes fijadas por digest. El usuario inició web/db saludables; imagen B02/B03 ejecutada; corrección HTTP posterior pendiente de reconstrucción.
-- Vista inicial en construcción: comprobada por navegador en móvil/escritorio. Vista temporal en http://127.0.0.1:8085, sin base de datos; puede terminar al cerrar procesos/sesión. El proyecto Docker utiliza 8080.
-- B02: esquema, migraciones, siembra opcional y reglas preparados; Migraciones 001/002 aplicadas en MySQL; suite aislada falló en comprobación HTTP de cookie. B03: pantallas/endpoints de registro, ingreso, cuenta, roles y salida preparados; imagen actualizada/integración pendientes. B04 parcial: reservas/cancelación transaccionales, AJAX, catálogo mínimo, historial y consulta privada de ticket preparados; QR SVG integrado y decodificado en prueba independiente; integración objetivo pendiente. Dashboard implementado en B06; integración pendiente.
-- Windows: scripts preparados, versión/equipo/prueba real pendientes.
-- B05 parcial: catálogo/búsqueda/filtros/paginación, estados públicos y actualización del historial con jQuery 4.0.0 local; fixture UI y API real independiente comprobadas; MySQL/imagen objetivo pendientes.
-- QR: BaconQrCode 3.1.1/enum 1.0.7 instalados, lockfile y auditoría preparados; contenedor actualizado pendiente. Administración implementada parcialmente; integración objetivo pendiente.
+- Stack objetivo PHP 8.4/Apache + MySQL 8.4 LTS actualizado y ejecutado en Linux mediante Docker. Correcciones de Composer y prueba de rollback incluidas en dev.7; suite vigente aprobada el 2026-10-08, 13:40:03 UTC (exit_code=0).
+- Aplicación local disponible en http://localhost:8080 con override de desarrollo; conserva volúmenes. Las vistas temporales con fixtures de turnos anteriores no son el servidor de entrega.
+- Verificado en imagen objetivo: sintaxis PHP, 177 comprobaciones de reglas, QR SVG/identificadores y conexión PDO/MySQL. Suite aislada: 152 comprobaciones correctas de migraciones/siembra/integridad, autenticación/permisos HTTP, catálogo, reservas/tickets/cancelación, dashboard/filtros y gestión administrativa.
+- Concurrencia de reservas comprobada con dos procesos/conexiones: último cupo y duplicado activo del mismo usuario. Carreras de administración contra reserva aún por ampliar; no confundirlas con esas dos pruebas aprobadas.
+- B02 integración aprobada; B03–B06 integración pertinente aprobada, cierre completo pendiente de flujos navegador reales y cobertura restante. API Open-Meteo real comprobada independientemente; en tests se desactiva para mantener aislamiento.
+- Windows: scripts preparados; instalación limpia en equipo compatible pendiente. Chrome/Firefox, tableta, persistencia/recreación, respaldo/restauración y URL pública pendientes.
+- Dependencias QR locales instaladas en imagen objetivo desde composer.lock; QR privado y propiedad comprobados por HTTP. Código vigente etiquetado v0.1.0-dev.7 → 994ec41361e2cb45bdfe6c40207773e760c21467; sigue siendo versión de desarrollo.
 - Publicación: InfinityFree es candidata de investigación; PHP/MySQL real, API, secretos y límites aún no verificados. No se creó cuenta ni URL.
 
 ## Próxima acción necesaria
 
-El usuario ejecuta en su terminal, desde la carpeta del proyecto:
+No pedir repetir la misma verificación sin un cambio o fallo que lo justifique: la ejecución vigente terminó correctamente. Continuar con B06/B07: carreras de edición/cancelación administrativa contra reservas, navegador real con datos ficticios, matriz de requisitos y persistencia/instalación limpia. El acceso Docker sigue requiriendo sudo interactivo del usuario; solicitarlo solo cuando haga falta ejecutar nuevas pruebas/reinicios. No modificar permisos para evitarlo.
 
-```bash
-bash scripts/verify-dev-linux.sh
-```
-
-La contraseña de sudo se introduce solo en esa terminal; no enviarla al chat. El arranque inicial ya ocurrió; falta reconstruir la imagen actualizada y ejecutar suites. El script no agrega permisos de grupo Docker ni elimina instalaciones/datos existentes.
-
-El comando activa el modo de desarrollo con montajes de código de solo lectura, aplica migraciones y ejecuta pruebas de unidades y MySQL/HTTP aisladas. Permite comprobar siguientes cambios PHP/HTML/CSS sin reconstruir cada vez. Guarda resultado en storage/verification-status.txt y registro privado en storage/verification.log para consultar sin copiar todo al chat. Después verificar navegador y persistencia mediante reinicio conservando volúmenes.
+El script verify-dev-linux.sh guarda registro y resultado privados en storage/verification.log y storage/verification-status.txt, ignorados por Git y fuera de public. La contraseña se introduce solo en la terminal del usuario. Reinicios/instalaciones de prueba deben conservar volúmenes existentes y usar aislamiento para probar restauración.
 
 ## Pendientes no resueltos por inferencia
 
@@ -45,12 +40,12 @@ El comando activa el modo de desarrollo con montajes de código de solo lectura,
 | --- | --- | --- | --- |
 | B00 | Commit creado | 44da548: documentación inicial | No certifica implementación ni entrega |
 | B01 | Implementado parcialmente; cierre pendiente | [Evidencia B01](evidencias/B01.md), [arquitectura](ARQUITECTURA.md), [manual](INSTALACION.md) | Persistencia sin probar; Windows no probado |
-| B02 | Implementado; cierre pendiente | [Modelo de datos](DATOS.md), [evidencia B02](evidencias/B02.md) | Migraciones aplicadas; suite aislada sin aprobar |
-| B03 | Implementado; cierre pendiente | [Evidencia B03](evidencias/B03.md) | Corrección cookie/CSRF preparada; repetir integración |
-| B04 | Implementación parcial | [Evidencia B04](evidencias/B04.md) | QR independiente comprobado; integración/concurrencia y navegador pendientes |
-| B05 | Implementación parcial | [Evidencia B05](evidencias/B05.md): catálogo/filtros/historial jQuery | API real independiente comprobada; integración MySQL/imagen pendiente; B04 sin cerrar |
-| B06 | Implementación parcial | [Evidencia B06](evidencias/B06.md): categorías/eventos/estados | Dashboard/reservas admin implementados; MySQL/permisos/concurrencia pendientes |
-| B07 | Pendiente | QA integral/Linux/Windows/persistencia | Depende B05/B06 |
+| B02 | Implementado; cierre pendiente | [Modelo de datos](DATOS.md), [evidencia B02](evidencias/B02.md) | Suite MySQL aislada aprobada, 152 checks de integración total; ver B07 |
+| B03 | Implementado; cierre pendiente | [Evidencia B03](evidencias/B03.md) | HTTP/login/roles/CSRF aprobados; navegador real pendiente |
+| B04 | Implementación parcial | [Evidencia B04](evidencias/B04.md) | QR/HTTP/MySQL y dos carreras aprobados; navegador real pendiente |
+| B05 | Implementación parcial | [Evidencia B05](evidencias/B05.md): catálogo/filtros/historial jQuery | API real independiente y catálogo MySQL/HTTP aprobados; navegador real completo pendiente |
+| B06 | Implementación parcial | [Evidencia B06](evidencias/B06.md): categorías/eventos/estados | Dashboard/reservas/admin MySQL/HTTP aprobados; carreras admin y navegador pendientes |
+| B07 | En revisión | [Evidencia B07](evidencias/B07.md) | Suite vigente aprobada; portabilidad/persistencia/navegador pendientes |
 | B08 | Pendiente | GitHub/publicación | Requiere autorizaciones externas y proveedor viable |
 | B09 | Pendiente | PDF/paquete/defensa | Requiere versión final comprobada |
 
@@ -176,3 +171,11 @@ Corrección de la prueba: solo APP_ENV=test/DB_DATABASE=eventify_test, renombrar
 Verificado ahora: sintaxis de ambos PHP modificados y diff correctos; nueve comprobaciones HTTP de tests/smoke_http.py contra stack REAL http://127.0.0.1:8080 correctas (salud 200, rutas privadas de archivos 404, POST salud 405). Repetición de integración/carreras/servicio administrativo pendiente; no cerrar B02–B07. Docker sigue requiriendo sudo interactivo; no alterar permisos. Próximo: repetir verify-dev-linux.sh, examinar códigos reales si falla y continuar revisión navegador/persistencia.
 
 Push confirmado y git ls-remote verificado: codex/b07-integration-fix y v0.1.0-dev.7 → 994ec41361e2cb45bdfe6c40207773e760c21467; main conserva 3da680b. Commits documentales posteriores no mueven etiqueta; sin CI ni despliegue.
+
+## Suite vigente aprobada — 2026-10-08
+
+Evidencia leída directamente: storage/verification-status.txt inicio 2026-10-08T13:40:03Z, exit_code=0; verification.log termina «Actualización y verificaciones de desarrollo terminadas correctamente». 177 reglas correctas, QR generación/identificadores y 152 checks MySQL/HTTP correctos. Build, arranque/migraciones y salud completaron. Código sin modificaciones locales al recibir resultado: dev.7, etiqueta 994ec41, HEAD documental d696a66.
+
+Los fallos anteriores se conservan como historial, pero sus pendientes de reconstrucción/integración quedan supersedidos por esta ejecución. CREATE TRIGGER fue sustituido por fallo de tabla aislada/restauración; rollback conservó reservas/tickets y pasaron ambos procesos de carrera de reservas. AdminReadRepository probó el dataset conocido/empates/filtros/paginación y AdminService CRUD/aforo/precio/historial/estados. No se publicó log privado ni credenciales.
+
+Revisión documentada en evidencias/B07.md con límites reales. No marcar versión estable ni entrega completa: persisten carreras administrativas, flujos navegador reales Chrome/Firefox/tableta, instalación limpia Linux/Windows, persistencia/exportación/restauración, URL pública/PDF/defensa. No es necesario ejecutar nada nuevo del usuario por este registro documental.

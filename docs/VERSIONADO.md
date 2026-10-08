@@ -50,3 +50,5 @@ API B05 publicada y verificada: v0.1.0-dev.3 → 9ad4df4, rama codex/b05-clima; 
 Administración B06 parcial publicada y verificada: v0.1.0-dev.4 → 779d4e9, rama codex/b06-admin; main conserva 3da680b. MySQL/permisos/carreras y resto de B06 pendientes; sin CI ni despliegue.
 
 Dashboard y consulta B06 publicados y verificados: v0.1.0-dev.5 → b5bc784, rama codex/b06-dashboard; main conserva 3da680b. 177 reglas en herramienta temporal, integración objetivo pendiente; sin CI ni despliegue.
+
+Dev.7 → 994ec41 fue verificada después de publicar: ejecución Docker Linux 2026-10-08T13:40:03Z exit_code=0, 177 reglas/QR y 152 checks MySQL/HTTP. No mover etiqueta ni main por registrar evidencia. Próximos cambios de código necesitan pruebas afectadas; no repetir suite por cambios puramente documentales.
