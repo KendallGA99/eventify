@@ -34,13 +34,23 @@ $assert($newReservation['id'] !== $reservation['id'], 'Nueva reserva conserva hi
 foreach (['carrera-borrador', 'cultura-cancelado', 'deporte-finalizado', 'cocina-agotado'] as $slug) {
     $rejectBusiness(fn () => $service->create($owner, (int) $events[$slug], 1), 409, 'Evento no reservable: ' . $slug);
 }
-// Fallo provocado al guardar ticket: trigger solo en la base aislada, sin tocar negocio.
-$pdo->exec("CREATE TRIGGER fail_ticket BEFORE INSERT ON tickets FOR EACH ROW SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Fallo aislado de prueba'");
+// Fallo de almacenamiento solo en eventify_test: conservar tabla/datos y restaurar en finally.
+// CREATE TRIGGER puede exigir SUPER con binlog; la aplicación no necesita ese privilegio.
+if (Eventify\Support\Config::get('APP_ENV') !== 'test' || Eventify\Support\Config::get('DB_DATABASE') !== 'eventify_test') { throw new RuntimeException('Se requiere base aislada para provocar el fallo.'); }
+$label = 'Preparación del fallo aislado de almacenamiento de ticket';
 $before = (int) $pdo->query('SELECT COUNT(*) FROM reservations')->fetchColumn();
+$beforeTickets = (int) $pdo->query('SELECT COUNT(*) FROM tickets')->fetchColumn();
+$pdo->exec('RENAME TABLE tickets TO isolated_ticket_storage');
 $failed = false;
-try { $service->create($owner, (int) $events['encuentro-tecnologia'], 1); } catch (PDOException $exception) { $failed = true; }
-$pdo->exec('DROP TRIGGER fail_ticket');
-$assert($failed && (int) $pdo->query('SELECT COUNT(*) FROM reservations')->fetchColumn() === $before, 'Fallo de ticket revierte la reserva');
+try {
+    $label = 'Reserva ante almacenamiento de ticket no disponible';
+    try { $service->create($owner, (int) $events['encuentro-tecnologia'], 1); }
+    catch (PDOException $exception) { $failed = (int) ($exception->errorInfo[1] ?? 0) === 1146; }
+} finally {
+    $label = 'Restauración del almacenamiento aislado de ticket';
+    $pdo->exec('RENAME TABLE isolated_ticket_storage TO tickets');
+}
+$assert($failed && !$pdo->inTransaction() && (int) $pdo->query('SELECT COUNT(*) FROM reservations')->fetchColumn() === $before && (int) $pdo->query('SELECT COUNT(*) FROM tickets')->fetchColumn() === $beforeTickets, 'Fallo de ticket revierte reserva y conserva tickets existentes');
 
 // Dos conexiones/processos reales compiten tras una barrera de inicio común.
 $race = static function (int $eventId, array $userIds, string $description) use ($pdo, $assert): void {

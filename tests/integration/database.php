@@ -162,6 +162,12 @@ try {
     $assert($denied, 'Reintento inseguro bloqueado');
     echo 'MySQL: ' . $checks . " comprobaciones correctas.\n";
 } catch (Throwable $exception) {
-    fwrite(STDERR, 'Falló la comprobación: ' . $label . ' (' . get_class($exception) . "). No se muestran credenciales ni consultas.\n");
+    // Códigos diagnósticos permitidos; no imprimir mensaje, consultas, parámetros ni trazas.
+    $diagnostic = '';
+    if ($exception instanceof PDOException) {
+        $state = (string) ($exception->errorInfo[0] ?? $exception->getCode());
+        $diagnostic = ' SQLSTATE=' . (preg_match('/\A[A-Z0-9]{5}\z/', $state) ? $state : 'desconocido') . ' MySQL=' . (int) ($exception->errorInfo[1] ?? 0);
+    }
+    fwrite(STDERR, 'Falló la comprobación: ' . $label . ' (' . get_class($exception) . $diagnostic . '). Comprobaciones previas correctas: ' . $checks . ". No se muestran credenciales ni consultas.\n");
     exit(1);
 }
