@@ -96,3 +96,5 @@ Fuente TECNICO.md/generador actualizados a dev.17: integración266/211, migraci�
 ## Manual y preparación de entrega/defensa
 
 README/INSTALACION actualizados a evidencia dev.17/266 unidades/211 MySQL y diez tablas, sin referencias que presenten como pendientes resultados ya comprobados. DEFENSA.md añade demo propuesta, doce temas con referencias de código, cuatro ejercicios sugeridos y registro humano vacío. VERIFICACION-WINDOWS.md prepara aceptación desde ZIP, versiones del host/backend y recorridos/persistencia/pruebas; Windows sigue sin ejecutar. Requisitos Docker oficiales revisados2026-10-08. Solo documentación, sin aplicación/VERSION/datos nuevos; no afirma participación/defensa ni compatibilidad real.
+
+Paquete actualizado generado desde commit e03973238467: backups/entrega/eventify-desarrollo-e03973238467/eventify-source.zip, 163 archivos/CRC/huellas comprobados, guías Windows/defensa incluidas. Sigue código dev.17; documentación nueva no repite prueba Docker ni certifica Windows. PDF se entrega separado, no está incluido en este ZIP de fuente.
