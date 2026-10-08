@@ -66,3 +66,8 @@ Dockerfile.public/entrypoint/preflight:25 guardas simuladas y buildPHP8.4/tres r
 ## TLS y arranque público aislado dev.21
 
 public-tls-LeWppmpW,19:31:50UTC/exit0: PHP8.4/MySQL8.4 conTLSválido y rechazoCAajena/hostnameincorrecto, tres migraciones/ApacheSyntaxOK/HTTPinterno, recreaciónwebsinmigracionesrepetidas. Cumple el ensayo local de estos controles; RT-09/ENT-A siguen pendientes por proveedor/URLHTTPS real y aprovisionamiento. No certifica caso servidor sinTLS.
+
+
+## Actualización dev.22: ENT-D / RNF-03 / SEG-08
+
+CLI explícito y ensayo aislado `public-tls-5NcIVnVj`, 19:39:57 UTC / exit 0: tres cuentas ficticias con roles/hashes correctos; repetición, entorno local y plan inválido rechazados sin cambios. Cuentas conservadas tras recrear web. TLS válido y rechazos de CA/hostname nuevamente aprobados. Actualiza los pendientes históricos de aprovisionamiento anteriores: ensayo local aprobado; ENT-D sigue pendiente de cuentas funcionales en entorno público y entrega privada del acceso. ENT-A/RT-09, servidor sin TLS y login público permanecen pendientes.

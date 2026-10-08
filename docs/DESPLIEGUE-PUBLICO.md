@@ -63,3 +63,10 @@ Preparar en hostdesarrollador: `python3 scripts/prepare-evaluation.py storage/ev
 Después de migrar y antes de abrir aplicación a terceros, montar esearchivo solo en un jobCLI de imagenpública y ejecutar `php bin/provision-evaluation.php --confirm-evaluation-fixture /run/secrets/evaluation.json` con production/TLS válidos. Esta es una acción externa que requerirá la autorización del entorno/servicio concreto; no se ejecuta por desplegar/arrancar. No montar plan enweb ni pegarJSON/claves enlog/argumentosGit. Jobrechaza siusersnoestávacía, rolesfaltan oplaninválido; transacciónSERIALIZABLE/GET_LOCK, INSERT hashes únicamente. Repetir no rotaclaves ni sobrescribeusuarios. DemoSeeder permanece bloqueado enproduction.
 
 El plan no contiene eventos nireservas: se crean desdeadmin en evaluacióncontrolada. No reusar los planesdel ensayoaislado como credenciales públicas ni entregarlos enPDF/Git. Preparación no certifica login público. test-public-tls-linux.sh ampliado comprueba CLI/roles/hashes/rechazos/preservación despuésderecrear en baseefímera; ejecución real de dev.22 pendiente.
+
+
+## Dev.22: cuentas y TLS aislados aprobados
+
+Registro `storage/public-tls-5NcIVnVj`, inicio `2026-10-08T19:39:57Z`, `exit_code=0`; proyecto `eventify-tls-ee40bb5ec1e6`. PHP 8.4/MySQL 8.4 con TLS válido y tres migraciones. El job CLI explícito creó tres cuentas ficticias: un ADMINISTRADOR y dos USUARIO, hashes válidos y claves distintas del texto almacenado. Repetición, entorno local y plan inválido rechazados sin cambios; probe aprobado nuevamente tras recrear solo web. CA ajena y hostname incorrecto rechazados por PDO; HTTP interno y recreación aprobados.
+
+Solo se retiraron contenedores/red/base tmpfs efímeros propios. Plan, certificados y registros privados conservados fuera de Git; no se modificaron bases existentes ni se crearon cuentas externas. Se verificaron roles/hashes mediante PHP, no login público. Servidor sin TLS, concurrencia del aprovisionamiento, TLS del proveedor, HTTPS/URL pública y aceptación de navegador externa siguen pendientes. No repetir ni sumar estos resultados a las 219 pruebas de integración; VERSION/etiqueta dev.22 conservadas.
