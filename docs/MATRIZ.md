@@ -43,7 +43,7 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 | RT-01/02/03 | reservations.js; catalog.js; experiences.js; weather.js | Dos funcionalidades jQuery (catálogo e historial) y operaciones AJAX significativas observadas; pruebas de estados restantes pendientes |
 | RT-04/05 | PHP/MySQL; docs/DATOS.md; database/migrations | Migraciones/relaciones/CRUD e integración aprobados; no sustituir tecnologías |
 | RT-06 / U-01 | Dockerfile; docker-compose.yml; scripts Linux/Windows | Stack Linux real/persistencia QA aprobados; copia limpia Linux/Windows pendientes |
-| RT-09 / U-02 | docs/ARQUITECTURA.md | Proveedor gratuito y URL pública sin validar; localhost no cumple este entregable |
+| RT-09 / U-02 | docs/ARQUITECTURA.md; docs/PUBLICACION.md | Render PHP + Aiven MySQL: candidata documental; TLS/persistencia/cuotas y URL real pendientes. InfinityFree no seleccionada por MariaDB; localhost no cumple |
 | RT-07 / U-05 | GitHub privado; docs/VERSIONADO.md; CHANGELOG.md | Historial/push/etiquetas reales; acceso de evaluador, CI si procede y entrega final pendientes |
 | RT-08 | README.md; docs/INSTALACION.md | Manual/tecnologías/comandos preparados; enlace público y paquete final pendientes |
 | U-03 | docs/INSTALACION.md; docs/RESPALDO.md; scripts/test-restore-qa-linux.sh; bin/qa-transfer.php | Ensayo QA preparado en dev.11; 40 checks de orquestación simulada correctos. Dump/import MySQL real, transferencia/copia limpia y Windows pendientes |

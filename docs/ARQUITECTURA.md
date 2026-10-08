@@ -46,10 +46,10 @@ Al cerrar B01 todavía no había login, categorías, eventos persistidos, reserv
 
 | Componente | Condición | Estado |
 | --- | --- | --- |
-| PHP / MySQL Community / Apache | Software disponible sin pago para este uso; conservar avisos de licencias aplicables al redistribuir. | Base elegida; ejecutar Docker pendiente. |
-| Docker Engine / Compose | Open source; Desktop contempla uso académico gratuito según sus condiciones. | Compose validado de forma portable; daemon no instalado. |
-| jQuery 4.0.0 completo | MIT; copia local con licencia, sin CDN en ejecución. | Catálogo/historial preparados y probados con fixtures; MySQL pendiente. |
-| chillerlan/php-qrcode 6.0.1 | MIT/Apache-2.0; requiere PHP >=8.2 y mbstring según metadatos de Packagist. | Candidata elegida para B04; instalar/extensiones/lockfile pendientes. |
+| PHP / MySQL Community / Apache | Software disponible sin pago para este uso; conservar avisos de licencias aplicables al redistribuir. | Base elegida; Docker/MySQL local comprobados, ver ESTADO.md. |
+| Docker Engine / Compose | Open source; Desktop contempla uso académico gratuito según sus condiciones. | Instalados en Linux; ejecución y persistencia QA comprobadas. Windows pendiente. |
+| jQuery 4.0.0 completo | MIT; copia local con licencia, sin CDN en ejecución. | Catálogo/historial con pruebas MySQL y navegador parcial, ver MATRIZ.md. |
+| chillerlan/php-qrcode 6.0.1 | MIT/Apache-2.0; requiere PHP >=8.2 y mbstring según metadatos de Packagist. | Candidata inicial no adoptada; QR actual usa BaconQrCode, ver apartado B04. |
 | PHPUnit 13.4.1 | BSD-3-Clause; requiere PHP >=8.4.1 y extensiones. | Candidato consultado; no instalado. Las pruebas B01 son scripts mínimos sin dependencia externa. |
 | Open-Meteo | Modalidad gratuita no comercial; 10.000 llamadas/día, sin garantía de disponibilidad. | Integrada para evaluación no comercial con atribución/caché/límites; prueba real independiente correcta. |
 
@@ -57,11 +57,11 @@ La venta del trabajo de desarrollo no determina por sí sola que la operación f
 
 ## Publicación con presupuesto gratuito
 
-- Render gratuito no aporta discos persistentes para un MySQL propio; no es una solución completa confirmada para este stack.
-- InfinityFree anuncia PHP 8.4 y MySQL 8.0/MariaDB 11.4, subdominio y SSL gratuitos sin tarjeta. Es una candidata de investigación, no un despliegue seleccionado/validado.
-- Confirmar MySQL real (no reemplazarlo por MariaDB sin resolver el requisito), variables/secretos fuera de raíz pública, extensiones, API saliente, cuotas, sesiones, importación y persistencia. Su BD gratuita no permite conexiones externas: PHP y BD deben residir allí.
-- Docker puede cubrir ejecución local aunque el proveedor publique archivos PHP sin contenedores; RT-06 exige poder ejecutar con Docker, no que cada proveedor use Compose.
-- No crear cuentas ni aceptar términos en esta intervención. No hay URL pública verificada.
+Revisión vigente: [PUBLICACION.md](PUBLICACION.md), 2026-10-08. InfinityFree no se selecciona con la evidencia disponible: su administrador declara MariaDB 11.4, mientras EVENTIFY exige MySQL. No cambiar motor/esquema para forzar compatibilidad.
+
+Render gratuito no conserva un MySQL propio en disco persistente. La candidata prioritaria es contenedor PHP/Apache en Render y MySQL gratuito administrado en Aiven, con TLS verificado. Viabilidad documental, no conexión/despliegue comprobado. Adaptaciones pendientes: TLS PDO/CA, arranque y migraciones, sesiones, presupuesto API persistente y cuentas públicas aprovisionadas explícitamente. No hay URL pública validada ni servicios nuevos autorizados.
+
+Docker Compose sigue siendo la entrega local; no se requiere que el proveedor público ejecute todo el Compose. Las cuotas/inactividad y pruebas externas del plan gratuito están registradas en PUBLICACION.md. ENT-A/RT-09 continúan pendientes.
 
 ## Fuentes de las decisiones
 

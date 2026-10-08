@@ -1,5 +1,9 @@
 # Historial de versiones de Eventify
 
+## Preparación documental B08 — 2026-10-08
+
+Propuesta Render PHP Docker + Aiven MySQL Free con fuentes oficiales, límites gratuitos y criterios de publicación. InfinityFree no seleccionada con la evidencia actual de MariaDB. Identificadas adaptaciones pendientes de TLS PDO, sesiones, presupuesto API y aprovisionamiento público; sin cambiar código, VERSION ni etiquetas dev.11. No se crearon servicios ni se publicó la aplicación. ESTADO/ARQUITECTURA/MATRIZ actualizados; revisión documental y diff correctos.
+
 ## 0.1.0-dev.11 — 2026-10-08
 
 B07/U-03: ensayo de respaldo/restauración exclusivo de QA. Exporta SQL con mysqldump y dos archivos persistentes del alcance actual; compara recuentos/hashes de nueve tablas y archivos/galería contra destino nuevo y vacío, con claves/proyecto/volúmenes propios. Detiene temporalmente solo web QA para consistencia y la reinicia también ante fallos. No transfiere sesiones/cache/secretos del entorno, no borra datos/volúmenes. No es restauración general sobre instalaciones existentes ni certificación Windows.

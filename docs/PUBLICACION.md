@@ -1,0 +1,44 @@
+# B08: propuesta de publicación gratuita
+
+Revisión documental: 2026-10-08. Requisitos afectados: RT-09, ENT-A/D, U-02, RNF-04. **Propuesta técnica pendiente de implementación, autorización y prueba externa.** No hay cuentas nuevas, servicios creados ni URL desplegada. GitHub privado ya funciona; publicar la aplicación es una acción separada.
+
+## Decisión y evidencia
+
+El enunciado exige PHP/MySQL y URL funcional. El usuario pide cero gasto y entrega local Linux/Windows. La propuesta propia es separar el contenedor PHP/Apache y la base MySQL administrada: **Render Free + Aiven for MySQL Free**. La combinación es una inferencia de viabilidad a partir de capacidades documentadas; todavía no demuestra conexión entre proveedores ni cumplimiento del entregable.
+
+| Alternativa | Evidencia consultada | Decisión para EVENTIFY |
+| --- | --- | --- |
+| InfinityFree | Su administrador declaró MariaDB 11.4 y que no puede seleccionarse la versión del motor. | No seleccionar para MySQL obligatorio con la evidencia disponible. No cambiar el esquema ni el requisito para adaptarlo. |
+| Render con MySQL dentro del servicio gratuito | Almacenamiento efímero, sin disco persistente gratuito. | No colocar allí la base. |
+| Render PHP Docker + Aiven MySQL Free | Docker admite PHP; Aiven ofrece MySQL gratuito administrado. | Candidata prioritaria para preparar y validar, sin afirmar publicación terminada. |
+
+[InfinityFree: declaración del administrador, 17-10-2025](https://forum.infinityfree.com/t/mysql/116138), [Render: Docker/PHP](https://render.com/docs/docker), [Aiven: MySQL gratuito](https://aiven.io/docs/products/mysql/concepts/mysql-free-tier).
+
+## Condiciones gratuitas y límites
+
+Render proporciona HTTPS y dominio onrender.com. El servicio gratuito duerme tras 15 minutos sin tráfico y despertar puede tomar alrededor de un minuto; los archivos escritos se pierden al dormir, reiniciar o desplegar. Hay 750 horas mensuales compartidas por espacio de trabajo y cuotas de tráfico/construcción. Sin método de pago, superar estas cuotas suspende servicios o nuevas construcciones. Tráfico saliente inusualmente alto, incluida una base externa, puede causar suspensión; el documento no fija ese umbral. No hay shell ni trabajos puntuales gratuitos. [Condiciones de Render](https://render.com/docs/free).
+
+Aiven documenta MySQL gratuito sin tarjeta y sin plazo fijo: un nodo, 1 CPU, 1 GB RAM, 1 GB de disco, respaldos y hasta 76 conexiones. Puede apagar servicios inactivos, reactivables, y cambiar región/configuración; no tiene SLA. Elegir el plan **Free**, evitando confundirlo con créditos de prueba o planes pagados. [Condiciones de Aiven](https://aiven.io/docs/products/mysql/concepts/mysql-free-tier).
+
+No se garantiza disponibilidad continua para evaluación por leer estas condiciones. Antes de crear servicios, revisar condiciones vigentes, región, cuotas compartidas y opciones del panel; si solicita tarjeta o impone cobro, detener ese paso. No activar mantenimiento artificial ni pagos para eludir límites. Verificar disponibilidad antes de la defensa y conservar la entrega local.
+
+## Adaptaciones necesarias del código
+
+Esta inspección identifica trabajo pendiente; no cambia todavía el comportamiento de la aplicación.
+
+1. **MySQL externo con TLS verificado.** Database.php actualmente configura PDO para la red local de Compose y no carga CA. Incorporar una configuración explícita de conexión remota, certificado CA fuera de Git/imagen/raíz web y verificación del servidor; rechazar una configuración incompleta antes de conectar. Comprobar motor/versión real, collation utf8mb4_0900_as_ci, CHECK, columnas generadas y locks del esquema existente. La versión disponible en la cuenta aún no se conoce. [Certificados y rotación de Aiven](https://aiven.io/docs/platform/concepts/tls-ssl-certificates).
+2. **Arranque público controlado.** Render ejecutaría el Dockerfile web, no el Compose local completo. Adaptar puerto/bind y permisos de storage, manteniendo public como única raíz web. Preparar migraciones idempotentes con control de lock y fallo antes de servir; no depender de SSH ni exponer un endpoint de instalación. Las claves se suministran al ejecutar, nunca durante build. [Puertos y servicios de Render](https://render.com/docs/web-services).
+3. **Persistencia.** Usuarios, eventos, reservas, tickets y límites de autenticación residen en MySQL. La galería actual viene del código y debe conservarse en cada imagen. Las sesiones PHP son archivos: pueden perderse al reiniciar; decidir y comprobar el manejo de sesiones públicas antes de cerrar B08. No confundir galería del código con capacidad de persistir futuras subidas.
+4. **API externa.** EventWeather guarda caché y presupuesto en storage/weather. En un disco efímero se reinician; preparar persistencia del presupuesto antes de habilitar la API pública. Verificar Open-Meteo desde el proveedor, atribución, timeout y degradación sin bloquear reservas. WEATHER_ENABLED=false sirve para diagnóstico, pero no certifica el requisito de integración útil funcionando.
+5. **Acceso de evaluación.** DemoSeeder bloquea production correctamente. Preparar aprovisionamiento explícito de cuentas ficticias con claves únicas y entrega privada; no quitar esa guarda ni sembrar administradores en cada arranque. Mantener APP_ENV=production y cookies Secure/HttpOnly/SameSite; probar HTTPS real y cierre de sesión.
+
+## Secuencia y aceptación
+
+1. Completar actualización/restore QA pendiente y pruebas afectadas de las adaptaciones anteriores; mantener dev.11 como referencia recuperable.
+2. Preparar configuración y procedimiento de aprovisionamiento revisables, sin crear servicios. Revisar permisos mínimos para acceso al repositorio privado y exclusión de secretos.
+3. Con autorización externa, crear exclusivamente los planes gratuitos, configurar TLS/secretos/cuentas ficticias y desplegar una referencia Git comprobada. No transferir datos personales ni publicar el repositorio.
+4. Registrar URL real, fecha, motor/versión sin credenciales, plan/cuotas y build/SHA. Verificar desde fuera: catálogo, ambos roles, reservas/tickets/QR, cancelación, administración y API.
+5. Probar reinicio/redeploy: conservar datos y galería, comprobar sesiones y presupuesto API. Ensayar recuperación compatible con migraciones y respaldo; un rollback de código no restaura MySQL.
+6. Revalidar acceso y cuotas durante la evaluación. ENT-A/RT-09 siguen pendientes hasta que exista esa evidencia. Windows, transferencia final y defensa humana mantienen sus verificaciones separadas.
+
+Consultar [ESTADO.md](ESTADO.md), [RESPALDO.md](RESPALDO.md) y [VERSIONADO.md](VERSIONADO.md). Esta propuesta no es un manual de despliegue ejecutable ni autoriza crear cuentas, aceptar términos o publicar.
