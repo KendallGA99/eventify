@@ -66,3 +66,6 @@ Dev.25 → fb461ade36531e3c61710321372e3b307eba6977: corrección de acceso CA de
 
 
 Dev.26 → cabd6f335d8952332ce6d0a71fcc515bb6f5b176: redacción inicial y diagnóstico seguro del clima. Render Live, lint y 83 comprobaciones de clima/presupuesto aprobadas en construcción. Respuesta externa HTTP429 identificada; pronóstico público pendiente. Etiqueta de desarrollo, sin marcar estable ni mover main. No modifica esquema o datos.
+
+
+Dev.27 → deb3eeb5115e018c45d9969447bedb36a9d8534e: pruebas HTTPS y documentación. Push de rama y etiqueta v0.1.0-dev.27 confirmado con git ls-remote, incluida referencia anotada resuelta. 81 comprobaciones públicas aprobadas; Render mantiene aplicación dev.26. Main y etiquetas anteriores conservados.
