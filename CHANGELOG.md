@@ -1,5 +1,9 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.19 — 2026-10-08
+
+B07/U-01/U-03: verify-existing-linux.sh comprueba destinos de ensayo existentes, proyecto/base/puerto/montajes y propiedad de volúmenes antes de mutar. Compara snapshots de copia limpia alrededor de una recreación posterior al flujo de navegador y arranca la restaurada sin reimportar/sembrar/migrar/reconstruir. Conserva volúmenes y deja ambos destinos para navegador, con registros/credenciales privados. Bash/diff y ocho guardas simuladas correctos; ejecución Docker nueva pendiente. Dev.18 ya aprobó integración real: 219 comprobaciones, incluidas dos carreras meteorológicas.
+
 ## 0.1.0-dev.18 — 2026-10-08
 
 B07/RF-15/RNF-04: agrega dos carreras de presupuesto meteorológico en MySQL aislado. Dos procesos PHP con conexiones independientes compiten por el último permiso del minuto y de la hora; la prueba retiene la fila hasta que ambos intentan consumir, comprueba un permiso/una denegación, contadores persistidos y denegación posterior. Restaura la fixture y no realiza llamadas externas. Sin cambios en reglas, esquema o datos de aplicación.

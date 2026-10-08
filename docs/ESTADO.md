@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b07-presupuesto-concurrente (B07 continúa abierto). Código actual dev.18; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
+- Rama activa: codex/b07-destinos-existentes (B07 continúa abierto). Código actual dev.19; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
@@ -112,3 +112,9 @@ Agente ejecutó lint de los tres archivos afectados con PHP8.3 temporal, 44 regl
 ## Dev.18: carreras meteorológicas aprobadas
 
 Usuario ejecutó verify-integration-linux.sh: inicio2026-10-08T16:31:25Z, exit_code=0, log MySQL219 comprobaciones correctas y mensaje final. Incluye las ocho nuevas aserciones de carreras minuto/hora (dos procesos con conexiones independientes), sin cambiar controles ni efectuar llamadas externas. Suite anterior211 reemplazada por esta ejecución219, sin sumar ejecuciones. Etiqueta v0.1.0-dev.18/commit e5ab0e645ec33ae783b270266c30182ba5a41f1d publicados y referencias verificadas. Concurrencia específica meteorológica cerrada; B07 integral continúa abierto.
+
+## Dev.19: continuación de destinos existentes preparada
+
+verify-existing-linux.sh recibe IDs explícitos y exige ensayos previos exit0, configuración local/proyectos/puertos/base aislados, volúmenes existentes y etiquetas de propiedad. Copia limpia se pausa, fotografía, recrea, fotografía y compara; restaura web incluso ante fallo. Arranca el destino restaurado existente sin importar/sembrar/migrar/build; compara su snapshot con el posterior a restore y realiza seis checks HTTP200, sin certificar flujo autenticado. Mantiene registros/credenciales privados en storage/existing-ID. Sin cambios de negocio/esquema. Bash/diff y ocho comprobaciones de preflight simuladas correctos; argumento inválido rechazado. Docker real pendiente por sudo requerido en terminal.
+
+Próximo comando: bash scripts/verify-existing-linux.sh 20261008160801-e96614c4 20261008154302-2b8eb996. No repetir pruebas219 ya aprobadas; leer status/snapshots y continuar navegador en8082. PDF/ZIP anteriores siguen referidos a dev.17 y requieren actualización final cuando se consolide evidencia.
