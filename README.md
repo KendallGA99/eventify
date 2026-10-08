@@ -4,11 +4,11 @@ Plataforma académica PHP/MySQL para descubrir eventos, reservar entradas, consu
 
 ## Avance actual
 
-Implementados autenticación/roles, catálogo con jQuery/AJAX, clima Open-Meteo, reservas/cancelación con cupos transaccionales, tickets QR privados y administración de categorías/eventos/reservas/dashboard. Versión de desarrollo vigente: **0.1.0-dev.9**, con entorno separado de evaluación/persistencia preparado; cuatro carreras administrativas aprobadas en dev.8.
+Implementados autenticación/roles, catálogo con jQuery/AJAX, clima Open-Meteo, reservas/cancelación con cupos transaccionales, tickets QR privados y administración de categorías/eventos/reservas/dashboard. Versión de desarrollo vigente: **0.1.0-dev.17**, con QA separado, restauración real de datos y arranque desde ZIP Linux comprobados.
 
-Verificación real en Docker Linux aprobada el 2026-10-08: **177 comprobaciones de reglas**, QR y **170 comprobaciones de integración MySQL/HTTP** (ampliación aprobada a las 13:52 UTC), incluidas dos carreras de reservas y cuatro administrativas, precio histórico, permisos y dataset del dashboard. [Evidencia y límites](docs/evidencias/B07.md).
+Verificación real en Docker Linux aprobada el 2026-10-08: **266 comprobaciones unitarias**, QR y **211 comprobaciones de integración MySQL/HTTP**, incluidas dos carreras de reservas y cuatro administrativas, precio histórico, permisos y dataset del dashboard. [Evidencia y límites](docs/evidencias/B07.md).
 
-Pendientes: flujos completos de navegador Chrome/Firefox, persistencia/instalación limpia Linux y Windows, respaldo/restauración, URL pública gratuita, documentación técnica y defensa. La suite aprobada no certifica entrega final ni versión estable.
+Pendientes: casos completos Chrome/Firefox, reserva nueva tras otra recreación, Windows, flujo HTTP restaurado, URL pública/TLS y revisión técnica/defensa humana. La suite aprobada no certifica entrega final ni versión estable.
 
 ## Inicio local
 
@@ -57,4 +57,11 @@ Desarrollo Linux y entrega Linux/Windows; HTML/CSS/JavaScript/jQuery/AJAX + PHP 
 
 ## Se completará por bloques
 
-Completar flujos reales de navegador (B03–B06), QA portable/persistencia/restauración (B07), publicación (B08) y PDF/paquete/defensa (B09). Esquema/migraciones/demo y suite vigente de integración ya aprobados; GitHub privado con versiones publicado. No hay credenciales de prueba ni URL pública para entregar todavía.
+Completar flujos reales de navegador (B03–B06), QA portable/persistencia/restauración (B07), publicación (B08) y PDF/paquete/defensa (B09). Esquema/migraciones/demo y suite vigente de integración ya aprobados; GitHub privado con versiones publicado. La demostración local genera claves ficticias únicas y privadas; la URL pública sigue pendiente.
+
+## Entrega y preparación humana
+
+- [Verificación Windows](docs/VERIFICACION-WINDOWS.md): procedimiento pendiente de equipo real.
+- [Demostración y defensa](docs/DEFENSA.md): recorrido, mapa del código y ejercicios; no certifica dominio.
+- [Revisión de seguridad](docs/SEGURIDAD.md): dependencias y controles comprobados, con límites.
+- [Fuente del documento técnico](docs/TECNICO.md): borrador referido a dev.17.

@@ -2,13 +2,13 @@
 
 ## Estado de esta guía
 
-Stack Docker Linux con PHP/MySQL, autenticación, reservas y administración implementados y probados parcialmente; ver [ESTADO.md](ESTADO.md). QA comprobó persistencia tras recrear contenedores. Windows, copia limpia del repositorio y ensayo real de restauración siguen pendientes. La página inicial conserva el aviso de construcción hasta cerrar los requisitos.
+Stack Docker Linux con PHP/MySQL, autenticación, reservas y administración implementados y probados parcialmente; ver [ESTADO.md](ESTADO.md). QA comprobó persistencia tras recrear contenedores. Arranque desde ZIP Linux dev.17 y restauración de datos QA comprobados; Windows, HTTP del destino restaurado y criterios finales siguen pendientes. La página inicial conserva el aviso de construcción hasta cerrar los requisitos.
 
 ## Requisitos comunes
 
 - Docker con Compose v2 que admita `up --wait` (v2.20 o posterior como base de esta guía).
 - Contenedores Linux, también cuando el host es Windows.
-- Internet para descargar imágenes y construir por primera vez. La futura API externa necesita conexión.
+- Internet para descargar imágenes y construir por primera vez. La API externa necesita conexión; sus fallos se manejan sin bloquear reservas.
 - Puerto local 8080 libre; modificar APP_PORT antes de iniciar si está ocupado.
 - Espacio para imágenes/volúmenes y memoria suficiente para Docker/PHP/MySQL.
 
@@ -50,9 +50,9 @@ Verificaciones actuales del bloque:
 bash scripts/test-linux.sh
 ```
 
-Requiere el stack iniciado; comprueba sintaxis PHP, configuración, reglas de reservación y conexión PDO/MySQL. No es todavía una suite de pruebas de reservas.
+Requiere el stack iniciado; comprueba sintaxis PHP, configuración, reglas de reservación y conexión PDO/MySQL. Incluye reglas actuales de registro/reserva/catálogo/clima/administración y QR; la integración MySQL/HTTP aislada se ejecuta por separado.
 
-La prueba de integración B02 se ejecuta con `bash scripts/test-database-linux.sh`, en una base efímera aislada. La demostración opcional se ejecuta con `bash scripts/demo-linux.sh`. Más detalles en [DATOS.md](DATOS.md).
+La prueba de integración MySQL/HTTP se ejecuta con `bash scripts/test-database-linux.sh`, en una base efímera aislada. La demostración opcional se ejecuta con `bash scripts/demo-linux.sh`. Más detalles en [DATOS.md](DATOS.md).
 
 ## Desarrollo local con cambios inmediatos (Linux)
 
@@ -87,7 +87,7 @@ Para el ensayo aislado de exportación/restauración y sus resultados reales, co
 - Detener/iniciar y reconstruir la imagen no deben borrar esos volúmenes. Persistencia por recreación comprobada en QA; la instalación receptora sigue requiriendo su propia validación.
 - No ejecutar `docker compose down -v`, `docker volume prune` ni eliminar `.env` para reparar errores. Puede perder datos o romper acceso al volumen existente.
 - Las variables MYSQL_* crean el usuario/base solo en el primer volumen vacío; cambiar la contraseña en `.env` no cambia la almacenada en una base existente. Planificar una rotación real, no resetear datos.
-- Transferir código a otra computadora crea una instalación independiente. Para transferir datos existentes se necesitará exportación/restauración, prevista para bloques posteriores.
+- Transferir código a otra computadora crea una instalación independiente. Para transferir datos existentes se requiere exportación/restauración separada; consultar RESPALDO.md y verificar el destino.
 
 ## Errores comunes
 
@@ -115,6 +115,10 @@ Para comprobar únicamente un cambio en las pruebas de integración/MySQL, use `
 
 ## Entorno separado de evaluación en Linux
 
-`bash scripts/start-qa-linux.sh` levanta el proyecto Compose `eventify-qa` en http://localhost:8081 con base/volúmenes y configuración propios. No usa el override de desarrollo: el código se copia a la imagen. El script aplica migraciones, crea datos ficticios de forma idempotente y ensaya recreación de contenedores conservando volúmenes; compara nueve tablas y archivos. No interactúe con QA hasta que termine la comparación para no alterar el snapshot durante la prueba. La instancia normal en 8080 conserva sus datos. Si 8081 está ocupado, resolver el conflicto antes de continuar; no detener servicios ajenos por inferencia.
+`bash scripts/start-qa-linux.sh` levanta el proyecto Compose `eventify-qa` en http://localhost:8081 con base/volúmenes y configuración propios. No usa el override de desarrollo: el código se copia a la imagen. El script aplica migraciones, crea datos ficticios de forma idempotente y ensaya recreación de contenedores conservando volúmenes; compara diez tablas y archivos. No interactúe con QA hasta que termine la comparación para no alterar el snapshot durante la prueba. La instancia normal en 8080 conserva sus datos. Si 8081 está ocupado, resolver el conflicto antes de continuar; no detener servicios ajenos por inferencia.
 
 Credenciales QA: `storage/qa/demo-credentials.json`, privadas/mode 600, nunca subir a Git o compartir. Claves de base: `storage/qa/qa.env`; registro/resultado: `storage/qa/start.log` y `status.txt`. La repetición conserva configuración/demostración existente. No usar down -v/reset para repetir. Es una preparación de QA: una ejecución correcta no certifica Windows, restauración, navegador completo ni URL pública.
+
+## Cierre de entrega y comprensión
+
+El ensayo desde ZIP Linux y sus límites están en COPIA-LIMPIA.md. Para el receptor Windows, seguir VERIFICACION-WINDOWS.md y registrar evidencia real antes de afirmar compatibilidad. DEFENSA.md ofrece un recorrido, mapa del código y ejercicios de comprensión; participación/dominio del estudiante permanecen como evidencia humana pendiente.
