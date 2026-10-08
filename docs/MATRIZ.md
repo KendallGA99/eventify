@@ -74,3 +74,6 @@ CLI explícito y ensayo aislado `public-tls-5NcIVnVj`, 19:39:57 UTC / exit 0: tr
 
 
 Dev.23 prepara el caso servidor sin TLS mediante ensayo separado y controles TCP de disponibilidad/base vacía. Configuración Compose/Bash verificadas; ejecución PHP 8.4/MySQL y arranque negativo pendiente. RNF-03/04/RT-09 no se elevan a completos por preparar la prueba.
+
+
+Actualización dev.23/24: public-no-tls-HVqp1VtN exit 1. Sintaxis PHP 8.4/control TCP/rechazo Database/base vacía aprobados; arranque muestra error previsto, pero el evaluador del código Compose abortó antes del control final. Dev.24 cambia a inspección del estado real del contenedor; ocho controles del evaluador correctos, repetición Docker pendiente. Caso completo servidor sin TLS sigue abierto.

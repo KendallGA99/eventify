@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.24 — 2026-10-08
+
+B08: corrige la evaluación del rechazo de arranque sin TLS. El ensayo dev.23 construyó la imagen, pasó sintaxis PHP 8.4 y confirmó rechazo de Database/base vacía, pero terminó exit 1 en la expectativa del código de Docker Compose. Log de arranque muestra preflight/Apache válidos y fallo de conexión antes de migrar; código exacto del wrapper no quedó registrado, ni hubo probe final.
+
+El job se conserva hasta inspeccionar State de Docker: exige exited/no Running/ExitCode 1/sin OOM ni Error y mensajes previstos, sin migraciones ni Apache sirviendo. Registra por separado el código de Compose; limpieza exclusiva por nombre/etiqueta del proyecto propio. Ocho controles del evaluador y Bash/diff correctos; nuevo ensayo Docker pendiente. No cambia ni debilita TLS de la aplicación.
+
 ## 0.1.0-dev.23 — 2026-10-08
 
 B08/RNF-03/04: prueba específica de MySQL 8.4 sin TLS, proyecto/red internos propios, base tmpfs vacía y sin puertos ni volúmenes persistentes. Control PDO por TCP confirma servidor disponible sin cifrado; Database production debe rechazarlo. Arranque público debe salir con error de migración antes de servir; nueva conexión de control confirma base vacía. Sin cambios de controles, reglas ni esquema.

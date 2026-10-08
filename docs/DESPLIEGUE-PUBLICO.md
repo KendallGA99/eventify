@@ -81,3 +81,10 @@ Compose `docker-compose.no-tls-test.yml` sin puertos/volúmenes persistentes, re
 Referencia contrastada: [MySQL 8.4 variables TLS](https://dev.mysql.com/doc/refman/8.4/en/server-system-variables.html#sysvar_tls_version), [opciones eliminadas en 8.4](https://dev.mysql.com/doc/relnotes/mysql/8.4/en/news-8-4-0.html) y [verificación de Ssl_cipher](https://dev.mysql.com/doc/refman/8.4/en/using-encrypted-connections.html). No usar skip-ssl/have_ssl, eliminados en 8.4.
 
 Comando: `cd "/home/usuario/Documentos/ChatGPT/Proyecto U" && bash scripts/test-public-no-tls-linux.sh`. Evidencia privada en storage/public-no-tls-ID; no declarar aprobado sin leer status/log. No sustituye TLS del proveedor, HTTPS público ni ENT-A/RT-09.
+
+
+## Dev.23 parcial / dev.24 corrige evaluación
+
+Ensayo `public-no-tls-HVqp1VtN`, `2026-10-08T19:50:39Z`, exit 1. Build y sintaxis PHP 8.4 correctos; primer control TCP confirma MySQL 8.4 sin TLS disponible/base vacía y rechazo por Database production. Arranque muestra preflight válido, Apache Syntax OK y error de conexión previsto. El wrapper del ensayo abortó por código de Compose distinto de lo esperado: valor no registrado, causa sin certificar. No ejecutó comprobación posterior ni aprobó conjunto completo. Proyecto `eventify-no-tls-34356d6fced7` y red efímeros retirados; sin afectar bases existentes.
+
+Dev.24 exige estado Docker del job conservado hasta inspección (exited, no Running, ExitCode 1, no OOM/Error), además de mensajes de rechazo y ausencia de migraciones/Apache sirviendo; registra Compose separado. Limpieza solo con nombre/etiqueta de proyecto propio. Ocho controles del evaluador y Bash/diff aprobados; repetir mismo comando para Docker real, sin relajar verificación TLS.

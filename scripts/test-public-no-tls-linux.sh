@@ -9,6 +9,7 @@ require_docker
 EVENTIFY_NO_TLS_RUN="$(mktemp -d "$EVENTIFY_ROOT/storage/public-no-tls-XXXXXXXX")"
 EVENTIFY_NO_TLS_PROJECT="eventify-no-tls-$(openssl rand -hex 6)"
 EVENTIFY_NO_TLS_STARTED=false
+EVENTIFY_NO_TLS_REJECTION_CONTAINER="$EVENTIFY_NO_TLS_PROJECT-rejection"
 date -u +'%Y-%m-%dT%H:%M:%SZ' > "$EVENTIFY_NO_TLS_RUN/status.txt"
 printf '%s\n' "$EVENTIFY_NO_TLS_PROJECT" > "$EVENTIFY_NO_TLS_RUN/project.txt"
 trap 'EVENTIFY_NO_TLS_RESULT=$?; printf "exit_code=%s\n" "$EVENTIFY_NO_TLS_RESULT" >> "$EVENTIFY_NO_TLS_RUN/status.txt"' EXIT
@@ -24,6 +25,12 @@ finish_no_tls() {
     local result=$?
     trap - EXIT
     if [[ "$EVENTIFY_NO_TLS_STARTED" == true ]]; then
+        # Solo el job con nombre y etiqueta del proyecto aleatorio de este ensayo.
+        local owner
+        owner="$("${EVENTIFY_DOCKER[@]}" container inspect --format '{{index .Config.Labels "com.docker.compose.project"}}' "$EVENTIFY_NO_TLS_REJECTION_CONTAINER" 2>/dev/null)" || owner=''
+        if [[ "$owner" == "$EVENTIFY_NO_TLS_PROJECT" ]]; then
+            "${EVENTIFY_DOCKER[@]}" container rm --force "$EVENTIFY_NO_TLS_REJECTION_CONTAINER" >/dev/null || result=1
+        fi
         "${EVENTIFY_NO_TLS_COMPOSE[@]}" down || result=1
     fi
     printf 'exit_code=%s\n' "$result" >> "$EVENTIFY_NO_TLS_RUN/status.txt"
@@ -54,14 +61,18 @@ EVENTIFY_NO_TLS_STARTED=true
 "${EVENTIFY_NO_TLS_COMPOSE[@]}" run --rm --no-deps -T tests tests/integration/public-no-tls.php
 # El arranque real debe fallar en migración y nunca llegar a ejecutar Apache.
 EVENTIFY_NO_TLS_REJECTION=0
-timeout 60s "${EVENTIFY_NO_TLS_COMPOSE[@]}" run --rm --no-deps -T --entrypoint /usr/local/bin/eventify-public-entrypoint tests apache2-foreground > "$EVENTIFY_NO_TLS_RUN/rejection.log" 2>&1 || EVENTIFY_NO_TLS_REJECTION=$?
-if [[ "$EVENTIFY_NO_TLS_REJECTION" != 1 ]]; then
-    echo 'El arranque no produjo el rechazo esperado (o agotó el tiempo).' >&2
-    exit 1
-fi
-python3 - "$EVENTIFY_NO_TLS_RUN/rejection.log" <<'PY'
+# Conservar este job hasta inspeccionar su estado: el wrapper Compose no es la evidencia.
+timeout 60s "${EVENTIFY_NO_TLS_COMPOSE[@]}" run --name "$EVENTIFY_NO_TLS_REJECTION_CONTAINER" --no-deps -T --entrypoint /usr/local/bin/eventify-public-entrypoint tests apache2-foreground > "$EVENTIFY_NO_TLS_RUN/rejection.log" 2>&1 || EVENTIFY_NO_TLS_REJECTION=$?
+printf 'compose_exit_code=%s\n' "$EVENTIFY_NO_TLS_REJECTION" > "$EVENTIFY_NO_TLS_RUN/rejection-status.txt"
+"${EVENTIFY_DOCKER[@]}" container inspect --format '{{json .State}}' "$EVENTIFY_NO_TLS_REJECTION_CONTAINER" > "$EVENTIFY_NO_TLS_RUN/rejection-state.json"
+python3 - "$EVENTIFY_NO_TLS_RUN/rejection.log" "$EVENTIFY_NO_TLS_RUN/rejection-state.json" <<'PY'
 from pathlib import Path
+import json
 import sys
+state = json.loads(Path(sys.argv[2]).read_text())
+assert state['Status'] == 'exited' and state['Running'] is False
+assert state['ExitCode'] == 1 and state['OOMKilled'] is False
+assert not state['Error']
 text = Path(sys.argv[1]).read_text()
 assert 'Configuración pública validada' in text
 assert 'Syntax OK' in text
