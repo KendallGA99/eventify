@@ -35,7 +35,7 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 | IDs | Código/documentación | Evidencia y pendiente |
 | --- | --- | --- |
 | RNF-01/02 | public/assets/css/app.css; app/Views | Ticket móvil/tableta/escritorio y dashboard tableta; catálogo/cuenta/registro 360 y registro 768 sin desbordamiento; matriz de páginas/estados, teclado/foco, zoom y orientación pendientes |
-| RNF-03 | app/Security; controladores; migraciones | HTTP propiedad/roles/CSRF, SQL parametrizado/escape; completar revisión final de secretos/dependencias y cookies HTTPS |
+| RNF-03 | app/Security; controladores; migraciones | HTTP propiedad/roles/CSRF, SQL parametrizado/escape; auditoría Composer/huella jQuery/15 checks HTTP aprobados en SEGURIDAD.md; revisión completa de imágenes/historial y cookies HTTPS pendientes |
 | RNF-04 | bootstrap/controladores/clientes AJAX | Errores de negocio y API controlados; dev.10 espera acotada probada en cliente controlado, flujo exitoso actual Chrome aprobado; timeout real pendiente |
 | RNF-05 | CatalogRepository/AdminReadRepository; EventWeather | Paginación/índices/snapshot de dashboard/caché y presupuesto API implementados; no afirmar benchmark no medido |
 | RNF-06 | Chrome QA | Chrome 154.0.8037.97 parcial; Firefox real pendiente |
