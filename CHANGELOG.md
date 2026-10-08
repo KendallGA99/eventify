@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.22 — 2026-10-08
+
+B08/ENT-D/RNF-03: plan privado con tres cuentas ficticias/claves independientes, CLI explícita production/TLS y tablausersvacía, transacciónSERIALIZABLE/GET_LOCK, hashesPASSWORD_DEFAULT. Rechaza repetición/usuariosprevios/planesinválidos; no UPDATE, seederauto, endpoint ni logs de claves. DemoSeeder sigue bloqueado enproduction. Plan montado solo en jobCLI, no servicio web.
+
+Generador real probado: claves únicas, roles, permisos700/600 desde creación y no sobrescritura; Bash/diff correctos. Ensayo TLS aislado ampliado a CLI/roles/hashes/rechazos y conservación tras recrearweb; ejecuciónPHP8.4/MySQL pendiente. No crea cuentas externas por implementar ni entrega claves públicamente.
+
 ## 0.1.0-dev.21 — 2026-10-08
 
 B08/RNF-03/RT-09: ensayo público TLS aislado con PHP8.4/MySQL8.4, certificados ficticios de2 días generados por ejecución, red interna/sin puertos y DBtmpfs. Verifica arranqueproduction/migraciones/ApacheHTTPinterno, CA ajena/hostname incorrecto rechazados por PDO, recreación web. Solo recursos del ensayo efímero; sin servicios externos ni bases existentes.

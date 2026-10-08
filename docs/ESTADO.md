@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b08-tls-aislado (preparación B08; B07 continúa abierto). Código actual dev.21; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
+- Rama activa: codex/b08-cuentas-evaluacion (preparación B08; B07 continúa abierto). Código actual dev.22; copia ensayada dev.16: 5249429. Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
@@ -173,3 +173,11 @@ Próximo comando: cd "/home/usuario/Documentos/ChatGPT/Proyecto U" && bash scrip
 Usuario ejecutó test-public-tls-linux.sh. Registro storage/public-tls-LeWppmpW, inicio2026-10-08T19:31:50Z/exit_code=0, proyecto eventify-tls-8114c17f00f1. Log confirma build/healthy, lintPHP8.4 del probe, Database real conTLS/certificado válido/MySQL8.4 y tres migraciones, CAajena y hostnameincorrecto rechazados porPDOException, HTTPinterno /salud e /ingresar200, recreación solo web y nuevo positivo. web.log confirma Configuración pública validada, ApacheSyntaxOK y esquema actualizado sin repetir migraciones tras recrear.
 
 Sin puertos públicos ni servicios externos; solo proyecto/red/tmpfs efímeros del ensayo retirados, certificados/logs privados conservados. Sin cambio de controles/datos existentes/VERSION ni repetir219 checks. Se cierran con este alcance negociaciónTLS local y arranque público positivo/recreación. TLS conproveedor/HTTPS público, servidor sinTLS, aprovisionamiento único, URL, Windows/Firefox y entrega final siguen pendientes.
+
+## Dev.22: aprovisionamiento explícito de evaluación preparado
+
+prepare-evaluation.py genera directorio nuevo700/JSON600 con administrador y dosusuarios ficticios/claves hex128bits independientes; no las imprime ni conecta. CLI provision-evaluation.php exige --confirm-evaluation-fixture, archivo privado fuera depublic/≤8KB, production/TLS mediante Database y plan fijo válido. EvaluationProvisioner usaGET_LOCK/transacciónSERIALIZABLE/lectura bloqueante deusers: tabla vacía o rechazo, INSERT conhashPASSWORD_DEFAULT y roles migrados, rollback antefallo. No UPDATE ni reset ni seederauto ni cambio deDemoSeeder. No guarda claves en imagen/MySQL/log ni monta elplan enweb.
+
+Generador probado con dosplanes temporales: seisclaves distintas/roles/formato/permisos/no sobrescritura correctos (primer ensayo detectó Path.open sinopener, corregido a os.open600 y rerun aprobado). Bash/diff correctos. Probe aislado production/eventify_tls_test comprueba3 cuentas/roles/actividad/password_verify/hash distinto deplaintext, rechazo repetición/local/planinválido sin cambio; ejecutado antes/después de recrearweb. Estos casos PHP/MySQL aún no ejecutados, ni lintPHPnuevo; test-public-tls-linux.sh ampliado los prepara en proyecto efímero.
+
+Próximo comando completo: cd "/home/usuario/Documentos/ChatGPT/Proyecto U" && bash scripts/test-public-tls-linux.sh. No crea servicios/cuentas externos ni modifica bases existentes; claves del ensayo privadas en storage/public-tls-ID/evaluation/accounts.json. Procedimiento público debe ejecutarse antes de abrir acceso a terceros y entregar plan original por canal privado autorizado; pérdida de ese plan no autoriza sobrescribir cuentas ni quitarprotecciones. URL/HTTPSproveedor/caso sinTLS/Windows/Firefox y entrega final pendientes.

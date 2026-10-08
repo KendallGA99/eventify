@@ -55,3 +55,11 @@ Preparado: `bash scripts/test-public-tls-linux.sh`. PHP8.4 production/MySQL8.4, 
 OpenSSL/configCompose/sintaxisBash correctos; ejecución Docker/TLS real pendiente. No sustituye TLS conAiven, HTTPS externo, caso servidor sinTLS, cuentas únicas ni URL pública.
 
 Resultado real dev.21: public-tls-LeWppmpW,2026-10-08T19:31:50Z/exit0. Arranqueproduction, Apacheconfigtest/HTTPinterno, migraciones y TLSválido PHP8.4/MySQL8.4 aprobados; CAajena/hostnameincorrecto rechazados porPDO, recreación web aprobada sin repetir migraciones. Red/tmpfs efímeros propios retirados; entorno externo/HTTPS público/caso sinTLS siguen pendientes.
+
+## Cuentas explícitas dev.22
+
+Preparar en hostdesarrollador: `python3 scripts/prepare-evaluation.py storage/evaluacion-privada-nueva` (padre existente, destino nuevo). No crea cuentas. Guardar accounts.json600/directorio700 fuera deGit y conservar original para entrega privada. Tres correosficticios .test, unADMINISTRADOR/dosUSUARIO, claves diferentes generadas porsecrets. No credenciales reales.
+
+Después de migrar y antes de abrir aplicación a terceros, montar esearchivo solo en un jobCLI de imagenpública y ejecutar `php bin/provision-evaluation.php --confirm-evaluation-fixture /run/secrets/evaluation.json` con production/TLS válidos. Esta es una acción externa que requerirá la autorización del entorno/servicio concreto; no se ejecuta por desplegar/arrancar. No montar plan enweb ni pegarJSON/claves enlog/argumentosGit. Jobrechaza siusersnoestávacía, rolesfaltan oplaninválido; transacciónSERIALIZABLE/GET_LOCK, INSERT hashes únicamente. Repetir no rotaclaves ni sobrescribeusuarios. DemoSeeder permanece bloqueado enproduction.
+
+El plan no contiene eventos nireservas: se crean desdeadmin en evaluacióncontrolada. No reusar los planesdel ensayoaislado como credenciales públicas ni entregarlos enPDF/Git. Preparación no certifica login público. test-public-tls-linux.sh ampliado comprueba CLI/roles/hashes/rechazos/preservación despuésderecrear en baseefímera; ejecución real de dev.22 pendiente.

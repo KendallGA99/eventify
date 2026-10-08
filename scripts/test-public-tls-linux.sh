@@ -12,6 +12,7 @@ trap 'EVENTIFY_TLS_RESULT=$?; printf "exit_code=%s\n" "$EVENTIFY_TLS_RESULT" >> 
 printf '%s\n' "$EVENTIFY_TLS_PROJECT" > "$EVENTIFY_TLS_RUN/project.txt"
 exec > >(tee "$EVENTIFY_TLS_RUN/test.log") 2>&1
 python3 scripts/make-tls-fixture.py "$EVENTIFY_TLS_RUN/certs"
+python3 scripts/prepare-evaluation.py "$EVENTIFY_TLS_RUN/evaluation"
 {
     printf 'APP_SECRET=%s\nMYSQL_PASSWORD=%s\nMYSQL_ROOT_PASSWORD=%s\n' "$(openssl rand -hex 32)" "$(openssl rand -hex 32)" "$(openssl rand -hex 32)"
     printf 'EVENTIFY_TLS_DIR="%s"\n' "$EVENTIFY_TLS_RUN/certs"
@@ -43,6 +44,9 @@ assert all(v["type"]=="bind" and v["source"].startswith(sys.argv[2]+"/") and v["
 "${EVENTIFY_TLS_COMPOSE[@]}" up --build --detach --wait --wait-timeout 240
 "${EVENTIFY_TLS_COMPOSE[@]}" exec -T web php -l tests/integration/public-tls.php
 "${EVENTIFY_TLS_COMPOSE[@]}" exec -T web php tests/integration/public-tls.php allow
+# Aprovisionamiento manual de prueba: archivo montado solo en jobs CLI, nunca en web.
+"${EVENTIFY_TLS_COMPOSE[@]}" run --rm --no-deps -T --volume "$EVENTIFY_TLS_RUN/evaluation/accounts.json:/run/secrets/evaluation.json:ro" --entrypoint php web bin/provision-evaluation.php --confirm-evaluation-fixture /run/secrets/evaluation.json
+"${EVENTIFY_TLS_COMPOSE[@]}" run --rm --no-deps -T --volume "$EVENTIFY_TLS_RUN/evaluation/accounts.json:/run/secrets/evaluation.json:ro" --entrypoint php web tests/integration/public-accounts.php /run/secrets/evaluation.json
 "${EVENTIFY_TLS_COMPOSE[@]}" exec -T -e DB_TLS_CA=/run/secrets/wrong-ca.pem web php tests/integration/public-tls.php deny
 "${EVENTIFY_TLS_COMPOSE[@]}" exec -T -e DB_HOST=wrong-host web php tests/integration/public-tls.php deny
 for EVENTIFY_PATH in /salud /ingresar; do
@@ -50,6 +54,7 @@ for EVENTIFY_PATH in /salud /ingresar; do
 done
 "${EVENTIFY_TLS_COMPOSE[@]}" up --force-recreate --no-deps --detach --wait --wait-timeout 180 web
 "${EVENTIFY_TLS_COMPOSE[@]}" exec -T web php tests/integration/public-tls.php allow
+"${EVENTIFY_TLS_COMPOSE[@]}" run --rm --no-deps -T --volume "$EVENTIFY_TLS_RUN/evaluation/accounts.json:/run/secrets/evaluation.json:ro" --entrypoint php web tests/integration/public-accounts.php /run/secrets/evaluation.json
 "${EVENTIFY_TLS_COMPOSE[@]}" logs --no-color web > "$EVENTIFY_TLS_RUN/web.log"
-echo 'Arranque público TLS aislado, CA/hostname negativos, HTTP interno y recreación aprobados.'
+echo 'Arranque público TLS, cuentas únicas/roles/hashes/rechazos, HTTP interno y recreación aprobados.'
 echo 'No certifica TLS del proveedor externo, HTTPS público, cuentas ni URL desplegada.'
