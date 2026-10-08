@@ -31,6 +31,7 @@ try {
     $runner = new MigrationRunner($pdo, PROJECT_ROOT . '/database/migrations');
     $assert($runner->run() === ['001_initial_schema', '002_auth_limits'], 'Primera migración');
     $assert($runner->run() === [], 'Repetición sin modificar esquema');
+    require __DIR__ . '/admin-read.php';
     $credentialsPath = PROJECT_ROOT . '/storage/test-credentials.json';
     $seeder = new DemoSeeder($pdo, $credentialsPath);
     $assert($seeder->run(), 'Primera demostración');

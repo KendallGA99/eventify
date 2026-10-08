@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.5 — 2026-10-08
+
+B06: dashboard con cinco indicadores base, rankings de evento/categoría e ingresos potenciales históricos, conjunto activo coherente y consulta MySQL única. Consulta administrativa de reservas con filtros combinados por nombre de evento, nombre/correo del usuario y estado; paginación y detalle histórico de solo lectura. Autorización ADMINISTRADOR en servidor. Sin migraciones ni cambios en datos existentes.
+
+Verificado: 25 reglas nuevas (177 total), sintaxis PHP/Bash y vistas reales con fixtures móvil/escritorio. Dataset MySQL y permisos HTTP ampliados y pendientes de ejecución; imagen objetivo, concurrencia administrativa y cierre B06 pendientes. Versión de desarrollo.
+
 ## 0.1.0-dev.4 — 2026-10-08
 
 B06 parcial: categorías crear/consultar/editar/desactivar; eventos crear/consultar/editar/cancelar/finalizar; galería local, formularios adaptables y listas paginadas. Permisos/CSRF servidor, precios/fechas/cupos validados, protección de historial y bloqueos compartidos con reservas. No eliminación física ni nuevas migraciones.

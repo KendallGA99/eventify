@@ -80,3 +80,12 @@ textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; 
 .state-form { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
 .state-form select { width: auto; max-width: 100%; }
 @media (max-width: 650px) { .admin-form, .admin-form fieldset { grid-template-columns: 1fr; } .admin-form-card { padding: 18px; } }
+.dashboard-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.metric { padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: #fffef9; overflow-wrap: anywhere; }
+.metric dt { margin: 0; font-size: 14px; }
+.metric dd { margin: 16px 0; font-size: clamp(25px, 3vw, 36px); font-weight: 700; }
+.reservation-detail { overflow-wrap: anywhere; }
+@media (max-width: 900px) { .dashboard-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .dashboard-grid { grid-template-columns: 1fr; } }
+
+.metric-note { font-weight: 400; }

@@ -86,6 +86,7 @@ try {
     $assert($status === 403, 'Formulario de eventos exige administrador');
     [$status] = $request('/admin/categorias', ['csrf' => $logoutToken, 'name' => 'Intento', 'slug' => 'intento']);
     $assert($status === 403, 'Escritura administrativa rechaza rol usuario');
+    foreach (['/admin/reservas', '/admin/reservas/1'] as $privatePath) { [$status] = $request($privatePath); $assert($status === 403, 'Consulta de reservas exige rol administrador'); }
     $musicId = (int) $pdo->query("SELECT id FROM events WHERE slug = 'musica-ultimos-cupos'")->fetchColumn();
     [$status, $body] = $request('/api/reservas', ['csrf' => $logoutToken, 'event_id' => $musicId, 'quantity' => '1', 'price' => '0', 'total' => '0']);
     $created = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
@@ -112,6 +113,13 @@ try {
     $assert($status === 303, 'Administrador ingresa por HTTP');
     [$status] = $request('/admin');
     $assert($status === 200, 'Administrador autorizado por HTTP');
+    [$status, $body] = $request('/admin/reservas?user=http%40eventify.test&state=CONFIRMADA');
+    $assert($status === 200 && str_contains($body, 'Usuario HTTP'), 'Reservas administrativas filtradas por correo y estado');
+    [$status, $body] = $request('/admin/reservas/' . (int) $created['id']);
+    $assert($status === 200 && str_contains($body, 'Precio histórico por entrada'), 'Administrador consulta detalle ajeno conservado');
+    [$status] = $request('/admin/reservas?state=PUBLICADO'); $assert($status === 422, 'Filtro administrativo inválido rechazado');
+    [$status] = $request('/admin/reservas/999999999'); $assert($status === 404, 'Detalle administrativo inexistente');
+    [$status] = $request('/admin/reservas', ['csrf' => $logoutToken]); $assert($status === 405, 'Consulta administrativa solo lectura');
     [$status, $body] = $request('/admin/categorias');
     $adminToken = $csrf($body);
     [$status] = $request('/admin/categorias', ['name' => 'Categoría HTTP de prueba', 'slug' => 'http-admin-probe']);

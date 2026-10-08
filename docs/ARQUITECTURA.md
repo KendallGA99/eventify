@@ -40,7 +40,7 @@ Compatibilidad Windows significa ejecutar estas imágenes Linux a través de Doc
 | Ruta no existente | 404 con enlace al inicio. |
 | Método distinto de GET/HEAD en rutas PHP | 405. No hay operaciones de escritura implementadas. |
 
-No hay todavía login, categorías, eventos persistidos, reservas, tickets o dashboard. La página inicial no representa aceptación de RF-04 ni una simulación presentada como sistema terminado.
+Al cerrar B01 todavía no había login, categorías, eventos persistidos, reservas, tickets o dashboard; los incrementos posteriores se describen abajo. La página inicial no representa aceptación de RF-04 ni una simulación presentada como sistema terminado.
 
 ## Dependencias gratuitas y candidatas
 
@@ -104,3 +104,9 @@ Sin DELETE: categoría se desactiva y evento se cancela conservando reservas/tic
 Lock evento FOR UPDATE compartido con ReservationService, luego categoría FOR SHARE; comprobar suma confirmadas después del bloqueo antes de reducir capacidad. Transiciones cancelado/finalizado con el mismo lock; finalizar exige inicio <= UTC actual. No afirmar resistencia a carrera verificada hasta ejecutar pruebas concurrentes.
 
 Fecha de formularios Costa Rica con precisión segundos, convertida a UTC. No perder segundos de datos sembrados al editar sin cambios. Eventos nuevos/editables deben ser futuros; es decisión de protección. Galería SVG local generada para el proyecto, paths estrictamente permitidos, sin URL libre ni uploads. Esta selección implementa campo imagen; cargas de archivos no forman parte de este incremento.
+
+## Lectura administrativa B06
+
+AdminReadRepository concentra consultas privadas tras comprobar rol ADMINISTRADOR en AdminController. Dashboard: una sola sentencia con CTE para compartir snapshot/instante UTC y no duplicar capacidades por JOIN de reservas; activos D-03, entradas separadas de reservas, SUM(total) histórico DECIMAL y tres derivados. Rankings excluyen cero, empates visibles y menor ID determinista; estado activo no exige categoría activa para conservar actividad de eventos existentes. DashboardMetrics solo redondea porcentaje, nunca dinero.
+
+Reservas: búsqueda literal parcial por evento y por nombre/correo, estado CONFIRMADA/CANCELADA, validación de filtros/cantidad de páginas, orden estable y 50+1 registros. JOIN de ticket por reserva (creados atómicamente), detalle histórico de solo lectura. Caché no-store y rol vigente del servidor; rutas privadas de QR mantienen su regla de propietario. Vistas escapadas y adaptables, sin nueva dependencia/API ni migraciones. Dataset transaccional MySQL e integración HTTP preparados pero sin ejecutar.

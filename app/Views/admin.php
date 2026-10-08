@@ -5,16 +5,19 @@ $escape = static fn (mixed $value): string => htmlspecialchars(is_string($value)
 $value = static fn (string $key, string $default = ''): string => $escape($values[$key] ?? $default);
 $date = static fn (string $start): string => (new DateTimeImmutable($start, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('America/Costa_Rica'))->format('d/m/Y H:i');
 $csrf = Session::token();
-$title = match ($view) { 'categories' => 'Categorías', 'category' => 'Editar categoría', 'events' => 'Eventos', 'event' => $record === null ? 'Crear evento' : 'Detalle y edición del evento', default => 'Administración' };
+$title = match ($view) { 'reservations' => 'Reservas', 'reservation' => 'Detalle de reserva', 'categories' => 'Categorías', 'category' => 'Editar categoría', 'events' => 'Eventos', 'event' => $record === null ? 'Crear evento' : 'Detalle y edición del evento', default => 'Administración' };
 $terminal = $record !== null && isset($record['status']) && in_array($record['status'], ['CANCELADO', 'FINALIZADO'], true);
 ?>
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title><?= $escape($title) ?> · Eventify</title><link rel="stylesheet" href="/assets/css/app.css"><link rel="icon" href="/assets/icon.svg"></head>
-<body><header class="site-header"><a class="brand" href="/">eventify<span>.</span></a><nav aria-label="Administración"><a href="/admin">Administración</a><a href="/admin/categorias">Categorías</a><a href="/admin/eventos">Eventos</a><a href="/cuenta">Mi cuenta</a></nav></header>
+<body><header class="site-header"><a class="brand" href="/">eventify<span>.</span></a><nav aria-label="Administración"><a href="/admin">Administración</a><a href="/admin/categorias">Categorías</a><a href="/admin/eventos">Eventos</a><a href="/admin/reservas">Reservas</a><a href="/cuenta">Mi cuenta</a></nav></header>
 <main class="events-main"><p class="eyebrow">Administración de Eventify</p><h1 class="page-title"><?= $escape($title) ?></h1>
 <?php if ($errors !== []): ?><div class="form-errors" role="alert"><?php foreach ($errors as $error): ?><p><?= $escape($error) ?></p><?php endforeach; ?></div><?php endif; ?>
 <?php if (($_GET['guardado'] ?? '') === 'ok'): ?><p class="notice" role="status">Cambios guardados correctamente.</p><?php endif; ?>
 <?php if ($view === 'home'): ?>
+<?php require PROJECT_ROOT . '/app/Views/admin-dashboard.php'; ?>
 <div class="event-grid"><article class="event-card"><h2>Categorías</h2><p>Organice las experiencias y gestione las categorías activas.</p><a class="return-link" href="/admin/categorias">Gestionar categorías</a></article><article class="event-card"><h2>Eventos</h2><p>Cree experiencias, actualice sus datos y gestione su publicación.</p><a class="return-link" href="/admin/eventos">Gestionar eventos</a></article></div>
+<?php elseif (in_array($view, ['reservations', 'reservation'], true)): ?>
+<?php require PROJECT_ROOT . '/app/Views/admin-reservations.php'; ?>
 <?php elseif (in_array($view, ['categories', 'category'], true)): ?>
 <section class="admin-form-card"><h2><?= $view === 'categories' ? 'Crear categoría' : 'Datos de la categoría' ?></h2><form method="post" class="admin-form">
 <input type="hidden" name="csrf" value="<?= $csrf ?>"><div><label for="category-name">Nombre</label><input id="category-name" name="name" maxlength="120" value="<?= $value('name') ?>" required></div><div><label for="category-slug">Identificador</label><input id="category-slug" name="slug" maxlength="120" pattern="[a-z0-9]+(-[a-z0-9]+)*" value="<?= $value('slug') ?>" required><p class="field-help">Ejemplo: gastronomia. Minúsculas, números y guiones.</p></div><div><label for="category-active">Estado</label><select id="category-active" name="is_active"><option value="1" <?= ($values['is_active'] ?? 1) == 1 ? 'selected' : '' ?>>Activa</option><option value="0" <?= ($values['is_active'] ?? 1) == 0 ? 'selected' : '' ?>>Inactiva</option></select></div><button class="button" type="submit">Guardar categoría</button></form><p class="field-help">Desactivar conserva los eventos y su historial. La categoría deja de ofrecerse para eventos nuevos.</p></section>
