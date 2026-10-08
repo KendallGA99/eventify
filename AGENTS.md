@@ -77,6 +77,13 @@ No ejecutar una suite extensa después de cada edición trivial. Seleccionar pru
 - No reescribir ni borrar historial ajeno. No hacer push forzado.
 - Registrar limitaciones y bloqueos concretos sin convertirlos en afirmaciones de cumplimiento.
 
+## Redacción y comprensión del código
+
+- Usar español natural y preciso en documentos y comentarios. Explicar las decisiones con ejemplos del proyecto y evitar frases genéricas o repetidas.
+- Los comentarios deben aclarar una regla de negocio, un límite o el motivo de una decisión. No narrar instrucciones evidentes ni agregar comentarios a cada línea.
+- Al editar una función, favorecer bloques legibles y nombres claros; evitar varias instrucciones comprimidas en una línea. No cambiar comportamiento solo para mejorar su presentación.
+- Las guías de entrega deben permitir que el receptor instale y explique el proyecto. El historial operativo conserva los aportes, pruebas y limitaciones reales; no inventar autoría o comprensión.
+
 ## Definición de terminado
 
 Una función se cierra con sus criterios, pruebas pertinentes y documentación actualizada. La entrega completa exige todos los requisitos, pruebas críticas, instalación limpia Linux y Windows, persistencia, URL pública real, GitHub con historial, PDF técnico, cuentas de prueba y preparación de defensa. El dominio y la defensa del estudiante se registran como evidencia humana pendiente hasta que ocurran; el agente no puede certificarlos por generar código.

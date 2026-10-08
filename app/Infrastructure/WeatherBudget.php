@@ -14,6 +14,8 @@ final class WeatherBudget
     {
         if ($this->pdo->inTransaction() || $time < 0) { return false; }
         try {
+            // El contador se guarda en MySQL para que un reinicio de la web
+            // no reinicie también el límite de llamadas al proveedor.
             $this->pdo->beginTransaction();
             $this->pdo->exec("INSERT IGNORE INTO weather_budget (scope) VALUES ('open_meteo')");
             $record = $this->pdo->query("SELECT hour_window, minute_window, hour_requests, minute_requests FROM weather_budget WHERE scope = 'open_meteo' FOR UPDATE")->fetch();
@@ -25,7 +27,7 @@ final class WeatherBudget
             $update = $this->pdo->prepare("UPDATE weather_budget SET hour_window = ?, minute_window = ?, hour_requests = ?, minute_requests = ? WHERE scope = 'open_meteo'");
             $update->execute(array_values($next));
             $this->pdo->commit();
-            // Consumir antes de contactar al proveedor: los intentos fallidos también cuentan.
+            // Contamos el intento antes de llamar: una respuesta fallida también usa cuota.
             return true;
         } catch (Throwable) {
             try { if ($this->pdo->inTransaction()) { $this->pdo->rollBack(); } }

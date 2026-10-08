@@ -2,13 +2,15 @@
 
 Plataforma académica PHP/MySQL para descubrir eventos, reservar entradas, consultar tickets digitales y administrar experiencias.
 
-## Avance actual
+## Estado del proyecto
 
-Implementados autenticación/roles, catálogo con jQuery/AJAX, clima Open-Meteo, reservas/cancelación con cupos transaccionales, tickets QR privados y administración de categorías/eventos/reservas/dashboard. Versión de desarrollo vigente: **0.1.0-dev.17**, con QA separado, restauración real de datos y arranque desde ZIP Linux comprobados.
+Eventify permite crear una cuenta, explorar eventos, reservar entradas, consultar tickets con QR y cancelar reservas. El administrador gestiona categorías, eventos y reservas desde su panel.
 
-Verificación real en Docker Linux aprobada el 2026-10-08: **266 comprobaciones unitarias**, QR y **211 comprobaciones de integración MySQL/HTTP**, incluidas dos carreras de reservas y cuatro administrativas, precio histórico, permisos y dataset del dashboard. [Evidencia y límites](docs/evidencias/B07.md).
+La versión pública está disponible en [eventify-academico.onrender.com](https://eventify-academico.onrender.com/eventos). La versión de desarrollo actual es **0.1.0-dev.25**. Se comprobaron los accesos de ambos roles, la creación de un evento ficticio, una reserva con ticket, su cancelación y la conservación de los datos tras reiniciar la web.
 
-Pendientes: casos completos Chrome/Firefox, reserva nueva tras otra recreación, Windows, flujo HTTP restaurado, URL pública/TLS y revisión técnica/defensa humana. La suite aprobada no certifica entrega final ni versión estable.
+Las últimas pruebas locales registradas incluyen 266 comprobaciones unitarias y 219 de integración con MySQL/HTTP. Corresponden a las ejecuciones indicadas en [ESTADO.md](docs/ESTADO.md); los cambios posteriores tienen sus propias verificaciones. Estos resultados no equivalen a una entrega final aprobada.
+
+Falta completar las pruebas en Windows y Firefox, revisar los controles restantes, comprobar el pronóstico desde Render y actualizar el PDF y el paquete de entrega. El clima puede fallar sin impedir una reserva.
 
 ## Inicio local
 
@@ -32,7 +34,7 @@ Detener: `bash scripts/stop-linux.sh` o `detener-windows.cmd`. Pruebas B01: `bas
 
 Pruebas MySQL aisladas: `bash scripts/test-database-linux.sh`; demostración opcional: `bash scripts/demo-linux.sh`. Consulte [DATOS.md](docs/DATOS.md).
 
-Actualizar y verificar Linux: `bash scripts/verify-linux.sh`. **Pendiente:** comprobar integración actualizada, persistencia y Windows. El receptor no necesita PHP/MySQL instalados aparte de Docker. Internet es necesario en la preparación inicial y para la API de clima.
+Actualizar y verificar Linux: `bash scripts/verify-linux.sh`. La instalación completa en Windows sigue pendiente de prueba. El receptor no necesita PHP/MySQL instalados aparte de Docker. Internet es necesario en la preparación inicial y para la API de clima.
 
 ## Documentación y continuidad
 
@@ -51,13 +53,17 @@ Actualizar y verificar Linux: `bash scripts/verify-linux.sh`. **Pendiente:** com
 | [Evidencia B02](docs/evidencias/B02.md) | Validación y límites del modelo de datos. |
 | [Evidencia B01](docs/evidencias/B01.md) | Pruebas ejecutadas y límites de la verificación. |
 
-## Condiciones
+## Entrega al compañero
 
-Desarrollo Linux y entrega Linux/Windows; HTML/CSS/JavaScript/jQuery/AJAX + PHP + MySQL; herramientas gratuitas para uso académico; diseño adaptable; seguridad en servidor; pruebas e historial progresivo. URL pública requerida por suficiencia: proveedor y despliegue todavía pendientes. Versionado progresivo autorizado; identidad configurada, primer commit creado y repositorio privado [USUARIO_DESTINO/eventify](https://github.com/USUARIO_DESTINO/eventify) creado y push inicial verificado: ramas main/codex y etiquetas checkpoint-b00/v0.1.0-dev.1. Ver [VERSIONADO.md](docs/VERSIONADO.md).
+El ZIP local incluye el código, las migraciones y los scripts de inicio. Requiere Docker preparado en el equipo del receptor, pero no una cuenta de Aiven, Render o GitHub. PHP y MySQL se ejecutan en los contenedores; la configuración local se genera con claves propias.
 
-## Se completará por bloques
+El alojamiento público se administra por separado. Sus contraseñas, certificados, registros privados y configuración de producción no forman parte del paquete. Si se necesitan datos existentes, se entregan mediante una exportación y un procedimiento de restauración documentados.
 
-Completar flujos reales de navegador (B03–B06), QA portable/persistencia/restauración (B07), publicación (B08) y PDF/paquete/defensa (B09). Esquema/migraciones/demo y suite vigente de integración ya aprobados; GitHub privado con versiones publicado. La demostración local genera claves ficticias únicas y privadas; la URL pública sigue pendiente.
+## Tecnologías y alcance
+
+HTML5, CSS3, JavaScript, jQuery, AJAX, PHP, sesiones PHP y MySQL. El proyecto se desarrolla en Linux y prepara una entrega con Docker Compose para Linux y Windows. Usa herramientas gratuitas para la evaluación académica, sin pagos reales ni aplicación móvil nativa.
+
+El historial se conserva en el repositorio privado [USUARIO_DESTINO/eventify](https://github.com/USUARIO_DESTINO/eventify). Las versiones de desarrollo y el procedimiento de recuperación se describen en [VERSIONADO.md](docs/VERSIONADO.md). Revertir el código no restaura la base de datos.
 
 ## Entrega y preparación humana
 

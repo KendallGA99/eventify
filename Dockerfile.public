@@ -26,6 +26,10 @@ COPY database/ database/
 COPY public/ public/
 COPY bin/ bin/
 COPY tests/ tests/
+# Comprobar sintaxis y reglas de clima antes de publicar la imagen.
+RUN php bin/lint.php \
+    && php tests/unit/event-weather.php \
+    && php tests/unit/weather-budget.php
 
 COPY docker/public-entrypoint.sh /usr/local/bin/eventify-public-entrypoint
 RUN chmod 755 /usr/local/bin/eventify-public-entrypoint

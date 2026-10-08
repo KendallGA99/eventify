@@ -33,7 +33,7 @@ final class EventWeather
         }
         $latitude = round((float) $event['latitude'], 4);
         $longitude = round((float) $event['longitude'], 4);
-        // Sin caché privada no realizar llamadas repetidas sin control.
+        // Guardamos las consultas para no pedir el mismo pronóstico en cada visita.
         if (!is_dir($this->directory) && !@mkdir($this->directory, 0700, true) && !is_dir($this->directory)) { return $unavailable; }
         $key = hash('sha256', "$latitude|$longitude|$date");
         $path = $this->directory . '/' . $key . '.json';
@@ -41,6 +41,7 @@ final class EventWeather
         $cached = $this->read($path);
         if (($cached['data']['date'] ?? $date) !== $date) { $cached = null; }
         if ($this->fresh($cached, $time)) { return $this->result($cached, $time, $unavailable); }
+        // Si llegan varias visitas a la vez, solo una consulta al proveedor.
         $lock = @fopen($this->directory . '/' . $key . '.lock', 'c');
         if ($lock === false) { return $unavailable; }
         try {
@@ -80,11 +81,14 @@ final class EventWeather
         return ['date' => $date, 'minimum' => $values['temperature_2m_min'], 'maximum' => $values['temperature_2m_max'], 'rain_probability' => $values['precipitation_probability_max']];
     }
 
+    // Un resultado correcto dura una hora; tras un fallo esperamos diez minutos.
     private function fresh(?array $cache, int $time): bool
     {
         return $cache !== null && $time >= $cache['checked_at'] && $time - $cache['checked_at'] < ($cache['ok'] ? 3600 : 600);
     }
 
+    // Ante un fallo podemos mostrar un pronóstico anterior, hasta seis horas,
+    // avisando que no se pudo actualizar. Nunca inventamos valores del clima.
     private function result(?array $cache, int $time, array $fallback): array
     {
         if ($cache === null || $cache['data'] === null || $time < $cache['success_at'] || $time - $cache['success_at'] > 21600) { return $fallback; }

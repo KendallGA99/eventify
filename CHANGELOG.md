@@ -1,5 +1,9 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.26 — 2026-10-08
+
+B08/RF-15/RNF-04/B09: documentación de entrega actualizada y comentarios orientados a explicar decisiones. Cliente meteorológico más legible y diagnóstico limitado a motivo/código HTTP, sin URL, coordenadas o contenido de la respuesta. Mantiene TLS, destino fijo, timeout, límite y fallback. Imagen pública comprueba sintaxis y pruebas existentes de clima/presupuesto durante la construcción. Diagnóstico y verificación en Render pendientes; no se atribuye una causa al fallo sin evidencia.
+
 ## 0.1.0-dev.25 — 2026-10-08
 
 B08/RNF-03/04: Render construyó dev.24 y migró con usuario limitado, pero health HTTP503. Arranque público prepara una copia privada de la CA para www-data fuera del DocumentRoot (directorio700/archivo600); conserva verificación de CA/hostname y montaje original. Comprueba preflight y conexión real con la identidad del trabajador antes de servir; falla de forma segura si ese usuario no puede conectar. Sintaxis Bash y diff comprobados; despliegue real y verificación HTTP pendientes. No modifica datos ni aplica nuevas migraciones.
