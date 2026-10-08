@@ -7,6 +7,7 @@ try {
     Invoke-EventifyCompose run --rm --no-deps web php tests/unit/reservation-policy.php
     Invoke-EventifyCompose run --rm --no-deps web php tests/unit/registration.php
     Invoke-EventifyCompose run --rm --no-deps web php tests/unit/reservation-input.php
+    Invoke-EventifyCompose run --rm --no-deps web php tests/unit/catalog-filter.php
     Invoke-EventifyCompose run --rm --no-deps web php tests/unit/ticket-qr.php
     Invoke-EventifyCompose exec -T web php bin/health.php
     Write-Host 'Sintaxis, configuración y conexión MySQL verificadas.'

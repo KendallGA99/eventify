@@ -8,7 +8,7 @@
 - Docker Compose con web y db; red backend interna, MySQL sin puerto publicado, web local en 127.0.0.1.
 - Raíz HTTP `public/`; código interno, configuración y scripts fuera del directorio servido. La imagen no incluye .env.
 - Volúmenes separados para MySQL y archivos; arranque/reconstrucción no ejecutan eliminación de datos.
-- HTML/CSS locales; jQuery/AJAX pendientes de sus funcionalidades, no importar bibliotecas decorativamente para afirmar cumplimiento.
+- HTML/CSS y jQuery 4.0.0 locales. Catálogo dinámico y actualización del historial implementados en B05 parcial; integración MySQL pendiente.
 
 ```mermaid
 flowchart LR
@@ -48,7 +48,7 @@ No hay todavía login, categorías, eventos persistidos, reservas, tickets o das
 | --- | --- | --- |
 | PHP / MySQL Community / Apache | Software disponible sin pago para este uso; conservar avisos de licencias aplicables al redistribuir. | Base elegida; ejecutar Docker pendiente. |
 | Docker Engine / Compose | Open source; Desktop contempla uso académico gratuito según sus condiciones. | Compose validado de forma portable; daemon no instalado. |
-| jQuery | MIT; servir copia local de versión seleccionada. | Integración en B05. |
+| jQuery 4.0.0 completo | MIT; copia local con licencia, sin CDN en ejecución. | Catálogo/historial preparados y probados con fixtures; MySQL pendiente. |
 | chillerlan/php-qrcode 6.0.1 | MIT/Apache-2.0; requiere PHP >=8.2 y mbstring según metadatos de Packagist. | Candidata elegida para B04; instalar/extensiones/lockfile pendientes. |
 | PHPUnit 13.4.1 | BSD-3-Clause; requiere PHP >=8.4.1 y extensiones. | Candidato consultado; no instalado. Las pruebas B01 son scripts mínimos sin dependencia externa. |
 | Open-Meteo | Modalidad gratuita no comercial; 10.000 llamadas/día, sin garantía de disponibilidad. | Candidata para evaluación académica; validar atribución, caché y uso antes de integrar. |
@@ -76,3 +76,11 @@ La venta del trabajo de desarrollo no determina por sí sola que la operación f
 ## Dependencia QR adoptada en B04
 
 BaconQrCode 3.1.1 y dasprid/enum 1.0.7 (BSD-2-Clause), composer.lock versionable. SVG generado localmente desde la matriz codificada, sin servicio externo, datos privados ni URL pública en payload. Requiere ctype/iconv y PHP objetivo 8.4; las dependencias por sí mismas admiten ^8.1. Docker descarga Composer 2.10.3 con SHA-256 fijado e instala desde lock con plugins/scripts deshabilitados, comprobando la plataforma real. Vendor no se versiona.
+
+## Catálogo y actualización asincrónica (B05 parcial)
+
+Filtros validados en CatalogFilter, consultas PDO en CatalogRepository, renderizado escapado en fragmentos PHP. Listados de 12 registros, consulta de 13 para detectar siguiente página sin COUNT repetido. Fechas inclusivas en hora Costa Rica traducidas a límites UTC [inicio, día siguiente); comodines LIKE de usuario tratados literalmente. Borradores privados; publicados pasados aparecen como finalizados sin modificar automáticamente la base. Cancelados/finalizados consultables y sin formulario de reserva. Disponibilidad se calcula con reservas CONFIRMADAS.
+
+jQuery: (1) catálogo con debounce, aborto y secuencia que descarta respuestas anteriores incluso mientras el usuario escribe; (2) Mis experiencias con consulta autenticada y actualización tras cancelar. AJAX: GET /api/eventos, POST /api/reservas, POST /api/reservas/{id}/cancelar y GET /api/experiencias. Las rutas de historial/cancelación conservan autorización y CSRF de escritura; las consultas públicas no necesitan sesión. La API externa sigue pendiente.
+
+Dependencia: [jQuery 4.0.0 oficial](https://jquery.com/download/), [licencia MIT](https://jquery.com/license/); fuente https://code.jquery.com/jquery-4.0.0.min.js. SHA-256: 39a546ea9ad97f8bfaf5d3e0e8f8556adb415e470e59007ada9759dce472adaa. Archivos locales public/assets/lib/jquery-4.0.0.min.js y jquery-LICENSE.txt; conservar encabezado y licencia.

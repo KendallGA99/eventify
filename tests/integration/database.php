@@ -122,6 +122,7 @@ try {
     $assert(!$auth->allowAttempt('integration', '127.0.0.1'), 'Límite persistente aplicado');
     // Reactivar la cuenta demo que esta suite desactivó para probar revocación.
     $pdo->exec("UPDATE users SET is_active = 1 WHERE email = 'admin@eventify.test'");
+    require __DIR__ . '/catalog.php';
     require __DIR__ . '/http-auth.php';
 
     // Simular archivos alterados y DDL incompleto únicamente al final, en el stack efímero.

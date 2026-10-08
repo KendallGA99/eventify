@@ -30,7 +30,15 @@ if ($reserveApi) {
     (new Eventify\Http\ReservationController())->api(isset($cancelMatch[1]) ? (int) $cancelMatch[1] : null);
     exit;
 }
-if (in_array($path, ['/eventos', '/experiencias'], true) || preg_match('#\A/eventos/[a-z0-9-]+\z#', (string) $path) || preg_match('#\A/tickets/[a-f0-9]{64}(?:/qr\.svg)?\z#', (string) $path)) {
+if ($path === '/api/experiencias') {
+    (new Eventify\Http\ReservationController())->experiencesApi();
+    exit;
+}
+if ($path === '/eventos' || $path === '/api/eventos') {
+    (new Eventify\Http\CatalogController())->respond($path === '/api/eventos');
+    exit;
+}
+if (in_array($path, ['/experiencias'], true) || preg_match('#\A/eventos/[a-z0-9-]+\z#', (string) $path) || preg_match('#\A/tickets/[a-f0-9]{64}(?:/qr\.svg)?\z#', (string) $path)) {
     (new Eventify\Http\ReservationController())->page($path);
     exit;
 }

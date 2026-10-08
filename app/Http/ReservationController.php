@@ -36,6 +36,28 @@ final class ReservationController
         }
     }
 
+    public function experiencesApi(): void
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        header('Cache-Control: no-store');
+        Session::start();
+        $pdo = Database::connect();
+        $user = (new Auth($pdo))->user();
+        if ($user === null) {
+            http_response_code(401);
+            echo json_encode(['message' => 'Debe iniciar sesión para consultar sus experiencias.'], JSON_THROW_ON_ERROR);
+            return;
+        }
+        session_write_close();
+        $query = $pdo->prepare('SELECT r.id, r.code AS reservation_code, r.quantity, r.total, r.status, e.name, e.starts_at, e.location, e.status AS event_status, t.code AS ticket_code FROM reservations r JOIN events e ON e.id = r.event_id JOIN tickets t ON t.reservation_id = r.id WHERE r.user_id = ? ORDER BY r.created_at DESC, r.id DESC');
+        $query->execute([$user['id']]);
+        $rows = $query->fetchAll();
+        require PROJECT_ROOT . '/app/Views/catalog-helpers.php';
+        ob_start();
+        require PROJECT_ROOT . '/app/Views/reservation-results.php';
+        echo json_encode(['html' => ob_get_clean(), 'message' => 'Sus experiencias están actualizadas.'], JSON_THROW_ON_ERROR);
+    }
+
     public function page(string $path): void
     {
         Session::start();
@@ -66,13 +88,9 @@ final class ReservationController
                 }
             }
         } else {
-            $sql = "SELECT e.*, c.name AS category, e.capacity - COALESCE((SELECT SUM(r.quantity) FROM reservations r WHERE r.event_id = e.id AND r.status = 'CONFIRMADA'), 0) AS available FROM events e JOIN categories c ON c.id = e.category_id WHERE e.status = 'PUBLICADO' AND e.starts_at > UTC_TIMESTAMP()";
-            $params = [];
-            if ($path !== '/eventos') { $sql .= ' AND e.slug = ?'; $params[] = substr($path, 9); $page = 'event'; }
-            $query = $pdo->prepare($sql . ' ORDER BY e.starts_at, e.id');
-            $query->execute($params);
-            $rows = $query->fetchAll();
-            if ($page === 'event') { $event = $rows[0] ?? null; if ($event === null) { $this->missing(); return; } }
+            $page = 'event';
+            $event = (new \Eventify\Infrastructure\CatalogRepository($pdo))->find(substr($path, 9));
+            if ($event === null) { $this->missing(); return; }
         }
         require PROJECT_ROOT . '/app/Views/experiences.php';
     }

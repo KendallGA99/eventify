@@ -8,6 +8,7 @@ Cada avance coherente se guarda en un commit con referencia Bxx/RF. Las etiqueta
 
 - `checkpoint-b00`: documentación inicial, commit 44da548.
 - `v0.1.0-dev.1`: primera integración de código preparada; pruebas reales pendientes. Se crea después del commit correspondiente.
+- `v0.1.0-dev.2`: catálogo/filtros e historial jQuery (B05 parcial), integración MySQL/API pendientes; rama codex/b05-catalogo.
 - Versiones estables `v0.x.y`: solo después de pasar pruebas aplicables, revisar datos/migraciones y registrar evidencia. Una etiqueta de desarrollo conserva código, no certifica funcionamiento.
 
 No reconstruir artificialmente commits antiguos para aparentar que todos los bloques se cerraron. El código actual B01–B04 se guarda como una integración de desarrollo con pendientes explícitos. Los cambios siguientes sí se versionan por incremento coherente.

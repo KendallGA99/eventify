@@ -15,7 +15,8 @@ Fecha de referencia: 2026-10-08, zona del usuario America/Costa_Rica.
 - Vista inicial en construcción: comprobada por navegador en móvil/escritorio. Vista temporal en http://127.0.0.1:8085, sin base de datos; puede terminar al cerrar procesos/sesión. El proyecto Docker utiliza 8080.
 - B02: esquema, migraciones, siembra opcional y reglas preparados; Migraciones 001/002 aplicadas en MySQL; suite aislada falló en comprobación HTTP de cookie. B03: pantallas/endpoints de registro, ingreso, cuenta, roles y salida preparados; imagen actualizada/integración pendientes. B04 parcial: reservas/cancelación transaccionales, AJAX, catálogo mínimo, historial y consulta privada de ticket preparados; QR SVG integrado y decodificado en prueba independiente; integración objetivo pendiente. Dashboard pendiente.
 - Windows: scripts preparados, versión/equipo/prueba real pendientes.
-- QR: BaconQrCode 3.1.1/enum 1.0.7 instalados, lockfile y auditoría preparados; contenedor actualizado pendiente. API/jQuery y otros módulos pendientes.
+- B05 parcial: catálogo/búsqueda/filtros/paginación, estados públicos y actualización del historial con jQuery 4.0.0 local; fixture UI comprobada, MySQL/API externa pendientes.
+- QR: BaconQrCode 3.1.1/enum 1.0.7 instalados, lockfile y auditoría preparados; contenedor actualizado pendiente. API y administración pendientes.
 - Publicación: InfinityFree es candidata de investigación; PHP/MySQL real, API, secretos y límites aún no verificados. No se creó cuenta ni URL.
 
 ## Próxima acción necesaria
@@ -47,7 +48,7 @@ El comando activa el modo de desarrollo con montajes de código de solo lectura,
 | B02 | Implementado; cierre pendiente | [Modelo de datos](DATOS.md), [evidencia B02](evidencias/B02.md) | Migraciones aplicadas; suite aislada sin aprobar |
 | B03 | Implementado; cierre pendiente | [Evidencia B03](evidencias/B03.md) | Corrección cookie/CSRF preparada; repetir integración |
 | B04 | Implementación parcial | [Evidencia B04](evidencias/B04.md) | QR independiente comprobado; integración/concurrencia y navegador pendientes |
-| B05 | Pendiente | Catálogo/jQuery/AJAX/API | Depende B04 |
+| B05 | Implementación parcial | [Evidencia B05](evidencias/B05.md): catálogo/filtros/historial jQuery | API externa e integración MySQL pendientes; B04 sin cerrar |
 | B06 | Pendiente | CRUD/admin/dashboard | Depende B04 |
 | B07 | Pendiente | QA integral/Linux/Windows/persistencia | Depende B05/B06 |
 | B08 | Pendiente | GitHub/publicación | Requiere autorizaciones externas y proveedor viable |
@@ -109,3 +110,13 @@ Actualizar con hechos; evidencias extensas en docs/evidencias/Bxx.md. No duplica
 Ver [VERSIONADO.md](VERSIONADO.md) y CHANGELOG.md. Workflow manual preparado; no se ejecutó ni se habilitó despliegue. Rollback real de código/datos pendiente de ensayo aislado.
 
 Publicación inicial: https://github.com/USUARIO_DESTINO/eventify (privado). SSH autenticado y push verificado; sin .env/vendor/datos privados en el índice. CI manual preparado y no ejecutado. No se desplegó la aplicación ni se restauró/borró MySQL.
+
+## Incremento B05 parcial — 2026-10-08
+
+Objetivo: RF-04/05/06/07/10, RT-02/03, RNF-01/04/05; búsqueda/filtros y actualización de experiencias. Se implementaron categorías/fechas/cupos/estado combinables, paginación, tarjetas con imagen/estados, detalle público cancelado/finalizado sin reservas y fragmentos AJAX escapados. Dos funciones significativas jQuery y cuatro operaciones AJAX preparadas; API externa pendiente. Sin migraciones ni modificación de datos existentes.
+
+Pruebas: 23 unidades nuevas correctas en PHP temporal 8.3.6 (total de reglas vigente 81), sintaxis PHP/JS/Bash correcta, git diff --check correcto. Navegador Chromium in-app con fixture temporal aislada (sin MySQL): búsqueda vacía, filtros, limpiar, error de rango, historial/cancelación dinámica correctos; móvil 390×844 y escritorio 1280×900 sin desbordamiento observado; consola sin errores. Capturas temporales /tmp/eventify-b05-mobile.png y /tmp/eventify-b05-desktop.png. No certifican MySQL, Chrome/Firefox ni imagen objetivo.
+
+La suite HTTP/MySQL incorpora validación de filtros combinados, estados, comodín literal y propiedad del historial; ejecución pendiente por sudo interactivo. storage/verification-status.txt todavía no existe al comprobar este incremento. No cerrar B02–B05 ni declarar estable hasta tener evidencia real. Próximo: integración B04/B05, API externa útil y administración.
+
+Versionado del incremento: rama codex/b05-catalogo, versión de desarrollo 0.1.0-dev.2; publicar commit/etiqueta y verificar SHA remoto al terminar. main conserva la base anterior.

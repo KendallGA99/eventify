@@ -24,6 +24,8 @@ jobs:
         run: |
           python3 tests/smoke_http.py --base http://127.0.0.1:8080
           node --check public/assets/js/reservations.js
+          node --check public/assets/js/catalog.js
+          node --check public/assets/js/experiences.js
       - name: Detener servicios sin borrar volúmenes
         if: always()
         run: docker compose stop

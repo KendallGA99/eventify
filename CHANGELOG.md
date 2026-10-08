@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.2 — 2026-10-08
+
+B05 parcial: catálogo con búsqueda, categoría, rango de fechas Costa Rica, cupos, estados y páginas; jQuery 4.0.0 local; actualización autenticada de Mis experiencias tras cancelación. Borradores privados y eventos cancelados/finalizados visibles sin reserva. No cambia esquema ni datos.
+
+Verificado: 23 unidades nuevas (81 de reglas), sintaxis y prueba de interfaz con fixtures aisladas móvil/escritorio. MySQL/HTTP objetivo y API externa pendientes. Versión de desarrollo; no estable.
+
 ## 0.1.0-dev.1 — 2026-10-08
 
 Primera versión de desarrollo del código B01–B04: Docker PHP/MySQL, instalación Linux/Windows, migraciones, datos demo opcionales, autenticación/roles/CSRF, reservas/cancelación transaccionales, historial y ticket con QR local.
