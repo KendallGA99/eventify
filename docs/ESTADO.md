@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Este archivo resume el estado vigent
 
 ## Código, servidores y versión
 
-- Rama activa: codex/b08-publicacion-plan (preparación documental; B07 continúa abierto). Código dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
+- Rama activa: codex/b08-mysql-tls (preparación técnica; B07 continúa abierto). Base dev.11: 2ce983d; etiqueta anotada v0.1.0-dev.11 publicada y verificada por git ls-remote. Dev.10 (d82dab0) permanece etiquetado y forma parte de esta versión. Ninguna versión estable.
 - main permanece en 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin push forzado; etiquetas anteriores intactas. CI manual preparado, no ejecutado.
 - Instancia normal: http://localhost:8080, override dev, volúmenes conservados. No sembrar allí para probar interfaz.
 - QA: http://localhost:8081, proyecto Compose eventify-qa, base eventify_qa, datos ficticios/claves/volúmenes propios. Imagen con código copiado, sin bind de desarrollo.
@@ -43,7 +43,7 @@ Confirmación AJAX acotada a 15 s, incluyendo lectura JSON. Previene doble submi
 - B00: documentación/versionado inicial. B01/B02: stack/esquema/integración comprobados; cierre de portabilidad/copia limpia pendiente.
 - B03–B06: implementados con integración aprobada y navegador parcial; consultar [MATRIZ.md](MATRIZ.md) para cobertura y faltantes.
 - B07 activo: QA/seguridad/concurrencia/persistencia comprobadas parcialmente; sigue abierto.
-- B08: GitHub privado operativo; viabilidad documental Render/Aiven revisada en PUBLICACION.md. TLS PDO, almacenamiento de sesiones/presupuesto API y publicación/pruebas externas pendientes.
+- B08: GitHub privado operativo; viabilidad documental Render/Aiven revisada en PUBLICACION.md. TLS PDO preparado en dev.12 con guardas unitarias; negociación real, almacenamiento de sesiones/presupuesto API y publicación/pruebas externas pendientes.
 - B09: paquete/PDF técnico/cuentas de evaluación/preparación y defensa humana pendientes.
 
 ## Próxima acción
@@ -64,3 +64,9 @@ QA continúa en dev.9: JS sin AbortController/15000 y status anterior comprobado
 Fuentes oficiales consultadas 2026-10-08: Render admite PHP Docker pero su disco gratuito es efímero; Aiven documenta MySQL Free sin tarjeta/plazo fijo, con límites/inactividad. Combinación candidata, conexión entre proveedores y versión real aún no probadas. InfinityFree usa MariaDB según administrador (17-10-2025); no seleccionar para MySQL obligatorio. Inspección del código detectó TLS externo ausente en Database.php, sesiones y presupuesto weather en disco, DemoSeeder bloqueado correctamente en production. PUBLICACION.md detalla secuencia y aceptación. No cambiaron código, datos, VERSION ni etiquetas; solo documentación. QA todavía sin verification-status/log nuevos; no certificar restore real.
 
 Push documental B08 verificado: codex/b08-publicacion-plan → 1a724513f0c2a43e2690347a7cdea9bf50d12060, HEAD y git ls-remote coincidentes. Enlaces locales y git diff --check correctos. Código/tag dev.11 conservados, sin nuevas pruebas de aplicación por tratarse solo de documentación.
+
+## Incremento dev.12: configuración TLS MySQL
+
+RNF-04/RT-09: DatabaseConfig valida DSN/entorno/modo/CA antes de conectar; production exige verificación del servidor, sin opción de degradar TLS. Database comprueba Ssl_cipher antes de configurar la zona horaria y devolver PDO. Local/test mantienen conexión interna sin CA por defecto. Sin migraciones ni mutaciones de datos ni servicios externos.
+
+40 comprobaciones unitarias de configuración/guardas correctas con PHP 8.3 temporal, extensiones PDO/mysqlnd/pdo_mysql/ctype reales y CA efímera. Prueba añadida a scripts Linux/Windows. Sintaxis PHP y Bash/diff correctos. PHP 8.4 Docker, negociación TLS con servidor válido/CA errónea/hostname erróneo/sin TLS y regresión MySQL local pendientes. Estos resultados no se suman a las 177 reglas antiguas ni certifican nueva versión en ejecución. QA sigue sin registro verification-status nuevo; sudo no interactivo del agente denegado.

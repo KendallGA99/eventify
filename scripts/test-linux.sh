@@ -5,6 +5,7 @@ require_docker
 prepare_env
 "${EVENTIFY_DOCKER[@]}" compose run --build --rm --no-deps web php bin/lint.php
 "${EVENTIFY_DOCKER[@]}" compose run --rm --no-deps web php tests/unit/config.php
+"${EVENTIFY_DOCKER[@]}" compose run --rm --no-deps web php tests/unit/database-config.php
 "${EVENTIFY_DOCKER[@]}" compose run --rm --no-deps web php tests/unit/reservation-policy.php
 "${EVENTIFY_DOCKER[@]}" compose run --rm --no-deps web php tests/unit/registration.php
 "${EVENTIFY_DOCKER[@]}" compose run --rm --no-deps web php tests/unit/reservation-input.php

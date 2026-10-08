@@ -12,23 +12,19 @@ final class Database
 {
     public static function connect(): PDO
     {
-        $host = Config::get('DB_HOST', 'db');
-        $port = Config::get('DB_PORT', '3306');
-        $database = Config::get('DB_DATABASE', 'eventify');
-        if (!preg_match('/\A[a-zA-Z0-9_.-]+\z/', $host)
-            || !ctype_digit($port) || (int) $port < 1 || (int) $port > 65535
-            || !preg_match('/\A[a-zA-Z0-9_]+\z/', $database)) {
-            throw new RuntimeException('La configuración de base de datos no es válida.');
-        }
+        $connection = DatabaseConfig::connection();
         $pdo = new PDO(
-            'mysql:host=' . $host . ';port=' . $port . ';dbname=' . $database . ';charset=utf8mb4',
+            $connection['dsn'],
             Config::required('DB_USERNAME'),
             Config::required('DB_PASSWORD'),
-            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                PDO::ATTR_EMULATE_PREPARES => false,
-                PDO::ATTR_TIMEOUT => 3]
+            $connection['options']
         );
+        if ($connection['tls']) {
+            $status = $pdo->query("SHOW SESSION STATUS LIKE 'Ssl_cipher'")->fetch(PDO::FETCH_NUM);
+            if (!is_array($status) || !isset($status[1]) || trim((string) $status[1]) === '') {
+                throw new RuntimeException('La conexión de base de datos requiere TLS.');
+            }
+        }
         $pdo->exec("SET time_zone = '+00:00'");
         return $pdo;
     }

@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.12 — 2026-10-08
+
+B08/RNF-04/RT-09: conexión PDO con configuración TLS verificada obligatoria en production, CA de archivo fuera de public y comprobación de cifrado negociado antes de usar MySQL. Valida entorno/modo/DSN/CA y rechaza degradación o CA ignorada; local/test conservan configuración interna por defecto. Sin cambios de esquema/datos ni servicios creados.
+
+40 checks de configuración y guardas con PHP 8.3/PDO mysqlnd temporal correctos, sintaxis/diff correctos; incluidos en scripts de pruebas Linux/Windows. PHP 8.4 Docker, regresión de conexión local y negociación TLS con MySQL real pendientes. No marca estable ni certifica despliegue público.
+
 ## Preparación documental B08 — 2026-10-08
 
 Propuesta Render PHP Docker + Aiven MySQL Free con fuentes oficiales, límites gratuitos y criterios de publicación. InfinityFree no seleccionada con la evidencia actual de MariaDB. Identificadas adaptaciones pendientes de TLS PDO, sesiones, presupuesto API y aprovisionamiento público; sin cambiar código, VERSION ni etiquetas dev.11. No se crearon servicios ni se publicó la aplicación. ESTADO/ARQUITECTURA/MATRIZ actualizados; revisión documental y diff correctos.
