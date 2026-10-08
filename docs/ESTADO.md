@@ -6,7 +6,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 
 - Proyecto académico PHP/MySQL, HTML/CSS/JS/jQuery/AJAX; desarrollo Linux, entrega Docker Compose Linux/Windows. Sin gastos autorizados.
 - Construcción por bloques y commits/push progresivos autorizados. Repositorio privado [USUARIO_DESTINO/eventify](https://github.com/USUARIO_DESTINO/eventify), remoto SSH. No modificar Código Tico.
-- URL pública obligatoria y pendiente. Usuario autorizó Render Free + Aiven MySQL Free e integración Render limitada a USUARIO_DESTINO/eventify al responder «dale» el 2026-10-08; gasto máximo ₡0, sin tarjeta ni planes pagados. Sin servicios externos creados todavía. No certificar Windows, publicación ni defensa por inferencia.
+- URL pública obligatoria y pendiente. Usuario autorizó Render Free + Aiven MySQL Free e integración Render limitada a USUARIO_DESTINO/eventify al responder «dale» el 2026-10-08; gasto máximo ₡0, sin tarjeta ni planes pagados. MySQL Free externo creado; Render aún no desplegado. No certificar Windows, publicación ni defensa por inferencia.
 
 ## Versión e instancias
 
@@ -37,7 +37,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 - B01/B02: stack, esquema y migraciones comprobados. Portabilidad final permanece abierta.
 - B03–B06: implementación e integración aprobadas; aceptación de navegador parcial. Consultar [MATRIZ.md](MATRIZ.md).
 - B07 abierto: completar Firefox/Windows y casos restantes de UI/seguridad. No repetir la suite extensa sin cambios, fallos o dudas relevantes.
-- B08 activo: GitHub privado y preparación pública operativos; TLS y cuentas comprobados en ensayo aislado. Ensayo sin TLS dev.24 aprobado. Propuesta PUBLICACION-SOLICITUD.md autorizada. Render conectado solo a EVENTIFY y formulario Free preparado sin desplegar. Próximo paso: usuario complete registro Aiven, luego MySQL Free/versión/CA reales y proveedor/HTTPS/URL/flujos/persistencia externos.
+- B08 activo: GitHub privado y preparación pública operativos; TLS y cuentas comprobados en ensayo aislado. Ensayo sin TLS dev.24 aprobado. Propuesta PUBLICACION-SOLICITUD.md autorizada. Render conectado solo a EVENTIFY y formulario Free preparado sin desplegar. Aiven autenticado y MySQL Free creado; pendiente servidor disponible, base nueva, TLS externo/migraciones/cuentas, Render y HTTPS/flujos/persistencia públicos.
 - B09 abierto: actualizar documento técnico y paquete cuando la evidencia se consolide; entrega final exige instalación del receptor, entregables completos y evidencia humana real.
 
 ## Último resultado y límites
@@ -98,3 +98,12 @@ Formulario New Web Service preparado, sin pulsar Deploy: nombre eventify-academi
 Aiven aún muestra formulario signup/email vacío y Register with email deshabilitado. Usuario debe completar nombre/correo/contraseña y términos, verificar correo si procede y llegar al panel, sin tarjeta ni crear servicios. No se vuelve a pedir autorización general. Después inspeccionar MySQL Free, versión/CA y preparar base nueva antes de desplegar. Publicación real/aceptación externa continúan pendientes.
 
 Captura privada de alcance guardado /tmp/eventify-render-acceso-restringido.png; formulario /tmp/eventify-render-preparado-free.png. Pestañas marcadas para continuidad, sin almacenar claves ni capturas en Git.
+
+
+## B08: MySQL Free creado en Aiven
+
+2026-10-08: registro por correo completado por el usuario; consola autenticada. Se omitió el asistente inicial con PostgreSQL Developer de prueba. Create service → MySQL tenía Professional seleccionado; se cambió explícitamente a Free: precio $0/Free, free-1-1gb, un CPU/1 GB RAM/1 GB almacenamiento, North America, apagado por inactividad. Se creó eventify-mysql dentro del alcance autorizado; Overview confirma MySQL 8.4, Free y asignación DigitalOcean sfo. No se añadió tarjeta ni se creó servicio Developer/Professional. La cuenta muestra créditos de prueba incluidos en registro; el servicio creado es Free independiente de esos créditos.
+
+Estado observado Building: aún no confirma conexión disponible. CA real copiada a storage/aiven-evaluacion/mysql-ca.pem con permisos 600, directorio 700 ignorado por Git; PEM y fechas válidas mediante openssl. Primer Copy password devolvió vacío durante construcción, descartado como credencial no disponible; no se imprimen secretos. Plan de tres cuentas ficticias preparado con generador existente (JSON600), sin crear cuentas todavía. Job privado preparar.sh/probe.php preparado: guardas MySQL8.4/TLS/identidad/collation/base nueva vacía, migraciones y CLI explícito, sin borrar ni restaurar bases. Bash -n aprobado, PHP/job externo pendiente; todavía no hay production.env válido ni base eventify_evaluacion creada.
+
+Render conserva formulario Free, repo/branch/Dockerfile.public/health originales; región cambiada a Oregon para aproximarla al sfo asignado por Aiven. No se pulsó Deploy ni se cargaron secretos. Docker del agente sigue denegado; sudo no interactivo no disponible. Verificar servidor Running, crear base nueva y guardar credenciales reales antes de solicitar un único comando necesario al usuario. No publicar antes de TLS/migraciones/cuentas externos.
