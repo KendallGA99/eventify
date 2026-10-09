@@ -128,7 +128,7 @@ try {
     [$status] = $request('/admin');
     $assert($status === 200, 'Administrador autorizado por HTTP');
     [$status, $body] = $request('/admin/reservas?user=http%40eventify.test&state=CONFIRMADA');
-    $assert($status === 200 && str_contains($body, 'Usuario HTTP'), 'Reservas administrativas filtradas por correo y estado');
+    $assert($status === 200 && str_contains($body, 'Usuario Actualizado'), 'Reservas administrativas reflejan el nombre actualizado al filtrar por correo y estado');
     [$status, $body] = $request('/admin/reservas/' . (int) $created['id']);
     $assert($status === 200 && str_contains($body, 'Precio histórico por entrada'), 'Administrador consulta detalle ajeno conservado');
     [$status] = $request('/admin/reservas?state=PUBLICADO'); $assert($status === 422, 'Filtro administrativo inválido rechazado');
