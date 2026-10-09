@@ -77,3 +77,6 @@ Dev.29 → 8ef9bb6c9d17013793234b1334dfdd3f44c4a653: corrección Debian xz/liblz
 
 
 Dev.30 → 390b1ef6dcbb9a9d76eaad8a910a80da364bb637: rama y etiqueta anotada confirmadas por ls-remote. Construcción real de ambas variantes y unidades/QR aprobadas; escaneo confirma eliminación de los cuatro avisos xz/liblzma sin nuevos avisos. Los restantes siguen abiertos. No estable; Render continúa dev.26 y copias anteriores conservadas. Esta evidencia supera el pendiente de construcción de dev.29.
+
+
+Dev.31 → 4088cbe34aef3e9c7ec12ead72b9781fd61efac8: revisión editorial de documentos, guías y comentarios existentes. Rama y etiqueta anotada v0.1.0-dev.31 confirmadas con git ls-remote. PDF de15 páginas revisado y ZIP exportado desde esta referencia; aplicación igual a dev.30. Sin despliegue ni nueva instalación del paquete; etiqueta de desarrollo.
