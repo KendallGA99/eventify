@@ -8,7 +8,7 @@ $title = match ($page) { 'event' => $event['name'], 'ticket' => 'Ticket de reser
 ?>
 <!doctype html><html lang="es">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title><?= $escape($title) ?> · Eventify</title><link rel="stylesheet" href="/assets/css/app.css"><link rel="icon" href="/assets/icon.svg"><script src="/assets/lib/jquery-4.0.0.min.js" defer></script><script src="/assets/js/catalog.js" defer></script><script src="/assets/js/reservations.js" defer></script><script src="/assets/js/experiences.js" defer></script><script src="/assets/js/weather.js" defer></script></head>
-<body><header class="site-header"><a class="brand" href="/">eventify<span>.</span></a><nav aria-label="Principal"><a href="/eventos">Eventos</a><a href="/experiencias">Mis experiencias</a><a href="/cuenta">Mi cuenta</a></nav></header>
+<body><?php require PROJECT_ROOT . '/app/Views/navigation.php'; ?>
 <main class="events-main"><p class="eyebrow">Experiencias para compartir</p><h1 class="page-title"><?= $escape($title) ?></h1>
 <?php if ($page === 'catalog'): ?>
     <form class="catalog-filters" action="/eventos" method="get" data-catalog-filters>
@@ -40,7 +40,7 @@ $title = match ($page) { 'event' => $event['name'], 'ticket' => 'Ticket de reser
     <p data-experiences-feedback role="status" aria-live="polite"></p>
     <div data-experiences-results data-csrf="<?= Session::token() ?>"><?php require PROJECT_ROOT . '/app/Views/reservation-results.php'; ?></div>
 <?php else: ?>
-    <article class="auth-card ticket-card"><h2><?= $escape($ticket['name']) ?></h2><p><?= $escape($user['full_name']) ?></p><p><?= $date($ticket['starts_at']) ?> · <?= $escape($ticket['location']) ?></p><p><?= (int) $ticket['quantity'] ?> entradas · <?= $money($ticket['total']) ?></p><p>Reserva <?= $escape($ticket['reservation_code']) ?></p><p class="field-help">Identificador: <?= $escape($ticket['ticket_code']) ?></p>
+    <article class="auth-card ticket-card"><h2><?= $escape($ticket['name']) ?></h2><p><?= $escape($user['full_name']) ?></p><p><?= $date($ticket['starts_at']) ?> · <?= $escape($ticket['location']) ?></p><p><?= (int) $ticket['quantity'] ?> <?= (int) $ticket['quantity'] === 1 ? 'entrada' : 'entradas' ?> · <?= $money($ticket['total']) ?></p><p>Reserva <?= $escape($ticket['reservation_code']) ?></p><p class="field-help">Identificador: <?= $escape($ticket['ticket_code']) ?></p>
     <img class="ticket-qr" src="/tickets/<?= $escape($ticket['ticket_code']) ?>/qr.svg" width="392" height="392" alt="Código QR del identificador de este ticket"><p class="field-help">El QR identifica la reserva. La vigencia se consulta en Eventify.</p>
     <?php if ($ticket['status'] !== 'CONFIRMADA' || $ticket['event_status'] !== 'PUBLICADO' || new DateTimeImmutable($ticket['starts_at'], new DateTimeZone('UTC')) <= new DateTimeImmutable('now')): ?><p class="notice">Este ticket ya no está vigente. Su historial permanece disponible.</p><?php else: ?><p class="notice">Reserva confirmada.</p><?php endif; ?>
     <a href="/experiencias">Volver a mis experiencias</a></article>

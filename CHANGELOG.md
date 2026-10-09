@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.37 — Inicio, perfil y experiencia de uso (B07/RF-01/02/03/RNF-01/02)
+
+- Mostrar/ocultar cada contraseña con control accesible; ingreso vuelve al inicio y navegación distingue visitante, usuario y administrador.
+- Perfil permite actualizar el nombre con validación/CSRF y propietario de sesión; correo y rol se conservan. Inicio sin avisos de desarrollo; accesos a reservas, navegación consistente y singular/plural corregidos.
+- Efectos suaves y preferencia de movimiento reducido; pruebas de integración ampliadas para perfil y redirección. Estado real de ejecución en ESTADO.
+
 ## 0.1.0-dev.36 — Presentación de errores (B07/RNF-01/SEG-03)
 
 - Da estilo a formularios vencidos, acciones no permitidas y fallos generales de páginas HTML. Conserva códigos de error, controles CSRF/roles y formatos técnicos de API/consola.

@@ -37,7 +37,7 @@ final class CatalogController
             require PROJECT_ROOT . '/app/Views/catalog-results.php';
             $html = ob_get_clean();
             header('Content-Type: application/json; charset=utf-8');
-            echo json_encode(['html' => $html, 'page' => $filter->page, 'message' => count($rows) . ' eventos en esta página.'], JSON_THROW_ON_ERROR);
+            echo json_encode(['html' => $html, 'page' => $filter->page, 'message' => count($rows) . (count($rows) === 1 ? ' evento en esta página.' : ' eventos en esta página.')], JSON_THROW_ON_ERROR);
             return;
         }
         Session::start();

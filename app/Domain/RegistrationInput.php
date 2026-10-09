@@ -15,7 +15,7 @@ final class RegistrationInput
     }
 
     /** @return list<string> */
-    public static function errors(array $input): array
+    public static function nameErrors(array $input): array
     {
         $errors = [];
         $rawName = self::text($input, 'full_name');
@@ -24,6 +24,13 @@ final class RegistrationInput
         if ($length === false || $length < 2 || $length > 150 || preg_match('/[\x00-\x1F\x7F]/', $rawName)) {
             $errors[] = 'Escriba un nombre de 2 a 150 caracteres.';
         }
+        return $errors;
+    }
+
+    /** @return list<string> */
+    public static function errors(array $input): array
+    {
+        $errors = self::nameErrors($input);
         $email = self::email(self::text($input, 'email'));
         if (strlen($email) > 254 || filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
             $errors[] = 'Escriba un correo electrónico válido.';

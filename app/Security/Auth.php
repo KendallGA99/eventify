@@ -39,6 +39,18 @@ final class Auth
         return [];
     }
 
+    public function updateName(int $userId, array $input): array
+    {
+        $errors = RegistrationInput::nameErrors($input);
+        if ($errors !== []) {
+            return $errors;
+        }
+        // El identificador procede de la sesión; correo y rol no son editables desde este formulario.
+        $query = $this->pdo->prepare('UPDATE users SET full_name = ? WHERE id = ? AND is_active = 1');
+        $query->execute([trim(RegistrationInput::text($input, 'full_name')), $userId]);
+        return [];
+    }
+
     public function authenticate(string $email, string $password): bool
     {
         $query = $this->pdo->prepare('SELECT id, password_hash, is_active FROM users WHERE email = ?');

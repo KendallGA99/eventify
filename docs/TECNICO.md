@@ -41,7 +41,7 @@ PHP/MySQL son obligatorios. Docker reproduce el entorno local; el receptor no in
 | Área | Rutas principales y acceso |
 | --- | --- |
 | Pública | /, /eventos, /eventos/{slug}, /registro, /ingresar. Los borradores no son públicos. |
-| Cuenta | /cuenta y POST /salir; sesión válida y logout protegido. |
+| Cuenta | GET/POST /cuenta: consultar perfil y editar nombre con sesión/CSRF; correo y rol conservados. POST /salir destruye sesión. Login redirige al inicio. |
 | Usuario | /experiencias, /tickets/{code}, /tickets/{code}/qr.svg; propiedad verificada en MySQL. |
 | Administrador | /admin, /admin/categorias, /admin/eventos, /admin/reservas y detalles/formularios. |
 | AJAX | /api/eventos, /api/experiencias, /api/reservas, cancelación y clima. |

@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="/assets/css/app.css">
 </head>
 <body>
-    <header class="site-header"><a class="brand" href="/" aria-label="Eventify, inicio">eventify<span aria-hidden="true">.</span></a><nav aria-label="Principal"><a href="/ingresar">Ingresar</a><a href="/registro">Crear cuenta</a><a href="/cuenta">Mi cuenta</a></nav></header>
+    <?php require PROJECT_ROOT . '/app/Views/navigation.php'; ?>
     <main id="contenido">
         <section class="hero" aria-labelledby="hero-title">
             <p class="eyebrow">Experiencias que se convierten en historias</p>
             <h1 id="hero-title">Tu próximo plan<br>empieza <em>aquí.</em></h1>
             <p class="hero-copy">Un lugar para descubrir eventos, encontrar nuevas experiencias y compartir buenos momentos.</p>
-            <p class="notice">Estamos preparando Eventify. Descubra las experiencias publicadas y guarde su próximo plan.</p><a class="return-link" href="/eventos">Explorar eventos</a>
+            <p class="hero-note">Explore por categoría, encuentre espacios disponibles y conserve sus entradas en Mis experiencias.</p><a class="return-link" href="/eventos">Explorar eventos</a>
         </section>
         <section class="experience-grid" aria-label="Tipos de experiencias">
             <article><span class="category-number">01</span><h2>Aprende algo nuevo</h2><p>Talleres y conferencias para despertar tu curiosidad.</p></article>

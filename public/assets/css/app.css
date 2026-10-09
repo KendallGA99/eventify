@@ -89,3 +89,28 @@ textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; 
 @media (max-width: 560px) { .dashboard-grid { grid-template-columns: 1fr; } }
 
 .metric-note { font-weight: 400; }
+
+/* El movimiento acompaña la navegación y respeta la preferencia del sistema. */
+@keyframes appear { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.hero, .auth-card, .account-heading { animation: appear .35s ease-out; }
+.return-link, .button, .event-card { transition: background-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+.return-link:hover, .button:hover { background-color: #344f35; }
+.event-card:hover { box-shadow: 0 6px 20px #2227200a; }
+.hero-note { max-width: 570px; color: var(--muted); line-height: 1.7; }
+.password-field { position: relative; min-width: 0; }
+.auth-card .password-field input { padding-right: 56px; }
+.password-toggle { position: absolute; right: 3px; top: 50%; transform: translateY(-50%); display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 5px; background: transparent; color: var(--muted); cursor: pointer; }
+.password-toggle[hidden] { display: none; }
+.password-toggle:hover { background: #ebeee2; color: var(--accent); }
+.password-slash { display: none; }
+.password-toggle[aria-pressed="true"] .password-slash { display: block; }
+.account-main { padding-block: 40px 72px; }
+.account-heading { margin-bottom: 32px; }
+.account-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+.profile-card { width: 100%; max-width: none; }
+.account-shortcuts { display: grid; gap: 20px; min-width: 0; }
+.button-secondary { background: #ebeee2; color: var(--ink); border: 1px solid var(--line); }
+.button-secondary:hover { background: #dce4d3; }
+input[readonly] { color: var(--muted); background: var(--paper) !important; }
+@media (max-width: 767px) { .account-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }

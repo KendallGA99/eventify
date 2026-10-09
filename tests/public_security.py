@@ -55,7 +55,7 @@ class Client:
         headers, _ = self.request("/ingresar", 303, {
             "csrf": token(form), "email": account["email"], "password": account["password"]
         })
-        check(headers.get("Location") == "/cuenta", "Login redirige a cuenta")
+        check(headers.get("Location") == "/", "Login redirige al inicio")
         check(self.session() != before, "Login regenera sesión")
         headers, page = self.request("/cuenta", 200)
         check(account["email"] in page, "Cuenta autenticada correcta")

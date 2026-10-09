@@ -25,4 +25,8 @@ $assert(strlen($token) === 64 && Session::validToken($token));
 $assert(!Session::validToken('incorrecto'));
 $assert(!Session::validToken([$token]));
 $assert(!Session::validToken(null));
+$assert(RegistrationInput::nameErrors(['full_name' => ' María de Prueba ']) === []);
+foreach (['', 'A', str_repeat('á', 151), "Nombre\0", ['nombre'], "\xFF"] as $invalidName) {
+    $assert(RegistrationInput::nameErrors(['full_name' => $invalidName]) !== []);
+}
 echo 'Registro y CSRF: ' . $checks . " comprobaciones correctas.\n";

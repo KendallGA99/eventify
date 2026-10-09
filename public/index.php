@@ -16,7 +16,7 @@ $reserveApi = $path === '/api/reservas' || preg_match('#\A/api/reservas/([1-9][0
 $adminRoute = $path === '/admin' || str_starts_with((string) $path, '/admin/');
 $adminWrite = $path === '/admin/categorias' || preg_match('#\A/admin/(categorias/[1-9][0-9]{0,9}/editar|eventos/(nuevo|[1-9][0-9]{0,9}/editar))\z#', (string) $path);
 $adminState = preg_match('#\A/admin/eventos/[1-9][0-9]{0,9}/estado\z#', (string) $path);
-$allowed = $adminState ? ['POST'] : ($adminWrite ? ['GET', 'HEAD', 'POST'] : (in_array($path, ['/registro', '/ingresar'], true) ? ['GET', 'HEAD', 'POST'] : ($path === '/salir' || $reserveApi ? ['POST'] : ['GET', 'HEAD'])));
+$allowed = $adminState ? ['POST'] : ($adminWrite ? ['GET', 'HEAD', 'POST'] : (in_array($path, ['/registro', '/ingresar', '/cuenta'], true) ? ['GET', 'HEAD', 'POST'] : ($path === '/salir' || $reserveApi ? ['POST'] : ['GET', 'HEAD'])));
 if (!in_array($method, $allowed, true)) {
     http_response_code(405);
     header('Allow: ' . implode(', ', $allowed));
@@ -66,4 +66,6 @@ if ($path !== '/') {
     require PROJECT_ROOT . '/app/Views/not-found.php';
     exit;
 }
+Eventify\Security\Session::start();
+$user = isset($_SESSION['user_id']) ? (new Eventify\Security\Auth(Eventify\Infrastructure\Database::connect()))->user() : null;
 require PROJECT_ROOT . '/app/Views/home.php';
