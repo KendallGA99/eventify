@@ -294,3 +294,10 @@ Superados los pendientes de integración y guardado dev.37 del helper. No equiva
 ## Dev.37: corte del documento técnico
 
 9 de octubre de 2026. Documento técnico actualizado a dev.37: 16 páginas, portada con los nombres confirmados, experiencia de usuario y evidencia de 225 controles de integración. Generador y contenido sincronizados; PDF renderizado y revisado visualmente, texto dentro de página y referencias comprobadas. Archivo output/pdf/EVENTIFY_Documento_Tecnico_Borrador.pdf. Se conserva como borrador mientras continúen los pendientes de entrega; no incorpora credenciales. Sin cambios de aplicación desde ab710a6 ni repetición de pruebas Linux.
+
+
+## Dev.37: paquete y respaldo GitHub
+
+Referencia exportada 7c3a3e28435566349efcd4b2a66eace89de978d2, misma aplicación verificada en ab710a6 y documentos posteriores. Rama y etiqueta anotada v0.1.0-dev.37 confirmadas con ls-remote; etiqueta resuelta al mismo commit. ZIP de213 archivos en output/entrega/eventify-desarrollo-7c3a3e284355: CRC, inventario y SHA-256 por archivo comprobados. ZIP SHA-256 9aac254df152d293013daa6cf714225772c30fd043e9ed23e80fa6d0faadad89. PDF acompañado con SHA-256 db2ccad78b39bc4064949e48c59c64dea8db6109241aa0fbc3671ae91a2af316. Sin secretos, base de datos ni credenciales locales. No se afirma instalación nueva de este ZIP ni Windows; Linux anterior conserva su evidencia.
+
+Reconsulta oficial dirigida: libxml26653 y Apache63292 siguen vulnerables en Trixie; sin parche compatible identificado en esas tablas. AVISOS-XML registra fuentes y límites. Sin nuevo escaneo, exclusiones ni aceptación automática del riesgo. Publicación conserva dev.30; Windows queda último y defensa humana pendiente. Esta actualización documental no mueve la etiqueta ni cambia el paquete ya exportado.

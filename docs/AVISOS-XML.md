@@ -27,3 +27,8 @@ El crítico [CVE-2026-6653](https://security-tracker.debian.org/tracker/CVE-2026
 ## Inventario vigente
 
 AVISOS-RESIDUALES.csv enumera los 156 identificadores únicos de las 424 filas finales PHP/Apache, agregando paquetes y conservando referencias a las revisiones existentes. Tener una referencia documental no significa tener un parche o un descarte. Las filas de MySQL y los riesgos del host se mantienen en sus informes propios.
+
+
+## Reconsulta después de la aceptación dev.37
+
+9 de octubre de 2026. Se reconsultaron los trackers oficiales de [libxml2/CVE-2026-6653](https://security-tracker.debian.org/tracker/CVE-2026-6653) y [Apache/CVE-2026-63292](https://security-tracker.debian.org/tracker/CVE-2026-63292). Ambos mantienen Trixie vulnerable; sus tablas sitúan correcciones en forky/sid. La nota Debian de libxml2 clasifica el asunto como menor y sin DSA previsto, lo que no elimina la severidad crítica del escaneo conservado. No se encontró en esas fuentes un parche de Trixie que pueda incorporarse directamente. No se mezclaron distribuciones ni se alteró la imagen verificada. Esto no constituye una reconsulta exhaustiva de los 156 identificadores ni un nuevo escaneo; los conteos siguen perteneciendo al informe dev.34.

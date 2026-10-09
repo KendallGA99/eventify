@@ -1,12 +1,13 @@
 # EVENTIFY: casos pendientes para la entrega
 
-Corte: 9 de octubre de 2026, dev.36; páginas de error mejoradas, 22 controles HTTP reales e interfaz IAB comprobados. Instalación limpia/persistencia corresponden a dev.33; MySQL conserva parche gawk comprobado. Este archivo organiza la aceptación que falta; ESTADO y las evidencias conservan lo ya ejecutado. Un caso se cierra con el resultado real y su versión, no por estar descrito aquí.
+Corte: 9 de octubre de 2026, dev.37; experiencia y perfil comprobados con 225 controles MySQL/HTTP, 30 comprobaciones de registro/errores y recorrido IAB real. Instalación limpia/persistencia corresponden a dev.33; MySQL conserva parche gawk comprobado. Este archivo organiza la aceptación que falta; ESTADO y las evidencias conservan lo ya ejecutado. Un caso se cierra con el resultado real y su versión, no por estar descrito aquí.
 
 ## Evidencia disponible
 
 - Linux: ZIP dev.33 exacto en ruta con espacios y puerto8086; ambos roles, reserva, ticket/QR, cancelación e historial. Recreación posterior conserva diez tablas/cinco archivos, ocho reservas y ocho tickets. Restauración QA aislada comprobada en su referencia anterior.
 - Aplicación: 219 comprobaciones MySQL/HTTP sobre imagen MySQL dev.33 corregida; imágenes PHP local/pública dev.32 con sintaxis,266 unidades y QR aprobados. Escaneo confirma parches xz/liblzma y gawk; conserva otros avisos.
 - Publicación actual dev.30: actualización Render comprobada, diez tablas conservadas,81 controles HTTPS posteriores y pronóstico útil. Flujos de reserva/admin y reinicio también tienen evidencia en la versión pública anterior; no atribuir esos recorridos a una ejecución nueva.
+- Experiencia dev.37: ojos independientes, login al inicio, perfil con nombre persistente y navegación por rol comprobados en8086. Nombre ficticio restaurado y sesiones cerradas; sin nuevas reservas. PDF de16 páginas actualizado y revisado.
 - Interfaz: recorridos Chrome/IAB y tamaños registrados; registro a 390 px con Tab, foco visible y validación vacía. Esto no reemplaza la matriz de Firefox ni el registro válido completo.
 
 ## Casos que faltan
@@ -23,7 +24,7 @@ Corte: 9 de octubre de 2026, dev.36; páginas de error mejoradas, 22 controles H
 | C-08 Windows | Instalar una copia limpia en host compatible, ruta con espacios; ambos roles, reserva/cancelación y recreación con datos conservados. | Versiones Windows/Docker/WSL y registros reales. Sintaxis PowerShell no equivale a ejecución. Conservar bases y volúmenes. |
 | C-09 Avisos de imágenes | Revisar grupos aún no tratados, runtime/módulos y nuevas correcciones de distribución; probar cambios concretos. | Documentar condiciones, parche o justificación con límites; no ocultar avisos para obtener un reporte vacío. Parche gawk dev.33 construido, integración/TLS aprobados y tres avisos eliminados sin nuevos; AVISOS-IMAGENES detalla los grupos restantes y límites. Dev.34 aprobó imágenes finales, unidades y arranque público/TLS aislado; 32 paquetes retirados y escaneo 2.011 → 424 sin avisos nuevos. Riesgos restantes documentados en ENSAYO-RUNTIME y AVISOS-IMAGENES. |
 | C-10 Versión desplegada | Aplicar la versión elegida al entorno de evaluación después de sus pruebas y comprobar salud, roles, reservas/API/persistencia. | URL sirve esa referencia comprobada; identificar versión y límites. Render actualizado a dev.30; controles posteriores y límites en ESTADO. Rollback de código no restaura MySQL. |
-| C-11 Paquete final | Exportar la referencia elegida, verificar manifiesto/huellas y probar ese paquete en ambos sistemas. | ZIP recibido coincide con commit/versionado y funciona desde copia limpia. ZIP dev.33 exacto instalado en Linux y probado en navegador; persistencia posterior al nuevo flujo aprobada; falta Windows. Sin configuración privada ni datos personales. |
+| C-11 Paquete final | Exportar la referencia elegida, verificar manifiesto/huellas y probar ese paquete en ambos sistemas. | ZIP recibido coincide con commit/versionado y funciona desde copia limpia. Paquete dev.37 de213 archivos exportado y huellas verificadas; aún no instalado como paquete nuevo. ZIP dev.33 exacto instalado en Linux y probado en navegador; persistencia posterior al nuevo flujo aprobada; falta Windows. Sin configuración privada ni datos personales. |
 | C-12 Documento y defensa | Estudiante Kendall Gamboa Arce y docente Rita Robles Loaiza incorporados. Falta revisión PDF/manual y ensayo de explicación/modificación menor real. | Revisión y participación humanas registradas; acceso del evaluador y cuentas de prueba gestionados por separado. No atribuir dominio o autoría por generar el documento. |
 
 ## Orden de cierre
