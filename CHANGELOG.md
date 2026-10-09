@@ -1,5 +1,13 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.33 — Revisión de imágenes (B07/SEG-09)
+
+- Prepara una imagen derivada de MySQL con gawk 5.1.0-6.el9_8.1 de Oracle; conserva servidor, entrypoint y digest de base. Construcción, regresión y escaneo pendientes.
+- Aplica esa construcción a Compose local y ensayos; añade prueba aislada de versión, integración y controles TLS, sin actualizar instalaciones existentes.
+- Contrasta el binario gosu oficial con govulncheck: cero avisos a nivel de símbolos; conserva las coincidencias de módulo y sus límites.
+- Amplía revisión de ACL, ncurses, montajes, XML y Python; añade inventario completo por paquete sin exclusiones.
+- Omite la fecha de entrega por indicación del usuario en el documento técnico y portada.
+
 ## 0.1.0-dev.32 — Portada y cierre documental (B09)
 
 - Incorpora los nombres de estudiante y docente confirmados por el usuario; fecha de entrega por confirmar.

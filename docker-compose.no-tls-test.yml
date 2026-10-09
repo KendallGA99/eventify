@@ -21,7 +21,9 @@ services:
       - ${EVENTIFY_TLS_DIR:?Faltan certificados}/ca.pem:/run/secrets/mysql-ca.pem:ro
     networks: [isolated]
   db:
-    image: mysql:8.4@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242
+    build:
+      context: .
+      dockerfile: Dockerfile.mysql
     environment:
       MYSQL_DATABASE: eventify_no_tls_test
       MYSQL_USER: eventify_no_tls_test

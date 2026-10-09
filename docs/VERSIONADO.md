@@ -85,3 +85,8 @@ Dev.31 → 4088cbe34aef3e9c7ec12ead72b9781fd61efac8: revisión editorial de docu
 ## Corte documental dev.32
 
 Rama codex/b09-cierre-documental desde2d0fb3c, sin modificar main ni reescribir historial. Dev.32 incorpora nombres confirmados, revisión de teclado y publicación dev.30; agrega elección de puerto e inventario de módulos al ensayo de entrega. Aplicación sin cambios respecto a dev.30, pero nuevos guiones de verificación con Docker pendientes de ejecución. Etiqueta de desarrollo; no estable. Render permanece en390b1ef, con AutoDeployOff y configuración de rama existente.
+
+
+## Dev.33: revisión de seguridad
+
+Rama codex/b07-avisos-restantes desde6a8443b; main/etiquetas anteriores conservadas. Imagen MySQL derivada con parche gawk preparado, construcción/regresión/escaneo todavía pendientes. Código PHP igual a dev.30. Etiqueta de desarrollo, no estable; no se despliega automáticamente ni se actualizan bases existentes. Revisión de binario gosu e inventario son evidencia distinta de la corrección todavía no ejecutada.

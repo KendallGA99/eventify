@@ -1,7 +1,7 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 8 de octubre de 2026. Código de referencia: v0.1.0-dev.32. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza. Fecha de entrega: pendiente de confirmar.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 8 de octubre de 2026. Código de referencia: v0.1.0-dev.33. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
 Este documento explica cómo funciona el sistema y qué se ha comprobado. Hay evidencia de integración MySQL, restauración, instalación desde ZIP en Linux y uso de la web pública. La web ejecuta dev.30 con el parche xz/liblzma. Después del despliegue se comprobaron las huellas de diez tablas y los 81 controles HTTPS. El ZIP dev.32 conserva la misma aplicación y aprobó instalación limpia Linux, ambos roles, reserva/cancelación y persistencia posterior. Windows continúa pendiente. El pronóstico público ya tiene respuesta útil comprobada. Windows, Firefox y la aceptación final siguen pendientes.
 
@@ -312,3 +312,9 @@ Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambient
 Documentos operativos: INSTALACION.md, ARQUITECTURA.md, DATOS.md, PUBLICACION.md, RESPALDO.md, VERSIONADO.md, PAQUETE.md, COPIA-LIMPIA.md, SEGURIDAD.md, AVISOS-IMAGENES.md y CIERRE.md. Los documentos históricos pueden describir etapas anteriores: las migraciones/código y el estado vigente prevalecen al comprobar una afirmación técnica.
 
 Repositorio privado: https://github.com/USUARIO_DESTINO/eventify. La visibilidad privada no garantiza acceso del evaluador; gestionarlo cuando se acuerde. No se incluyen claves ni datos personales de cuentas de prueba en este documento.
+
+## Ampliación de seguridad: dev.33
+
+Se analizó el binario oficial gosu de la imagen MySQL linux/amd64 con govulncheck, sin exclusiones: no se detectaron funciones vulnerables presentes; siguen registradas coincidencias por versión de módulo/paquete. Esto no certifica toda la imagen ni el servidor administrado. ACL, ncurses y montajes requieren rutas privilegiadas o herramientas que la aplicación no llama; XML y Python conservan límites de revisión. El detalle y fuentes están en docs/AVISOS-IMAGENES.md y el conteo completo por paquete en docs/INVENTARIO-IMAGENES.md.
+
+Dockerfile.mysql prepara la corrección Oracle gawk5.1.0-6.el9_8.1 de tres avisos, conservando la imagen de servidor fijada. Construcción, integración y escaneo del parche siguen pendientes. Los resultados Linux dev.32 y publicación dev.30 no se presentan como pruebas de esta imagen nueva. La fecha de entrega se omite por indicación del usuario.

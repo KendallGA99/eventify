@@ -7,11 +7,11 @@ Corte: 8 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.m
 - Aplicación académica PHP/MySQL, HTML/CSS/JS/jQuery/AJAX y sesiones. Desarrollo Linux; entrega local Docker Compose Linux/Windows. No modificar Código Tico.
 - Commits y push progresivos autorizados el 2026-10-08; repositorio privado [USUARIO_DESTINO/eventify](https://github.com/USUARIO_DESTINO/eventify), remoto SSH. Sin push forzado ni reescritura.
 - Publicación Render Free/Aiven MySQL Free autorizada expresamente: integración GitHub solo EVENTIFY, presupuesto ₡0, sin tarjeta ni planes pagados. No necesita nuevas cuentas de proveedores el receptor del paquete local.
-- Estudiante confirmado: Kendall Gamboa Arce. Docente confirmada: Rita Robles Loaiza. Fecha de entrega no proporcionada. Defensa y comprensión humanas pendientes.
+- Estudiante confirmado: Kendall Gamboa Arce. Docente confirmada: Rita Robles Loaiza. La fecha de entrega se omite por indicación del usuario. Defensa y comprensión humanas pendientes.
 
 ## Versiones y destinos
 
-- Código/documentación actual: **0.1.0-dev.32**, rama `codex/b09-cierre-documental`, desde `2d0fb3c`. Aplicación igual a dev.30; guiones de ensayo cambiados para puerto explícito e inventario Apache. Ninguna versión estable.
+- Código/documentación actual: **0.1.0-dev.33**, rama `codex/b07-avisos-restantes`, desde `6a8443b`. Aplicación PHP igual a dev.30; dev.33 prepara parche gawk de MySQL y ensayo aislado, todavía no construido. Ninguna versión estable.
 - `main` conservada: `3da680b74b41fa3da4069879edc1f649de9b97f2`. VERSIONADO contiene la política y referencias anteriores. Git recupera código; no restaura MySQL.
 - Web pública: https://eventify-academico.onrender.com, **dev.30**, commit `390b1ef6dcbb9a9d76eaad8a910a80da364bb637`. Render `srv-db3vutm7bikc73ajj6og`, Free/Oregon/AutoDeployOff; misma rama de despliegue existente.
 - Último deploy: `dep-db44q9cs728c739ikr20`, 8 de octubre, 20:10:45 CST, **Deploy succeeded/Live**, 35 s. Referencia anterior `cabd6f3` conservada.
@@ -33,7 +33,7 @@ Corte: 8 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.m
 | API pública dev.30 | Pronóstico útil real después del deploy: 17,3–24,1°C/100% para evento ficticio del12oct; consultado8oct20:13CST. | Puede variar o fallar; no garantiza disponibilidad permanente. |
 | Dependencias/secretos | Composer sin avisos, jQuery verificado y505 blobs sin secretos conocidos en ejecución anterior. | No prueba ausencia de avisos futuros o secretos desconocidos. |
 | Windows | PowerShell5.1 real: seis scripts sin errores de parser. VM Win11 LTSC Evaluation identificada,4GiB. | Sin Docker/WSL ni ejecución completa; hace falta host compatible. |
-| Documentación | PDF dev.32,15 páginas; portada y evidencia renderizadas/revisadas, nombres confirmados y texto dentro de página. | Borrador: fecha y revisión/defensa humanas pendientes. |
+| Documentación | PDF dev.33,15 páginas; portada y evidencia renderizadas/revisadas, nombres confirmados y texto dentro de página. | Borrador: revisión y defensa humanas pendientes. |
 
 Snapshots de publicación: `storage/aiven-evaluacion/snapshot-before-dev30.json` y `snapshot-after-dev30.json`, comparados antes de los logins de prueba. Capturas revisadas `/tmp/eventify-render-dev30.png` y `/tmp/eventify-publico-dev30.png`. No se cambiaron permisos, plan, base ni cuentas externas durante el deploy. Detalles en evidencias/B08.
 
@@ -55,13 +55,13 @@ Incidencia anterior de inspección: se imprimieron por error credenciales fictic
 - B01/B02 comprobados; B03–B06 implementados con integración y aceptación parcial de navegador.
 - B07 abierto: Firefox real, Windows, calendario/zoom de C-06 y revisión de avisos de imágenes. [AVISOS-IMAGENES.md](AVISOS-IMAGENES.md) conserva condiciones y dudas: Apache/XML/kernel/curl/gosu/Python; no ocultar avisos. No repetir suites extensas sin cambio o duda concreta.
 - B08: servicio real actualizado a dev.30; TLS, controles HTTPS, datos conservados y API útil. C-10 documentado para esa referencia, no para toda variante ni un paquete distinto.
-- B09: portada/manual/PDF y exportación de desarrollo dev.32 preparados; instalación final, fecha, receptor y ensayo humano pendientes. [CIERRE.md](CIERRE.md) organiza los casos; no marcar estable por tener un ZIP.
+- B09: portada/manual/PDF y exportación de desarrollo dev.32 preparados; instalación final, receptor y ensayo humano pendientes. [CIERRE.md](CIERRE.md) organiza los casos; no marcar estable por tener un ZIP.
 
 ## Próxima acción necesaria
 
 Dev.32 aprobó construcción de imágenes, instalación limpia Linux y persistencia posterior al recorrido del navegador. Ya no hace falta repetir los dos ensayos ni el helper para esta referencia. Resultado `storage/dev32-persistence-UMW4MUkC`, inicio20:28:23CST/exit0: snapshots idénticos de diez tablas y cinco archivos, ocho reservas y ocho tickets. Login posterior confirma historialCANCELADA, ticket/QR y datos conservados. Captura /tmp/eventify-dev32-persistencia.png revisada.
 
-Continuar Firefox y zoom real, revisión de avisos de imágenes y Windows en equipo compatible. Disponibilidad de Windows/Docker Desktop y fecha de entrega solicitadas al usuario; sin respuesta todavía al preparar este corte. Defensa/participación humanas abiertas. No certificar entrega completa ni estabilidad por haber aprobado Linux.
+Continuar Firefox y zoom real, revisión de avisos de imágenes y Windows en equipo compatible. Disponibilidad de Windows/Docker Desktop pendiente de confirmar. La fecha de entrega no es necesaria y deja de ser un pendiente. Defensa/participación humanas abiertas. No certificar entrega completa ni estabilidad por haber aprobado Linux.
 
 ## Exportación dev.32 confirmada
 
@@ -74,3 +74,9 @@ Nuevo recorrido dev.32: reserva ficticia f5e075eec15b3bd971c1d487078aae79 cancel
 Intento de zoom en Chrome real (conector disponible): Ctrl+plus no cambió innerWidth1920/devicePixelRatio1/visualViewport.scale1. No se certifica200%. Inventario actual expone Chrome e IAB, no Firefox. Ensayo Firefox/zoom requiere interacción directa del usuario o un acceso compatible; no sustituirlo por otra ejecución IAB.
 
 Paquete con fuente idéntica a la probada en Linux, PDF actualizado y resultados posteriores: output/entrega/eventify-dev32-linux-comprobado.zip, SHA256 83441a710cb0fdfd36c70a8b46b3681036cb9c79e23de41e72559e04d7dac18b. Se conservó el ZIP fuente188 archivos y su manifiesto originales; los documentos adjuntos explican que el estado interno de ese ZIP es del corte anterior. Integridad/CRC correctos. No es certificación Windows ni versión estable.
+
+## Revisión de seguridad dev.33
+
+Fecha de entrega omitida por indicación del usuario. Análisis exacto gosu amd64 del digest MySQL: capas y huella verificadas, binario oficial1.19/Go1.24.6; govulncheck1.8.0 sin exclusiones, ninguna función vulnerable detectada. Conserva57 coincidencias de módulo/paquete y47 filas Trivy; no auditoría de MySQL completo. ACL/ncurses/montajes/XML/Python contrastados; inventario completo por paquete en INVENTARIO-IMAGENES. Detalles, fuentes y evidencia privada en AVISOS-IMAGENES.
+
+Oracle publica parche compatible para los tres avisos gawk. Dockerfile.mysql y cuatro Compose preparados, servidor/volúmenes sin cambiar. Ensayo scripts/test-mysql-image-linux.sh exige versión RPM y prueba integración, TLS correcto y rechazo sin TLS en destinos efímeros. Bash-n y git diff --check correctos; cuatro configuraciones Compose examinadas sin daemon: build correcto, MySQL sin puertos/privilegios y ensayos con tmpfs/sin volúmenes persistentes. PDF dev.33 de15 páginas: portada y ampliación revisadas, texto dentro de página. Construcción real y escaneo pendientes de ejecución Docker en terminal. No actualizar8080/8085 ni marcar dev.33 estable. Paquetes dev.32 anteriores conservan su evidencia e integridad originales.

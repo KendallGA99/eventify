@@ -1,0 +1,6 @@
+FROM mysql:8.4@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242
+
+# Oracle corrige tres avisos de gawk sin cambiar la versión del servidor MySQL.
+RUN microdnf install -y gawk-5.1.0-6.el9_8.1 \
+    && test "$(rpm -q --qf '%{VERSION}-%{RELEASE}' gawk)" = '5.1.0-6.el9_8.1' \
+    && microdnf clean all
