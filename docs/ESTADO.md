@@ -265,3 +265,12 @@ Usuario ejecutó scripts/test-image-linux.sh. Registro storage/image-check-APnvo
 Agente ejecutó el mismo comando Trivy --input utilizado para dev.28, con --disable-telemetry --skip-db-update --scanners vuln, cambiando entrada a cada tar del registro y salida a local-scan.json/public-scan.json. Ambos procesos exit0; cadena OCI de exportación/config verificada. Comparación:2015→2011avisos por imagen, cuatro filas xz/liblzma desaparecidas y cero añadidas; bibliotecas Composer sin avisos. Dos críticos y145altos de la base permanecen, no marcar seguridad completa. Detalles en SEGURIDAD.md.
 
 Parche concreto de runtime comprobado; VERSION/etiqueta dev.30 conservados. Render sigue dev.26, copia limpia8084 sigue dev.28. No publicar/recrear destinos por inferencia. Próximos pendientes: revisión de alcanzabilidad/correcciones restantes, Firefox/Windows y casos finales de aceptación, sincronización PDF/paquete y evidencia humana de defensa.
+
+
+## B07: alcance de avisos y teclado del registro
+
+Dev.30: inventario de módulos en las dos imágenes exportadas, aplicando whiteouts de capas OCI, guardado privadamente en modules-review.json. Los seis avisos altos Apache requieren módulos no habilitados. Contraste oficial: corrección upstream2.4.69, Debian Trixie aún afectado en los avisos consultados. No eliminar avisos ni mezclar paquetes sid. TicketQr construye SVG directamente y no usa el SvgImageBackEnd/XMLWriter encontrado en vendor. Revisión estática de entradas XML, streams de clima y ejecución de comandos; alcance y pendientes en AVISOS-IMAGENES.md. No equivale a comprobar runtime ni resolver todos los avisos.
+
+IAB/copia limpia8084 dev.28,390×844: navegación Tab desde marca/Inicio a nombre, correo, contraseña, confirmación y botón; foco visible3px y sin desbordamiento horizontal. Enter con formulario vacío muestra Completa este campo y devuelve foco a full_name; no datos ingresados ni cuenta creada. Captura /tmp/eventify-registro-teclado.png revisada; viewport restaurado y pestaña final inicio sin sesión. Verifica teclado/validación nativa de este formulario, no registro válido ni accesibilidad completa. CUA ofrece Chrome/IAB, sin Firefox en inventario; Firefox real permanece pendiente.
+
+Solo documentación/evidencia; VERSION dev.30 conservada. Pendientes: seguridad restante, casos de UI/zoom, Firefox/Windows, sincronización de entregables y defensa humana.

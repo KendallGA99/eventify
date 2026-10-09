@@ -82,3 +82,6 @@ Ensayo image-check-APnvo9xh, inicio2026-10-09T00:58:15Z (8oct18:58:15CST), commi
 Trivy0.75.0 con telemetría desactivada y la misma base de avisos auditó local.tar/public.tar; ambos exit0. Cadena OCI completa de cada exportación coincide con el config del scanner. Local:8e1cfd0866e15150a5b6a6cbf18a5cdad157dda7e25578a84b40cc69f11edf3b; pública:cc822ef4cbcacaaadc747202969bc9df38035821d4f887f4d2fda664d3220ed7. Informes privados en el registro del ensayo.
 
 Comparación con dev.28: cada imagen pasa de2015a2011filas de avisos; desaparecen DSA-6549-1/TEMP-1147318-639065 en los dos paquetes, sin avisos añadidos. Composer vendor sigue detectado sin avisos. Permanecen2críticos/145altos y los demás avisos anteriores: el parche específico está comprobado, la aceptación de seguridad completa sigue abierta. No se aplicó ignore-unfixed ni excepciones. No se actualizó Render ni las instancias locales activas; versión construida no equivale a versión desplegada.
+
+
+Revisión posterior de condiciones de riesgo, módulos configurados y rutas XML/QR: [AVISOS-IMAGENES.md](AVISOS-IMAGENES.md). No cambia los conteos ni marca avisos resueltos sin parche.
