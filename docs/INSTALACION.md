@@ -84,7 +84,7 @@ El ajuste ExecutionPolicy se aplica al proceso lanzado, no cambia la política p
 
 Para detener: `detener-windows.cmd`. Para pruebas: `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\test-windows.ps1`.
 
-Scripts preparados para Windows PowerShell 5.1+, sin requerir bash/PHP/MySQL locales. No han sido ejecutados ni certificados en Windows todavía.
+Scripts preparados para Windows PowerShell 5.1+, sin requerir bash/PHP/MySQL locales. La sintaxis de seis scripts fue analizada en Windows PowerShell5.1 real; su ejecución completa con Docker y la compatibilidad de entrega siguen pendientes.
 
 ## Configuración y persistencia
 
@@ -136,6 +136,6 @@ El ensayo desde ZIP Linux y sus límites están en COPIA-LIMPIA.md. Para el rece
 
 ## Ensayo de una nueva referencia sin ocupar destinos anteriores
 
-Desde el repositorio de desarrollo, `bash scripts/test-clean-linux.sh v0.1.0-dev.32 8085` exporta esa referencia, genera configuración nueva e inicia un proyecto aislado en una ruta con espacios. El puerto es opcional; por defecto8083. Seleccione uno libre: no detenga otras instalaciones para reutilizar su puerto. Este ensayo requiere Git/Python/OpenSSL en el equipo de desarrollo; el receptor no los necesita para iniciar el ZIP ya extraído.
+Desde el repositorio de desarrollo, `bash scripts/test-clean-linux.sh f4d6c5a05011c57e47295b06cedf11129a052681 8086` exporta esa referencia, genera configuración nueva e inicia un proyecto aislado en una ruta con espacios. El puerto es opcional; por defecto8083. Seleccione uno libre: no detenga otras instalaciones para reutilizar su puerto. Este ensayo requiere Git/Python/OpenSSL en el equipo de desarrollo; el receptor no los necesita para iniciar el ZIP ya extraído.
 
-Los datos de demostración se crean solo en el destino nuevo del ensayo, explícitamente; los volúmenes anteriores permanecen. Al terminar correctamente quedan registros y credenciales ficticias privados en storage/clean-ID. Sigue pendiente comprobar ese destino en navegador y ejecutar el paquete en Windows.
+Los datos de demostración se crean solo en el destino nuevo del ensayo, explícitamente; los volúmenes anteriores permanecen. Al terminar correctamente quedan registros y credenciales ficticias privados en storage/clean-ID. Para la referencia f4d6c5a, el destino8086 ya aprobó recorrido de navegador y persistencia posterior. Ejecutar nuevamente este guion crearía otra copia distinta; no repetirlo para acreditar la ya comprobada. Windows sigue pendiente.

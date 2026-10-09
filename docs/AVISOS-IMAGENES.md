@@ -113,3 +113,6 @@ La revisión de los diez avisos medios curl/libcurl se amplía en [AVISOS-CURL.m
 
 
 [AVISOS-HERRAMIENTAS.md](AVISOS-HERRAMIENTAS.md) completa la revisión dirigida de identificadores MEDIUM fuera de cabeceras del kernel; conserva los límites de herramientas nativas y servicios del host.
+
+
+[AVISOS-BAJOS.md](AVISOS-BAJOS.md) y su CSV organizan los avisos LOW: doce Apache revisados con límites, otros identificadores pendientes expresos. Descargar fuentes no equivale a cerrar aplicabilidad.

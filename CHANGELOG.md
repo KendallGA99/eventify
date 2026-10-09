@@ -2,11 +2,14 @@
 
 ## 0.1.0-dev.33 — Revisión de imágenes (B07/SEG-09)
 
-- Prepara una imagen derivada de MySQL con gawk 5.1.0-6.el9_8.1 de Oracle; conserva servidor, entrypoint y digest de base. Construcción, regresión y escaneo pendientes.
+- Prepara una imagen derivada de MySQL con gawk 5.1.0-6.el9_8.1 de Oracle; conserva servidor, entrypoint y digest de base. Construcción, 219 controles y ensayos TLS aprobados; escaneo elimina tres avisos gawk sin añadir identificadores.
 - Aplica esa construcción a Compose local y ensayos; añade prueba aislada de versión, integración y controles TLS, sin actualizar instalaciones existentes.
 - Contrasta el binario gosu oficial con govulncheck: cero avisos a nivel de símbolos; conserva las coincidencias de módulo y sus límites.
 - Amplía revisión de ACL, ncurses, montajes, XML y Python; añade inventario completo por paquete sin exclusiones.
 - Omite la fecha de entrega por indicación del usuario en el documento técnico y portada.
+
+- Registra instalación limpia Linux de la fuente f4d6c5a y persistencia posterior, con diez tablas y cinco archivos conservados. Windows y Firefox/zoom siguen pendientes.
+- Actualiza manual, lista de cierre y PDF técnico; añade inventario LOW con límites explícitos, sin exclusiones ni certificación estable.
 
 ## 0.1.0-dev.32 — Portada y cierre documental (B09)
 
