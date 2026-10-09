@@ -19,6 +19,8 @@ Se reconstruyó el inventario de mods-enabled leyendo las capas OCI, incluidas l
 
 [Apache publica las correcciones en 2.4.69](https://httpd.apache.org/security/vulnerabilities_24.html). [Debian todavía registra Trixie vulnerable para vhost_alias](https://security-tracker.debian.org/tracker/CVE-2026-63292) y [auth_digest](https://security-tracker.debian.org/tracker/CVE-2026-73636); la versión corregida aparece en sid/forky. No mezclar repositorios de distribuciones ni sustituir Apache manualmente para reducir un contador. La ausencia de versión corregida en el informe corresponde a la distribución auditada, no a la inexistencia de una corrección del proveedor original.
 
+La revisión de los nueve avisos medios de Apache y de tar se registra en [AVISOS-APACHE-TAR.md](AVISOS-APACHE-TAR.md), con inventario cargado de ambas imágenes dev.32 y condiciones específicas.
+
 ## XML y QR
 
 El aviso crítico [CVE-2026-6653](https://security-tracker.debian.org/tracker/CVE-2026-6653) afecta la lectura de XML manipulado en libxml2. No se encontró uso de DOMDocument, simplexml, xml_parse o loadXML en app/public/bin. La administración elige imágenes de una galería cerrada; no acepta XML/SVG subido por el visitante.
