@@ -206,3 +206,10 @@ El pendiente de construcción final/TLS queda superado para 6d41df5. Sin cambios
 
 
 Paquete fuente dev.34: output/entrega/eventify-desarrollo-23553476bd86/eventify-source.zip, commit 23553476bd86f31dd9b552f3f1d422839dbcbd14, 203 archivos, SHA256 8ab1a21852436e08ffbe200350282f32910fa483fa75d061208ef06d89c5a8f3. CRC y todas las huellas del manifiesto comprobados. Diferencia respecto a 6d41df5 exclusivamente MD: mismo código e imágenes declaradas que los ensayos aprobados. Paquete preparado para aceptación en receptor; todavía no instalado desde este ZIP en Windows. PDF técnico anterior conserva su corte dev.33; actualización final pendiente tras aceptación, sin presentarlo como documento dev.34.
+
+
+## Orden de cierre solicitado: Firefox y seguridad, Windows al final
+
+9 de octubre de 2026. El usuario prioriza C-06/C-07 y C-09; Windows queda para el final, sin eliminar su requisito. Firefox existe en el host, pero el inventario CUA solo expone IAB/MCP Apps y ninguna aplicación nativa; no se afirma control de Firefox. localhost:8086/eventos responde HTTP200. Solicitada comprobación humana de catálogo/búsqueda/zoom200% y versión. Corregida una separación accidental en la ruta de credenciales de VERIFICACION-FIREFOX, sin leer o publicar sus valores.
+
+Seguridad: AVISOS-XML contrasta nueve avisos altos antes sin mención individual con Debian; Trixie figura vulnerable. Búsqueda de parsers y revisión de WeatherClient/TicketQr limitan entrada XML directa, sin descartar consumidores nativos. Crítico6653 reconsultado; no parche compatible acreditado por esa fuente. CSV residual agrupa 424 filas PHP/Apache en156 identificadores con referencias documentales; cobertura no implica cierre ni aceptación del riesgo. No cambios funcionales, builds o suites repetidas.

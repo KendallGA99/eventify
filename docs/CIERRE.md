@@ -28,6 +28,6 @@ Corte: 8 de octubre de 2026, documentación dev.33; aplicación PHP equivalente 
 
 ## Orden de cierre
 
-Completar casos de interfaz y seguridad; verificar Firefox y Windows; elegir la referencia que se entregará y comprobar su publicación; exportar y probar el paquete definitivo; sincronizar PDF/manual con esa referencia y realizar el ensayo humano. Se puede avanzar en documentos mientras falta un equipo, conservando el estado de borrador.
+Por indicación del usuario: completar primero Firefox, teclado/zoom y seguridad; dejar Windows para el final. Después, elegir la referencia que se entregará y comprobar su publicación; exportar y probar el paquete definitivo; sincronizar PDF/manual con esa referencia y realizar el ensayo humano. Se puede avanzar en documentos mientras falta un equipo, conservando el estado de borrador.
 
 El receptor usa Docker/Compose y cuentas locales de EVENTIFY. No necesita asociar Render, Aiven ni GitHub para ejecutar el paquete local. Internet se requiere para la descarga inicial y el pronóstico. Si se transfieren datos ya creados, el respaldo/restauración es un entregable separado del ZIP de código.
