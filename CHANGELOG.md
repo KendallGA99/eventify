@@ -1,5 +1,10 @@
 # Historial de versiones de Eventify
 
+## Ensayo de reducción de herramientas (B07/SEG-09)
+
+- Añade construcción experimental derivada de las imágenes local y pública: retira herramientas de desarrollo sin autoremove y comprueba que PHP/PDO, Apache y bibliotecas necesarias permanezcan.
+- Prepara unidades e integración MySQL en un proyecto efímero, sin puertos ni volúmenes persistentes, con claves propias. No cambia imágenes de entrega, VERSION o instalaciones existentes; construcción real pendiente.
+
 ## 0.1.0-dev.33 — Revisión de imágenes (B07/SEG-09)
 
 - Prepara una imagen derivada de MySQL con gawk 5.1.0-6.el9_8.1 de Oracle; conserva servidor, entrypoint y digest de base. Construcción, 219 controles y ensayos TLS aprobados; escaneo elimina tres avisos gawk sin añadir identificadores.

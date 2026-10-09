@@ -1,0 +1,6 @@
+# Ensayo derivado: no sustituye los Dockerfile de entrega.
+ARG EVENTIFY_BASE_IMAGE
+FROM ${EVENTIFY_BASE_IMAGE}
+USER root
+COPY runtime-prune.sh /tmp/eventify-runtime-prune.sh
+RUN sh /tmp/eventify-runtime-prune.sh && rm /tmp/eventify-runtime-prune.sh
