@@ -30,3 +30,5 @@ La captura admin-denegado-original-200.png acredita el rechazo en Firefox, pero 
 Captura posterior admin-denegado-dev35-110.png: nueva página de acceso restringido correctamente presentada en Firefox sobre8086, zoom nativo110%. El usuario confirma actualización ejecutada. Supera el pendiente visual dev.35 a ese zoom; cierre de sesión y nueva presentación dev.36 continúan pendientes.
 
 Complemento HTTP dev.36 sobre8086:22 comprobaciones reales con sesiones independientes aprobadas, incluido ticket303a/ingresar traslogout,rol usuario403conCSS,panel administrador200yCSRF inválido403conCSS. Registro storage/dev36-http-check/resultados.json. Son pruebas de protocolo, no nuevas capturas Firefox ni evidencia de teclado/zoom.
+
+Recorrido complementario IAB solicitado por el usuario: búsqueda/limpieza, focoTab/Shift+Tab,fecha escrita/borrada y calendarioEscape comprobados; adaptación390/640/1280sin desbordamiento en páginas observadas; roles y panel móvil revisados. storage/dev36-browser-check conserva capturas/medidas. No sustituye Firefox ni zoom nativo200%: el atajo de ampliación IAB no cambió las medidas del viewport.
