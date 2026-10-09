@@ -95,3 +95,6 @@ Dev.33 publicada y referencias verificadas con git ls-remote: commit2f5ab7f5735e
 
 
 Dev.33 verificada posteriormente sobre3489d430bf94c649c7bf7e61d6fb0e95fb531a33: ensayo mysql-image-check-gpZ3It99 exit0, gawk corregido,219 controles y TLS positivo/negativos. Escaneo confirma eliminación de tres avisos gawk sin nuevos; etiqueta no se mueve por registrar evidencia. No estable ni actualización de instalaciones/publicación. main y versiones anteriores conservadas.
+
+
+Cierre documental Linux dev.33: 227461a59f429b755f7258de68c412c69209d07c confirmado en remoto. Manual/PDF y revisión inicial LOW actualizados; fuente del paquete conserva f4d6c5a, instalación y persistencia comprobadas. Windows, Firefox y límites de seguridad abiertos; etiqueta anterior no movida, main intacta y sin nuevo despliegue.
