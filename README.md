@@ -10,7 +10,7 @@ La versión pública está disponible en [eventify-academico.onrender.com](https
 
 Las últimas pruebas locales registradas incluyen 266 comprobaciones unitarias y 219 de integración con MySQL/HTTP. Corresponden a las ejecuciones indicadas en [ESTADO.md](docs/ESTADO.md); los cambios posteriores tienen sus propias verificaciones. Dev.33 también aprobó instalación limpia Linux, reserva/cancelación y persistencia posterior en el puerto 8086. Estos resultados no equivalen a una entrega final aprobada.
 
-El pronóstico público tuvo una respuesta útil comprobada. Dev.34 incorpora la limpieza de herramientas ensayada en imágenes derivadas; falta comprobar su construcción final y arranque público con TLS. El ZIP fuente dev.33 ya tiene instalación limpia y persistencia comprobadas en Linux. Faltan Windows, Firefox, casos de interfaz y seguridad restantes, y el cierre de entrega. Los casos concretos están en [CIERRE.md](docs/CIERRE.md). El clima puede fallar sin impedir una reserva.
+El pronóstico público tuvo una respuesta útil comprobada. Dev.34 aprobó construcción final, unidades y arranque público con TLS en ensayos aislados. Sus imágenes reducen los registros del escaneo de 2.011 a 424, con avisos residuales documentados. El ZIP fuente dev.33 ya tiene instalación limpia y persistencia comprobadas en Linux. Faltan Windows, Firefox, casos de interfaz y seguridad restantes, y el cierre de entrega. Los casos concretos están en [CIERRE.md](docs/CIERRE.md). El clima puede fallar sin impedir una reserva.
 
 ## Inicio local
 

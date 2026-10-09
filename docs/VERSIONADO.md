@@ -103,3 +103,6 @@ Cierre documental Linux dev.33: 227461a59f429b755f7258de68c412c69209d07c confirm
 ## Dev.34: incorporación del runtime reducido
 
 Rama codex/b07-runtime-aislado, basada en 58e3b66. El ensayo b14fee3 aprobó imágenes derivadas, unidades e integración; dev.34 incorpora esa misma receta en ambos Dockerfile. Construcción final y TLS pendientes. No se cambia main, la etiqueta dev.33, los paquetes existentes ni el despliegue público.
+
+
+Dev.34 comprobada posteriormente sobre 6d41df54a4df19c7c5895de6eac8120d263809d3: runtime-release-pdzRD8Jx exit0, construcción final/unidades/TLS y escaneos idénticos al ensayo reducido. Sin despliegue; main y paquetes dev.33 conservados. Las actualizaciones siguientes solo registran esta evidencia.

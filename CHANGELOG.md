@@ -4,7 +4,7 @@
 
 - Incorpora en ambos Dockerfile la limpieza ensayada: 32 paquetes retirados, versiones conservadas sin cambios. Las imágenes derivadas aprobaron 266 unidades y 219 comprobaciones MySQL cada una.
 - Escaneo de ambas variantes: 2.011 → 424 registros (1 crítico, 91 altos, 162 medios, 166 bajos, 4 sin clasificación), sin pares nuevos ni exclusiones. Retirar cabeceras no corrige el kernel del host.
-- Prepara comprobación de imágenes finales y arranque público/TLS antes de desplegar o generar una entrega nueva. Dev.33 y sus paquetes mantienen su evidencia.
+- Imágenes finales, unidades, rechazos de configuración y arranque público/TLS aprobados sobre 6d41df5; escaneos finales idénticos al ensayo. No desplegada. Dev.33 y sus paquetes mantienen su evidencia.
 
 ## Ensayo de reducción de herramientas (B07/SEG-09)
 

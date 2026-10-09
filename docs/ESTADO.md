@@ -11,7 +11,7 @@ Corte: 8 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.m
 
 ## Versiones y destinos
 
-- Código/documentación actual: **0.1.0-dev.34**, rama `codex/b07-runtime-aislado`, desde `58e3b66`. Dev.34 incorpora limpieza de herramientas ensayada en imágenes derivadas; construcción final y TLS pendientes. Aplicación PHP igual a dev.30; dev.33 tiene parche gawk de MySQL construido, integración/TLS y escaneo comprobados; las instalaciones existentes conservan su versión anterior. Ninguna versión estable.
+- Código/documentación actual: **0.1.0-dev.34**, rama `codex/b07-runtime-aislado`, desde `58e3b66`. Dev.34 incorpora limpieza de herramientas ensayada en imágenes derivadas; construcción final y TLS aprobados sobre 6d41df5. Aplicación PHP igual a dev.30; dev.33 tiene parche gawk de MySQL construido, integración/TLS y escaneo comprobados; las instalaciones existentes conservan su versión anterior. Ninguna versión estable.
 - `main` conservada: `3da680b74b41fa3da4069879edc1f649de9b97f2`. VERSIONADO contiene la política y referencias anteriores. Git recupera código; no restaura MySQL.
 - Web pública: https://eventify-academico.onrender.com, **dev.30**, commit `390b1ef6dcbb9a9d76eaad8a910a80da364bb637`. Render `srv-db3vutm7bikc73ajj6og`, Free/Oregon/AutoDeployOff; misma rama de despliegue existente.
 - Último deploy: `dep-db44q9cs728c739ikr20`, 8 de octubre, 20:10:45 CST, **Deploy succeeded/Live**, 35 s. Referencia anterior `cabd6f3` conservada.
@@ -194,3 +194,12 @@ Trivy sobre ambas exportaciones, misma base almacenada actualizada el 8 de octub
 Dev.34 incorpora exactamente runtime-prune.sh ensayado al final de ambos Dockerfile y verifica ausencia de herramientas en test-image-linux.sh. Sin cambios PHP, MySQL, datos o destinos activos. verify-runtime-release-linux.sh agrupa construcción/exportación de imágenes finales, unidades, rechazos públicos y TLS positivo/negativo en destinos efímeros. Bash-n/sh-n y diff --check correctos; construcción final y arranque Apache público/TLS pendientes de ejecución Docker en terminal. No afirmar que el ensayo derivado ya certifica estas imágenes finales.
 
 La instalación Linux dev.33 conserva su aprobación y paquete. Nueva versión aún de desarrollo; Windows, Firefox y aceptación de dev.34 pendientes. No desplegar o reemplazar paquetes antes de revisar este ensayo final.
+
+
+## Dev.34: imágenes finales y TLS aprobados
+
+9 de octubre de 2026, inicio 05:45:31 CST (11:45:31 UTC). runtime-release-pdzRD8Jx, commit 6d41df54a4df19c7c5895de6eac8120d263809d3, exit0. image-check-hGj1k1LD: ambas imágenes finales construidas; ausencia de herramientas retirada, sintaxis, 266 unidades y QR comprobados. public-start-noDIeuWq: tres rechazos de configuración pública correctos. public-tls-qSBzd2c1: arranque Apache/TLS, HTTP interno, cuentas/roles/hashes/rechazos y recreación aprobados. public-no-tls-bTdhnbR5: servidor sin TLS rechazado antes de servir/aplicar migraciones, base vacía comprobada; todos los registros exit0.
+
+Trivy sobre local.tar y public.tar finales con la misma base almacenada y sin exclusiones: 424 filas en cada una, idénticos identificadores/paquetes/versiones/severidades al ensayo derivado. Restan 1 CRITICAL, 91 HIGH, 162 MEDIUM, 166 LOW y 4 UNKNOWN; sin corrección publicada en el campo FixedVersion de este informe para los avisos restantes. Esto describe la base de avisos usada, no asegura inexistencia de una actualización posterior. JSON/log/comparison en image-check-hGj1k1LD. La retirada de cabeceras no parchea el host.
+
+El pendiente de construcción final/TLS queda superado para 6d41df5. Sin cambios funcionales posteriores, sin despliegue ni actualización de instalaciones existentes. Dev.33 conserva instalación limpia/persistencia; no atribuirlas a una instalación del ZIP dev.34. Pendientes: Windows real, Firefox/zoom/calendario, aceptación del paquete dev.34, riesgos residuales de seguridad y defensa humana. Solicitud de disponibilidad Windows presentada al usuario; no suponer Docker instalado por una captura del escritorio.
