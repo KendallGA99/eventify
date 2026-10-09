@@ -131,3 +131,10 @@ Navegador IAB sobre8086: login de usuario, filtro AJAX Encuentro con un resultad
 No se modificó código o configuración durante este recorrido. Solo se creó/canceló una reserva ficticia en la copia aislada; instalaciones anteriores y servicio público conservados. Persistencia ensayada antes del recorrido; recreación posterior a esta nueva reserva/cancelación aún no comprobada. No certifica Windows, Firefox, zoom ni cierre de seguridad. El pendiente de instalar la fuente exacta del paquete anterior queda superado en Linux para esta referencia; documentos posteriores mantienen su propio corte.
 
 Paquete con fuente exacta conservada y resultados posteriores: output/entrega/eventify-dev33-linux-comprobado.zip, SHA256ccf79b4b74f78859ae3da5d1d94f31a1df88024777ad10b94cf1987cdcffd3f9. CRC y huellas internas comprobados; no versión estable. Paquete anterior intacto.
+
+
+## Persistencia posterior dev.33: ensayo preparado
+
+Helper privado storage/clean-20261009035638-598f411d/verify-browser-persistence.sh preparado para el único proyecto eventify-clean-20261009035638-598f411d y puerto8086. Valida éxito previo, commit y SHA del ZIP, configuración local/eventify_qa, aislamiento de montajes y propietario de ambos volúmenes antes de detener web. Obtiene snapshots mediante qa-transfer, recrea sin build ni borrado, compara diez tablas/archivos y restablece web ante fallo. Agrega lectura DNS del contenedor con cantidades/longitudes y arquitectura, sin registrar dominios o variables privadas.
+
+Bash-n y comprobaciones del destino/no-build/no-borrado correctas. Docker info devuelve1; ejecución real pendiente en terminal del usuario. No se tocó la copia ni se generó evidencia ficticia de persistencia posterior. El helper es específico del ensayo, queda fuera del paquete del receptor y no cambia dev.33. Al finalizar, revisar status/snapshots/DNS y consultar en navegador el historialCANCELADA y ticket sin vigencia; no repetir la reserva.
