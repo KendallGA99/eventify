@@ -23,21 +23,21 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 | Desarrollo | PHP 8.4, sintaxis, QR, conexión y 266 comprobaciones unitarias; última ejecución registrada 15:42:00 UTC, exit 0 | No incluye por inferencia todos los archivos incorporados después |
 | Integración | 16:31:25 UTC, exit 0: 219 comprobaciones MySQL/HTTP, tres migraciones; carreras de reserva, administración y presupuesto meteorológico | No sumar las pruebas TLS a las 219; no certifica Windows ni publicación |
 | Persistencia y restauración | QA conserva diez tablas y archivos; restauración aislada exacta. `existing-iAQixJNV`, 16:41:44 UTC, exit 0: copia limpia conserva diez tablas, ocho reservas/ocho tickets tras recrear; restauración coincide antes del navegador | Conservar destinos; pruebas específicas no equivalen a todos los escenarios |
-| Copia limpia Linux | ZIP dev.28 en ruta con espacios: arranque, roles, reserva/ticket/QR, cancelación/historial; persistencia inicial tras recreación | Recreación posterior a la nueva reserva y Windows pendientes |
+| Copia limpia Linux | ZIP dev.28 en ruta con espacios: arranque, roles, reserva/ticket/QR, cancelación/historial; persistencia posterior a reserva/cancelación: diez tablas y archivos idénticos, historial/ticket/QR visibles | Windows y aceptación completa pendientes |
 | Navegador | Chrome: login/logout de ambos roles, reserva/ticket/QR, cancelación, dashboard y filtros; restauración autenticada. IAB: permisos administrativos, reserva duplicada y ticket/QR ajenos rechazados | Registro completo, teclado/zoom, fallo de red real y casos administrativos restantes; Firefox pendiente |
 | Diseño adaptable y API | Catálogo, cuenta, registro, ticket/QR y dashboard observados en tamaños indicados en B07; orientación móvil sin desbordamiento. Open-Meteo real visible en QA | Matriz final Chrome/Firefox y caída externa real en UI pendientes |
 | Windows | PowerShell 5.1 real: seis scripts sin errores de parser; VM Windows 11 LTSC Evaluation de 4 GiB identificada | Docker/WSL y ejecución completa sin verificar; recursos/soporte limitan el ensayo |
 | Seguridad | Composer audit sin avisos, jQuery verificado, 81 controles HTTPS públicos y 505 blobs sin secretos conocidos | Escaneo de imágenes y revisión completa de vulnerabilidades pendientes |
 | Arranque público aislado | dev.20: imagen PHP 8.4 construida, tres rechazos reales y 25 guardas simuladas. dev.21: MySQL 8.4 con TLS, CA/hostname incorrectos rechazados, tres migraciones, Apache/HTTP interno y recreación aprobados | No demuestra proveedor externo ni URL HTTPS; servidor sin TLS aprobado en dev.24 |
 | Cuentas dev.22 | `public-tls-5NcIVnVj`, 19:39:57 UTC, exit 0: CLI creó tres cuentas ficticias con roles/hashes válidos; repetición, entorno local y plan inválido rechazados sin cambios; mismas cuentas válidas tras recrear web | No certifica login público ni concurrencia de aprovisionamiento |
-| Documentos y paquete | PDF borrador dev.28 de 15 páginas renderizadas y revisadas; exportación ZIP anterior preservada | ZIP dev.28 con integridad comprobada; instalación limpia, revisión y defensa humana pendientes |
+| Documentos y paquete | PDF borrador dev.28 de 15 páginas renderizadas y revisadas; exportación ZIP anterior preservada | ZIP dev.28 con integridad e instalación limpia Linux comprobadas; sincronización final, Windows y defensa humana pendientes |
 
 ## Bloques y próximo trabajo
 
 - B01/B02: stack, esquema y migraciones comprobados. Portabilidad final permanece abierta.
 - B03–B06: implementación e integración aprobadas; aceptación de navegador parcial. Consultar [MATRIZ.md](MATRIZ.md).
 - B07 abierto: completar Firefox/Windows y casos restantes de UI/seguridad. No repetir la suite extensa sin cambios, fallos o dudas relevantes.
-- B08 activo: GitHub privado y preparación pública operativos; TLS y cuentas comprobados en ensayo aislado. Ensayo sin TLS dev.24 aprobado. Propuesta PUBLICACION-SOLICITUD.md autorizada. Render conectado solo a EVENTIFY y servicio Free publicado. MySQL/Render Free, HTTPS y flujos centrales externos verificados en dev.25; pendientes clima exitoso desde Render, cookies/controles externos restantes y revisión final.
+- B08 activo: GitHub privado y preparación pública operativos; TLS y cuentas comprobados en ensayo aislado. Ensayo sin TLS dev.24 aprobado. Propuesta PUBLICACION-SOLICITUD.md autorizada. Render conectado solo a EVENTIFY y servicio Free publicado. MySQL/Render Free, HTTPS y flujos centrales externos verificados en dev.25; Pronóstico público útil y 81 controles HTTPS aprobados; revisión final pendiente.
 - B09 abierto: actualizar documento técnico y paquete cuando la evidencia se consolide; entrega final exige instalación del receptor, entregables completos y evidencia humana real.
 
 ## Último resultado y límites
@@ -222,3 +222,12 @@ Alcance: instalación limpia y flujo central Linux dev.28 aprobados con estos ca
 Preparado storage/verificacion-zip-dev28/persistencia.sh, limitado al proyecto existente eventify-clean-20261009002340-886e6d4b/puerto8084. Valida configuración, entorno local, base eventify_qa y propiedad de ambos volúmenes antes de detener web. Toma snapshot consistente, recrea web/db sin borrar volúmenes, detiene web para otro snapshot, compara exactamente, reinicia web y comprueba tres rutas HTTP. Trap intenta restaurar web si el ensayo falla. No importación, migración ni siembra; no toca destino restaurado ni instancias anteriores. Bash-n aprobado; ejecución solicitada al usuario por restricción Docker/sudo, todavía sin resultado. No repetir el ensayo limpio completo ni crear otro ZIP para este control.
 
 SEGURIDAD y VERIFICACION-WINDOWS aclaran resultados vigentes: cookies HTTPS/TLS externos ya comprobados, sesiones Render efímeras y PowerShell real no equivalente a instalación Windows. Sin cambios de código ni versión. Pendientes concretos: snapshot posterior de reserva8, Firefox, Windows compatible, escaneo de imágenes y sincronización final PDF/paquete/evidencia humana.
+
+
+## B07: persistencia dev.28 posterior a reserva aprobada
+
+RNF-01/02, RF-12/14 y U-03: registro privado storage/existing-wq5XDtXK, inicio 2026-10-09T00:28:53Z (8 de octubre, 18:28:53 CST), exit_code=0. El ensayo actuó únicamente sobre eventify-clean-20261009002340-886e6d4b, puerto 8084. Los snapshots antes/después de recrear web y MySQL son idénticos: diez tablas, ocho reservas, ocho tickets y archivos duraderos. Sin nueva siembra, importación ni eliminación de volúmenes. Tres rutas HTTP respondieron correctamente; destinos anteriores conservados.
+
+Después de la recreación, IAB confirmó login del usuario ficticio, historial con la reserva de dos entradas CANCELADA y acceso a su mismo ticket. QR completo visible y aviso de ticket sin vigencia; captura revisada /tmp/eventify-dev28-persistencia.png, fuera de Git. Logout comprobado al finalizar. Esto completa el ensayo de persistencia posterior al flujo central de la copia limpia Linux dev.28, pendiente en la entrada anterior. No certifica Windows, Firefox ni todos los escenarios de aceptación.
+
+Solo documentación de evidencia; VERSION permanece dev.28 y no se cambia la aplicación pública. Restan matriz de navegador, ejecución Windows compatible, escaneo de imágenes y sincronización final de PDF/paquete, además de preparación y defensa humanas.

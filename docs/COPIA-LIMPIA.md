@@ -31,3 +31,8 @@ Resultado dev.17 real: clean-20261008160801-e96614c4, 2026-10-08 16:08:01 UTC, e
 Los IDs se eligen de los registros privados, no por buscar el más reciente automáticamente. Configuración local/base/puerto/montajes/volúmenes y propiedad se validan; un destino ausente o ajeno se rechaza. Registros en storage/existing-ID, incluyendo status, snapshots y credenciales restauradas, no se entregan ni se versionan. Seis respuestas HTTP200 prueban arranque básico, no login/reserva/QR; el recorrido de navegador sigue separado. Script preparado y ocho guardas simuladas correctas; ejecución real aún pendiente.
 
 Resultado real del comando de continuación: existing-iAQixJNV,2026-10-08T16:41:44Z/exit0. Snapshots antes/después idénticos de diez tablas/archivos con ocho reservas/ocho tickets; seisHTTP correctos. Chrome del destino restaurado confirmó login/logout de ambos roles, historial/ticket/QR y dashboard, sin modificar reservas/eventos. Guarda alcance y límites en ESTADO/evidenciasB07.
+
+
+## Persistencia posterior al flujo dev.28
+
+8 de octubre, 18:28:53 CST: existing-wq5XDtXK, exit_code=0. Recreación de web/MySQL de eventify-clean-20261009002340-886e6d4b (8084), sin borrar volúmenes ni sembrar de nuevo. Snapshots idénticos de diez tablas, ocho reservas/ocho tickets y archivos; tres rutas HTTP correctas. IAB posterior confirma login, historial CANCELADA, mismo ticket/QR y aviso sin vigencia; logout final. Captura /tmp/eventify-dev28-persistencia.png revisada, fuera de Git. Este resultado supera el pendiente de recreación posterior a la reserva descrito arriba. Windows/Firefox y aceptación completa siguen abiertos.
