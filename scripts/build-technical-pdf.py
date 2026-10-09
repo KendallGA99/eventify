@@ -14,6 +14,7 @@ from reportlab.platypus.tableofcontents import TableOfContents
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'output/pdf/EVENTIFY_Documento_Tecnico_Borrador.pdf'
 OUT.parent.mkdir(parents=True, exist_ok=True)
+VERSION = (ROOT / 'VERSION').read_text().strip()
 for name, path in [('Body', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'), ('BodyBold', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf')]:
     pdfmetrics.registerFont(TTFont(name, path))
 pdfmetrics.registerFontFamily('Body', normal='Body', bold='BodyBold', italic='Body', boldItalic='BodyBold')
@@ -83,7 +84,7 @@ def frame(canvas, doc):
     canvas.setFont('Body', 8)
     canvas.setFillColor(colors.HexColor('#60727a'))
     if doc.page > 1:
-        canvas.drawString(48, A4[1]-29, 'EVENTIFY / Documento técnico / Borrador dev.17')
+        canvas.drawString(48, A4[1]-29, 'EVENTIFY / Documento técnico / ' + VERSION)
     canvas.drawString(48, 27, 'Corte: 08-10-2026 | Pendientes de evaluación indicados')
     canvas.drawRightString(A4[0]-48, 27, str(doc.page))
     canvas.restoreState()
@@ -91,8 +92,8 @@ def frame(canvas, doc):
 
 story = [Spacer(1, 75), Paragraph('EVENTIFY', styles['CoverTitle']),
          Paragraph('Documento técnico<br/>Borrador de evaluación', styles['CoverSubtitle']),
-         Paragraph('SC-502 Ambiente Web Cliente-Servidor<br/>Código de referencia: v0.1.0-dev.17<br/>8 de octubre de 2026', styles['Text']),
-         Spacer(1, 25), Paragraph('<b>Estado:</b> implementación con verificación parcial. Linux desde ZIP, integración y restauración de datos comprobados. URL pública, Windows, Firefox y criterios finales pendientes.', styles['Text']),
+         Paragraph('SC-502 Ambiente Web Cliente-Servidor<br/>Código de referencia: ' + text(VERSION) + '<br/>8 de octubre de 2026', styles['Text']),
+         Spacer(1, 25), Paragraph('<b>Estado:</b> implementación con verificación parcial. Linux desde ZIP, integración y restauración de datos comprobados. Web pública y controles HTTPS comprobados. Pronóstico público, Windows, Firefox y criterios finales pendientes.', styles['Text']),
          Paragraph('Estudiante y docente: pendientes de completar por la persona responsable. El documento no acredita autoría, dominio ni defensa individual.', styles['Text']),
          PageBreak(), Paragraph('Contenido', styles['Subsection'])]
 toc = TableOfContents()

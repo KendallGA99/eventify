@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 
 ## Versión e instancias
 
-- Rama: `codex/b08-rechazo-sin-tls`. VERSION `0.1.0-dev.27` (pruebas/documentación); aplicación Render dev.26 `cabd6f3` Live; dev.24 `6baa754` y etiqueta `v0.1.0-dev.24` publicados y referencias remotas verificadas (ensayo sin TLS aprobado); dev.23 `3badc85`/`v0.1.0-dev.23` publicado, ensayo parcial y fallo del evaluador; cuentas verificadas en dev.22 (`4947823`, etiqueta `v0.1.0-dev.22`). Ninguna versión estable; CI manual preparado, no ejecutado.
+- Rama: `codex/b08-rechazo-sin-tls`. VERSION `0.1.0-dev.28` (pruebas/documentación); aplicación Render dev.26 `cabd6f3` Live; dev.24 `6baa754` y etiqueta `v0.1.0-dev.24` publicados y referencias remotas verificadas (ensayo sin TLS aprobado); dev.23 `3badc85`/`v0.1.0-dev.23` publicado, ensayo parcial y fallo del evaluador; cuentas verificadas en dev.22 (`4947823`, etiqueta `v0.1.0-dev.22`). Ninguna versión estable; CI manual preparado, no ejecutado.
 - `main`: `3da680b74b41fa3da4069879edc1f649de9b97f2`. No reescribir historial ni hacer push forzado. Rollback de código no restaura MySQL.
 - Destinos existentes, según última verificación: normal `localhost:8080`; QA `localhost:8081` / `eventify-qa`; copia limpia `localhost:8083` / `eventify-clean-20261008160801-e96614c4`; restauración `localhost:8082` / `eventify-restore-20261008154302-2b8eb996`. No afirmar disponibilidad actual sin consultar; conservar sus volúmenes y datos.
 - Docker 29.1.3 / Compose 2.40.3. El agente no tiene acceso al socket y sudo no interactivo exige contraseña; las operaciones Docker necesarias se ejecutan en terminal del usuario. No modificar grupos/socket/sudoers para eludirlo.
@@ -27,10 +27,10 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 | Navegador | Chrome: login/logout de ambos roles, reserva/ticket/QR, cancelación, dashboard y filtros; restauración autenticada. IAB: permisos administrativos, reserva duplicada y ticket/QR ajenos rechazados | Registro completo, teclado/zoom, fallo de red real y casos administrativos restantes; Firefox pendiente |
 | Diseño adaptable y API | Catálogo, cuenta, registro, ticket/QR y dashboard observados en tamaños indicados en B07; orientación móvil sin desbordamiento. Open-Meteo real visible en QA | Matriz final Chrome/Firefox y caída externa real en UI pendientes |
 | Windows | PowerShell 5.1 real: seis scripts sin errores de parser; VM Windows 11 LTSC Evaluation de 4 GiB identificada | Docker/WSL y ejecución completa sin verificar; recursos/soporte limitan el ensayo |
-| Seguridad | Composer audit sin avisos, procedencia/licencias/huella jQuery y 15 controles HTTP dirigidos aprobados | Revisión completa de imágenes/historial y cookies HTTPS públicas pendientes |
+| Seguridad | Composer audit sin avisos, jQuery verificado, 81 controles HTTPS públicos y 505 blobs sin secretos conocidos | Escaneo de imágenes y revisión completa de vulnerabilidades pendientes |
 | Arranque público aislado | dev.20: imagen PHP 8.4 construida, tres rechazos reales y 25 guardas simuladas. dev.21: MySQL 8.4 con TLS, CA/hostname incorrectos rechazados, tres migraciones, Apache/HTTP interno y recreación aprobados | No demuestra proveedor externo ni URL HTTPS; servidor sin TLS aprobado en dev.24 |
 | Cuentas dev.22 | `public-tls-5NcIVnVj`, 19:39:57 UTC, exit 0: CLI creó tres cuentas ficticias con roles/hashes válidos; repetición, entorno local y plan inválido rechazados sin cambios; mismas cuentas válidas tras recrear web | No certifica login público ni concurrencia de aprovisionamiento |
-| Documentos y paquete | PDF borrador dev.17 de 15 páginas revisado. ZIP desde `e03973238467`, 163 archivos, CRC/huellas correctos e incluye guías Windows/defensa | Actualizar PDF/ZIP a versión final; PDF se entrega separado; revisión y defensa humana pendientes |
+| Documentos y paquete | PDF borrador dev.28 de 15 páginas renderizadas y revisadas; exportación ZIP anterior preservada | Generar ZIP dev.28 y probar instalación limpia; revisión y defensa humana pendientes |
 
 ## Bloques y próximo trabajo
 
@@ -181,3 +181,14 @@ Revisión de historial de todas las referencias locales: 505 blobs únicos compa
 Alternativa meteorológica revisada: MET Norway Locationforecast. Requiere identificación real en User-Agent, atribución CC BY4.0, caché respetando Expires/Last-Modified, compresión y gestión de redirecciones. No es compatible directamente con el adaptador diario actual: series horarias y horizonte distinto. No se activó, no se enviaron coordenadas ni se cambió proveedor. Fuentes: https://docs.api.met.no/doc/TermsOfService y https://docs.api.met.no/doc/ForecastJSON.html. Mantener RF-15 público pendiente; preparar adaptación y pruebas antes de reemplazar la integración.
 
 Dev.27 añade pruebas/documentación; aplicación pública permanece en dev.26, sin nuevo despliegue necesario para este incremento. Próximos pendientes: respuesta útil real de API, imagen/dependencias, Firefox/Windows y actualización PDF/paquete. No marcar B07/B08 completos.
+
+
+## B09: documento técnico actualizado, dev.28
+
+Objetivo ENT-C/U-03: explicar la versión actual, la entrega local independiente y la evidencia sin atribuir al estudiante una defensa no realizada. Revisados requisitos de PDF, documento técnico, instalación, empaquetador, estado y scripts. El documento conserva RF-01–21, RNF-01–07, historias/aceptación, navegación, arquitectura, ER, diccionario, reglas, seguridad, API, despliegue y conclusiones.
+
+TECNICO actualizado: MySQL/Aiven y Render reales, TLS/usuario limitado, sesiones efímeras, persistencia y restauración comprobadas, 219 controles de integración, 81 HTTPS, límite HTTP429 y pendientes Windows/Firefox/API/defensa. Quitadas afirmaciones antiguas de que no existía publicación ni pruebas de TLS. Portada y cabecera PDF toman VERSION; no se cambió lógica de aplicación ni esquema.
+
+Ejecutado generador con Python del runtime y ReportLab. PDF output/pdf/EVENTIFY_Documento_Tecnico_Borrador.pdf: 15 páginas A4, sin contraseña, índice y secciones presentes, caracteres dentro del área de página. Poppler renderizó las 15 páginas; inspección visual de tres hojas de contacto confirmó tablas, diagramas y paginación sin recortes/solapamientos. Texto mantiene estado de borrador y los datos de estudiante/docente pendientes.
+
+Empaquetador actualizado solo en instrucciones de pendientes; 13 comprobaciones con repositorios ficticios aprobadas. PDF separado del ZIP; código se exportará por commit, no desde la carpeta con secretos. Exportación e integridad dev.28 todavía pendientes en esta entrada. No repetir suite MySQL por cambios de documentos. Instalación limpia de este incremento y ejecución Windows siguen abiertas.

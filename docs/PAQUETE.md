@@ -1,13 +1,13 @@
 # Paquete de código EVENTIFY
 
-B09/U-03/ENT-B: herramienta de preparación de entrega. El ZIP de desarrollo no certifica instalación limpia Linux/Windows, URL pública, restore real ni defensa. Los pendientes están en ESTADO/MATRIZ.
+B09/U-03/ENT-B: herramienta de preparación de entrega. El ZIP de desarrollo no certifica instalación limpia Linux/Windows, aceptación pública completa, restauración de ese paquete ni defensa. Los pendientes están en ESTADO/MATRIZ.
 
 ## Generación por el desarrollador
 
 Desde el repositorio, con Python 3 y Git del host:
 
 ```bash
-python3 scripts/package-source.py --ref v0.1.0-dev.14
+python3 scripts/package-source.py --ref v0.1.0-dev.28
 ```
 
 Exporta el commit exacto de la referencia; no copia la carpeta de trabajo. Rechaza cambios de archivos versionados sin commit, referencias incompletas, secretos/SQL de datos/logs versionados, enlaces y submódulos. .env.example sí se incluye; storage solo admite .gitkeep. Esta revisión de nombres no reemplaza la revisión de contenido y secretos antes de versionar.

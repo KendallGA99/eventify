@@ -1,5 +1,9 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.28 — 2026-10-08
+
+B09: documento técnico actualizado con publicación, TLS, permisos, persistencia y controles HTTPS realmente comprobados. Mantiene pendientes de API pública, Windows, Firefox y defensa. Generador PDF usa VERSION en portada/cabecera para evitar referencias antiguas. Paquete conserva exportación por commit e instrucciones de entrega local independiente. Sin cambios funcionales ni de base de datos.
+
 ## 0.1.0-dev.27 — 2026-10-08
 
 B07/B08: incorpora una verificación HTTPS reproducible con cuentas ficticias privadas. Comprueba cookies, CSRF, sesiones, permisos y propiedad de tickets sin crear datos de negocio. Ejecución contra la web dev.26: 81 controles correctos. Revisados 505 blobs del historial: no contienen los secretos privados conocidos ni rutas privadas prohibidas. No cambia la aplicación desplegada ni certifica una revisión completa de vulnerabilidades.
