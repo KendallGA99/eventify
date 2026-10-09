@@ -1,6 +1,6 @@
 # Comprobación de entrega en Windows
 
-B07/U-01/U-03. Preparada, todavía no ejecutada en un equipo Windows. Usar un ZIP de la referencia acordada y una instalación independiente; conservar pruebas y resultados sin contraseñas.
+B07/U-01/U-03. La prueba integral de instalación y uso sigue pendiente. Los scripts sí tienen una revisión de sintaxis con PowerShell 5.1 en Windows; ese resultado no acredita el funcionamiento de Docker ni de la aplicación. Usar un ZIP de la referencia acordada y una instalación independiente; conservar pruebas y resultados sin contraseñas.
 
 ## Antes de instalar
 

@@ -32,8 +32,8 @@ GET /.env, /storage/demo-credentials.json, /composer.lock y /app/bootstrap.php d
 ## Pendientes de cierre
 
 - Auditoría de imagen base/PHP/Apache/MySQL y revisión completa de secretos/historial según riesgo de entrega; esta revisión cubre dependencias de aplicación y controles indicados.
-- HTTPS público/cookies Secure, TLS MySQL externo real y persistencia de sesiones en proveedor.
-- Casos restantes de UI, permisos y errores; Firefox/Windows, copia tras nueva reserva/recreación y HTTP restaurado.
+- Cookies HTTPS y conexión externa TLS ya tienen evidencia. Las sesiones de Render son efímeras: el usuario debe ingresar de nuevo tras recrear la web; MySQL conserva sus reservas. No exigir ni afirmar persistencia de sesión no implementada.
+- Casos restantes de interfaz, permisos y errores; Firefox/Windows y persistencia de la copia dev.28 después de la nueva reserva. El recorrido HTTP autenticado del destino restaurado anterior ya tiene evidencia.
 - Revisar avisos otra vez antes de entregar si cambia una dependencia o transcurre tiempo relevante. Mantener las licencias BSD de dependencias dentro del vendor instalado por Composer y los avisos MIT de jQuery al redistribuir.
 
 
