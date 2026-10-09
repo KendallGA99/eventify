@@ -1,6 +1,6 @@
 # Revisión de seguridad y dependencias
 
-Revisión dirigida B07/RNF-03/SEG-01–09, 2026-10-08. Código dev.17; copia limpia aislada en 8083. Este documento registra evidencia específica y límites; no certifica ausencia de vulnerabilidades ni sustituye las verificaciones finales del despliegue.
+Revisión dirigida B07/RNF-03/SEG-01–09, 2026-10-08. Aplicación pública dev.26 y copia limpia Linux dev.28; cada ensayo indica su versión y alcance. Este documento registra evidencia específica y límites; no certifica ausencia de vulnerabilidades ni sustituye las verificaciones finales del despliegue.
 
 ## Dependencias de aplicación
 
@@ -33,7 +33,7 @@ GET /.env, /storage/demo-credentials.json, /composer.lock y /app/bootstrap.php d
 
 - Auditoría de imagen base/PHP/Apache/MySQL y revisión completa de secretos/historial según riesgo de entrega; esta revisión cubre dependencias de aplicación y controles indicados.
 - Cookies HTTPS y conexión externa TLS ya tienen evidencia. Las sesiones de Render son efímeras: el usuario debe ingresar de nuevo tras recrear la web; MySQL conserva sus reservas. No exigir ni afirmar persistencia de sesión no implementada.
-- Casos restantes de interfaz, permisos y errores; Firefox/Windows y persistencia de la copia dev.28 después de la nueva reserva. El recorrido HTTP autenticado del destino restaurado anterior ya tiene evidencia.
+- Casos restantes de interfaz, permisos y errores; Firefox/Windows. La copia Linux dev.28 ya conserva la reserva nueva, su cancelación y ticket después de recrear web/MySQL. El recorrido HTTP autenticado del destino restaurado anterior ya tiene evidencia.
 - Revisar avisos otra vez antes de entregar si cambia una dependencia o transcurre tiempo relevante. Mantener las licencias BSD de dependencias dentro del vendor instalado por Composer y los avisos MIT de jQuery al redistribuir.
 
 
@@ -42,3 +42,25 @@ GET /.env, /storage/demo-credentials.json, /composer.lock y /app/bootstrap.php d
 En dev.26 se ejecutaron 81 controles HTTPS con `tests/public_security.py`: cookies y sesión, CSRF, accesos administrativos, historial y propiedad de ticket/QR. El script exige un origen HTTPS y cuentas ficticias privadas; no sigue redirecciones ni muestra credenciales. Los POST de negocio se rechazan por CSRF inválido y no crean reservas. Véase ESTADO para el alcance y el comando. Las sesiones propias de la prueba se cerraron.
 
 La revisión de 505 blobs únicos del historial no encontró los secretos reales conocidos de configuración/cuentas ni rutas de datos privados. Esta revisión dirigida complementa la exclusión de archivos; no sustituye el escaneo de vulnerabilidades de las imágenes, que sigue pendiente.
+
+
+## Imágenes base: escaneo del 8 de octubre
+
+Trivy 0.75.0 oficial, archivo Linux amd64 contrastado con SHA-256 del release; herramienta y licencia fuera de Git. Escaneo remoto de las referencias exactas de Dockerfile y Compose, sin servicio Docker ni enviar fuente/configuración privada. Base de avisos actualizada 2026-10-08T19:05:21Z; descargada 2026-10-09T00:36:55Z. Plataforma linux/amd64, scanner vuln; informes privados storage/image-audit/php-base.json y mysql-base.json. Ambos procesos terminaron con exit0: significa que el análisis terminó, no ausencia de avisos. No se usó ignore-unfixed ni exclusiones de avisos. MySQL se ejecutó con telemetría desactivada; el primer ensayo PHP usó los valores predeterminados del escáner.
+
+| Base | Filas de avisos | Identificadores distintos | Críticos | Altos | Filas con versión corregida |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| PHP/Apache, Debian 13.7 | 2015 | 1227 | 2 | 145 | 4 |
+| MySQL, Oracle Linux 9.8 y auxiliares | 69 | 69 | 1 | 29 | 68 |
+
+Las filas PHP repiten avisos entre paquetes del mismo origen; no equivalen a 2015 vulnerabilidades distintas explotables por la web. El scanner no encontró archivos de dependencias de lenguaje en esa base: no certifica por separado el PHP compilado desde fuente ni la imagen construida de EVENTIFY. Composer mantiene su auditoría independiente.
+
+Revisión inicial de los críticos:
+
+- CVE-2026-6653 corresponde a libxml2 y XML manipulado. El [registro Debian](https://security-tracker.debian.org/tracker/CVE-2026-6653) mantiene vulnerable la versión Trixie y lo clasifica como problema menor sin DSA. Búsqueda en app/bin/public no encontró DOMDocument, simplexml, xml_parse ni loadXML; esto reduce la ruta evidente de entrada, pero no demuestra ausencia de uso transitivo. No marcar resuelto.
+- CVE-2026-43185 corresponde al kernel/ksmbd y aparece asociado a linux-libc-dev. El [registro Debian](https://security-tracker.debian.org/tracker/CVE-2026-43185) describe el fallo del servicio SMB del kernel. Un paquete de cabeceras no demuestra que ese servicio esté ejecutándose en el contenedor. Evaluación del kernel del host/proveedor queda fuera de este escaneo.
+- CVE-2025-68121 aparece en Go incorporado a usr/local/bin/gosu de la base MySQL. El [aviso Go](https://pkg.go.dev/vuln/GO-2026-4337) requiere reanudación TLS y modificación de configuración de autoridades. No equivale a un fallo demostrado del TLS del servidor MySQL o PDO; falta revisar alcanzabilidad en ese ejecutable. No excluir el aviso sin evidencia.
+
+Cuatro filas corregibles PHP corresponden a xz-utils/liblzma5, dos identificadores para dos paquetes: versión base 5.8.1-1+deb13u1, corrección 5.8.1-1+deb13u2 según [Debian](https://security-tracker.debian.org/tracker/TEMP-1147318-639065). La construcción instala paquetes mediante apt y puede actualizar dependencias: comprobar la imagen final antes de proponer el parche. MySQL incluye avisos de gawk, Python y gosu; la base Aiven administrada no es esta imagen local y no se certifica con este informe.
+
+Consulta directa del registro Docker confirmó que las etiquetas oficiales php:8.4-apache y mysql:8.4 todavía apuntan a los mismos digests fijados. No hay actualización de esas etiquetas que elimine los avisos en este momento. Sin cambios de imágenes, paquetes, MySQL, datos o despliegue. Siguiente paso: escanear la imagen exacta construida de la copia dev.28 y revisar correcciones/alcanzabilidad. Escaneo completado de bases; aceptación de seguridad permanece abierta. [Método oficial de Trivy](https://www.trivy.dev/docs/latest/guide/target/container_image/).

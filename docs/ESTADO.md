@@ -27,7 +27,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 | Navegador | Chrome: login/logout de ambos roles, reserva/ticket/QR, cancelación, dashboard y filtros; restauración autenticada. IAB: permisos administrativos, reserva duplicada y ticket/QR ajenos rechazados | Registro completo, teclado/zoom, fallo de red real y casos administrativos restantes; Firefox pendiente |
 | Diseño adaptable y API | Catálogo, cuenta, registro, ticket/QR y dashboard observados en tamaños indicados en B07; orientación móvil sin desbordamiento. Open-Meteo real visible en QA | Matriz final Chrome/Firefox y caída externa real en UI pendientes |
 | Windows | PowerShell 5.1 real: seis scripts sin errores de parser; VM Windows 11 LTSC Evaluation de 4 GiB identificada | Docker/WSL y ejecución completa sin verificar; recursos/soporte limitan el ensayo |
-| Seguridad | Composer audit sin avisos, jQuery verificado, 81 controles HTTPS públicos y 505 blobs sin secretos conocidos | Escaneo de imágenes y revisión completa de vulnerabilidades pendientes |
+| Seguridad | Composer audit sin avisos, jQuery verificado, 81 controles HTTPS públicos y 505 blobs sin secretos conocidos | Bases PHP/MySQL escaneadas con avisos; imagen construida, correcciones/alcanzabilidad y revisión final pendientes |
 | Arranque público aislado | dev.20: imagen PHP 8.4 construida, tres rechazos reales y 25 guardas simuladas. dev.21: MySQL 8.4 con TLS, CA/hostname incorrectos rechazados, tres migraciones, Apache/HTTP interno y recreación aprobados | No demuestra proveedor externo ni URL HTTPS; servidor sin TLS aprobado en dev.24 |
 | Cuentas dev.22 | `public-tls-5NcIVnVj`, 19:39:57 UTC, exit 0: CLI creó tres cuentas ficticias con roles/hashes válidos; repetición, entorno local y plan inválido rechazados sin cambios; mismas cuentas válidas tras recrear web | No certifica login público ni concurrencia de aprovisionamiento |
 | Documentos y paquete | PDF borrador dev.28 de 15 páginas renderizadas y revisadas; exportación ZIP anterior preservada | ZIP dev.28 con integridad e instalación limpia Linux comprobadas; sincronización final, Windows y defensa humana pendientes |
@@ -231,3 +231,12 @@ RNF-01/02, RF-12/14 y U-03: registro privado storage/existing-wq5XDtXK, inicio 2
 Después de la recreación, IAB confirmó login del usuario ficticio, historial con la reserva de dos entradas CANCELADA y acceso a su mismo ticket. QR completo visible y aviso de ticket sin vigencia; captura revisada /tmp/eventify-dev28-persistencia.png, fuera de Git. Logout comprobado al finalizar. Esto completa el ensayo de persistencia posterior al flujo central de la copia limpia Linux dev.28, pendiente en la entrada anterior. No certifica Windows, Firefox ni todos los escenarios de aceptación.
 
 Solo documentación de evidencia; VERSION permanece dev.28 y no se cambia la aplicación pública. Restan matriz de navegador, ejecución Windows compatible, escaneo de imágenes y sincronización final de PDF/paquete, además de preparación y defensa humanas.
+
+
+## B07: imágenes base analizadas; avisos pendientes de revisión
+
+SEG-09/RNF-03: Trivy 0.75.0 oficial con checksum comprobado. Dos análisis remotos linux/amd64 terminaron exit0; base de avisos del 8 de octubre. PHP/Apache: 2015 filas/1227 identificadores, dos críticos y145altos; MySQL y auxiliares:69filas/69identificadores, un crítico y29altos. No interpretar exit0 como aprobación ni conteos como ataques demostrados. Detalle, fuentes primarias y límites en SEGURIDAD.md. Digests de etiquetas oficiales actuales coinciden con los fijados; no se cambió stack ni despliegue.
+
+Revisión inicial distingue libxml2, kernel/cabeceras y Go de gosu; no se descartan sin comprobar uso. Imagen final de EVENTIFY aún sin analizar. Preparado wrapper privado storage/image-audit/exportar-imagen.sh: valida el proyecto de la copia limpia8084 y exporta únicamente su imagen por ID, sin volúmenes ni configuración del contenedor, sin detener servicios ni sobrescribir exportación existente. Bash-n aprobado. Se necesita terminal del usuario solo por acceso Docker/sudo restringido; después el agente puede escanear el tar.
+
+Sin cambios de aplicación ni VERSION nueva; evidencia registrada, seguridad/B07 siguen abiertos.
