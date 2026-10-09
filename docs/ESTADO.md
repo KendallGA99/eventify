@@ -15,7 +15,8 @@ Corte: 8 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.m
 - `main` conservada: `3da680b74b41fa3da4069879edc1f649de9b97f2`. VERSIONADO contiene la política y referencias anteriores. Git recupera código; no restaura MySQL.
 - Web pública: https://eventify-academico.onrender.com, **dev.30**, commit `390b1ef6dcbb9a9d76eaad8a910a80da364bb637`. Render `srv-db3vutm7bikc73ajj6og`, Free/Oregon/AutoDeployOff; misma rama de despliegue existente.
 - Último deploy: `dep-db44q9cs728c739ikr20`, 8 de octubre, 20:10:45 CST, **Deploy succeeded/Live**, 35 s. Referencia anterior `cabd6f3` conservada.
-- Copia limpia actual: `localhost:8085`, dev.32 `1dd0ed8dec5a15db82c9543a4ce803b492c52915`, proyecto `eventify-clean-20261009022129-10f84d13`. Dev.28/8084 conservada.
+- Copia limpia anterior: `localhost:8085`, dev.32 `1dd0ed8dec5a15db82c9543a4ce803b492c52915`, proyecto `eventify-clean-20261009022129-10f84d13`. Dev.28/8084 conservada.
+- Nueva copia limpia comprobada: `localhost:8086`, dev.33 `f4d6c5a05011c57e47295b06cedf11129a052681`, proyecto `eventify-clean-20261009035638-598f411d`. Detalle del recorrido al final.
 - Otros destinos conservados según última verificación anterior: normal8080, QA8081, restauración8082, copia limpia8083. No afirmar disponibilidad actual sin consultar. No detenerlos ni borrar volúmenes para reutilizar puertos.
 - Docker29.1.3/Compose2.40.3. Esta sesión no tiene acceso al socket; sudo no interactivo tampoco lo resuelve. No cambiar grupos/socket/sudoers. Operaciones Docker necesarias se ejecutan en terminal del usuario.
 - Configuración, cuentas, CA, registros y snapshots privados en storage/backups, ignorados por Git. Nunca imprimir credenciales ni incluirlos en el ZIP.
@@ -119,3 +120,14 @@ Fuente exacta f4d6c5a05011c57e47295b06cedf11129a052681:194 archivos, exportados 
 AVISOS-HERRAMIENTAS añade13 identificadores /70 filas MEDIUM contrastados con Debian. Búsqueda de invocaciones y188 paquetes del inventario examinados; distingue servicios ausentes de bibliotecas presentes y llamadas nativas aún no auditadas. Cotejo conjunto:976 filas MEDIUM =189 fuera de linux-libc-dev con identificadores documentados +787 de cabeceras del kernel, sin evaluación individual. No confundir cobertura con remediación; LOW y condiciones nativas/entorno siguen pendientes. Fuentes/cobertura privadas en storage/image-audit/tools-medium-review. Sin cambios funcionales ni nuevas suites.
 
 Docker info sigue devolviendo1 en esta sesión; no modificar permisos. Puerto8086 libre al comprobarlo, sin reservarlo ni detener destinos. Próximo ensayo: scripts/test-clean-linux.sh con commit f4d6c5a05011c57e47295b06cedf11129a052681 y puerto8086, para instalar la misma fuente194 archivos del paquete dev.33. No ejecutado todavía; resultados no se presuponen.
+
+
+## Instalación y recorrido dev.33 comprobados
+
+Ensayo clean-20261009035638-598f411d, inicio8oct21:56:38CST, exit0. Fuente f4d6c5a05011c57e47295b06cedf11129a052681,194 archivos; SHA256 del ZIP7a23817f91ecad6453eda169ed09b17df5e3b3125149780ce195e724703cd897 idéntico al paquete de revisión. Proyecto eventify-clean-20261009035638-598f411d,localhost8086, ruta con espacios. Tres migraciones aplicadas; demo creada únicamente en destino nuevo. qa-persistence confirma tablas, marcador, credenciales e imágenes conservados tras recreación, antes del recorrido de negocio.
+
+Navegador IAB sobre8086: login de usuario, filtro AJAX Encuentro con un resultado, reserva de dos entradas gratuitas y navegación a ticket con QR. Reserva6a15f6dedaf22a5018d499ce09d07161, ticket85471e40c94c7ed6285d65b8caef043bc2fc03f2e59794dd737a38a0699d4446. Cupos40→38→40 tras cancelación; historialCANCELADA y ticket sin vigencia permanecen visibles. Clima desactivado en QA conserva la reserva disponible, sin llamadas externas. Acceso admin rechazado para usuario común; cuenta administrativa abre panel con estadísticas. Ambas sesiones cerradas y ticket requiere login después de logout. Captura /tmp/eventify-dev33-ticket-cancelado.png revisada.
+
+No se modificó código o configuración durante este recorrido. Solo se creó/canceló una reserva ficticia en la copia aislada; instalaciones anteriores y servicio público conservados. Persistencia ensayada antes del recorrido; recreación posterior a esta nueva reserva/cancelación aún no comprobada. No certifica Windows, Firefox, zoom ni cierre de seguridad. El pendiente de instalar la fuente exacta del paquete anterior queda superado en Linux para esta referencia; documentos posteriores mantienen su propio corte.
+
+Paquete con fuente exacta conservada y resultados posteriores: output/entrega/eventify-dev33-linux-comprobado.zip, SHA256ccf79b4b74f78859ae3da5d1d94f31a1df88024777ad10b94cf1987cdcffd3f9. CRC y huellas internas comprobados; no versión estable. Paquete anterior intacto.
