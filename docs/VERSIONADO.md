@@ -69,3 +69,6 @@ Dev.26 → cabd6f335d8952332ce6d0a71fcc515bb6f5b176: redacción inicial y diagn�
 
 
 Dev.27 → deb3eeb5115e018c45d9969447bedb36a9d8534e: pruebas HTTPS y documentación. Push de rama y etiqueta v0.1.0-dev.27 confirmado con git ls-remote, incluida referencia anotada resuelta. 81 comprobaciones públicas aprobadas; Render mantiene aplicación dev.26. Main y etiquetas anteriores conservados.
+
+
+Dev.28 → b92ed44968ac9116b35bf003a41486930f7e0d71: documento técnico y generador PDF actualizados; 15 páginas revisadas y ZIP de 185 archivos exportado por commit con integridad comprobada. Sin cambios funcionales, sin nuevo despliegue y sin instalación limpia de este ZIP; no estable.

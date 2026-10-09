@@ -30,7 +30,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 | Seguridad | Composer audit sin avisos, jQuery verificado, 81 controles HTTPS públicos y 505 blobs sin secretos conocidos | Escaneo de imágenes y revisión completa de vulnerabilidades pendientes |
 | Arranque público aislado | dev.20: imagen PHP 8.4 construida, tres rechazos reales y 25 guardas simuladas. dev.21: MySQL 8.4 con TLS, CA/hostname incorrectos rechazados, tres migraciones, Apache/HTTP interno y recreación aprobados | No demuestra proveedor externo ni URL HTTPS; servidor sin TLS aprobado en dev.24 |
 | Cuentas dev.22 | `public-tls-5NcIVnVj`, 19:39:57 UTC, exit 0: CLI creó tres cuentas ficticias con roles/hashes válidos; repetición, entorno local y plan inválido rechazados sin cambios; mismas cuentas válidas tras recrear web | No certifica login público ni concurrencia de aprovisionamiento |
-| Documentos y paquete | PDF borrador dev.28 de 15 páginas renderizadas y revisadas; exportación ZIP anterior preservada | Generar ZIP dev.28 y probar instalación limpia; revisión y defensa humana pendientes |
+| Documentos y paquete | PDF borrador dev.28 de 15 páginas renderizadas y revisadas; exportación ZIP anterior preservada | ZIP dev.28 con integridad comprobada; instalación limpia, revisión y defensa humana pendientes |
 
 ## Bloques y próximo trabajo
 
@@ -192,3 +192,8 @@ TECNICO actualizado: MySQL/Aiven y Render reales, TLS/usuario limitado, sesiones
 Ejecutado generador con Python del runtime y ReportLab. PDF output/pdf/EVENTIFY_Documento_Tecnico_Borrador.pdf: 15 páginas A4, sin contraseña, índice y secciones presentes, caracteres dentro del área de página. Poppler renderizó las 15 páginas; inspección visual de tres hojas de contacto confirmó tablas, diagramas y paginación sin recortes/solapamientos. Texto mantiene estado de borrador y los datos de estudiante/docente pendientes.
 
 Empaquetador actualizado solo en instrucciones de pendientes; 13 comprobaciones con repositorios ficticios aprobadas. PDF separado del ZIP; código se exportará por commit, no desde la carpeta con secretos. Exportación e integridad dev.28 todavía pendientes en esta entrada. No repetir suite MySQL por cambios de documentos. Instalación limpia de este incremento y ejecución Windows siguen abiertas.
+
+
+### Paquete dev.28 exportado y comprobado
+
+Exportado b92ed44968ac9116b35bf003a41486930f7e0d71 por scripts/package-source.py --ref b92ed44 --output-dir output/entrega. Salida output/entrega/eventify-desarrollo-b92ed44968ac/eventify-source.zip: 185 archivos, versión dev.28, CRC aprobado, manifiesto/huellas SHA-256 coincidentes. SHA-256 ZIP: 798941953798e19e758804cae02289be11ec3508ecd2d6d3e9a640f6a13330f5. Comparación de contenido del ZIP contra secretos privados conocidos sin coincidencias. No contiene Git, .env reales, cuentas de evaluación, volúmenes o datos MySQL. PDF dev.28 se entrega separado. No se ha arrancado este ZIP ni ejecutado en Windows; preservado el paquete anterior. No confundir integridad con instalación aprobada.
