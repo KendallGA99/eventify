@@ -107,3 +107,6 @@ El proveedor publica correcciones; no asumir que la ausencia de FixedVersion en 
 ## Bibliotecas base y severidad desconocida
 
 [AVISOS-BASE.md](AVISOS-BASE.md) amplía 24 identificadores, equivalentes a 66 filas (60 MEDIUM / 6 UNKNOWN): glibc, zlib, SQLite Session Extension, parsers y los tres identificadores sin severidad. Se contrastaron condiciones y estado Trixie. Once ELF setuid/setgid de la imagen local exportada no tienen RPATH/RUNPATH según readelf; no se ejecutaron ni alteraron. Configuración DNS del host sin dominios largos, pero DNS de contenedores/proveedor y parches del kernel real siguen pendientes. Ninguna exclusión o cambio de paquetes por esta ampliación; persisten discrepancias de rangos zlib/Expat. No cierra B07.
+
+
+La revisión de los diez avisos medios curl/libcurl se amplía en [AVISOS-CURL.md](AVISOS-CURL.md). La descarga HTTPS de Composer mantiene abierto80229: ausencia de llamadas curl en WeatherClient no equivale a ausencia de curl en construcción.

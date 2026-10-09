@@ -102,3 +102,8 @@ Inspección estática de once ELF setuid/setgid en la imagen local dev.32: ningu
 ## Apache y tar: revisión adicional
 
 Doce identificadores / 39 filas MEDIUM contrastados con Debian y el informe conservado. Ocho avisos Apache requieren módulos no cargados; rewrite está presente, pero falta la expresión lookahead necesaria para el noveno. Tar sí interviene en restauración QA: se revisaron formato no incremental, opciones y procedencia del archivo; un directorio nuevo o snapshots no prueban seguridad frente a archivos maliciosos. Detalles y límites en AVISOS-APACHE-TAR. Sin cambios funcionales ni repetición de suites. Continúan pendientes los demás grupos, DNS/kernel reales, Firefox/zoom, Windows y paquete final.
+
+
+## curl: diez avisos medios contrastados
+
+AVISOS-CURL coteja diez identificadores / veinte filas MEDIUM con fuentes originales y Debian. WeatherClient usa streams PHP; Composer y los ensayos sí ejecutan CLI. Avisos de callbacks, Digest/mTLS y reset se distinguen de los comandos utilizados;80229 también afecta CLI y permanece abierto por proveedores OpenSSL/pool. Configuración predeterminada curl y proxies externos no auditados; la huella Composer no parchea fallos de memoria durante descarga. Sin cambios funcionales ni suites repetidas.
