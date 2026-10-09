@@ -28,6 +28,7 @@ Corte: 8 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.m
 | Imágenes dev.32 | Ambas construidas, sintaxis PHP8.4, 266 comprobaciones unitarias y QR; xz/liblzma corregido y módulos Apache revisados ausentes en ejecución. image-check-ERw4lEwZ, exit0. | Escaneo conserva145HIGH/2CRITICAL por imagen; revisión no cerrada. |
 | MySQL/HTTP dev.33 | 219 comprobaciones sobre imagen MySQL corregida, tres migraciones; concurrencia de reserva, administración y presupuesto meteorológico. | No certifica Windows ni toda la publicación. |
 | Copia limpia Linux dev.32 | ZIP exacto, ruta con espacios, migraciones y persistencia inicial; ambos roles, reserva/ticket/QR, cancelación e historial comprobados en8085. clean-20261009022129-10f84d13, exit0. | Recreación posterior al flujo y consulta de historial/ticket aprobadas; Windows pendiente. |
+| Copia limpia Linux dev.33 | Fuente f4d6c5a exacta, recorrido8086 y recreación posterior; diez tablas/cinco archivos idénticos, historial y QR conservados. dev33-persistence-lBxRJbW3,exit0. | Windows/Firefox/zoom y seguridad siguen pendientes; no versión estable. |
 | Restauración | Diez tablas y archivos comparados en destino aislado; registros privados conservados. | No prueba toda transferencia a Windows. |
 | Publicación dev.30 | Parche construido en Render; sintaxis, 39 pruebas de clima y44 de presupuesto en build. Snapshots antes/después idénticos en diez tablas. | No incluye nueva reserva/admin en esta ejecución. |
 | HTTPS dev.30 | 81 controles posteriores correctos: dos usuarios, sesiones, CSRF, rutas privadas y tickets ajenos; sin escrituras de negocio. | No es auditoría universal ni revisión completa de imágenes. |
@@ -138,3 +139,14 @@ Paquete con fuente exacta conservada y resultados posteriores: output/entrega/ev
 Helper privado storage/clean-20261009035638-598f411d/verify-browser-persistence.sh preparado para el único proyecto eventify-clean-20261009035638-598f411d y puerto8086. Valida éxito previo, commit y SHA del ZIP, configuración local/eventify_qa, aislamiento de montajes y propietario de ambos volúmenes antes de detener web. Obtiene snapshots mediante qa-transfer, recrea sin build ni borrado, compara diez tablas/archivos y restablece web ante fallo. Agrega lectura DNS del contenedor con cantidades/longitudes y arquitectura, sin registrar dominios o variables privadas.
 
 Bash-n y comprobaciones del destino/no-build/no-borrado correctas. Docker info devuelve1; ejecución real pendiente en terminal del usuario. No se tocó la copia ni se generó evidencia ficticia de persistencia posterior. El helper es específico del ensayo, queda fuera del paquete del receptor y no cambia dev.33. Al finalizar, revisar status/snapshots/DNS y consultar en navegador el historialCANCELADA y ticket sin vigencia; no repetir la reserva.
+
+
+## Persistencia posterior dev.33 comprobada
+
+Registro storage/dev33-persistence-lBxRJbW3, inicio8oct22:17:00CST, exit0, proyecto eventify-clean-20261009035638-598f411d. Comparación completa before/after idéntica: diez tablas,cinco archivos,ocho reservas y ocho tickets. Contenedores recreados sin build ni borrado de volúmenes; tres rutas HTTP responden correctamente. El pendiente del helper preparado queda superado para esta copia exacta.
+
+DNS leído dentro del contenedor: arquitectura x86_64, un dominio search/domain de longitud1, LOCALDOMAIN ausente. No se encontró la condición de dominio largo del aviso8674 en ese runtime. Solo cifras, sin exponer nombres/variables. No extrapolar a Render, Windows, otro contenedor ni futuros cambios DNS; kernel y bibliotecas nativas conservan sus pendientes.
+
+Después de la recreación, navegador IAB8086: login correcto, historial de la reserva6a15f6dedaf22a5018d499ce09d07161 conserva CANCELADA y dos entradas; ticket85471e40c94c7ed6285d65b8caef043bc2fc03f2e59794dd737a38a0699d4446 conserva QR y mensaje sin vigencia. Captura /tmp/eventify-dev33-persistencia.png inspeccionada. Sesión cerrada, ninguna nueva reserva o cancelación; pestaña temporal cerrada. No hace falta repetir instalación/persistencia para esta referencia por cambios documentales.
+
+Linux: instalación limpia,recorrido y persistencia posterior aprobados para f4d6c5a. Pendientes restantes: Windows completo,Firefox/zoom/calendario,revisión de seguridad aún abierta,documentación final y defensa humana. No se marca estable ni se cierran todos los criterios B07. ZIP dev33-linux-comprobado conserva su corte previo; este registro añade la evidencia posterior sin alterar su fuente o huellas.

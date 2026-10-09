@@ -64,3 +64,8 @@ Lecturas realizadas sin modificar configuración:
 Esta revisión elimina la duda de inventario RPATH de esos 11 ELF para la imagen local exacta: no se encontró el requisito RPATH/RUNPATH de los avisos86805/95818. No se extrapola al proceso desplegado en Render, otra arquitectura, programas añadidos, bibliotecas privilegiadas de terceros o el host. mount/umount siguen instalados con setuid; no se cambian sus permisos por esta inspección. Datos en setid-rpath.json del registro privado.
 
 Cobertura cotejada automáticamente con el JSON original: 24 identificadores corresponden a 66 filas,60 MEDIUM y 6 UNKNOWN. Es cobertura de condiciones consultadas; las observaciones con límites y discrepancias permanecen abiertas. Los restantes avisos del inventario no se consideran aprobados por esta revisión.
+
+
+## DNS efectivo de la copia dev.33
+
+La lectura posterior desde el contenedor web de eventify-clean-20261009035638-598f411d registra x86_64,un dominio search/domain de longitud1 y LOCALDOMAIN ausente. Evidencia dns-runtime.json en storage/dev33-persistence-lBxRJbW3,ensayo exit0. No se encontró la condición de dominio largo de CVE-2026-8674 en esta copia. El pendiente anterior de DNS queda superado únicamente para este runtime; proveedor público y otras plataformas siguen sin comprobarse. No cambia el estado vulnerable del paquete ni certifica otros avisos del resolver.
