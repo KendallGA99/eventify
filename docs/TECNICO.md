@@ -3,7 +3,7 @@
 
 Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 8 de octubre de 2026. Código de referencia: v0.1.0-dev.32. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza. Fecha de entrega: pendiente de confirmar.
 
-Este documento explica cómo funciona el sistema y qué se ha comprobado. Hay evidencia de integración MySQL, restauración, instalación desde ZIP en Linux y uso de la web pública. La web ejecuta dev.30 con el parche xz/liblzma. Después del despliegue se comprobaron las huellas de diez tablas y los 81 controles HTTPS. El paquete documental dev.32 conserva la misma aplicación; su nueva instalación limpia está pendiente. El pronóstico público ya tiene respuesta útil comprobada. Windows, Firefox y la aceptación final siguen pendientes.
+Este documento explica cómo funciona el sistema y qué se ha comprobado. Hay evidencia de integración MySQL, restauración, instalación desde ZIP en Linux y uso de la web pública. La web ejecuta dev.30 con el parche xz/liblzma. Después del despliegue se comprobaron las huellas de diez tablas y los 81 controles HTTPS. El ZIP dev.32 conserva la misma aplicación y aprobó instalación limpia Linux, ambos roles, reserva/cancelación y persistencia posterior. Windows continúa pendiente. El pronóstico público ya tiene respuesta útil comprobada. Windows, Firefox y la aceptación final siguen pendientes.
 
 ## 1. Descripción y resultado esperado
 
@@ -271,7 +271,7 @@ Volúmenes locales mysql_data y app_storage conservan datos y archivos al recrea
 
 El paquete se exporta desde un commit concreto, con manifiesto y SHA-256 del ZIP y de cada archivo. Contiene código, scripts, migraciones, licencias y .env.example; no contiene claves, .git, volúmenes ni datos de MySQL. El receptor no necesita Python, Git ni cuentas en Render, Aiven o GitHub para ejecutar la copia local. Sí necesita Docker/Compose y conexión a Internet para descargar las imágenes y dependencias inicialmente.
 
-El ZIP dev.28 arrancó en Linux desde una ruta con espacios. Se comprobaron ambos roles, reserva, ticket/QR, cancelación e historial; pruebas posteriores comprobaron diez tablas y archivos tras recreación. Esto no verifica automáticamente un ZIP nuevo: la versión de entrega requiere otra instalación limpia. Windows tiene evidencia de sintaxis PowerShell, pero no de ejecución completa del stack.
+El ZIP dev.32 arrancó en Linux desde una ruta con espacios en el puerto8085. Se comprobaron ambos roles, reserva, ticket/QR, cancelación e historial. La recreación posterior conservó las huellas de diez tablas y cinco archivos, ocho reservas y ocho tickets; el navegador volvió a mostrar el ticket cancelado y su QR. El ZIP fuente coincide con la huella del paquete probado. Windows tiene evidencia de sintaxis PowerShell, pero no de ejecución completa del stack.
 
 La restauración QA usó una base y volúmenes nuevos, un dump consistente y comparación de filas y archivos. No importó encima de una base existente. El navegador también comprobó el destino restaurado autenticado. Para transferir reservas ya creadas hay que exportar los datos por separado, siguiendo RESPALDO.md; el ZIP de código no los incluye.
 
@@ -283,9 +283,9 @@ La demostración pública comprobó login de ambos roles, creación de categorí
 
 | Evidencia ejecutada | Resultado | Qué no demuestra |
 | --- | --- | --- |
-| Desarrollo Linux | 266 comprobaciones unitarias, sintaxis PHP 8.4 y QR en cada imagen local/pública dev.30. | No cubre por inferencia cambios posteriores ni Windows. |
+| Desarrollo Linux | 266 comprobaciones unitarias, sintaxis PHP8.4 y QR en cada imagen local/pública dev.32; módulos Apache revisados ausentes en ejecución. | No cubre por inferencia cambios posteriores ni Windows. |
 | Integración MySQL/HTTP | 219 comprobaciones, tres migraciones y carreras de reserva, administración y presupuesto; 16:31:25 UTC. | No equivale a pruebas completas de la web pública. |
-| Persistencia y restauración QA | Diez tablas y archivos comparados; copia limpia conserva ocho reservas y tickets tras recrear. | No verifica automáticamente la instalación de un ZIP nuevo. |
+| Persistencia y restauración QA | ZIP dev.32, ruta con espacios: diez tablas y cinco archivos idénticos tras recrear después de reservar/cancelar; ocho reservas y tickets. | Comprobado el ZIP fuente dev.32 exacto; no certifica Windows u otro paquete. |
 | Chrome y diseño adaptable | Flujos de ambos roles, reserva, QR, cancelación y vistas en móvil/tableta/escritorio. | Registro móvil con foco/teclado y validación vacía comprobados; Firefox, zoom y matriz restante pendientes. |
 | TLS real | CA/hostname incorrectos y servidor sin TLS rechazados; conexión externa válida en Aiven/Render. | No es una auditoría universal de la infraestructura. |
 | Publicación dev.30 | Render Live (390b1ef); parche xz/liblzma, sintaxis y 39 controles de clima más 44 de presupuesto en construcción; diez tablas conservadas y 81 controles HTTPS posteriores. | Pronóstico público útil observado tras actualizar; disponibilidad permanente y todas las variantes administrativas no garantizadas. |

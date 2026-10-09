@@ -15,7 +15,7 @@ Corte: 8 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.m
 - `main` conservada: `3da680b74b41fa3da4069879edc1f649de9b97f2`. VERSIONADO contiene la política y referencias anteriores. Git recupera código; no restaura MySQL.
 - Web pública: https://eventify-academico.onrender.com, **dev.30**, commit `390b1ef6dcbb9a9d76eaad8a910a80da364bb637`. Render `srv-db3vutm7bikc73ajj6og`, Free/Oregon/AutoDeployOff; misma rama de despliegue existente.
 - Último deploy: `dep-db44q9cs728c739ikr20`, 8 de octubre, 20:10:45 CST, **Deploy succeeded/Live**, 35 s. Referencia anterior `cabd6f3` conservada.
-- Copia limpia observada en navegador: `localhost:8084`, dev.28 `b92ed44968ac9116b35bf003a41486930f7e0d71`, proyecto `eventify-clean-20261009002340-886e6d4b`. Directorio privado `storage/clean-20261009002340-886e6d4b`.
+- Copia limpia actual: `localhost:8085`, dev.32 `1dd0ed8dec5a15db82c9543a4ce803b492c52915`, proyecto `eventify-clean-20261009022129-10f84d13`. Dev.28/8084 conservada.
 - Otros destinos conservados según última verificación anterior: normal8080, QA8081, restauración8082, copia limpia8083. No afirmar disponibilidad actual sin consultar. No detenerlos ni borrar volúmenes para reutilizar puertos.
 - Docker29.1.3/Compose2.40.3. Esta sesión no tiene acceso al socket; sudo no interactivo tampoco lo resuelve. No cambiar grupos/socket/sudoers. Operaciones Docker necesarias se ejecutan en terminal del usuario.
 - Configuración, cuentas, CA, registros y snapshots privados en storage/backups, ignorados por Git. Nunca imprimir credenciales ni incluirlos en el ZIP.
@@ -24,9 +24,9 @@ Corte: 8 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.m
 
 | Área | Resultado comprobado | Límite |
 | --- | --- | --- |
-| Imágenes dev.30 | Local/pública construidas, sintaxis PHP8.4, 266 comprobaciones unitarias y QR; xz/liblzma5.8.1-1+deb13u2 comprobado. | Nueva guarda Apache dev.32 pendiente de ejecución. |
+| Imágenes dev.32 | Ambas construidas, sintaxis PHP8.4, 266 comprobaciones unitarias y QR; xz/liblzma corregido y módulos Apache revisados ausentes en ejecución. image-check-ERw4lEwZ, exit0. | Escaneo conserva145HIGH/2CRITICAL por imagen; revisión no cerrada. |
 | MySQL/HTTP | 219 comprobaciones, tres migraciones; concurrencia de reserva, administración y presupuesto meteorológico. | No certifica Windows ni toda la publicación. |
-| Copia limpia Linux | ZIP dev.28 en ruta con espacios: ambos roles, reserva/ticket/QR, cancelación/historial y persistencia tras recrear. | ZIP dev.32 necesita instalación propia. |
+| Copia limpia Linux dev.32 | ZIP exacto, ruta con espacios, migraciones y persistencia inicial; ambos roles, reserva/ticket/QR, cancelación e historial comprobados en8085. clean-20261009022129-10f84d13, exit0. | Recreación posterior al flujo y consulta de historial/ticket aprobadas; Windows pendiente. |
 | Restauración | Diez tablas y archivos comparados en destino aislado; registros privados conservados. | No prueba toda transferencia a Windows. |
 | Publicación dev.30 | Parche construido en Render; sintaxis, 39 pruebas de clima y44 de presupuesto en build. Snapshots antes/después idénticos en diez tablas. | No incluye nueva reserva/admin en esta ejecución. |
 | HTTPS dev.30 | 81 controles posteriores correctos: dos usuarios, sesiones, CSRF, rutas privadas y tickets ajenos; sin escrituras de negocio. | No es auditoría universal ni revisión completa de imágenes. |
@@ -59,20 +59,18 @@ Incidencia anterior de inspección: se imprimieron por error credenciales fictic
 
 ## Próxima acción necesaria
 
-Desde la carpeta del proyecto, ejecutar en la terminal del usuario:
+Dev.32 aprobó construcción de imágenes, instalación limpia Linux y persistencia posterior al recorrido del navegador. Ya no hace falta repetir los dos ensayos ni el helper para esta referencia. Resultado `storage/dev32-persistence-UMW4MUkC`, inicio20:28:23CST/exit0: snapshots idénticos de diez tablas y cinco archivos, ocho reservas y ocho tickets. Login posterior confirma historialCANCELADA, ticket/QR y datos conservados. Captura /tmp/eventify-dev32-persistencia.png revisada.
 
-```bash
-bash scripts/test-image-linux.sh
-bash scripts/test-clean-linux.sh v0.1.0-dev.32 8085
-```
-
-Primer ensayo agrega inventario real `apache2ctl -M` de ambas imágenes, sin red/montajes/puertos, y rechaza los seis módulos con avisos si están habilitados. Segundo exporta la etiqueta, crea un proyecto y configuración propios, prueba migraciones/persistencia y conserva el destino8085. Siete controles de extracción/permisos con puerto8085 y rechazo de argumentos08085/65536 comprobados sin Docker; Bash-n/diff correctos. **No ejecutados estos nuevos ensayos con Docker todavía.**
-
-Después leer status/test.log sin credenciales, probar8085 en navegador, continuar Firefox/zoom y revisión de imágenes. Windows necesita host compatible y Docker Desktop/WSL funcionando; respuesta del usuario solo confirmó nombres, no disponibilidad Windows. Completar paquete definitivo y su instalación en ambos sistemas cuando haya evidencia. La defensa formal se registra cuando ocurra.
-
+Continuar Firefox y zoom real, revisión de avisos de imágenes y Windows en equipo compatible. Disponibilidad de Windows/Docker Desktop y fecha de entrega solicitadas al usuario; sin respuesta todavía al preparar este corte. Defensa/participación humanas abiertas. No certificar entrega completa ni estabilidad por haber aprobado Linux.
 
 ## Exportación dev.32 confirmada
 
 Etiqueta v0.1.0-dev.32 y rama publicadas; commit1dd0ed8dec5a15db82c9543a4ce803b492c52915, etiqueta anotada0c0c1b1ff0a8f3359a137a91083b1f6f19482734; refs remotas verificadas. Fuente en output/entrega/eventify-desarrollo-1dd0ed8dec5a/eventify-source.zip,188 archivos, SHA25677157fa2ef2e419fa8a234daeef2e196514eab1f5ddac3248d7ee20af436d8e9. Paquete de revisión con ese ZIP, PDF, guía, manifiesto y huellas: output/entrega/eventify-dev32-revision.zip, SHA25675a91451ca8e3f92272e5666b355bfe6d0ba83b8bee971fca51b8982efeaee18. Integridad/CRC comprobados; no instalación nueva ni entrega final certificada. PDF15 páginas con nombres/versión correctos, portada/evidencia revisadas y texto dentro de página. Registro posterior a la etiqueta solo documenta resultados, no cambia el paquete.
 
 Ampliación C-06: panel administrativo dev.28 a390px, ocho enlaces recorridos mediante Tab y contorno3px visible; seis tarjetas327px y scrollWidth375 sobre viewport390. Captura /tmp/eventify-admin-teclado-dev28.png revisada. Sin formularios enviados ni cambios de negocio; sesión cerrada al finalizar.
+
+Nuevo recorrido dev.32: reserva ficticia f5e075eec15b3bd971c1d487078aae79 cancelada y conservada; cupos40→38→40, ticket/QR sin vigencia. Ambos roles y logout correctos. Evidencia y límites en B07.
+
+Intento de zoom en Chrome real (conector disponible): Ctrl+plus no cambió innerWidth1920/devicePixelRatio1/visualViewport.scale1. No se certifica200%. Inventario actual expone Chrome e IAB, no Firefox. Ensayo Firefox/zoom requiere interacción directa del usuario o un acceso compatible; no sustituirlo por otra ejecución IAB.
+
+Paquete con fuente idéntica a la probada en Linux, PDF actualizado y resultados posteriores: output/entrega/eventify-dev32-linux-comprobado.zip, SHA256 83441a710cb0fdfd36c70a8b46b3681036cb9c79e23de41e72559e04d7dac18b. Se conservó el ZIP fuente188 archivos y su manifiesto originales; los documentos adjuntos explican que el estado interno de ese ZIP es del corte anterior. Integridad/CRC correctos. No es certificación Windows ni versión estable.

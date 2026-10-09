@@ -35,3 +35,15 @@ La biblioteca BaconQrCode incluye SvgImageBackEnd con XMLWriter, pero TicketQr n
 ## Decisión y pendientes
 
 El parche xz/liblzma sí tiene construcción, unidades y escaneo comprobados. Para los avisos anteriores se registran condiciones e incertidumbre; no se añadió .trivyignore ni se ocultaron avisos sin corrección. La revisión no cubre todavía los 2011 registros restantes de PHP/Apache uno por uno ni toda la imagen MySQL. Antes de la entrega final: revisar los grupos no tratados, confirmar módulos del runtime, contrastar nuevos parches de las distribuciones y conservar evidencia de regresión. No marcar B07 ni la seguridad completa como terminados.
+
+
+## Ampliación de revisión: dev.32
+
+image-check-ERw4lEwZ, exit0: apache2ctl -M ejecutado realmente sobre ambas imágenes, sin red/montajes/puertos. Los seis módulos de la tabla Apache no están cargados; esto amplía la evidencia estática anterior. No es inventario del proceso de Render. Ambos escaneos nuevos conservan2011 filas/145HIGH/2CRITICAL; xz/liblzma no tiene avisos. DB Trivy actualizada8oct19:05UTC, reutilizada sin actualizar. No agrupar filas repetidas como fallos independientes.
+
+- libsystemd0/libudev1: el inventario incluye bibliotecas, no los paquetes systemd/systemd-homed. [Debian describe CVE-2026-16742 como escalada local mediante systemd-homed](https://security-tracker.debian.org/tracker/CVE-2026-16742). Compose no declara servicio homed y los entrypoints inician Apache/MySQL. Inferencia de alcance: no se encontró esa ruta en el proyecto; no es prueba universal de explotabilidad ni auditoría del host.
+- Perl: [CVE-2026-9538 exige lectura de un TAR manipulado mediante Archive::Tar](https://security-tracker.debian.org/tracker/CVE-2026-9538). No hay llamadas a Perl/Archive::Tar ni subida de TAR en las rutas app/public/bin revisadas. Composer descarga dist desde dependencias fijadas durante build. Mantener el aviso; revisar por separado la cadena de construcción.
+- util-linux: [CVE-2026-78408 exige nsenter --join-cgroup usado por un operador privilegiado](https://security-tracker.debian.org/tracker/CVE-2026-78408). No se encontró nsenter/mount en el código ni se monta el socket Docker/espacios del host en Compose. Otros avisos de util-linux, ACL y ncurses no se consideran resueltos por esta observación.
+- Expat: [CVE-2026-76957 implica callbacks de codificación de XML](https://security-tracker.debian.org/tracker/CVE-2026-76957). No se encontró parser XML de usuario en app/public/bin; módulos DAV no figuran en apache2ctl -M. Esto no demuestra que toda biblioteca deje de usar Expat ni cubre sus cinco avisos altos.
+
+Los cuatro avisos contrastados siguen señalados como vulnerables en Trixie en el tracker consultado; no incorporar sid/forky para conseguir reporte vacío. Continúan pendientes el análisis del binario gosu/MySQL, ACL/ncurses y variantes de montajes/parsers, además de los avisos medios/bajos. El trabajo anterior sobre XML/kernel/curl conserva sus límites.

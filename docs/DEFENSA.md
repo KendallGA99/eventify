@@ -13,7 +13,7 @@ Usar una instalación local/evaluación aislada con datos ficticios. Revisar VER
 5. Cancelar una reserva propia de más de 24 h. Mostrar historial CANCELADA y cupos liberados; el registro y precio histórico permanecen.
 6. Mostrar evento agotado/cancelado/próximo a iniciar y explicar sus restricciones. Si el clima está desactivado, declararlo; si está disponible, mostrar atribución y explicar el fallo controlado.
 7. Cerrar sesión, ingresar como administrador y mostrar categorías/eventos, reservas y dashboard. Los ingresos son potenciales, no pagos recibidos. Mostrar una edición de prueba solo si se conoce su impacto y se conserva historial.
-8. Explicar que la ejecución local no satisface la URL pública obligatoria. Mostrar las pruebas aprobadas y los pendientes, sin presentar Windows/Firefox/HTTPS como comprobados.
+8. Explicar que la ejecución local no satisface la URL pública obligatoria. Mostrar las pruebas aprobadas y los pendientes, Windows y Firefox siguen pendientes; HTTPS público sí tiene controles aprobados.
 
 No son pruebas nuevas ni un guion de respuestas para aparentar conocimientos: practicar cada paso y registrar resultados reales. Para instalación/siembra/cuentas privadas consultar INSTALACION.md y DATOS.md.
 
