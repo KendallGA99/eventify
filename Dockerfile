@@ -12,6 +12,8 @@ WORKDIR /var/www/html
 COPY composer.json composer.lock ./
 # Composer instala archivos dist ZIP; extractor solo durante la construcción.
 RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        liblzma5=5.8.1-1+deb13u2 xz-utils=5.8.1-1+deb13u2 \
     && apt-get install -y --no-install-recommends unzip \
     && curl -fsSL https://getcomposer.org/download/2.10.3/composer.phar -o /tmp/composer.phar \
     && echo '7a2d379d5b8ffdaa028580ef26494c36d2feef4b178d3dd1473a4dbc5e17c8d6  /tmp/composer.phar' | sha256sum -c - \

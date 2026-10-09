@@ -1,5 +1,9 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.29 — 2026-10-08
+
+B07/SEG-09: fija la corrección Debian de liblzma5/xz-utils en ambas imágenes PHP. El escaneo de la imagen real dev.28 confirmó que todavía usa la versión anterior; dependencias Composer sin avisos en ese informe. Nuevo ensayo construye ambas variantes, verifica versiones y ejecuta sintaxis/unidades sin red, bases, puertos ni montajes; exporta imágenes para escaneo posterior. Construcción y corrección efectiva todavía pendientes de ejecución Docker. No modifica MySQL, datos ni publicación; persisten otros avisos por evaluar.
+
 ## 0.1.0-dev.28 — 2026-10-08
 
 B09: documento técnico actualizado con publicación, TLS, permisos, persistencia y controles HTTPS realmente comprobados. Mantiene pendientes de API pública, Windows, Firefox y defensa. Generador PDF usa VERSION en portada/cabecera para evitar referencias antiguas. Paquete conserva exportación por commit e instrucciones de entrega local independiente. Sin cambios funcionales ni de base de datos.
