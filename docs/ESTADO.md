@@ -213,3 +213,10 @@ Paquete fuente dev.34: output/entrega/eventify-desarrollo-23553476bd86/eventify-
 9 de octubre de 2026. El usuario prioriza C-06/C-07 y C-09; Windows queda para el final, sin eliminar su requisito. Firefox existe en el host, pero el inventario CUA solo expone IAB/MCP Apps y ninguna aplicación nativa; no se afirma control de Firefox. localhost:8086/eventos responde HTTP200. Solicitada comprobación humana de catálogo/búsqueda/zoom200% y versión. Corregida una separación accidental en la ruta de credenciales de VERIFICACION-FIREFOX, sin leer o publicar sus valores.
 
 Seguridad: AVISOS-XML contrasta nueve avisos altos antes sin mención individual con Debian; Trixie figura vulnerable. Búsqueda de parsers y revisión de WeatherClient/TicketQr limitan entrada XML directa, sin descartar consumidores nativos. Crítico6653 reconsultado; no parche compatible acreditado por esa fuente. CSV residual agrupa 424 filas PHP/Apache en156 identificadores con referencias documentales; cobertura no implica cierre ni aceptación del riesgo. No cambios funcionales, builds o suites repetidas.
+
+
+## Firefox: evidencia humana parcial recibida
+
+9 de octubre de 2026. Capturas del usuario: Firefox 157.0.1 (64 bits), Linux Mint, zoom nativo200%, localhost8086. Catálogo con q=Encuentro y un resultado; foco visible; calendario Desde abierto y contenido de formulario sin recorte esencial en lo visible. Captura previa de detalle muestra título/precio/botón legibles. Cuatro archivos y huellas conservados en storage/firefox-20261009. No acceso nativo ni ejecución automatizada de Firefox.
+
+VERIFICACION-FIREFOX actualizada. Pendientes: limpieza/combinación, selección/cancelación y teclado del calendario, inicio/historial/ticket al200%, login/roles/logout y casos de error. Capturas no acreditan transporte AJAX o navegación solo con teclado. Destino dev.33 con interfaz sin cambios en dev.34; no certificación de instalación nueva. Solo documentación; diff --check correcto, sin nuevas suites. Windows sigue al final.

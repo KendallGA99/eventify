@@ -1,6 +1,6 @@
 # Recorrido de Firefox y zoom
 
-B07/C-06/C-07. Procedimiento pendiente de ejecución humana en Firefox real. La copia Linux dev.33 está disponible en http://localhost:8086; su instalación, recorrido IAB y persistencia ya se comprobaron. No repetir instalación ni sembrar nuevos datos para esta prueba. Registrar versión de Firefox y resultados; una lista de pasos no acredita su ejecución.
+B07/C-06/C-07. Validación humana parcial con capturas aportadas por el usuario. La copia Linux dev.33 está disponible en http://localhost:8086; su instalación, recorrido IAB y persistencia ya se comprobaron. No repetir instalación ni sembrar nuevos datos para esta prueba. Registrar versión de Firefox y resultados; una lista de pasos no acredita su ejecución.
 
 1. Abrir Firefox y consultar su versión en Ayuda/Acerca de Firefox. Abrir http://localhost:8086/eventos. Buscar Encuentro y limpiar filtros; comprobar un resultado y recuperación del catálogo, sin errores visibles.
 2. Comprobar navegación con Tab y Shift+Tab: búsqueda, categoría, fechas, disponibilidad, estado y botón. El foco debe ser visible. Abrir los campos de fecha con teclado; comprobar selección/cancelación del calendario sin enviar un rango accidental.
@@ -11,11 +11,14 @@ B07/C-06/C-07. Procedimiento pendiente de ejecución humana en Firefox real. La 
 
 | Comprobación | Estado |
 | --- | --- |
-| Versión Firefox real | Pendiente |
-| Catálogo y filtros | Pendiente |
-| Teclado/foco/calendario | Pendiente |
-| Zoom 200% en flujos centrales | Pendiente |
+| Versión Firefox real | Firefox 157.0.1 (64 bits), Linux Mint; ventana Acerca de visible. |
+| Catálogo y filtros | Búsqueda Encuentro y un resultado visibles. Limpieza y combinaciones pendientes. |
+| Teclado/foco/calendario | Foco visible y calendario Desde abierto. Selección/cancelación y navegación solo con teclado pendientes. |
+| Zoom 200% en flujos centrales | Indicador nativo 200%; catálogo y parte visible del detalle legibles. Inicio, historial y ticket pendientes. |
 | Historial, ticket y QR | Pendiente |
 | Roles y logout | Pendiente |
 
 La prueba Windows sigue su propio procedimiento en VERIFICACION-WINDOWS.md. Este recorrido no evalúa otra plataforma ni corrige avisos de bibliotecas.
+
+
+Evidencia del 9 de octubre de 2026: cuatro capturas conservadas con huellas en storage/firefox-20261009. La búsqueda pertenece al formulario Eventify (q=Encuentro en URL y un resultado), no a Buscar en esta página. Calendario Desde visible completo dentro de la ventana y foco marcado. Esto no prueba cómo se abrió con teclado ni si la petición fue AJAX: una captura no observa su transporte. La copia 8086 corresponde a dev.33; PHP/CSS/JS de interfaz sin cambios en dev.34. No certificar por ello una instalación nueva o los flujos que faltan. Se observó el texto menor «1 eventos»; no impide el recorrido y no se cambió código durante la revisión.
