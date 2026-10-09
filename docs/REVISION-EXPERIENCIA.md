@@ -29,3 +29,7 @@ No se agregan botones ficticios de recuperación o cambio de correo/contraseña:
 ## Pendientes para aceptar esta versión
 
 Ejecutar el helper y revisar su resultado; después probar en la instalación actualizada el ingreso al inicio, nombre guardado y conservado tras nueva sesión, ambos roles, botones de contraseña y diseño adaptable. Usar datos ficticios y restaurar el nombre de prueba después. Verificar estabilidad de reservas y estado de tickets sin crear otras reservas innecesarias. Actualizar paquete, PDF y publicación con la referencia elegida después de aceptar los cambios. Seguridad residual y Windows conservan sus requisitos separados; no se marca estable por esta revisión visual.
+
+## Resultado posterior de aceptación local
+
+Segundo helper sobre ab710a6:exit0,225 controles MySQL/HTTP,sintaxis PHP8.4 y30registro/errores correctos. Web8086 actualizada. En navegador real se comprobaron ojos,ingreso alinicio,perfil guardado ypersistente trasnuevoingreso; nombreoriginal restaurado. Perfil390/768/1280sin desbordamiento; historial ypanel disponibles,ambas sesiones cerradas. Registros storage/dev37-review ystorage/dev37-live. El pendiente de integración local anterior queda superado; nueva instalación limpia,publicación,seguridad residual yWindows no se dan por comprobados.

@@ -1,7 +1,7 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 8 de octubre de 2026. Código de referencia: v0.1.0-dev.33. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 9 de octubre de 2026. Código de referencia: v0.1.0-dev.37. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
 Este documento explica cómo funciona el sistema y qué se ha comprobado. Hay evidencia de integración MySQL, restauración, instalación desde ZIP en Linux y uso de la web pública. La web ejecuta dev.30 con el parche xz/liblzma. Después del despliegue se comprobaron las huellas de diez tablas y los 81 controles HTTPS. El ZIP dev.33 conserva la misma aplicación y añade MySQL con gawk corregido. Aprobó instalación limpia Linux, ambos roles, reserva/cancelación y persistencia posterior. El pronóstico público ya tiene respuesta útil comprobada. Windows, Firefox y la aceptación final siguen pendientes.
 
@@ -286,7 +286,7 @@ La demostración pública comprobó login de ambos roles, creación de categorí
 | Desarrollo Linux | 266 comprobaciones unitarias, sintaxis PHP8.4 y QR en cada imagen local/pública dev.32; módulos Apache revisados ausentes en ejecución. | No cubre por inferencia cambios posteriores ni Windows. |
 | Integración MySQL/HTTP | 219 comprobaciones, tres migraciones y carreras de reserva, administración y presupuesto; 16:31:25 UTC. | No equivale a pruebas completas de la web pública. |
 | Persistencia Linux | ZIP dev.33, ruta con espacios: diez tablas y cinco archivos idénticos tras recrear después de reservar/cancelar; ocho reservas y tickets. | Comprobado el ZIP fuente dev.33 exacto; no certifica Windows u otro paquete. |
-| Chrome y diseño adaptable | Flujos de ambos roles, reserva, QR, cancelación y vistas en móvil/tableta/escritorio. | Registro móvil con foco/teclado y validación vacía comprobados; Firefox, zoom y matriz restante pendientes. |
+| Chrome y diseño adaptable | Flujos de ambos roles, reserva, QR, cancelación y vistas en móvil/tableta/escritorio. | Registro móvil con foco/teclado y validación vacía comprobados; Firefox con capturas humanas parciales; matriz restante pendiente. Zoom200% opcional por indicación del usuario. |
 | TLS real | CA/hostname incorrectos y servidor sin TLS rechazados; conexión externa válida en Aiven/Render. | No es una auditoría universal de la infraestructura. |
 | Publicación dev.30 | Render Live (390b1ef); parche xz/liblzma, sintaxis y 39 controles de clima más 44 de presupuesto en construcción; diez tablas conservadas y 81 controles HTTPS posteriores. | Pronóstico público útil observado tras actualizar; disponibilidad permanente y todas las variantes administrativas no garantizadas. |
 | Flujos públicos dev.25/26 | Login, administración, reserva/ticket/cancelación y conservación de diez tablas tras reiniciar. | Disponibilidad permanente o todas las variantes de redeploy. |
@@ -307,7 +307,7 @@ La base funcional y la web pública tienen evidencia real de sus flujos principa
 
 ## 12. Referencias y trazabilidad
 
-Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.33 (PHP sin cambios respecto a dev.30; imagen MySQL corregida). Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
+Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.37 (inicio, navegación, perfil y controles de contraseña actualizados; imagen MySQL corregida). Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
 
 Documentos operativos: INSTALACION.md, ARQUITECTURA.md, DATOS.md, PUBLICACION.md, RESPALDO.md, VERSIONADO.md, PAQUETE.md, COPIA-LIMPIA.md, SEGURIDAD.md, AVISOS-IMAGENES.md y CIERRE.md. Los documentos históricos pueden describir etapas anteriores: las migraciones/código y el estado vigente prevalecen al comprobar una afirmación técnica.
 
@@ -318,3 +318,18 @@ Repositorio privado: https://github.com/USUARIO_DESTINO/eventify. La visibilidad
 Se analizó el binario oficial gosu de la imagen MySQL linux/amd64 con govulncheck, sin exclusiones: no se detectaron funciones vulnerables presentes; siguen registradas coincidencias por versión de módulo/paquete. Esto no certifica toda la imagen ni el servidor administrado. ACL, ncurses y montajes requieren rutas privilegiadas o herramientas que la aplicación no llama; XML y Python conservan límites de revisión. El detalle y fuentes están en docs/AVISOS-IMAGENES.md y el conteo completo por paquete en docs/INVENTARIO-IMAGENES.md.
 
 La imagen derivada conserva MySQL 8.4.11 y corrige tres avisos de gawk con el paquete Oracle 5.1.0-6.el9_8.1. Dev.33 aprobó construcción, 219 comprobaciones de integración, TLS, cuentas y rechazo del arranque sin TLS. El escaneo confirma 69→66 avisos, sin nuevos ni exclusiones. Las instalaciones anteriores conservan su versión; la copia limpia dev.33 aprobó recorrido y persistencia posterior.
+
+
+## Experiencia de uso y aceptación local: dev.37
+
+El ingreso válido redirige al inicio. La navegación distingue visitante, usuario y administrador; ocultar enlaces no reemplaza la autorización en servidor. Registro e ingreso permiten mostrar u ocultar cada contraseña con un botón accesible. Sin JavaScript, los campos siguen protegidos y utilizables. No se conserva la contraseña en almacenamiento del navegador al alternar su visibilidad.
+
+Mi cuenta permite editar el nombre completo con POST, token CSRF, validación de servidor y consulta preparada sobre el identificador de sesión. El correo y el rol no son editables desde ese formulario. Las reservas y tickets siguen vinculados al identificador del usuario. El perfil ofrece acceso a experiencias, administración cuando corresponde y cierre de sesión. Se retiró el aviso provisional del inicio y se incorporaron transiciones breves, desactivadas cuando el sistema solicita reducir movimiento.
+
+Dev.37 aprobó 225 comprobaciones de integración MySQL/HTTP, sintaxis PHP 8.4, 23 controles de registro/CSRF y 7 de páginas de error. En la instalación 8086 se comprobó ingreso al inicio de ambos roles, edición y persistencia del nombre tras una nueva sesión, navegación al panel y conservación del historial. El nombre ficticio original se restauró; no se crearon reservas durante esa revisión. Perfil adaptado a 390/768/1280px sin desbordamiento en los tamaños observados. No certifica instalación Windows, toda la matriz Firefox o un ZIP nuevo por inferencia.
+
+## Reducción del runtime y riesgos conservados: dev.34–37
+
+Dev.34 retiró 32 paquetes de construcción de ambas imágenes PHP y mantuvo versiones de los paquetes conservados. Imágenes finales, unidades y arranque público con TLS positivo/negativo tienen evidencia propia sobre 6d41df5. Con la misma base Trivy almacenada, el informe pasó de 2011 a 424 filas por imagen, sin identificadores/paquetes/versiones nuevos ni exclusiones: 1 crítico, 91 altos, 162 medios, 166 bajos y 4 sin clasificación. Esta reducción no corrige el kernel del host ni demuestra que las bibliotecas restantes estén libres de vulnerabilidades.
+
+El informe MySQL conserva 66 filas y sus límites documentados. No se acepta el riesgo residual automáticamente ni se presenta la versión como estable. La web pública conserva dev.30 hasta desplegar y verificar una referencia nueva. El paquete dev.37 requiere aceptación propia; Windows se ensaya al final.

@@ -85,14 +85,14 @@ def frame(canvas, doc):
     canvas.setFillColor(colors.HexColor('#60727a'))
     if doc.page > 1:
         canvas.drawString(48, A4[1]-29, 'EVENTIFY / Documento técnico / ' + VERSION)
-    canvas.drawString(48, 27, 'Corte: 08-10-2026 | Pendientes de evaluación indicados')
+    canvas.drawString(48, 27, 'Corte: 09-10-2026 | Pendientes de evaluación indicados')
     canvas.drawRightString(A4[0]-48, 27, str(doc.page))
     canvas.restoreState()
 
 
 story = [Spacer(1, 75), Paragraph('EVENTIFY', styles['CoverTitle']),
          Paragraph('Documento técnico<br/>Borrador de evaluación', styles['CoverSubtitle']),
-         Paragraph('SC-502 Ambiente Web Cliente-Servidor<br/>Código de referencia: ' + text(VERSION) + '<br/>8 de octubre de 2026', styles['Text']),
+         Paragraph('SC-502 Ambiente Web Cliente-Servidor<br/>Código de referencia: ' + text(VERSION) + '<br/>9 de octubre de 2026', styles['Text']),
          Spacer(1, 25), Paragraph('<b>Estado:</b> implementación con verificación parcial. Linux desde ZIP, integración y restauración de datos comprobados. Web pública y controles HTTPS comprobados. Pronóstico público útil comprobado. Windows, Firefox y criterios finales pendientes.', styles['Text']),
          Paragraph('<b>Estudiante:</b> Kendall Gamboa Arce<br/><b>Docente:</b> Rita Robles Loaiza', styles['Text']),
          PageBreak(), Paragraph('Contenido', styles['Subsection'])]

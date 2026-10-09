@@ -11,12 +11,12 @@ Corte: 9 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.m
 
 ## Versiones y destinos
 
-- Código/documentación actual: **0.1.0-dev.37**, rama `codex/b07-experiencia-final`; experiencia/perfil implementados, integración Docker pendiente. Dev.36, rama `codex/b07-acceso-denegado`, commit funcional `6c47cb0`, conserva la evidencia previa. Dev.35/36 mejoran páginas de rechazo y error; actualización de web8086 y22 controles HTTP reales comprobados. Dev.34, rama `codex/b07-runtime-aislado`, desde `58e3b66`, conserva su evidencia de runtime. Dev.34 incorpora limpieza de herramientas ensayada en imágenes derivadas; construcción final y TLS aprobados sobre 6d41df5. Aplicación PHP igual a dev.30; dev.33 tiene parche gawk de MySQL construido, integración/TLS y escaneo comprobados; las instalaciones existentes conservan su versión anterior. Ninguna versión estable.
+- Código/documentación actual: **0.1.0-dev.37**, rama `codex/b07-experiencia-final`; experiencia/perfil comprobados:225 controles MySQL/HTTP,30registro/errores yrecorrido IAB real aprobados sobre ab710a6. Dev.36, rama `codex/b07-acceso-denegado`, commit funcional `6c47cb0`, conserva la evidencia previa. Dev.35/36 mejoran páginas de rechazo y error; actualización de web8086 y22 controles HTTP reales comprobados. Dev.34, rama `codex/b07-runtime-aislado`, desde `58e3b66`, conserva su evidencia de runtime. Dev.34 incorpora limpieza de herramientas ensayada en imágenes derivadas; construcción final y TLS aprobados sobre 6d41df5. Aplicación PHP igual a dev.30; dev.33 tiene parche gawk de MySQL construido, integración/TLS y escaneo comprobados; las instalaciones existentes conservan su versión anterior. Ninguna versión estable.
 - `main` conservada: `3da680b74b41fa3da4069879edc1f649de9b97f2`. VERSIONADO contiene la política y referencias anteriores. Git recupera código; no restaura MySQL.
 - Web pública: https://eventify-academico.onrender.com, **dev.30**, commit `390b1ef6dcbb9a9d76eaad8a910a80da364bb637`. Render `srv-db3vutm7bikc73ajj6og`, Free/Oregon/AutoDeployOff; misma rama de despliegue existente.
 - Último deploy: `dep-db44q9cs728c739ikr20`, 8 de octubre, 20:10:45 CST, **Deploy succeeded/Live**, 35 s. Referencia anterior `cabd6f3` conservada.
 - Copia limpia anterior: `localhost:8085`, dev.32 `1dd0ed8dec5a15db82c9543a4ce803b492c52915`, proyecto `eventify-clean-20261009022129-10f84d13`. Dev.28/8084 conservada.
-- Nueva copia limpia comprobada: `localhost:8086`, dev.33 `f4d6c5a05011c57e47295b06cedf11129a052681`, proyecto `eventify-clean-20261009035638-598f411d`. Detalle del recorrido al final.
+- Instalación `localhost:8086`: web actualizada a dev.37 sobre `ab710a6`; base y volúmenes conservados. La instalación limpia y persistencia anteriores se comprobaron con dev.33 `f4d6c5a05011c57e47295b06cedf11129a052681`, proyecto `eventify-clean-20261009035638-598f411d`. Detalle del recorrido al final.
 - Otros destinos conservados según última verificación anterior: normal8080, QA8081, restauración8082, copia limpia8083. No afirmar disponibilidad actual sin consultar. No detenerlos ni borrar volúmenes para reutilizar puertos.
 - Docker29.1.3/Compose2.40.3. Esta sesión no tiene acceso al socket; sudo no interactivo tampoco lo resuelve. No cambiar grupos/socket/sudoers. Operaciones Docker necesarias se ejecutan en terminal del usuario.
 - Configuración, cuentas, CA, registros y snapshots privados en storage/backups, ignorados por Git. Nunca imprimir credenciales ni incluirlos en el ZIP.
@@ -35,7 +35,7 @@ Corte: 9 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.m
 | API pública dev.30 | Pronóstico útil real después del deploy: 17,3–24,1°C/100% para evento ficticio del12oct; consultado8oct20:13CST. | Puede variar o fallar; no garantiza disponibilidad permanente. |
 | Dependencias/secretos | Composer sin avisos, jQuery verificado y505 blobs sin secretos conocidos en ejecución anterior. | No prueba ausencia de avisos futuros o secretos desconocidos. |
 | Windows | PowerShell5.1 real: seis scripts sin errores de parser. VM Win11 LTSC Evaluation identificada,4GiB. | Sin Docker/WSL ni ejecución completa; hace falta host compatible. |
-| Documentación | PDF dev.33 actualizado con el resultado del parche; portada y evidencia renderizadas/revisadas, nombres confirmados y texto dentro de página. | Borrador: revisión y defensa humanas pendientes. |
+| Documentación | PDF dev.37 de 16 páginas, nombres confirmados, experiencia y pruebas actualizadas; páginas renderizadas y texto dentro de página. | Borrador: revisión final, Windows y defensa humanas pendientes. |
 
 Snapshots de publicación: `storage/aiven-evaluacion/snapshot-before-dev30.json` y `snapshot-after-dev30.json`, comparados antes de los logins de prueba. Capturas revisadas `/tmp/eventify-render-dev30.png` y `/tmp/eventify-publico-dev30.png`. No se cambiaron permisos, plan, base ni cuentas externas durante el deploy. Detalles en evidencias/B08.
 
@@ -280,3 +280,17 @@ REVISION-EXPERIENCIA documenta alcance,decisiones,pruebas ypendientes. Estado no
 ## Dev.37: primer ensayo detenido por expectativa antigua
 
 9 de octubre de 2026. Helper ejecutado por usuario sobre d8829a7,exit1. Integración alcanza159 comprobaciones correctas y falla en reservas administrativas filtradas porque esperaba Usuario HTTP después de que el propio caso de perfil guardó Usuario Actualizado. Expectativa corregida al nombre actualizado, sin relajar código403,validaciones o filtros. Comprobaciones previas incluyen persistencia del nuevo nombre y conservación de correo/rol. No se ejecutó actualización de web8086 debido a set-e; conserva dev.36 y sus datos. Primeros registros conservados íntegros en storage/dev37-review/primer-intento. Sintaxis de prueba corregida y diff --check correctos; reejecución MySQL pendiente. Sin cambio funcional ni nueva versión.
+
+
+## Dev.37: integración y recorrido real aprobados
+
+9 de octubre de 2026. Segundo helper sobre ab710a671d40024bf84cc46026af4c4cd54a948d,exit0:225 comprobaciones MySQL/HTTP,sintaxis PHP8.4,23registro/CSRF y7ErrorPage aprobados,salud correcta. Actualizada únicamente web8086; DB yvolúmenes conservados. Registro storage/dev37-review/verify.log ystatus.txt.
+
+IAB sobre web actualizada: ojos independientes cambian tipo/estado; loginUSUARIO yADMINISTRADOR redirigen alinicio con navegación porrol. Perfil guarda nombre ficticio temporal; logout/nuevoingreso conservan cambio; nombre original Usuario de prueba restaurado yconfirmado. Historial conserva reservaCANCELADA de2entradas y corrige singular1entrada. Perfil a390/768/1280 sin desbordamiento. Administrador accede alpanel desde perfil. Ambas sesiones cerradas,viewport restaurado,pestaña temporal cerrada. No se crearon/cancelaron reservas ni editaron eventos. Capturas,medidas yresultado en storage/dev37-live.
+
+Superados los pendientes de integración y guardado dev.37 del helper. No equivale a nueva instalación limpia/ensayoWindows,ni certificaFirefoxporIAB. Seguridad residual,publicaciónactualdev.30,paquete/PDF con nueva referencia ydefensa humana conservan sus pendientes. No versión estable.
+
+
+## Dev.37: corte del documento técnico
+
+9 de octubre de 2026. Documento técnico actualizado a dev.37: 16 páginas, portada con los nombres confirmados, experiencia de usuario y evidencia de 225 controles de integración. Generador y contenido sincronizados; PDF renderizado y revisado visualmente, texto dentro de página y referencias comprobadas. Archivo output/pdf/EVENTIFY_Documento_Tecnico_Borrador.pdf. Se conserva como borrador mientras continúen los pendientes de entrega; no incorpora credenciales. Sin cambios de aplicación desde ab710a6 ni repetición de pruebas Linux.
