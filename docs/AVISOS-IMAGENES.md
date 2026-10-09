@@ -23,7 +23,7 @@ Se reconstruyó el inventario de mods-enabled leyendo las capas OCI, incluidas l
 
 El aviso crítico [CVE-2026-6653](https://security-tracker.debian.org/tracker/CVE-2026-6653) afecta la lectura de XML manipulado en libxml2. No se encontró uso de DOMDocument, simplexml, xml_parse o loadXML en app/public/bin. La administración elige imágenes de una galería cerrada; no acepta XML/SVG subido por el visitante.
 
-La biblioteca BaconQrCode incluye SvgImageBackEnd con XMLWriter, pero TicketQr no utiliza esa clase: obtiene la matriz mediante Encoder y forma un SVG con rectángulos y números. payload solo admite 64 caracteres hexadecimales y agrega un prefijo fijo. Por tanto, esa ruta no introduce XML arbitrario de usuario en un parser. Esto es revisión estática de esa ruta, no prueba de que libxml2 nunca se use desde PHP ni descarte de sus otros avisos. Los ocho avisos altos y el crítico de libxml2 continúan en inventario.
+La biblioteca BaconQrCode incluye SvgImageBackEnd con XMLWriter, pero TicketQr no utiliza esa clase: obtiene la matriz mediante Encoder y forma un SVG con rectángulos y números. payload solo admite 64 caracteres hexadecimales y agrega un prefijo fijo. Por tanto, esa ruta no introduce XML arbitrario de usuario en un parser. Esto es revisión estática de esa ruta, no prueba de que libxml2 nunca se use desde PHP ni descarte de sus otros avisos. El JSON conserva siete avisos altos y uno crítico de libxml2, además de dos medios y dos bajos; el conteo anterior de ocho altos era incorrecto.
 
 ## Kernel y herramientas auxiliares
 
@@ -100,3 +100,8 @@ Los cuatro avisos clasificados HIGH por Trivy se repiten en curl/libcurl4t64. Se
 | [CVE-2026-8927](https://curl.se/docs/CVE-2026-8927.html) | Reuso de un handle libcurl cambiando proxies de entorno después de autenticar Digest; proveedor Medium, no afecta CLI. | No se encontraron handles curl de PHP ni autenticación de proxy en app/public/bin. |
 
 El proveedor publica correcciones; no asumir que la ausencia de FixedVersion en Debian significa que no existan. Estas condiciones no aparecieron en las rutas directas revisadas, pero la observación no excluye dependencias indirectas ni la configuración de proxy que alguien añada en su host. Mantener avisos y seguimiento de la distribución compatible; no bajar severidades automáticamente ni agregar exclusiones. Quedan pendientes grupos medios/bajos/desconocidos y usos indirectos de parsers, junto con el seguimiento de Python/mysqlsh.
+
+
+## Bibliotecas base y severidad desconocida
+
+[AVISOS-BASE.md](AVISOS-BASE.md) amplía 24 identificadores, equivalentes a 66 filas (60 MEDIUM / 6 UNKNOWN): glibc, zlib, SQLite Session Extension, parsers y los tres identificadores sin severidad. Se contrastaron condiciones y estado Trixie. Once ELF setuid/setgid de la imagen local exportada no tienen RPATH/RUNPATH según readelf; no se ejecutaron ni alteraron. Configuración DNS del host sin dominios largos, pero DNS de contenedores/proveedor y parches del kernel real siguen pendientes. Ninguna exclusión o cambio de paquetes por esta ampliación; persisten discrepancias de rangos zlib/Expat. No cierra B07.
