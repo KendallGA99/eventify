@@ -111,3 +111,6 @@ Dev.34 comprobada posteriormente sobre 6d41df54a4df19c7c5895de6eac8120d263809d3:
 ## Dev.37: experiencia verificada y exportación
 
 Implementación d8829a7, ajuste de expectativa de prueba ab710a6 y corte documental 7c3a3e28435566349efcd4b2a66eace89de978d2. Integración aislada225 controles aprobada sobre ab710a6; experiencia y perfil comprobados después en web8086. Rama codex/b07-experiencia-final y etiqueta anotada v0.1.0-dev.37 confirmadas en origin; etiqueta resuelta a7c3a3e2. Main conservada. Fuente exportada:213 archivos con manifiesto y huellas en output/entrega/eventify-desarrollo-7c3a3e284355. Paquete de desarrollo; sin instalación nueva de este ZIP, sin certificación Windows y sin nuevo deploy. El registro posterior no mueve la etiqueta.
+
+
+Publicación dev.37: Render despliega7c3a3e28435566349efcd4b2a66eace89de978d2, mismo commit de etiqueta/paquete; dep-db4n8cbncjis73c7m4t0 Live el9oct17:09:37CST. Comparación de diez tablas y112 controles HTTPS dirigidos correctos. Referencia anterior390b1ef conservada para rollback compatible sin cambio de esquema. Rama de seguimiento y AutoDeployOff conservados; desplegar un commit específico no cambia la rama configurada. Registro posterior en codex/b08-publicacion-dev37; no mueve la etiqueta ni declara estabilidad final.

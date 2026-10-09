@@ -32,3 +32,12 @@ AVISOS-RESIDUALES.csv enumera los 156 identificadores únicos de las 424 filas f
 ## Reconsulta después de la aceptación dev.37
 
 9 de octubre de 2026. Se reconsultaron los trackers oficiales de [libxml2/CVE-2026-6653](https://security-tracker.debian.org/tracker/CVE-2026-6653) y [Apache/CVE-2026-63292](https://security-tracker.debian.org/tracker/CVE-2026-63292). Ambos mantienen Trixie vulnerable; sus tablas sitúan correcciones en forky/sid. La nota Debian de libxml2 clasifica el asunto como menor y sin DSA previsto, lo que no elimina la severidad crítica del escaneo conservado. No se encontró en esas fuentes un parche de Trixie que pueda incorporarse directamente. No se mezclaron distribuciones ni se alteró la imagen verificada. Esto no constituye una reconsulta exhaustiva de los 156 identificadores ni un nuevo escaneo; los conteos siguen perteneciendo al informe dev.34.
+
+
+## Evaluación de corrección manual y distribución, dev.37
+
+9 de octubre de 2026. Consulta autenticada de solo lectura al registro oficial Docker: php:8.4-apache mantiene el digest fijado 901b0dbcd2419cc9cd307ea05e57403449ce722ccd5b32335da6e8d39f2b1ee0; no hay una actualización de esa etiqueta que permita atribuir una corrección nueva.
+
+Se inspeccionó el [cambio oficial citado por Debian, 463bbeec](https://github.com/GNOME/libxml2/commit/463bbeeca1805b5c4828f50d0fefc4eebaf620df): afecta siete archivos y modifica el control de amplificación de entidades, además de estructuras públicas de entities.h y parser.h. No es un reemplazo aislado de una línea. Aplicarlo manualmente sobre el paquete Debian exigiría estudiar los backports ya presentes, compatibilidad binaria de PHP/Apache y pruebas nativas de libxml2; las 225 pruebas de EVENTIFY no cubren ese trabajo. No se compiló ni instaló una biblioteca personalizada, ni se afirma que el parche sea imposible.
+
+Decisión de esta revisión: conservar la imagen reproducible y sus mitigaciones de entrada ya comprobadas; no importar forky/sid ni sustituir una biblioteca crítica sin evidencia. El aviso continúa abierto como dependencia, junto con los demás XML residuales. Esta decisión no es aceptación automática del riesgo ni certificación de una versión estable.

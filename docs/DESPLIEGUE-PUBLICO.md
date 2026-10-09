@@ -1,6 +1,6 @@
 # B08: aceptación de publicación académica
 
-Preparación revisable, 2026-10-08. No es un despliegue realizado ni un comando listo para ejecutar. Requisitos RT-09/ENT-A/U-02/RNF-03/04. Candidata propia: Render Free Docker PHP + Aiven MySQL Free; no reemplaza MySQL con otro motor. Cuenta/región/versión del motor y capacidad real pendientes.
+Requisitos RT-09/ENT-A/U-02/RNF-03/04. Procedimiento iniciado el 8 de octubre con Render Free Docker PHP y Aiven MySQL Free; publicación real autorizada y registrada posteriormente. Consultar ESTADO.md y evidencias/B08.md para la referencia, región y pruebas actuales. Los registros históricos siguientes mantienen la secuencia de implementación y sus límites.
 
 ## Antes de crear servicios
 

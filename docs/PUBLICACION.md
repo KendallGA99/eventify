@@ -1,6 +1,6 @@
 # B08: propuesta de publicación gratuita
 
-Revisión documental: 2026-10-08. Requisitos afectados: RT-09, ENT-A/D, U-02, RNF-04. **Propuesta técnica pendiente de implementación, autorización y prueba externa.** No hay cuentas nuevas, servicios creados ni URL desplegada. GitHub privado ya funciona; publicar la aplicación es una acción separada.
+Requisitos afectados: RT-09, ENT-A/D, U-02, RNF-04. La propuesta inicial del 8 de octubre se implementó posteriormente con autorización del usuario: Render Free y Aiven MySQL Free. Existe una URL pública; la referencia y las pruebas vigentes se registran en ESTADO.md y evidencias/B08.md. Los apartados siguientes conservan la evaluación inicial y su evolución; sus pendientes históricos no sustituyen el estado vigente.
 
 ## Decisión y evidencia
 
