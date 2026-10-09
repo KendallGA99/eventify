@@ -55,7 +55,7 @@ Incidencia anterior de inspección: se imprimieron por error credenciales fictic
 ## Bloques y pendientes reales
 
 - B01/B02 comprobados; B03–B06 implementados con integración y aceptación parcial de navegador.
-- B07 abierto: Firefox real, Windows, calendario/zoom de C-06 y revisión de avisos de imágenes. [AVISOS-IMAGENES.md](AVISOS-IMAGENES.md) conserva condiciones y dudas: Apache/XML/kernel/curl/gosu/Python; no ocultar avisos. No repetir suites extensas sin cambio o duda concreta.
+- B07 abierto: completar compatibilidad Firefox en el alcance pendiente, Windows y revisión de avisos de imágenes. Zoom200% deja de bloquear por indicación del usuario; adaptación y recorrido IAB dev.36 registrados al final. [AVISOS-IMAGENES.md](AVISOS-IMAGENES.md) conserva condiciones y dudas: Apache/XML/kernel/curl/gosu/Python; no ocultar avisos. No repetir suites extensas sin cambio o duda concreta.
 - B08: servicio real actualizado a dev.30; TLS, controles HTTPS, datos conservados y API útil. C-10 documentado para esa referencia, no para toda variante ni un paquete distinto.
 - B09: portada/manual/PDF y exportación de desarrollo dev.32 preparados; instalación final, receptor y ensayo humano pendientes. [CIERRE.md](CIERRE.md) organiza los casos; no marcar estable por tener un ZIP.
 
@@ -63,7 +63,7 @@ Incidencia anterior de inspección: se imprimieron por error credenciales fictic
 
 Dev.32 aprobó construcción de imágenes, instalación limpia Linux y persistencia posterior al recorrido del navegador. Ya no hace falta repetir los dos ensayos ni el helper para esta referencia. Resultado `storage/dev32-persistence-UMW4MUkC`, inicio20:28:23CST/exit0: snapshots idénticos de diez tablas y cinco archivos, ocho reservas y ocho tickets. Login posterior confirma historialCANCELADA, ticket/QR y datos conservados. Captura /tmp/eventify-dev32-persistencia.png revisada.
 
-Continuar Firefox y zoom real, revisión de avisos de imágenes y Windows en equipo compatible. Disponibilidad de Windows/Docker Desktop pendiente de confirmar. La fecha de entrega no es necesaria y deja de ser un pendiente. Defensa/participación humanas abiertas. No certificar entrega completa ni estabilidad por haber aprobado Linux.
+Continuar revisión de seguridad y aceptación de la versión final, compatibilidad de navegador y Windows en equipo compatible; zoom200% no requerido por el usuario. Disponibilidad de Windows/Docker Desktop pendiente de confirmar. La fecha de entrega no es necesaria y deja de ser un pendiente. Defensa/participación humanas abiertas. No certificar entrega completa ni estabilidad por haber aprobado Linux.
 
 ## Exportación dev.32 confirmada
 
@@ -259,3 +259,10 @@ Pruebas sobre HTTP real del destino actualizado complementan sintaxis PHP8.3 y e
 Prueba de adaptación mediante viewport390,640,1280×900: inicio,catálogo,ingreso (redirección desde/admin como visitante) y error405. Doce mediciones sin ancho de documento superior al viewport, CSS presente. Con cuentaUSUARIO se revisó rechazo/admin y captura390×844 sin desbordamiento; con ADMINISTRADOR se revisaron panel,categorías,eventos,reservas a390, todas sin desbordamiento de página. Capturas completas de catálogo,rechazo y panel revisadas visualmente. El nombre admin-390.png del primer recorrido corresponde al ingreso tras redirección, no al rechazo; denegado-390.png sí muestra403.
 
 Ambas sesiones de prueba cerradas desde botón; viewport restaurado y pestaña temporal cerrada. Sin creación/cancelación de reservas ni edición administrativa. Evidencia,mediciones y huellas en storage/dev36-browser-check. Solo documentación; sin nuevas suites ni incremento funcional. Firefox mantiene la evidencia humana previa y sus pendientes específicos; no sumar IAB como si fuera Firefox. Windows y seguridad residual siguen abiertos.
+
+
+## Criterio de entrega: diseño adaptable, zoom opcional
+
+9 de octubre de 2026. El usuario indica que solo requiere diseño responsive y descarta zoom200% como condición de cierre. Es una decisión de QA propia, no una exigencia del PDF; no se cambia ningún requisito académico. C-06 y guía Firefox actualizados; registros históricos de intentos y capturas se conservan. Se mantiene móvil/tableta/escritorio y compatibilidad Chrome/Firefox. IAB dev.36 acredita los tamaños y recorridos registrados; no convierte automáticamente pruebas IAB en Firefox.
+
+Siguiente prioridad técnica: cerrar evaluación de seguridad residual con sus límites y verificar integración de los cambios dev.35/36 en el entorno de pruebas aislado, sin repetir instalación/persistencia Linux anteriores. Después elegir y preparar referencia/paquete/PDF/publicación coherentes. Windows permanece último ensayo de plataforma; defensa y comprensión humanas pendientes. No marcar estable ni aceptar riesgos en nombre del usuario. Solo cambios documentales; diff --check correcto.
