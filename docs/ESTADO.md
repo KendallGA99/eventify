@@ -30,7 +30,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 | Seguridad | Composer audit sin avisos, jQuery verificado, 81 controles HTTPS públicos y 505 blobs sin secretos conocidos | Bases PHP/MySQL escaneadas con avisos; imagen construida, correcciones/alcanzabilidad y revisión final pendientes |
 | Arranque público aislado | dev.20: imagen PHP 8.4 construida, tres rechazos reales y 25 guardas simuladas. dev.21: MySQL 8.4 con TLS, CA/hostname incorrectos rechazados, tres migraciones, Apache/HTTP interno y recreación aprobados | No demuestra proveedor externo ni URL HTTPS; servidor sin TLS aprobado en dev.24 |
 | Cuentas dev.22 | `public-tls-5NcIVnVj`, 19:39:57 UTC, exit 0: CLI creó tres cuentas ficticias con roles/hashes válidos; repetición, entorno local y plan inválido rechazados sin cambios; mismas cuentas válidas tras recrear web | No certifica login público ni concurrencia de aprovisionamiento |
-| Documentos y paquete | PDF borrador dev.28 de 15 páginas renderizadas y revisadas; exportación ZIP anterior preservada | ZIP dev.28 con integridad e instalación limpia Linux comprobadas; sincronización final, Windows y defensa humana pendientes |
+| Documentos y paquete | PDF borrador referido a dev.30: 15 páginas renderizadas y revisadas; ZIP dev.28 preservado | ZIP dev.28 con integridad e instalación limpia Linux comprobadas; paquete final, Windows y revisión/defensa humana pendientes |
 
 ## Bloques y próximo trabajo
 
@@ -274,3 +274,12 @@ Dev.30: inventario de módulos en las dos imágenes exportadas, aplicando whiteo
 IAB/copia limpia8084 dev.28,390×844: navegación Tab desde marca/Inicio a nombre, correo, contraseña, confirmación y botón; foco visible3px y sin desbordamiento horizontal. Enter con formulario vacío muestra Completa este campo y devuelve foco a full_name; no datos ingresados ni cuenta creada. Captura /tmp/eventify-registro-teclado.png revisada; viewport restaurado y pestaña final inicio sin sesión. Verifica teclado/validación nativa de este formulario, no registro válido ni accesibilidad completa. CUA ofrece Chrome/IAB, sin Firefox en inventario; Firefox real permanece pendiente.
 
 Solo documentación/evidencia; VERSION dev.30 conservada. Pendientes: seguridad restante, casos de UI/zoom, Firefox/Windows, sincronización de entregables y defensa humana.
+
+
+## B09: documento actualizado y casos de cierre
+
+README, PLAN, MATRIZ y TECNICO actualizados para distinguir código dev.30, publicación dev.26 y ZIP dev.28 probado. Quitadas referencias operativas antiguas de pronóstico público pendiente, recreación Linux pendiente y herramientas de pruebas no elegidas. Se conserva el historial de etapas anteriores. CIERRE.md organiza doce casos restantes con criterio/evidencia: interfaz/errores, teclado/zoom, Firefox, Windows, avisos, publicación de la referencia elegida, paquete definitivo y revisión/defensa humanas. No cuenta su preparación como ejecución.
+
+Generador PDF ejecutado con Python/ReportLab del runtime. output/pdf/EVENTIFY_Documento_Tecnico_Borrador.pdf:15páginasA4, portada/cabecera dev.30, texto con RF-21/RNF-07 y evidencia actual. Poppler renderizó las15páginas; tres hojas de contacto revisadas visualmente, tablas/diagramas sin recortes ni solapamientos. Pdfplumber no encontró caracteres fuera de página. Borrador dev.28 anterior conservado fuera de Git. Datos de estudiante/docente y revisión humana pendientes.
+
+Sin cambios de aplicación, versión nueva, despliegue ni ZIP nuevo; no repetir integración MySQL por documentos. PDF es borrador actualizado, no declaración de entrega final aprobada.

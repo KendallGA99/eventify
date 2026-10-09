@@ -6,11 +6,11 @@ Plataforma académica PHP/MySQL para descubrir eventos, reservar entradas, consu
 
 Eventify permite crear una cuenta, explorar eventos, reservar entradas, consultar tickets con QR y cancelar reservas. El administrador gestiona categorías, eventos y reservas desde su panel.
 
-La versión pública está disponible en [eventify-academico.onrender.com](https://eventify-academico.onrender.com/eventos). La versión de desarrollo actual es **0.1.0-dev.28**. La web ejecuta dev.26; dev.27 y dev.28 añaden pruebas y documentación. Se comprobaron los accesos de ambos roles, la creación de un evento ficticio, una reserva con ticket, su cancelación y la conservación de los datos tras reiniciar la web.
+La versión pública está disponible en [eventify-academico.onrender.com](https://eventify-academico.onrender.com/eventos). La versión de desarrollo actual es **0.1.0-dev.30**. La web ejecuta dev.26. Dev.30 incluye un parche de imágenes construido y comprobado; todavía no está aplicado a la publicación. Se comprobaron los accesos de ambos roles, la creación de un evento ficticio, una reserva con ticket, su cancelación y la conservación de los datos tras reiniciar la web.
 
 Las últimas pruebas locales registradas incluyen 266 comprobaciones unitarias y 219 de integración con MySQL/HTTP. Corresponden a las ejecuciones indicadas en [ESTADO.md](docs/ESTADO.md); los cambios posteriores tienen sus propias verificaciones. Estos resultados no equivalen a una entrega final aprobada.
 
-Falta completar las pruebas en Windows y Firefox, revisar los controles restantes, comprobar el pronóstico desde Render y actualizar el PDF y el paquete de entrega. El clima puede fallar sin impedir una reserva.
+El pronóstico público tuvo una respuesta útil comprobada. Faltan Windows, Firefox, casos de interfaz y seguridad restantes, y el paquete final de entrega. Los casos concretos están en [CIERRE.md](docs/CIERRE.md). El clima puede fallar sin impedir una reserva.
 
 ## Inicio local
 
@@ -70,4 +70,4 @@ El historial se conserva en el repositorio privado [USUARIO_DESTINO/eventify](ht
 - [Verificación Windows](docs/VERIFICACION-WINDOWS.md): procedimiento pendiente de equipo real.
 - [Demostración y defensa](docs/DEFENSA.md): recorrido, mapa del código y ejercicios; no certifica dominio.
 - [Revisión de seguridad](docs/SEGURIDAD.md): dependencias y controles comprobados, con límites.
-- [Fuente del documento técnico](docs/TECNICO.md): borrador referido a dev.17.
+- [Fuente del documento técnico](docs/TECNICO.md): borrador actualizado al código dev.30, con límites y evidencia.

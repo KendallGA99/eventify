@@ -8,7 +8,7 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 
 | ID | Código principal | Prueba pertinente | Evidencia vigente / falta |
 | --- | --- | --- | --- |
-| RF-01 | app/Http/AuthController.php; app/Domain/RegistrationInput.php | tests/unit/registration.php; tests/integration/http-auth.php | Integración aprobada; flujo completo de registro en navegador pendiente |
+| RF-01 | app/Http/AuthController.php; app/Domain/RegistrationInput.php | tests/unit/registration.php; tests/integration/http-auth.php | Integración aprobada; teclado/foco y validación vacía en IAB390px comprobados; registro válido completo en navegador pendiente |
 | RF-02 | app/Security/Auth.php; app/Security/Session.php | tests/integration/http-auth.php | HTTP y Chrome login/logout; tras logout admin conduce a login |
 | RF-03 | app/Http/AdminController.php; app/Security/Auth.php | tests/integration/http-auth.php; tests/integration/admin.php | HTTP roles/CSRF; Chrome USUARIO rechazado en /admin; IAB rechaza categorías/nuevo evento/reservas por URL; otras rutas UI pendientes |
 | RF-04 | app/Infrastructure/CatalogRepository.php; app/Views/catalog-results.php | tests/integration/catalog.php | Catálogo real Chrome/DB; vacío y recuperación al limpiar comprobados390px; matriz completa de errores pendiente |
@@ -34,28 +34,25 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración vi
 
 | IDs | Código/documentación | Evidencia y pendiente |
 | --- | --- | --- |
-| RNF-01/02 | public/assets/css/app.css; app/Views | Ticket móvil/tableta/escritorio y dashboard tableta; catálogo/cuenta/registro 360 y registro 768 sin desbordamiento; catálogo/detalle agotado390x844 y844x390 sin desbordamiento; matriz restante, teclado/foco y zoom pendientes |
-| RNF-03 | app/Security; controladores; migraciones | HTTP propiedad/roles/CSRF, SQL parametrizado/escape; auditoría Composer/huella jQuery/15 checks HTTP aprobados en SEGURIDAD.md; revisión completa de imágenes/historial y cookies HTTPS pendientes |
+| RNF-01/02 | public/assets/css/app.css; app/Views | Ticket móvil/tableta/escritorio y dashboard tableta; catálogo/cuenta/registro 360 y registro 768 sin desbordamiento; catálogo/detalle agotado390x844 y844x390 sin desbordamiento; registro390px con teclado/foco comprobado; matriz restante y zoom pendientes |
+| RNF-03 | app/Security; controladores; migraciones | HTTP propiedad/roles/CSRF, SQL parametrizado/escape; auditoría Composer/huella jQuery/15 checks HTTP aprobados en SEGURIDAD.md; 81 controles HTTPS y505blobs sin secretos conocidos; imágenes dev.30 escaneadas/parche xz comprobado, avisos restantes abiertos |
 | RNF-04 | bootstrap/controladores/clientes AJAX | Errores de negocio y API controlados; dev.10 espera acotada probada en cliente controlado, flujo exitoso actual Chrome aprobado; timeout real pendiente |
 | RNF-05 | CatalogRepository/AdminReadRepository; EventWeather | Paginación/índices/snapshot de dashboard/caché y presupuesto API implementados; no afirmar benchmark no medido |
 | RNF-06 | Chrome QA | Chrome 154.0.8037.97 parcial; Firefox157.0 instalado, sin acceso por CUA; flujo Firefox real pendiente |
 | RNF-07 | app/Domain, Http, Infrastructure, Security, Views | Responsabilidades separadas; revisión final pendiente |
 | RT-01/02/03 | reservations.js; catalog.js; experiences.js; weather.js | Dos funcionalidades jQuery (catálogo e historial) y operaciones AJAX significativas observadas; pruebas de estados restantes pendientes |
 | RT-04/05 | PHP/MySQL; docs/DATOS.md; database/migrations | Migraciones/relaciones/CRUD e integración aprobados; no sustituir tecnologías |
-| RT-06 / U-01 | Dockerfile; docker-compose.yml; scripts Linux/Windows | Stack Linux/persistencia QA y arranque desde ZIP Linux dev.17 con reserva/ticket/cancelación aprobados; recreación tras reserva nueva y ejecución Windows pendientes; seis scripts con sintaxis aprobada en PowerShell5.1 real |
-| RT-09 / U-02 | docs/ARQUITECTURA.md; docs/PUBLICACION.md | Render PHP + Aiven MySQL: candidata; TLS PDO preparado (40 guardas), presupuesto API MySQL aprobado en integración y persistencia dev.13; carreras meteorológicas minuto/hora aprobadas; TLS externo y URL real pendientes. InfinityFree no seleccionada por MariaDB; localhost no cumple |
+| RT-06 / U-01 | Dockerfile; docker-compose.yml; scripts Linux/Windows | Stack Linux/QA, ZIP Linux dev.28 y persistencia tras reserva/cancelación aprobados; ejecución completa Windows pendiente; seis scripts con sintaxis aprobada en PowerShell5.1 real |
+| RT-09 / U-02 | docs/ARQUITECTURA.md; docs/PUBLICACION.md | Render PHP + Aiven MySQL Free publicados; TLS, URL HTTPS, flujos centrales, persistencia y pronóstico útil reales comprobados. No garantiza disponibilidad permanente; revisión final pendiente |
 | RT-07 / U-05 | GitHub privado; docs/VERSIONADO.md; CHANGELOG.md | Historial/push/etiquetas reales; acceso de evaluador, CI si procede y entrega final pendientes |
-| RT-08 | README.md; docs/INSTALACION.md | Manual/tecnologías/comandos preparados; enlace público y paquete final pendientes |
+| RT-08 | README.md; docs/INSTALACION.md | Manual, tecnologías y enlace público disponibles; paquete final y revisión del receptor pendientes |
 | U-03 | docs/INSTALACION.md; docs/RESPALDO.md; docs/PAQUETE.md; scripts/package-source.py; scripts/test-restore-qa-linux.sh; bin/qa-transfer.php | ZIP dev.14 real con 153 huellas correctas; 13 checks de empaquetado. 40 checks de orquestación simulada y dump/import MySQL real aprobados; comparación exacta de diez tablas/archivos. ZIP Linux dev.17 con flujo Chrome aprobado; HTTP restaurado autenticado y persistencia posterior al flujo Linux aprobados (existing-iAQixJNV); transferencia al receptor y Windows pendientes |
 | U-04/06 | AGENTS.md; PLAN/ESTADO/MATRIZ/evidencias | Protocolo aplicado; estado breve e historial conservado. No certificar pruebas pendientes |
 | ENT / defensa | docs/REQUISITOS.md | PDF técnico/paquete/cuentas/evidencia humana de comprensión y defensa pendientes |
 
 ## Siguiente revisión dirigida
 
-1. Activar dev.10 y verificar confirmación real, sin repetir POST de resultado desconocido.
-2. Completar permisos/rutas/casos adversos de navegador y responsive/Firefox.
-3. Ensayar respaldo/restauración sobre destino aislado y copia limpia Linux/Windows.
-4. Resolver URL pública gratuita y documentación/entrega/defensa; no cerrar B07 ni marcar estable mientras falten criterios.
+Los casos concretos y sus criterios están en [CIERRE.md](CIERRE.md). Conservar las evidencias históricas siguientes, que describen etapas anteriores. No cerrar B07 ni marcar estable mientras falten criterios.
 
 | ENT-C / ENT-E/F | docs/TECNICO.md; scripts/build-technical-pdf.py | PDF borrador actualizado dev.17 de 15 páginas generado/revisado visualmente; 21 RF/7 RNF presentes. Documento final y revisión/dominio/defensa humana pendientes |
 

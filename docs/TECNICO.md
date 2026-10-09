@@ -1,9 +1,9 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 8 de octubre de 2026. Código de referencia: v0.1.0-dev.28. Estudiante, docente y fecha de entrega: pendientes de completar por la persona responsable. No se atribuye autoría ni participación que no esté documentada.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 8 de octubre de 2026. Código de referencia: v0.1.0-dev.30. Estudiante, docente y fecha de entrega: pendientes de completar por la persona responsable. No se atribuye autoría ni participación que no esté documentada.
 
-Este documento explica cómo funciona el sistema y qué se ha comprobado. Hay evidencia de integración MySQL, restauración, instalación desde ZIP en Linux y uso de la web pública. La web ejecuta dev.26; dev.27 y dev.28 incorporan pruebas y documentación. Windows, Firefox, el pronóstico público y la revisión final siguen pendientes.
+Este documento explica cómo funciona el sistema y qué se ha comprobado. Hay evidencia de integración MySQL, restauración, instalación desde ZIP en Linux y uso de la web pública. La web ejecuta dev.26. Las imágenes dev.30 se construyeron y comprobaron con el parche xz/liblzma; no se han aplicado al despliegue. El pronóstico público ya tiene respuesta útil comprobada. Windows, Firefox y la aceptación final siguen pendientes.
 
 ## 1. Descripción y resultado esperado
 
@@ -271,27 +271,28 @@ Volúmenes locales mysql_data y app_storage conservan datos y archivos al recrea
 
 El paquete se exporta desde un commit concreto, con manifiesto y SHA-256 del ZIP y de cada archivo. Contiene código, scripts, migraciones, licencias y .env.example; no contiene claves, .git, volúmenes ni datos de MySQL. El receptor no necesita Python, Git ni cuentas en Render, Aiven o GitHub para ejecutar la copia local. Sí necesita Docker/Compose y conexión a Internet para descargar las imágenes y dependencias inicialmente.
 
-Una copia anterior del ZIP arrancó en Linux desde una ruta con espacios. Se comprobaron ambos roles, reserva, ticket/QR, cancelación e historial; pruebas posteriores comprobaron diez tablas y archivos tras recreación. Esto no verifica automáticamente un ZIP nuevo: la versión de entrega requiere otra instalación limpia. Windows tiene evidencia de sintaxis PowerShell, pero no de ejecución completa del stack.
+El ZIP dev.28 arrancó en Linux desde una ruta con espacios. Se comprobaron ambos roles, reserva, ticket/QR, cancelación e historial; pruebas posteriores comprobaron diez tablas y archivos tras recreación. Esto no verifica automáticamente un ZIP nuevo: la versión de entrega requiere otra instalación limpia. Windows tiene evidencia de sintaxis PowerShell, pero no de ejecución completa del stack.
 
 La restauración QA usó una base y volúmenes nuevos, un dump consistente y comparación de filas y archivos. No importó encima de una base existente. El navegador también comprobó el destino restaurado autenticado. Para transferir reservas ya creadas hay que exportar los datos por separado, siguiendo RESPALDO.md; el ZIP de código no los incluye.
 
 La web de evaluación está en https://eventify-academico.onrender.com, con PHP/Apache en Render Free y MySQL 8.4.11 en Aiven Free. Se publicó solo EVENTIFY desde el repositorio privado. No se usó tarjeta ni un plan pagado. Los límites e inactividad de los planes gratuitos deben revisarse para la fecha de evaluación; una URL publicada no implica disponibilidad permanente.
 
-La demostración pública comprobó login de ambos roles, creación de categoría y evento ficticio, reserva de dos entradas por un total calculado de 5000 colones, ticket/QR y cancelación con historial. Un reinicio real conservó filas y huellas de diez tablas. Los archivos de sesión están en el almacenamiento efímero de Render: tras recrear la web puede requerirse otro login, sin perder reservas de MySQL. El pronóstico devuelve HTTP 429 desde Render y se muestra como no disponible; la reserva continúa. RF-15 público permanece pendiente de una respuesta útil real.
+La demostración pública comprobó login de ambos roles, creación de categoría y evento ficticio, reserva de dos entradas por un total calculado de 5000 colones, ticket/QR y cancelación con historial. Un reinicio real conservó filas y huellas de diez tablas. Los archivos de sesión están en el almacenamiento efímero de Render: tras recrear la web puede requerirse otro login, sin perder reservas de MySQL. El proveedor respondió HTTP 429 en una visita y el sistema mantuvo disponible la reserva. El 8 de octubre a las 18:22 CST, la API pública devolvió HTTP 200 con un pronóstico útil visible para el evento ficticio: RF-15 tiene evidencia de éxito y fallo controlado. No se garantiza que un servicio gratuito nunca limite las consultas.
 
 ## 10. Pruebas y límites de evidencia
 
 | Evidencia ejecutada | Resultado | Qué no demuestra |
 | --- | --- | --- |
-| Desarrollo Linux | 266 comprobaciones unitarias, sintaxis PHP 8.4 y QR; ejecución registrada a las 15:42 UTC. | No cubre por inferencia cambios posteriores ni Windows. |
+| Desarrollo Linux | 266 comprobaciones unitarias, sintaxis PHP 8.4 y QR en cada imagen local/pública dev.30. | No cubre por inferencia cambios posteriores ni Windows. |
 | Integración MySQL/HTTP | 219 comprobaciones, tres migraciones y carreras de reserva, administración y presupuesto; 16:31:25 UTC. | No equivale a pruebas completas de la web pública. |
 | Persistencia y restauración QA | Diez tablas y archivos comparados; copia limpia conserva ocho reservas y tickets tras recrear. | No verifica automáticamente la instalación de un ZIP nuevo. |
-| Chrome y diseño adaptable | Flujos de ambos roles, reserva, QR, cancelación y vistas en móvil/tableta/escritorio. | Firefox, teclado/zoom y matriz final siguen pendientes. |
+| Chrome y diseño adaptable | Flujos de ambos roles, reserva, QR, cancelación y vistas en móvil/tableta/escritorio. | Registro móvil con foco/teclado y validación vacía comprobados; Firefox, zoom y matriz restante pendientes. |
 | TLS real | CA/hostname incorrectos y servidor sin TLS rechazados; conexión externa válida en Aiven/Render. | No es una auditoría universal de la infraestructura. |
-| Publicación dev.26 | Render Live; sintaxis y 39 controles de clima más 44 de presupuesto en construcción. | Pronóstico externo exitoso: el proveedor respondió 429. |
+| Publicación dev.26 | Render Live; sintaxis y 39 controles de clima más 44 de presupuesto en construcción. | Pronóstico público útil y fallo 429 comprobados; disponibilidad permanente no garantizada. |
 | Flujos públicos dev.25/26 | Login, administración, reserva/ticket/cancelación y conservación de diez tablas tras reiniciar. | Disponibilidad permanente o todas las variantes de redeploy. |
 | Seguridad pública dev.27 | 81 controles HTTPS de cookies, sesión, CSRF, permisos y ticket/QR ajenos aprobados. | Todas las variantes de ataque o revisión de imágenes. |
 | Dependencias e historial | Composer sin avisos; jQuery verificado; 505 blobs sin secretos conocidos. | Ausencia de futuras vulnerabilidades o secretos desconocidos. |
+| Imágenes dev.30 | Construcción, unidades y escaneo confirman corrección xz/liblzma, cuatro filas de avisos eliminadas. | Persisten avisos y revisión de alcance; no equivale a seguridad completa ni despliegue. |
 | Windows | Seis scripts analizados por PowerShell 5.1 real. | Instalación y ejecución con Docker/WSL aún pendientes. |
 
 Cada fila corresponde a su ejecución y alcance. No se suman como una suite única ni se atribuyen pruebas antiguas a código posterior. ESTADO.md y las evidencias por bloque conservan comandos, resultados e incidencias. Los ensayos previos con fallos no se consideran aprobados por una corrección posterior.
@@ -302,12 +303,12 @@ La persona responsable debe explicar ruta navegador-PHP-PDO-MySQL, sesión/rol/C
 
 Ejercicios sugeridos: explicar por qué un ticket ajeno devuelve 404; demostrar rechazo a exactamente 24 h; localizar el cálculo del precio y contrastarlo con el total visual; recorrer una migración y explicar qué pasa si se interrumpe; mostrar que el clima falla sin impedir reservar. Son propuestas de preparación, no evidencias ejecutadas.
 
-La base funcional y la web pública tienen evidencia real de sus flujos principales. Para cerrar quedan la respuesta útil de la API pública, Windows, Firefox y casos de interfaz restantes, revisión de imágenes, instalación limpia del paquete actualizado y revisión del documento por el estudiante. La preparación y defensa individual necesitan participación humana real. Este documento mantiene visibles esas limitaciones.
+La base funcional y la web pública tienen evidencia real de sus flujos principales. Para cerrar quedan Windows, Firefox y casos de interfaz restantes, revisión de los avisos de imágenes, instalación limpia del paquete final y revisión del documento por el estudiante. La preparación y defensa individual necesitan participación humana real. Este documento mantiene visibles esas limitaciones.
 
 ## 12. Referencias y trazabilidad
 
-Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.28. Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
+Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.30. Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
 
-Documentos operativos: INSTALACION.md, ARQUITECTURA.md, DATOS.md, PUBLICACION.md, RESPALDO.md, VERSIONADO.md, PAQUETE.md, COPIA-LIMPIA.md y SEGURIDAD.md. Los documentos históricos pueden describir etapas anteriores: las migraciones/código y el estado vigente prevalecen al comprobar una afirmación técnica.
+Documentos operativos: INSTALACION.md, ARQUITECTURA.md, DATOS.md, PUBLICACION.md, RESPALDO.md, VERSIONADO.md, PAQUETE.md, COPIA-LIMPIA.md, SEGURIDAD.md, AVISOS-IMAGENES.md y CIERRE.md. Los documentos históricos pueden describir etapas anteriores: las migraciones/código y el estado vigente prevalecen al comprobar una afirmación técnica.
 
 Repositorio privado: https://github.com/USUARIO_DESTINO/eventify. La visibilidad privada no garantiza acceso del evaluador; gestionarlo cuando se acuerde. No se incluyen claves ni datos personales de cuentas de prueba en este documento.

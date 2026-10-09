@@ -127,9 +127,9 @@ Dependencia: implementación final coherente, B07/B08 cerrados o limitaciones re
 
 Cierre: todos los entregables académicos y condiciones acordadas comprobados, documento coherente, instalación de receptor validada y pendientes transparentes. La defensa formal ocurre ante el docente; registrar cuando realmente se realice.
 
-## Estrategia de pruebas (herramientas todavía propuestas)
+## Estrategia de pruebas
 
-Elegir herramientas gratuitas compatibles en B01. Candidatas: PHPUnit para PHP, pruebas de integración contra MySQL en Docker y Playwright para flujos de navegador; ninguna está instalada ni tiene comandos definidos todavía. Las dependencias de desarrollo y navegadores deben ser reproducibles y no obligar al receptor a instalar herramientas para usar la app.
+Se utilizan scripts unitarios PHP, integración MySQL/HTTP aislada en Docker, verificaciones de cliente y recorridos reales de navegador. PHPUnit fue una candidata inicial, no la herramienta adoptada. Los comandos y resultados efectivos están en ESTADO y evidencias. El receptor no necesita las herramientas de auditoría para ejecutar la aplicación; la aceptación final se organiza en CIERRE.md.
 
 | ID de prueba | Casos principales | Requisitos |
 | --- | --- | --- |
