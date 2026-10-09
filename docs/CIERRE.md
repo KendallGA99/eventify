@@ -1,6 +1,6 @@
 # EVENTIFY: casos pendientes para la entrega
 
-Corte: 8 de octubre de 2026, código dev.30. Este archivo organiza la aceptación que falta; ESTADO y las evidencias conservan lo ya ejecutado. Un caso se cierra con el resultado real y su versión, no por estar descrito aquí.
+Corte: 8 de octubre de 2026, documentación dev.31; aplicación equivalente a dev.30. Este archivo organiza la aceptación que falta; ESTADO y las evidencias conservan lo ya ejecutado. Un caso se cierra con el resultado real y su versión, no por estar descrito aquí.
 
 ## Evidencia disponible
 
@@ -13,7 +13,7 @@ Corte: 8 de octubre de 2026, código dev.30. Este archivo organiza la aceptació
 
 | Caso | Qué hacer | Criterio de cierre y evidencia |
 | --- | --- | --- |
-| C-01 Registro completo | Crear cuenta ficticia en evaluación aislada; probar duplicado, campos inválidos, login y logout. | Mensajes y sesión correctos; identidad/rol verificados en servidor. No cuentas reales ni claves en capturas. |
+| C-01 Registro completo | Recorrido de navegador comprobado en copia limpia dev.28: confirmación distinta, alta válida, duplicado, ingreso incorrecto/correcto, administración por URL y logout. | Resultado correcto. Autenticación sin cambios entre dev.28 y dev.31; controles de servidor y hashes cubiertos por integración previa. No sustituye Firefox ni instalación del ZIP final. Evidencia en ESTADO y B07. |
 | C-02 Catálogo y AJAX | Combinar búsqueda/categoría/fecha, vacío y limpieza; observar carga, respuesta tardía y fallo de transporte. | Resultados correctos y estado recuperable; sin sustituir el resultado nuevo por uno antiguo. Guardar navegador, versión y casos. |
 | C-03 Reserva con error de transporte | Interrumpir respuesta en un entorno de evaluación controlado. | Evitar repetir una confirmación de resultado desconocido; consultar historial y conservar cupos/ticket. No provocar fallos en publicación ni datos del receptor. |
 | C-04 API y estados | Revisar timeout/error/cuota/fecha sin pronóstico en UI, además del éxito ya comprobado. | Mensaje claro, reservas disponibles y recuperación. No agotar a propósito la cuota externa ni simular un fallo como real. |
