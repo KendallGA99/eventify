@@ -11,7 +11,7 @@ Corte: 8 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.m
 
 ## Versiones y destinos
 
-- Código/documentación actual: **0.1.0-dev.33**, rama `codex/b07-avisos-restantes`, desde `6a8443b`. Aplicación PHP igual a dev.30; dev.33 tiene parche gawk de MySQL construido, integración/TLS y escaneo comprobados; las instalaciones existentes conservan su versión anterior. Ninguna versión estable.
+- Código/documentación actual: **0.1.0-dev.34**, rama `codex/b07-runtime-aislado`, desde `58e3b66`. Dev.34 incorpora limpieza de herramientas ensayada en imágenes derivadas; construcción final y TLS pendientes. Aplicación PHP igual a dev.30; dev.33 tiene parche gawk de MySQL construido, integración/TLS y escaneo comprobados; las instalaciones existentes conservan su versión anterior. Ninguna versión estable.
 - `main` conservada: `3da680b74b41fa3da4069879edc1f649de9b97f2`. VERSIONADO contiene la política y referencias anteriores. Git recupera código; no restaura MySQL.
 - Web pública: https://eventify-academico.onrender.com, **dev.30**, commit `390b1ef6dcbb9a9d76eaad8a910a80da364bb637`. Render `srv-db3vutm7bikc73ajj6og`, Free/Oregon/AutoDeployOff; misma rama de despliegue existente.
 - Último deploy: `dep-db44q9cs728c739ikr20`, 8 de octubre, 20:10:45 CST, **Deploy succeeded/Live**, 35 s. Referencia anterior `cabd6f3` conservada.
@@ -183,3 +183,14 @@ PDF regenerado y página de pruebas renderizada/revisada después de distinguir 
 9 de octubre de 2026. Rama codex/b07-runtime-aislado desde 58e3b66. C-09/SEG-09: Dockerfile.runtime-check y runtime-prune.sh derivan imágenes experimentales y retiran herramientas de desarrollo sin autoremove; plan simulado y bibliotecas/Apache/PDO protegidos. test-runtime-minimal-linux.sh construye variantes local/pública y ejecuta unidades/integración MySQL con proyecto exclusivo, red interna, tmpfs y claves nuevas; sin puertos, montajes ni volúmenes persistentes. No cambia Dockerfile de entrega, VERSION, dev.33, destinos actuales o publicación.
 
 Bash-n/sh-n y diff --check correctos. Generador Python ejecutado y Compose normalizado sin daemon: aislamiento y ausencia de herencia .env/build comprobados. Patrón amd64 revisado, gcc-base y bibliotecas requeridas no seleccionadas. Construcción, integración y reducción real de avisos NO ejecutadas: Docker info informa permiso denegado al socket. ENSAYO-RUNTIME contiene comando exacto y criterios. Tras ejecución humana, revisar registros e imágenes y escanear; no repetir instalación Linux dev.33. Windows/Firefox y defensa conservan sus pendientes.
+
+
+## Runtime reducido: ensayo aprobado y dev.34 preparada
+
+9 de octubre de 2026, 05:21:40 CST (11:21:40 UTC). Registro runtime-check-doJmuSur, commit b14fee3, exit0. Variantes local y pública: construcción y comprobación Apache/PDO correctas; 266 unidades y 219 controles MySQL/HTTP por variante. Proyectos efímeros retirados; inventarios y exportaciones conservados. Se retiraron 32 paquetes y no cambió la versión de ninguno conservado.
+
+Trivy sobre ambas exportaciones, misma base almacenada actualizada el 8 de octubre a las 19:05:21 UTC, sin actualización/exclusiones: 2.011 → 424 filas por variante. Restantes: 1 CRITICAL, 91 HIGH, 162 MEDIUM, 166 LOW, 4 UNKNOWN; ningún par nuevo de identificador/paquete/versión frente al informe conservado. JSON/log/comparison en storage/runtime-check-doJmuSur. La reducción de cabeceras no parchea el kernel del host; permanecen bibliotecas vulnerables y riesgos de construcción.
+
+Dev.34 incorpora exactamente runtime-prune.sh ensayado al final de ambos Dockerfile y verifica ausencia de herramientas en test-image-linux.sh. Sin cambios PHP, MySQL, datos o destinos activos. verify-runtime-release-linux.sh agrupa construcción/exportación de imágenes finales, unidades, rechazos públicos y TLS positivo/negativo en destinos efímeros. Bash-n/sh-n y diff --check correctos; construcción final y arranque Apache público/TLS pendientes de ejecución Docker en terminal. No afirmar que el ensayo derivado ya certifica estas imágenes finales.
+
+La instalación Linux dev.33 conserva su aprobación y paquete. Nueva versión aún de desarrollo; Windows, Firefox y aceptación de dev.34 pendientes. No desplegar o reemplazar paquetes antes de revisar este ensayo final.

@@ -35,6 +35,10 @@ RUN php bin/lint.php \
 
 COPY docker/public-entrypoint.sh /usr/local/bin/eventify-public-entrypoint
 RUN chmod 755 /usr/local/bin/eventify-public-entrypoint
+# Las extensiones ya están compiladas; retirar herramientas del runtime.
+COPY docker/runtime-prune.sh /tmp/eventify-runtime-prune.sh
+RUN sh /tmp/eventify-runtime-prune.sh && rm /tmp/eventify-runtime-prune.sh
+
 EXPOSE 10000
 ENTRYPOINT ["eventify-public-entrypoint"]
 CMD ["apache2-foreground"]

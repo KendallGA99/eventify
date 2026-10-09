@@ -1,6 +1,6 @@
 # Ensayo de herramientas de construcción
 
-B07/C-09/SEG-09. Preparado el 9 de octubre de 2026; construcción real pendiente. La versión de entrega sigue siendo dev.33. Este ensayo no sustituye los Dockerfile local/público ni modifica sus contenedores, datos o publicación.
+B07/C-09/SEG-09. Ensayo derivado aprobado el 9 de octubre de 2026 sobre b14fee3. Dev.34 incorpora ahora su limpieza a los Dockerfile; la comprobación final sigue pendiente. Los paquetes e instalaciones dev.33 conservan su evidencia.
 
 ## Objetivo y aceptación
 
@@ -14,7 +14,7 @@ Desde una terminal Linux con acceso a Docker:
 
 ```bash
 cd "/home/usuario/Documentos/ChatGPT/Proyecto U"
-bash scripts/test-runtime-minimal-linux.sh
+bash scripts/verify-runtime-release-linux.sh
 ```
 
 La ruta anterior corresponde al equipo de desarrollo; el script resuelve la raíz desde su propia ubicación. Las herramientas usadas por el ensayo son Docker/Compose y Python 3 del host, no requisitos adicionales del receptor para ejecutar Eventify.
@@ -30,4 +30,6 @@ La integración usa un proyecto Compose propio, sin puertos, montajes del host o
 - Proyecto único, red interna, MySQL tmpfs, sin build heredado, puertos, montajes, privilegios ni lectura del .env del proyecto.
 - Patrón revisado con herramientas amd64 y bibliotecas protegidas; gcc-14-base no se selecciona para eliminación.
 
-Docker informa permission denied al consultar su socket en esta sesión. No se modifican permisos o grupos. Falta ejecutar el comando en la terminal del usuario, revisar el resultado y comparar escaneos sin exclusiones antes de decidir si se adopta. La instalación Linux dev.33 ya aprobada no se repite: se evalúan imágenes experimentales distintas.
+El ensayo derivado terminó con exit0: 266 unidades y 219 comprobaciones MySQL por variante. Trivy conserva 424 registros frente a 2.011, sin pares nuevos; no implica ausencia de vulnerabilidades. Los registros están en storage/runtime-check-doJmuSur.
+
+El comando actual verifica las imágenes finales dev.34 y el arranque público/TLS en proyectos efímeros. El script test-runtime-minimal-linux.sh corresponde al experimento b14fee3 anterior a la incorporación; no repetirlo sobre imágenes ya depuradas. Docker sigue sin acceso desde esta sesión; falta ejecutar la verificación final en la terminal del usuario. La instalación Linux dev.33 ya aprobada conserva su resultado.

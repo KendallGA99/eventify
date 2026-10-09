@@ -116,3 +116,10 @@ La revisión de los diez avisos medios curl/libcurl se amplía en [AVISOS-CURL.m
 
 
 [AVISOS-BAJOS.md](AVISOS-BAJOS.md) y su CSV organizan los avisos LOW: doce Apache revisados con límites, otros identificadores pendientes expresos. Descargar fuentes no equivale a cerrar aplicabilidad.
+
+
+## Reducción de herramientas ensayada
+
+El 9 de octubre, runtime-check-doJmuSur aprobó construcción, 266 unidades y 219 controles MySQL por variante local/pública derivada. Se retiraron 32 paquetes de desarrollo; versiones conservadas idénticas. Escaneo con la misma base Trivy almacenada: 2.011 → 424 filas, sin pares nuevos o exclusiones; 1 crítico, 91 altos, 162 medios, 166 bajos y 4 sin clasificación. Informes/comparación privados en ese registro. Retirar linux-libc-dev no corrige el kernel del host y conservar una biblioteca conserva su riesgo.
+
+Dev.34 aplica la receta ensayada en los Dockerfile finales. Su construcción final y arranque público/TLS aún requieren verify-runtime-release-linux.sh antes de despliegue. Los conteos históricos anteriores siguen correspondiendo a sus imágenes, no a las derivadas reducidas.

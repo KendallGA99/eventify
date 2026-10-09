@@ -29,4 +29,8 @@ COPY public/ public/
 COPY bin/ bin/
 COPY tests/ tests/
 
+# Las extensiones ya están compiladas; retirar herramientas del runtime.
+COPY docker/runtime-prune.sh /tmp/eventify-runtime-prune.sh
+RUN sh /tmp/eventify-runtime-prune.sh && rm /tmp/eventify-runtime-prune.sh
+
 EXPOSE 80

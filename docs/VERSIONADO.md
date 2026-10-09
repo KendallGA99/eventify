@@ -98,3 +98,8 @@ Dev.33 verificada posteriormente sobre3489d430bf94c649c7bf7e61d6fb0e95fb531a33: 
 
 
 Cierre documental Linux dev.33: 227461a59f429b755f7258de68c412c69209d07c confirmado en remoto. Manual/PDF y revisión inicial LOW actualizados; fuente del paquete conserva f4d6c5a, instalación y persistencia comprobadas. Windows, Firefox y límites de seguridad abiertos; etiqueta anterior no movida, main intacta y sin nuevo despliegue.
+
+
+## Dev.34: incorporación del runtime reducido
+
+Rama codex/b07-runtime-aislado, basada en 58e3b66. El ensayo b14fee3 aprobó imágenes derivadas, unidades e integración; dev.34 incorpora esa misma receta en ambos Dockerfile. Construcción final y TLS pendientes. No se cambia main, la etiqueta dev.33, los paquetes existentes ni el despliegue público.

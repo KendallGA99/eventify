@@ -26,6 +26,16 @@ verify_images() {
             actual="$("${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint dpkg-query "$image" -W '-f=${Version}' "$package")"
             [[ "$actual" == '5.8.1-1+deb13u2' ]] || { echo "Versión corregida no comprobada: $package" >&2; return 1; }
         done
+        # La imagen final no debe conservar compiladores o cabeceras retirados.
+        "${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint sh "$image" -c '
+            for package in binutils gcc g++ make autoconf m4 patch re2c libc6-dev linux-libc-dev; do
+                status=$(dpkg-query -W -f="\${db:Status-Status}" "$package" 2>/dev/null || true)
+                if [ "$status" = installed ]; then
+                    echo "Herramienta de construcción aún instalada: $package" >&2
+                    exit 1
+                fi
+            done
+        '
         "${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint apache2ctl "$image" -M > "$record/${kind}-apache-modules.txt" 2>&1
         if grep -Eq ' (heartmonitor|charset_lite|vhost_alias|xml2enc|proxy_uwsgi|auth_digest)_module ' "$record/${kind}-apache-modules.txt"; then
             echo 'Un módulo de Apache pendiente de corrección está habilitado; revisar el registro privado.' >&2

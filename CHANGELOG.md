@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.34 — Runtime sin herramientas de construcción (B07/SEG-09)
+
+- Incorpora en ambos Dockerfile la limpieza ensayada: 32 paquetes retirados, versiones conservadas sin cambios. Las imágenes derivadas aprobaron 266 unidades y 219 comprobaciones MySQL cada una.
+- Escaneo de ambas variantes: 2.011 → 424 registros (1 crítico, 91 altos, 162 medios, 166 bajos, 4 sin clasificación), sin pares nuevos ni exclusiones. Retirar cabeceras no corrige el kernel del host.
+- Prepara comprobación de imágenes finales y arranque público/TLS antes de desplegar o generar una entrega nueva. Dev.33 y sus paquetes mantienen su evidencia.
+
 ## Ensayo de reducción de herramientas (B07/SEG-09)
 
 - Añade construcción experimental derivada de las imágenes local y pública: retira herramientas de desarrollo sin autoremove y comprueba que PHP/PDO, Apache y bibliotecas necesarias permanezcan.
