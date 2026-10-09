@@ -73,3 +73,12 @@ Exportación real del usuario: storage/image-audit/eventify-dev28.tar (172 MiB),
 Ejecutado Trivy image --input con telemetría desactivada, scanner vuln y base ya descargada, exit0. Informe privado eventify-dev28.json:186 paquetes Debian, mismos2015avisos/doscríticos/145altos; vendor/composer/installed.json detectado, cero avisos de las bibliotecas instaladas. liblzma5 y xz-utils permanecen en5.8.1-1+deb13u1; la instalación de unzip no los actualizó. No se escanearon secretos en esta ejecución ni se certifica toda la seguridad del runtime.
 
 Dev.29 fija ambos paquetes en5.8.1-1+deb13u2, tanto Dockerfile como Dockerfile.public. No cambia aplicación, esquema ni imagen MySQL. scripts/test-image-linux.sh construye variantes con nombres propios, comprueba ambas versiones, sintaxis y todas las unidades existentes, y guarda tar/IDs/registros privados para otro escaneo. Procesos sin red, puertos, montajes ni MySQL; no altera contenedores activos. Bash-n/diff aprobados; construcción, unidades en estas imágenes y escaneo posterior aún pendientes. No desplegar ni afirmar parche efectivo hasta comprobarlos. Los demás avisos siguen abiertos y se revisan por separado.
+
+
+## Parche xz/liblzma comprobado en dev.30
+
+Ensayo image-check-APnvo9xh, inicio2026-10-09T00:58:15Z (8oct18:58:15CST), commit390b1ef6dcbb9a9d76eaad8a910a80da364bb637, árbol limpio y exit_code=0. Ambas variantes se construyeron; dpkg-query confirmó liblzma5/xz-utils5.8.1-1+deb13u2. Cada imagen pasó sintaxis,266comprobaciones unitarias existentes y generación/validación QR. Configuración TLS se prueba sin conexión; no afirmar integración MySQL nueva. No se ejecutaron servicios de negocio ni se tocaron volúmenes.
+
+Trivy0.75.0 con telemetría desactivada y la misma base de avisos auditó local.tar/public.tar; ambos exit0. Cadena OCI completa de cada exportación coincide con el config del scanner. Local:8e1cfd0866e15150a5b6a6cbf18a5cdad157dda7e25578a84b40cc69f11edf3b; pública:cc822ef4cbcacaaadc747202969bc9df38035821d4f887f4d2fda664d3220ed7. Informes privados en el registro del ensayo.
+
+Comparación con dev.28: cada imagen pasa de2015a2011filas de avisos; desaparecen DSA-6549-1/TEMP-1147318-639065 en los dos paquetes, sin avisos añadidos. Composer vendor sigue detectado sin avisos. Permanecen2críticos/145altos y los demás avisos anteriores: el parche específico está comprobado, la aceptación de seguridad completa sigue abierta. No se aplicó ignore-unfixed ni excepciones. No se actualizó Render ni las instancias locales activas; versión construida no equivale a versión desplegada.

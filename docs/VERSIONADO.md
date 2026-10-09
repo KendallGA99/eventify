@@ -74,3 +74,6 @@ Dev.27 → deb3eeb5115e018c45d9969447bedb36a9d8534e: pruebas HTTPS y documentaci
 Dev.28 → b92ed44968ac9116b35bf003a41486930f7e0d71: documento técnico y generador PDF actualizados; 15 páginas revisadas y ZIP de 185 archivos exportado por commit con integridad comprobada. Sin cambios funcionales, sin nuevo despliegue y sin instalación limpia de este ZIP; no estable.
 
 Dev.29 → 8ef9bb6c9d17013793234b1334dfdd3f44c4a653: corrección Debian xz/liblzma preparada en ambas imágenes y ensayo aislado. Push de rama y etiqueta anotada v0.1.0-dev.29 confirmado por ls-remote, incluida referencia resuelta. Construcción, unidades y escaneo del parche pendientes; etiqueta de desarrollo, no estable. Render conserva dev.26, copia limpia dev.28; main intacta. El ensayo no actualiza esos destinos.
+
+
+Dev.30 → 390b1ef6dcbb9a9d76eaad8a910a80da364bb637: rama y etiqueta anotada confirmadas por ls-remote. Construcción real de ambas variantes y unidades/QR aprobadas; escaneo confirma eliminación de los cuatro avisos xz/liblzma sin nuevos avisos. Los restantes siguen abiertos. No estable; Render continúa dev.26 y copias anteriores conservadas. Esta evidencia supera el pendiente de construcción de dev.29.

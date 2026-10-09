@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 
 ## Versión e instancias
 
-- Rama: `codex/b08-rechazo-sin-tls`. VERSION `0.1.0-dev.30` (parche de imágenes preparado, ejecución pendiente); aplicación Render dev.26 `cabd6f3` Live; dev.24 `6baa754` y etiqueta `v0.1.0-dev.24` publicados y referencias remotas verificadas (ensayo sin TLS aprobado); dev.23 `3badc85`/`v0.1.0-dev.23` publicado, ensayo parcial y fallo del evaluador; cuentas verificadas en dev.22 (`4947823`, etiqueta `v0.1.0-dev.22`). Ninguna versión estable; CI manual preparado, no ejecutado.
+- Rama: `codex/b08-rechazo-sin-tls`. VERSION `0.1.0-dev.30` (parche xz construido y escaneado; otros avisos pendientes); aplicación Render dev.26 `cabd6f3` Live; dev.24 `6baa754` y etiqueta `v0.1.0-dev.24` publicados y referencias remotas verificadas (ensayo sin TLS aprobado); dev.23 `3badc85`/`v0.1.0-dev.23` publicado, ensayo parcial y fallo del evaluador; cuentas verificadas en dev.22 (`4947823`, etiqueta `v0.1.0-dev.22`). Ninguna versión estable; CI manual preparado, no ejecutado.
 - `main`: `3da680b74b41fa3da4069879edc1f649de9b97f2`. No reescribir historial ni hacer push forzado. Rollback de código no restaura MySQL.
 - Destinos existentes, según última verificación: normal `localhost:8080`; QA `localhost:8081` / `eventify-qa`; copia limpia `localhost:8083` / `eventify-clean-20261008160801-e96614c4`; restauración `localhost:8082` / `eventify-restore-20261008154302-2b8eb996`. No afirmar disponibilidad actual sin consultar; conservar sus volúmenes y datos.
 - Docker 29.1.3 / Compose 2.40.3. El agente no tiene acceso al socket y sudo no interactivo exige contraseña; las operaciones Docker necesarias se ejecutan en terminal del usuario. No modificar grupos/socket/sudoers para eludirlo.
@@ -256,3 +256,12 @@ Próxima acción: cd "/home/usuario/Documentos/ChatGPT/Proyecto U" && bash scrip
 Ensayo image-check-sFMEIgyi: exit_code=125. Docker rechazó eventify-image-check-sFMEIgyi-local por mayúsculas en el repositorio antes de construir; no llegó a pruebas, exportación ni actualización de servicios. Advertencia legacy builder separada, no causa del rechazo.
 
 Script normaliza el identificador de imagen con expansión Bash a minúsculas y conserva el directorio/log original. Bash-n y tres casos de formato, incluido sFMEIgyi, correctos. No equivalen a construir ni ejecutar PHP. VERSION dev.30 conserva el parche xz anterior; repetir scripts/test-image-linux.sh en terminal del usuario por restricción del servicio Docker. Registros fallidos preservados.
+
+
+## B07: construcción y escaneo dev.30 aprobados para el parche xz
+
+Usuario ejecutó scripts/test-image-linux.sh. Registro storage/image-check-APnvo9xh:inicio2026-10-09T00:58:15Z/exit0, versióndev.30, commit390b1ef6dcbb9a9d76eaad8a910a80da364bb637 y árbol limpio. Local/pública construidas con paquetes corregidos comprobados por dpkg; cada una pasa sintaxis,266unidades y QR. Pruebas sin red/puertos/montajes/MySQL; no repetir ni sumar con integración219.
+
+Agente ejecutó el mismo comando Trivy --input utilizado para dev.28, con --disable-telemetry --skip-db-update --scanners vuln, cambiando entrada a cada tar del registro y salida a local-scan.json/public-scan.json. Ambos procesos exit0; cadena OCI de exportación/config verificada. Comparación:2015→2011avisos por imagen, cuatro filas xz/liblzma desaparecidas y cero añadidas; bibliotecas Composer sin avisos. Dos críticos y145altos de la base permanecen, no marcar seguridad completa. Detalles en SEGURIDAD.md.
+
+Parche concreto de runtime comprobado; VERSION/etiqueta dev.30 conservados. Render sigue dev.26, copia limpia8084 sigue dev.28. No publicar/recrear destinos por inferencia. Próximos pendientes: revisión de alcanzabilidad/correcciones restantes, Firefox/Windows y casos finales de aceptación, sincronización PDF/paquete y evidencia humana de defensa.
