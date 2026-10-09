@@ -110,3 +110,6 @@ El proveedor publica correcciones; no asumir que la ausencia de FixedVersion en 
 
 
 La revisión de los diez avisos medios curl/libcurl se amplía en [AVISOS-CURL.md](AVISOS-CURL.md). La descarga HTTPS de Composer mantiene abierto80229: ausencia de llamadas curl en WeatherClient no equivale a ausencia de curl en construcción.
+
+
+[AVISOS-HERRAMIENTAS.md](AVISOS-HERRAMIENTAS.md) completa la revisión dirigida de identificadores MEDIUM fuera de cabeceras del kernel; conserva los límites de herramientas nativas y servicios del host.

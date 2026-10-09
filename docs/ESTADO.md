@@ -112,3 +112,10 @@ AVISOS-CURL coteja diez identificadores / veinte filas MEDIUM con fuentes origin
 ## Paquete de revisión dev.33 actualizado
 
 Fuente exacta f4d6c5a05011c57e47295b06cedf11129a052681:194 archivos, exportados por scripts/package-source.py; ZIP fuente SHA2567a23817f91ecad6453eda169ed09b17df5e3b3125149780ce195e724703cd897. Paquete output/entrega/eventify-dev33-revision.zip, SHA2565d0f663c66e0e34d02c5ab2ce4ffff0e6bf640a4d6d70f11e12a80dff4b2171b: fuente, manifiesto, PDF conservado y guía con límites. CRC y todas las huellas internas comprobadas; Dockerfile.mysql y guion Windows presentes. No contiene datos/credenciales de proveedores. La ejecución local no necesita Render/Aiven/GitHub; Docker/Compose e Internet inicial siguen siendo requisitos del host. PDF conserva su corte previo y las últimas revisiones de seguridad están en MD. No se instaló este paquete exacto: esa prueba y Windows/Firefox/zoom siguen pendientes. Paquetes anteriores conservados; no versión estable.
+
+
+## Herramientas y cobertura MEDIUM PHP/Apache
+
+AVISOS-HERRAMIENTAS añade13 identificadores /70 filas MEDIUM contrastados con Debian. Búsqueda de invocaciones y188 paquetes del inventario examinados; distingue servicios ausentes de bibliotecas presentes y llamadas nativas aún no auditadas. Cotejo conjunto:976 filas MEDIUM =189 fuera de linux-libc-dev con identificadores documentados +787 de cabeceras del kernel, sin evaluación individual. No confundir cobertura con remediación; LOW y condiciones nativas/entorno siguen pendientes. Fuentes/cobertura privadas en storage/image-audit/tools-medium-review. Sin cambios funcionales ni nuevas suites.
+
+Docker info sigue devolviendo1 en esta sesión; no modificar permisos. Puerto8086 libre al comprobarlo, sin reservarlo ni detener destinos. Próximo ensayo: scripts/test-clean-linux.sh con commit f4d6c5a05011c57e47295b06cedf11129a052681 y puerto8086, para instalar la misma fuente194 archivos del paquete dev.33. No ejecutado todavía; resultados no se presuponen.
