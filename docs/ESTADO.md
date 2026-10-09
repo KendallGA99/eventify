@@ -46,14 +46,14 @@ C-01 a C-05 comprobados en IAB sobre dev.28; archivos de aplicación afectados s
 - Reserva: una sola respuesta201 perdida después del commit; confirmar deshabilitado, consulta de historial/ticket y cupos40→39. Reserva ficticia conservada; no repetirla.
 - Clima: fixtures locales de error/busy/horizonte/caché/éxito/HTTP429/timeout8s; sin llamadas al proveedor. Patrones retirados. Evidencia real pública separada.
 - Administración: aforo bajo reservas, precio negativo, cambio de fecha/estado con historial, finalización futura, categoría duplicada y permisos ajenos; valores conservados.
-- C-06 parcial: redistribución a390/768/1280/640px; foco visible y recorrido de detalle/reserva, historial y ticket. Una captura deformada del historial se descartó mediante observación directa; no se cambió CSS. Atajo de zoom IAB no modificó escala: **no certifica zoom200%**. Falta calendario nativo, panel completo y zoom real.
+- C-06 parcial: redistribución a390/768/1280/640px; foco visible y recorrido de detalle/reserva, historial y ticket. Una captura deformada del historial se descartó mediante observación directa; no se cambió CSS. Atajo de zoom IAB no modificó escala: **no certifica zoom200%**. Panel administrativo también recorrido con foco visible; faltan calendario nativo y zoom real.
 
 Incidencia anterior de inspección: se imprimieron por error credenciales ficticias de la copia local; no se copiaron a Git/documentación. Detalle conservado en B07/HISTORIAL. No confundirlas con cuentas externas.
 
 ## Bloques y pendientes reales
 
 - B01/B02 comprobados; B03–B06 implementados con integración y aceptación parcial de navegador.
-- B07 abierto: Firefox real, Windows, resto de C-06 y revisión de avisos de imágenes. [AVISOS-IMAGENES.md](AVISOS-IMAGENES.md) conserva condiciones y dudas: Apache/XML/kernel/curl/gosu/Python; no ocultar avisos. No repetir suites extensas sin cambio o duda concreta.
+- B07 abierto: Firefox real, Windows, calendario/zoom de C-06 y revisión de avisos de imágenes. [AVISOS-IMAGENES.md](AVISOS-IMAGENES.md) conserva condiciones y dudas: Apache/XML/kernel/curl/gosu/Python; no ocultar avisos. No repetir suites extensas sin cambio o duda concreta.
 - B08: servicio real actualizado a dev.30; TLS, controles HTTPS, datos conservados y API útil. C-10 documentado para esa referencia, no para toda variante ni un paquete distinto.
 - B09: portada/manual/PDF y exportación de desarrollo dev.32 preparados; instalación final, fecha, receptor y ensayo humano pendientes. [CIERRE.md](CIERRE.md) organiza los casos; no marcar estable por tener un ZIP.
 
@@ -69,3 +69,10 @@ bash scripts/test-clean-linux.sh v0.1.0-dev.32 8085
 Primer ensayo agrega inventario real `apache2ctl -M` de ambas imágenes, sin red/montajes/puertos, y rechaza los seis módulos con avisos si están habilitados. Segundo exporta la etiqueta, crea un proyecto y configuración propios, prueba migraciones/persistencia y conserva el destino8085. Siete controles de extracción/permisos con puerto8085 y rechazo de argumentos08085/65536 comprobados sin Docker; Bash-n/diff correctos. **No ejecutados estos nuevos ensayos con Docker todavía.**
 
 Después leer status/test.log sin credenciales, probar8085 en navegador, continuar Firefox/zoom y revisión de imágenes. Windows necesita host compatible y Docker Desktop/WSL funcionando; respuesta del usuario solo confirmó nombres, no disponibilidad Windows. Completar paquete definitivo y su instalación en ambos sistemas cuando haya evidencia. La defensa formal se registra cuando ocurra.
+
+
+## Exportación dev.32 confirmada
+
+Etiqueta v0.1.0-dev.32 y rama publicadas; commit1dd0ed8dec5a15db82c9543a4ce803b492c52915, etiqueta anotada0c0c1b1ff0a8f3359a137a91083b1f6f19482734; refs remotas verificadas. Fuente en output/entrega/eventify-desarrollo-1dd0ed8dec5a/eventify-source.zip,188 archivos, SHA25677157fa2ef2e419fa8a234daeef2e196514eab1f5ddac3248d7ee20af436d8e9. Paquete de revisión con ese ZIP, PDF, guía, manifiesto y huellas: output/entrega/eventify-dev32-revision.zip, SHA25675a91451ca8e3f92272e5666b355bfe6d0ba83b8bee971fca51b8982efeaee18. Integridad/CRC comprobados; no instalación nueva ni entrega final certificada. PDF15 páginas con nombres/versión correctos, portada/evidencia revisadas y texto dentro de página. Registro posterior a la etiqueta solo documenta resultados, no cambia el paquete.
+
+Ampliación C-06: panel administrativo dev.28 a390px, ocho enlaces recorridos mediante Tab y contorno3px visible; seis tarjetas327px y scrollWidth375 sobre viewport390. Captura /tmp/eventify-admin-teclado-dev28.png revisada. Sin formularios enviados ni cambios de negocio; sesión cerrada al finalizar.
