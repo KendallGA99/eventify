@@ -128,3 +128,7 @@ La variante pública dev.32 tiene las mismas 2011 filas y severidades que la loc
 En PHP/Apache ninguna fila contiene versión corregida en esta DB. No se convierte ese dato en una declaración de seguridad ni se cambia de distribución para vaciar el informe. Revisar primero las rutas expuestas (servidor HTTP y parsers), después herramientas de construcción y administración. Los avisos medios/bajos/desconocidos siguen abiertos para revisión por condición; el inventario garantiza cobertura de conteo, no cierre técnico.
 
 En MySQL, Python está empaquetado dentro de mysqlsh y gosu tiene análisis de binario separado. Las correcciones de esas bibliotecas no autorizan reemplazarlas mediante pip dentro de un producto del proveedor sin comprobar compatibilidad. Oracle Linux y el servidor MySQL requieren seguimiento propio. El servidor administrado Aiven no está incluido en este inventario.
+
+## MySQL dev.33 después del parche comprobado
+
+Imagen exportada en mysql-image-check-gpZ3It99, construcción e integración exit0. Escaneo con la misma DB y sin exclusiones:66 identificadores/filas,1CRITICAL/29HIGH/29MEDIUM/6LOW/1UNKNOWN. Se eliminaron únicamente las tres filas gawk de la tabla histórica anterior; los19 avisos Python y47 de gosu siguen visibles. Ningún par identificador/paquete nuevo respecto a la base. Diferencia comprobada en comparison.json; la ausencia de funciones vulnerables de gosu se trata aparte y no altera los conteos Trivy.

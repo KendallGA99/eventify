@@ -92,3 +92,6 @@ Rama codex/b09-cierre-documental desde2d0fb3c, sin modificar main ni reescribir 
 Rama codex/b07-avisos-restantes desde6a8443b; main/etiquetas anteriores conservadas. Imagen MySQL derivada con parche gawk preparado, construcción/regresión/escaneo todavía pendientes. Código PHP igual a dev.30. Etiqueta de desarrollo, no estable; no se despliega automáticamente ni se actualizan bases existentes. Revisión de binario gosu e inventario son evidencia distinta de la corrección todavía no ejecutada.
 
 Dev.33 publicada y referencias verificadas con git ls-remote: commit2f5ab7f5735eb7a4e58ff725d14f5ae9ea8afc03, etiqueta anotada b2ca86ad5474146423e752b793e6afd443d4f5d9, rama codex/b07-avisos-restantes. Etiqueta resuelta al mismo commit. Sin despliegue, construcción real todavía pendiente; main intacta.
+
+
+Dev.33 verificada posteriormente sobre3489d430bf94c649c7bf7e61d6fb0e95fb531a33: ensayo mysql-image-check-gpZ3It99 exit0, gawk corregido,219 controles y TLS positivo/negativos. Escaneo confirma eliminación de tres avisos gawk sin nuevos; etiqueta no se mueve por registrar evidencia. No estable ni actualización de instalaciones/publicación. main y versiones anteriores conservadas.

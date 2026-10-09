@@ -81,3 +81,22 @@ No se ejecuta pip upgrade sobre mysqlsh: el [changelog de pyOpenSSL](https://raw
 scripts/test-mysql-image-linux.sh prepara construcción, consulta RPM sin red, exportación para Trivy e integración/controles TLS en bases efímeras. **Construcción, integración y escaneo del parche todavía pendientes**: la sesión no tiene acceso al socket Docker. No iniciar ni recrear instalaciones existentes hasta comprobar el incremento. No publicar este cambio en Render; allí MySQL es administrado por Aiven.
 
 Los avisos medios/bajos/desconocidos quedan inventariados por completo, pero pendientes de análisis individual de condiciones. B07 permanece abierto. Próximo paso concreto: ejecutar el ensayo aislado, escanear su mysql.tar y confirmar eliminación de los tres avisos gawk sin regresiones; después revisar los grupos restantes según exposición.
+
+## Resultado real del parche dev.33
+
+El ensayo mysql-image-check-gpZ3It99 comenzó el 8 de octubre a20:52:50 CST (9oct02:52:50 UTC), sobre commit3489d430bf94c649c7bf7e61d6fb0e95fb531a33, árbol limpio y dev.33. Terminó exit_code=0. La imagen construida confirma gawk5.1.0-6.el9_8.1 y conserva mysqld8.4.11. Integración MySQL:219 comprobaciones correctas. Ensayo public-tls-w378H7sm exit0: conexión verificada, tres migraciones, cuentas/roles/hashes/rechazos, HTTP interno y recreación; CA/nombre ajenos rechazados. Ensayo public-no-tls-dKB7YKgK exit0: TCP disponible, producción rechaza conexión/arranque y base vacía antes/después. Los proyectos efímeros se retiraron; no se recrearon las instalaciones existentes.
+
+Se escaneó el mysql.tar exportado con Trivy0.75.0 y la misma DB del informe de base (skip-db-update), sin exclusiones. Resultado69→66 filas: desaparecen exactamente CVE-2026-40467/40468/40553 de gawk; ningún par identificador/paquete nuevo. Restantes:1CRITICAL,29HIGH,29MEDIUM,6LOW,1UNKNOWN. comparison.json conserva diferencia y mysql-scan.json el informe entero. Las tres correcciones gawk quedan comprobadas para esa imagen amd64. Este resultado supera el pendiente anterior de construcción/regresión/escaneo, pero no cierra los restantes avisos ni certifica Windows, Aiven o instalación limpia de un nuevo ZIP.
+
+### Curl: condiciones contrastadas
+
+Los cuatro avisos clasificados HIGH por Trivy se repiten en curl/libcurl4t64. Se consultaron los avisos oficiales; su severidad del proveedor es distinta y se conserva por separado, sin modificar el informe:
+
+| Aviso | Condición publicada por curl | Alcance observado en EVENTIFY |
+| --- | --- | --- |
+| [CVE-2026-12064](https://curl.se/docs/CVE-2026-12064.html) | CLI: URL sin esquema con --proto-default sftp/scp; proveedor Low. | Dockerfile descarga Composer mediante URL explícita HTTPS, sin esa opción. |
+| [CVE-2026-8286](https://curl.se/docs/CVE-2026-8286.html) | Reuso de conexión STARTTLS con configuración distinta, en IMAP/POP3/SMTP/FTP/LDAP; proveedor Low. | Clima usa streams HTTPS PHP y no esos protocolos; llamadas CLI del proyecto son HTTP/HTTPS. |
+| [CVE-2026-8458](https://curl.se/docs/CVE-2026-8458.html) | Reuso con autenticación Negotiate y nombres de servicio distintos; proveedor Low. | No se configura Negotiate ni servicios de autenticación curl en código/build revisados. |
+| [CVE-2026-8927](https://curl.se/docs/CVE-2026-8927.html) | Reuso de un handle libcurl cambiando proxies de entorno después de autenticar Digest; proveedor Medium, no afecta CLI. | No se encontraron handles curl de PHP ni autenticación de proxy en app/public/bin. |
+
+El proveedor publica correcciones; no asumir que la ausencia de FixedVersion en Debian significa que no existan. Estas condiciones no aparecieron en las rutas directas revisadas, pero la observación no excluye dependencias indirectas ni la configuración de proxy que alguien añada en su host. Mantener avisos y seguimiento de la distribución compatible; no bajar severidades automáticamente ni agregar exclusiones. Quedan pendientes grupos medios/bajos/desconocidos y usos indirectos de parsers, junto con el seguimiento de Python/mysqlsh.

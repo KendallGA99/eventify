@@ -307,7 +307,7 @@ La base funcional y la web pública tienen evidencia real de sus flujos principa
 
 ## 12. Referencias y trazabilidad
 
-Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.32 (misma aplicación que dev.30). Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
+Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.33 (PHP sin cambios respecto a dev.30; imagen MySQL corregida). Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
 
 Documentos operativos: INSTALACION.md, ARQUITECTURA.md, DATOS.md, PUBLICACION.md, RESPALDO.md, VERSIONADO.md, PAQUETE.md, COPIA-LIMPIA.md, SEGURIDAD.md, AVISOS-IMAGENES.md y CIERRE.md. Los documentos históricos pueden describir etapas anteriores: las migraciones/código y el estado vigente prevalecen al comprobar una afirmación técnica.
 
@@ -317,4 +317,4 @@ Repositorio privado: https://github.com/USUARIO_DESTINO/eventify. La visibilidad
 
 Se analizó el binario oficial gosu de la imagen MySQL linux/amd64 con govulncheck, sin exclusiones: no se detectaron funciones vulnerables presentes; siguen registradas coincidencias por versión de módulo/paquete. Esto no certifica toda la imagen ni el servidor administrado. ACL, ncurses y montajes requieren rutas privilegiadas o herramientas que la aplicación no llama; XML y Python conservan límites de revisión. El detalle y fuentes están en docs/AVISOS-IMAGENES.md y el conteo completo por paquete en docs/INVENTARIO-IMAGENES.md.
 
-Dockerfile.mysql prepara la corrección Oracle gawk5.1.0-6.el9_8.1 de tres avisos, conservando la imagen de servidor fijada. Construcción, integración y escaneo del parche siguen pendientes. Los resultados Linux dev.32 y publicación dev.30 no se presentan como pruebas de esta imagen nueva. La fecha de entrega se omite por indicación del usuario.
+Dockerfile.mysql aplica la corrección Oracle gawk 5.1.0-6.el9_8.1 de tres avisos, conservando MySQL 8.4.11. Ensayo dev.33 aprobado: construcción, 219 comprobaciones de integración, TLS válido e identidades incorrectas, cuentas y rechazo del arranque sin TLS. El escaneo de la imagen exportada elimina exactamente los tres avisos gawk, 69→66, sin avisos nuevos con la misma base del escáner ni exclusiones. Las instalaciones existentes y publicación dev.30 conservan su versión; no se ha probado aún una copia limpia del paquete dev.33. La fecha de entrega se omite por indicación del usuario.
