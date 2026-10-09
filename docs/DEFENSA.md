@@ -55,4 +55,4 @@ Son opciones de práctica, no cambios exigidos ni realizados. La modificación c
 | Revisión del PDF técnico | Pendiente | Pendiente | Sin registrar |
 | Defensa individual ante docente | Pendiente | Pendiente | Sin registrar |
 
-La evidencia automatizada y los aportes del asistente constan en Git/ESTADO. Completar responsables y participación reales; no atribuirles retrospectivamente el trabajo generado.
+Git y ESTADO conservan los cambios y las pruebas realizadas. Registrar quién participó en la revisión y en cada ensayo de exposición, con sus resultados reales.

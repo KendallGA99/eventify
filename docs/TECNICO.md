@@ -1,7 +1,7 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 8 de octubre de 2026. Código de referencia: v0.1.0-dev.30. Estudiante, docente y fecha de entrega: pendientes de completar por la persona responsable. No se atribuye autoría ni participación que no esté documentada.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 8 de octubre de 2026. Código de referencia: v0.1.0-dev.31. Estudiante, docente y fecha de entrega: pendientes de completar por la persona responsable. No se atribuye autoría ni participación que no esté documentada.
 
 Este documento explica cómo funciona el sistema y qué se ha comprobado. Hay evidencia de integración MySQL, restauración, instalación desde ZIP en Linux y uso de la web pública. La web ejecuta dev.26. Las imágenes dev.30 se construyeron y comprobaron con el parche xz/liblzma; no se han aplicado al despliegue. El pronóstico público ya tiene respuesta útil comprobada. Windows, Firefox y la aceptación final siguen pendientes.
 
@@ -307,7 +307,7 @@ La base funcional y la web pública tienen evidencia real de sus flujos principa
 
 ## 12. Referencias y trazabilidad
 
-Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.30. Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
+Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.31 (misma aplicación que dev.30). Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
 
 Documentos operativos: INSTALACION.md, ARQUITECTURA.md, DATOS.md, PUBLICACION.md, RESPALDO.md, VERSIONADO.md, PAQUETE.md, COPIA-LIMPIA.md, SEGURIDAD.md, AVISOS-IMAGENES.md y CIERRE.md. Los documentos históricos pueden describir etapas anteriores: las migraciones/código y el estado vigente prevalecen al comprobar una afirmación técnica.
 

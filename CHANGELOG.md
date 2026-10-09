@@ -1,5 +1,9 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.31 — 2026-10-08
+
+B09: revisión editorial de las guías, requisitos y registros. Redacción centrada en el proyecto, instrucciones desde su carpeta raíz y conservación de commits, huellas, pruebas y limitaciones. Documento técnico actualizado a esta referencia. No cambia la aplicación, los contenedores activos ni los datos.
+
 ## 0.1.0-dev.30 — 2026-10-08
 
 B07: corrige los nombres de imagen del ensayo aislado. mktemp generó mayúsculas y Docker rechazó el tag antes de construir; ahora se normaliza solo el nombre de imagen a minúsculas, conservando el directorio privado original. Bash y tres casos de formato comprobados, incluido el identificador que falló. Parche xz/liblzma de dev.29 intacto; construcción y escaneo posteriores aún pendientes.
@@ -34,7 +38,7 @@ El job se conserva hasta inspeccionar State de Docker: exige exited/no Running/E
 
 B08/RNF-03/04: prueba específica de MySQL 8.4 sin TLS, proyecto/red internos propios, base tmpfs vacía y sin puertos ni volúmenes persistentes. Control PDO por TCP confirma servidor disponible sin cifrado; Database production debe rechazarlo. Arranque público debe salir con error de migración antes de servir; nueva conexión de control confirma base vacía. Sin cambios de controles, reglas ni esquema.
 
-Compose config real sin daemon y sintaxis Bash/diff correctos; opciones MySQL 8.4 contrastadas con manual oficial (tls_version vacío, no opciones eliminadas skip-ssl/have_ssl). PHP 8.4/MySQL y arranque negativos aún pendientes de ejecución: agente sin acceso Docker/sudo no interactivo. Script test-public-no-tls-linux.sh registra resultado privado y retira únicamente recursos efímeros del ensayo. No certifica proveedor/HTTPS/URL pública ni entrega estable.
+Compose config real sin daemon y sintaxis Bash/diff correctos; opciones MySQL 8.4 contrastadas con manual oficial (tls_version vacío, no opciones eliminadas skip-ssl/have_ssl). PHP 8.4/MySQL y arranque negativos aún pendientes de ejecución: entorno de verificación sin acceso Docker/sudo no interactivo. Script test-public-no-tls-linux.sh registra resultado privado y retira únicamente recursos efímeros del ensayo. No certifica proveedor/HTTPS/URL pública ni entrega estable.
 
 ## 0.1.0-dev.22 — 2026-10-08
 
@@ -62,7 +66,7 @@ B07/U-01/U-03: verify-existing-linux.sh comprueba destinos de ensayo existentes,
 
 B07/RF-15/RNF-04: agrega dos carreras de presupuesto meteorológico en MySQL aislado. Dos procesos PHP con conexiones independientes compiten por el último permiso del minuto y de la hora; la prueba retiene la fila hasta que ambos intentan consumir, comprueba un permiso/una denegación, contadores persistidos y denegación posterior. Restaura la fixture y no realiza llamadas externas. Sin cambios en reglas, esquema o datos de aplicación.
 
-Sintaxis de los tres archivos afectados, diff y 44 reglas unitarias correctos con PHP8.3 temporal. Ejecución concurrente en MySQL8.4/PHP8.4 pendiente: Docker deniega acceso al agente y sudo no interactivo exige contraseña. No sustituye la evidencia anterior de 211 checks por resultados aún no ejecutados.
+Sintaxis de los tres archivos afectados, diff y 44 reglas unitarias correctos con PHP8.3 temporal. Ejecución concurrente en MySQL8.4/PHP8.4 pendiente: Docker deniega acceso al entorno de verificación y sudo no interactivo exige contraseña. No sustituye la evidencia anterior de 211 checks por resultados aún no ejecutados.
 
 ## 0.1.0-dev.17 — 2026-10-08
 

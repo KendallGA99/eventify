@@ -10,7 +10,7 @@ Referencia operativa para desarrollar, probar y documentar el MVP de la suficien
 | `SC-502 Ambiente Web Cliente-Servidor.pdf` | 23 páginas; archivo proporcionado el 2026-10-07 | Contenidos y contexto del curso ordinario. |
 | Acuerdos del chat | Hasta 2026-10-07 | Linux/Windows, gratuidad, portabilidad, metodología, pruebas y seguimiento. |
 
-PDF específicos, secciones de referencia: 1–4 propósito/alcance; 5 RF; 6 tecnologías; 7 RNF; 8 Docker/GitHub/despliegue; 9–10 documentación/entregables; 11–13 defensa/IA/condiciones mínimas; 14 rúbrica.
+PDF específicos, secciones de referencia: 1–4 propósito/alcance; 5 RF; 6 tecnologías; 7 RNF; 8 Docker/GitHub/despliegue; 9–10 documentación/entregables; 11–13 defensa/responsabilidad/condiciones mínimas; 14 rúbrica.
 
 Huellas SHA-256 de los originales revisados:
 
@@ -196,7 +196,7 @@ Internet para descarga inicial y API; no prometer funcionamiento totalmente desc
 | ENT-C | PDF técnico final coherente con implementación: portada/descripción, RF/RNF, historias y aceptación, sitemap, arquitectura, ER, diccionario, API, decisiones, seguridad, despliegue y conclusiones. |
 | ENT-D | Administrador y usuario de prueba funcionales; entregar acceso seguro, datos ficticios y evitar reutilizar secretos reales. |
 | ENT-E | Defensa individual: demo, arquitectura/datos, frontend/backend, sesiones/auth, AJAX/API, explicación de cualquier fragmento y modificación técnica menor posible. |
-| ENT-F | IA permitida como apoyo; dominio y responsabilidad del estudiante. No simular defensa ni comprensión. |
+| ENT-F | Dominio y responsabilidad del estudiante; la defensa y la comprensión deben demostrarse de forma individual. |
 
 ENT-E/F son identificadores de seguimiento propios para obligaciones humanas; los cuatro entregables A–D sí corresponden al listado del PDF. No se exige formato IEEE expresamente en suficiencia. El calendario grupal del programa no fija la fecha de esta entrega individual.
 

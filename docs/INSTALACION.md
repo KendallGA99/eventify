@@ -2,7 +2,9 @@
 
 ## Estado de esta guía
 
-Stack Docker Linux con PHP/MySQL, autenticación, reservas y administración implementados y probados parcialmente; ver [ESTADO.md](ESTADO.md). QA comprobó persistencia tras recrear contenedores. Arranque desde ZIP Linux dev.17 y restauración de datos QA comprobados; Windows, HTTP del destino restaurado y criterios finales siguen pendientes. La página inicial conserva el aviso de construcción hasta cerrar los requisitos.
+Stack Docker Linux con PHP/MySQL, autenticación, reservas y administración implementados y probados parcialmente; ver [ESTADO.md](ESTADO.md). QA comprobó persistencia tras recrear contenedores. Arranque desde ZIP Linux dev.28, restauración de datos QA y acceso HTTP autenticado al destino restaurado comprobados. Windows y los criterios finales siguen pendientes. La página inicial conserva el aviso de construcción hasta cerrar los requisitos.
+
+Ejecute los comandos desde la carpeta raíz de EVENTIFY.
 
 ## Entrega al compañero y cuentas externas
 
@@ -44,7 +46,7 @@ bash scripts/start-linux.sh
 
 El script genera `.env` con claves únicas solo si no existe, valida Compose, construye e inicia servicios, espera a las comprobaciones de disponibilidad y aplica migraciones sin reinicializar los datos. Cuando termine correctamente: `http://localhost:8080`.
 
-Si el usuario no tiene acceso directo al servicio Docker, el script solicita sudo en su terminal para las operaciones Docker. No guarda la contraseña. No solicitarla al agente.
+Si el usuario no tiene acceso directo al servicio Docker, el script solicita sudo en su terminal para las operaciones Docker. No guarda la contraseña. Introducirla únicamente en la terminal que solicita sudo.
 
 Detener sin borrar datos:
 

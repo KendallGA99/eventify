@@ -70,7 +70,7 @@ No ejecutar una suite extensa después de cada edición trivial. Seleccionar pru
 ## Git y seguimiento
 
 - Trabajar en este repositorio; no modificar Código Tico como parte de EVENTIFY.
-- Usar prefijo `codex/` al crear ramas de trabajo, salvo indicación distinta del usuario.
+- Trabajar en ramas separadas por bloque y conservar main hasta verificar la versión elegida para entrega.
 - Mantener secretos, dependencias descargadas, volúmenes, logs y temporales fuera del repositorio; conservar archivos de bloqueo de dependencias.
 - El usuario autorizó commits y push progresivo el 2026-10-08. Ver cuenta/remoto/visibilidad y referencias reales en docs/ESTADO.md y docs/VERSIONADO.md; no confundir Git local con un push confirmado.
 - Versionar incrementos coherentes y registrar VERSION/CHANGELOG. Etiquetas de desarrollo conservan código; solo marcar estable con evidencia de pruebas. Rollback de código no restaura MySQL: revisar compatibilidad y respaldos antes de actualizar.
@@ -86,4 +86,4 @@ No ejecutar una suite extensa después de cada edición trivial. Seleccionar pru
 
 ## Definición de terminado
 
-Una función se cierra con sus criterios, pruebas pertinentes y documentación actualizada. La entrega completa exige todos los requisitos, pruebas críticas, instalación limpia Linux y Windows, persistencia, URL pública real, GitHub con historial, PDF técnico, cuentas de prueba y preparación de defensa. El dominio y la defensa del estudiante se registran como evidencia humana pendiente hasta que ocurran; el agente no puede certificarlos por generar código.
+Una función se cierra con sus criterios, pruebas pertinentes y documentación actualizada. La entrega completa exige todos los requisitos, pruebas críticas, instalación limpia Linux y Windows, persistencia, URL pública real, GitHub con historial, PDF técnico, cuentas de prueba y preparación de defensa. El dominio y la defensa del estudiante se registran como evidencia humana pendiente hasta que ocurran; la generación de código no certifica esos resultados.

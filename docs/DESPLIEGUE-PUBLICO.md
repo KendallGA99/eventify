@@ -80,7 +80,7 @@ Compose `docker-compose.no-tls-test.yml` sin puertos/volúmenes persistentes, re
 
 Referencia contrastada: [MySQL 8.4 variables TLS](https://dev.mysql.com/doc/refman/8.4/en/server-system-variables.html#sysvar_tls_version), [opciones eliminadas en 8.4](https://dev.mysql.com/doc/relnotes/mysql/8.4/en/news-8-4-0.html) y [verificación de Ssl_cipher](https://dev.mysql.com/doc/refman/8.4/en/using-encrypted-connections.html). No usar skip-ssl/have_ssl, eliminados en 8.4.
 
-Comando: `cd "/home/usuario/Documentos/ChatGPT/Proyecto U" && bash scripts/test-public-no-tls-linux.sh`. Evidencia privada en storage/public-no-tls-ID; no declarar aprobado sin leer status/log. No sustituye TLS del proveedor, HTTPS público ni ENT-A/RT-09.
+Comando: `bash scripts/test-public-no-tls-linux.sh`. Evidencia privada en storage/public-no-tls-ID; no declarar aprobado sin leer status/log. No sustituye TLS del proveedor, HTTPS público ni ENT-A/RT-09.
 
 
 ## Dev.23 parcial / dev.24 corrige evaluación

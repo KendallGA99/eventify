@@ -23,7 +23,7 @@ Dependencia: solicitud de iniciar desarrollo. Cobertura: U-01/02/05, RT-04/06/07
 4. Evaluar publicación pública gratuita: soporte PHP, MySQL real, persistencia, cuotas, caducidad/suspensión, HTTPS y cuentas demo. Descartar alternativas que pierdan datos o requieran pago; documentar si falta una opción.
 5. Identificar Windows/arquitectura del receptor. Documentar Docker Desktop/WSL2/virtualización según requisitos vigentes; Linux tendrá Docker Engine/Compose u opción compatible.
 6. Preparar estructura propuesta (public, app, config, database, tests, docs, scripts); public es raíz servida, secretos fuera de ella.
-7. Crear rama de trabajo codex/ cuando corresponda, reglas de exclusión y versiones/lockfiles; configurar GitHub cuando cuenta/nombre/visibilidad estén definidos y exista autorización para publicar.
+7. Crear una rama de trabajo cuando corresponda, reglas de exclusión y versiones/lockfiles; configurar GitHub cuando cuenta/nombre/visibilidad estén definidos y exista autorización para publicar.
 8. Crear Dockerfile/Compose/.env.example con healthcheck, persistencia y arranque básico.
 
 Cierre: arquitectura/versiones documentadas, stack local arranca, conexión MySQL comprobada y diagnóstico claro de pendientes externos. Esto no certifica Windows ni URL pública.
