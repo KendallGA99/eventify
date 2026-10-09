@@ -107,3 +107,8 @@ Doce identificadores / 39 filas MEDIUM contrastados con Debian y el informe cons
 ## curl: diez avisos medios contrastados
 
 AVISOS-CURL coteja diez identificadores / veinte filas MEDIUM con fuentes originales y Debian. WeatherClient usa streams PHP; Composer y los ensayos sí ejecutan CLI. Avisos de callbacks, Digest/mTLS y reset se distinguen de los comandos utilizados;80229 también afecta CLI y permanece abierto por proveedores OpenSSL/pool. Configuración predeterminada curl y proxies externos no auditados; la huella Composer no parchea fallos de memoria durante descarga. Sin cambios funcionales ni suites repetidas.
+
+
+## Paquete de revisión dev.33 actualizado
+
+Fuente exacta f4d6c5a05011c57e47295b06cedf11129a052681:194 archivos, exportados por scripts/package-source.py; ZIP fuente SHA2567a23817f91ecad6453eda169ed09b17df5e3b3125149780ce195e724703cd897. Paquete output/entrega/eventify-dev33-revision.zip, SHA2565d0f663c66e0e34d02c5ab2ce4ffff0e6bf640a4d6d70f11e12a80dff4b2171b: fuente, manifiesto, PDF conservado y guía con límites. CRC y todas las huellas internas comprobadas; Dockerfile.mysql y guion Windows presentes. No contiene datos/credenciales de proveedores. La ejecución local no necesita Render/Aiven/GitHub; Docker/Compose e Internet inicial siguen siendo requisitos del host. PDF conserva su corte previo y las últimas revisiones de seguridad están en MD. No se instaló este paquete exacto: esa prueba y Windows/Firefox/zoom siguen pendientes. Paquetes anteriores conservados; no versión estable.
