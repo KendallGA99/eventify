@@ -1,9 +1,9 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 8 de octubre de 2026. Código de referencia: v0.1.0-dev.31. Estudiante, docente y fecha de entrega: pendientes de completar por la persona responsable. No se atribuye autoría ni participación que no esté documentada.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 8 de octubre de 2026. Código de referencia: v0.1.0-dev.32. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza. Fecha de entrega: pendiente de confirmar.
 
-Este documento explica cómo funciona el sistema y qué se ha comprobado. Hay evidencia de integración MySQL, restauración, instalación desde ZIP en Linux y uso de la web pública. La web ejecuta dev.26. Las imágenes dev.30 se construyeron y comprobaron con el parche xz/liblzma; no se han aplicado al despliegue. El pronóstico público ya tiene respuesta útil comprobada. Windows, Firefox y la aceptación final siguen pendientes.
+Este documento explica cómo funciona el sistema y qué se ha comprobado. Hay evidencia de integración MySQL, restauración, instalación desde ZIP en Linux y uso de la web pública. La web ejecuta dev.30 con el parche xz/liblzma. Después del despliegue se comprobaron las huellas de diez tablas y los 81 controles HTTPS. El paquete documental dev.32 conserva la misma aplicación; su nueva instalación limpia está pendiente. El pronóstico público ya tiene respuesta útil comprobada. Windows, Firefox y la aceptación final siguen pendientes.
 
 ## 1. Descripción y resultado esperado
 
@@ -288,11 +288,11 @@ La demostración pública comprobó login de ambos roles, creación de categorí
 | Persistencia y restauración QA | Diez tablas y archivos comparados; copia limpia conserva ocho reservas y tickets tras recrear. | No verifica automáticamente la instalación de un ZIP nuevo. |
 | Chrome y diseño adaptable | Flujos de ambos roles, reserva, QR, cancelación y vistas en móvil/tableta/escritorio. | Registro móvil con foco/teclado y validación vacía comprobados; Firefox, zoom y matriz restante pendientes. |
 | TLS real | CA/hostname incorrectos y servidor sin TLS rechazados; conexión externa válida en Aiven/Render. | No es una auditoría universal de la infraestructura. |
-| Publicación dev.26 | Render Live; sintaxis y 39 controles de clima más 44 de presupuesto en construcción. | Pronóstico público útil y fallo 429 comprobados; disponibilidad permanente no garantizada. |
+| Publicación dev.30 | Render Live (390b1ef); parche xz/liblzma, sintaxis y 39 controles de clima más 44 de presupuesto en construcción; diez tablas conservadas y 81 controles HTTPS posteriores. | Pronóstico público útil observado tras actualizar; disponibilidad permanente y todas las variantes administrativas no garantizadas. |
 | Flujos públicos dev.25/26 | Login, administración, reserva/ticket/cancelación y conservación de diez tablas tras reiniciar. | Disponibilidad permanente o todas las variantes de redeploy. |
 | Seguridad pública dev.27 | 81 controles HTTPS de cookies, sesión, CSRF, permisos y ticket/QR ajenos aprobados. | Todas las variantes de ataque o revisión de imágenes. |
 | Dependencias e historial | Composer sin avisos; jQuery verificado; 505 blobs sin secretos conocidos. | Ausencia de futuras vulnerabilidades o secretos desconocidos. |
-| Imágenes dev.30 | Construcción, unidades y escaneo confirman corrección xz/liblzma, cuatro filas de avisos eliminadas. | Persisten avisos y revisión de alcance; no equivale a seguridad completa ni despliegue. |
+| Imágenes dev.30 | Construcción, unidades y escaneo confirman corrección xz/liblzma, cuatro filas de avisos eliminadas. | Persisten avisos y revisión de alcance; no equivale a seguridad completa. Despliegue documentado en su fila propia. |
 | Windows | Seis scripts analizados por PowerShell 5.1 real. | Instalación y ejecución con Docker/WSL aún pendientes. |
 
 Cada fila corresponde a su ejecución y alcance. No se suman como una suite única ni se atribuyen pruebas antiguas a código posterior. ESTADO.md y las evidencias por bloque conservan comandos, resultados e incidencias. Los ensayos previos con fallos no se consideran aprobados por una corrección posterior.
@@ -307,7 +307,7 @@ La base funcional y la web pública tienen evidencia real de sus flujos principa
 
 ## 12. Referencias y trazabilidad
 
-Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.31 (misma aplicación que dev.30). Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
+Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.32 (misma aplicación que dev.30). Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
 
 Documentos operativos: INSTALACION.md, ARQUITECTURA.md, DATOS.md, PUBLICACION.md, RESPALDO.md, VERSIONADO.md, PAQUETE.md, COPIA-LIMPIA.md, SEGURIDAD.md, AVISOS-IMAGENES.md y CIERRE.md. Los documentos históricos pueden describir etapas anteriores: las migraciones/código y el estado vigente prevalecen al comprobar una afirmación técnica.
 

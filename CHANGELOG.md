@@ -1,5 +1,13 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.32 — Portada y cierre documental (B09)
+
+- Incorpora los nombres de estudiante y docente confirmados por el usuario; fecha de entrega por confirmar.
+- Corrige la guía generada del paquete: la API pública ya tiene evidencia; Windows, Firefox y criterios finales siguen pendientes.
+- Permite elegir puerto en el ensayo de copia limpia para conservar las instalaciones anteriores. Extracción y validación revisadas; nueva ejecución Docker pendiente.
+- Registra despliegue público dev.30, persistencia de diez tablas y81 controles HTTPS posteriores correctos.
+- Registra revisión de teclado y redistribución en IAB. Sin cambio de aplicación respecto a dev.30 ni nuevas migraciones. No es una versión estable.
+
 ## 0.1.0-dev.31 — 2026-10-08
 
 B09: revisión editorial de las guías, requisitos y registros. Redacción centrada en el proyecto, instrucciones desde su carpeta raíz y conservación de commits, huellas, pruebas y limitaciones. Documento técnico actualizado a esta referencia. No cambia la aplicación, los contenedores activos ni los datos.

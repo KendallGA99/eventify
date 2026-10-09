@@ -71,7 +71,7 @@ def build(root, reference, output):
             'El arranque genera claves únicas; la demostración es una operación separada del manual.\n'
             'Este ZIP contiene código y migraciones, no datos de MySQL ni claves personales.\n'
             'No restaura reservas existentes; transferencia de datos se gestiona por separado.\n'
-            'Revise docs/ESTADO.md y docs/MATRIZ.md: pruebas finales, Windows, API pública y defensa pendientes.\n'
+            'Revise docs/ESTADO.md y docs/MATRIZ.md: criterios finales, Windows, Firefox y defensa pendientes. La API pública tiene evidencia de respuesta útil.\n'
             'Huella y manifest permiten comprobar integridad; no certifican autoría ni funcionamiento.\n'
         ),
     }.items():

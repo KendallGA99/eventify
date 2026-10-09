@@ -94,7 +94,7 @@ story = [Spacer(1, 75), Paragraph('EVENTIFY', styles['CoverTitle']),
          Paragraph('Documento técnico<br/>Borrador de evaluación', styles['CoverSubtitle']),
          Paragraph('SC-502 Ambiente Web Cliente-Servidor<br/>Código de referencia: ' + text(VERSION) + '<br/>8 de octubre de 2026', styles['Text']),
          Spacer(1, 25), Paragraph('<b>Estado:</b> implementación con verificación parcial. Linux desde ZIP, integración y restauración de datos comprobados. Web pública y controles HTTPS comprobados. Pronóstico público útil comprobado. Windows, Firefox y criterios finales pendientes.', styles['Text']),
-         Paragraph('Estudiante y docente: pendientes de completar por la persona responsable. El documento no acredita autoría, dominio ni defensa individual.', styles['Text']),
+         Paragraph('<b>Estudiante:</b> Kendall Gamboa Arce<br/><b>Docente:</b> Rita Robles Loaiza<br/><b>Fecha de entrega:</b> pendiente de confirmar.', styles['Text']),
          PageBreak(), Paragraph('Contenido', styles['Subsection'])]
 toc = TableOfContents()
 toc.levelStyles = [ParagraphStyle(name='Contents', fontName='Body', fontSize=10, leading=17, leftIndent=0)]

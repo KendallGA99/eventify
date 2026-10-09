@@ -22,7 +22,7 @@ with tempfile.TemporaryDirectory(prefix='eventify-extract-') as directory:
     previous=os.umask(0o077)
     original=sys.argv
     try:
-        sys.argv=['extract',str(root)]
+        sys.argv=['extract',str(root),'8085']
         exec(compile(python,'clean-extraction','exec'),{'__name__':'__main__'})
     finally:
         os.umask(previous);sys.argv=original
@@ -33,5 +33,5 @@ with tempfile.TemporaryDirectory(prefix='eventify-extract-') as directory:
     assert ((copy/'public/index.php').stat().st_mode & 0o777)==0o644
     assert ((copy/'scripts/start-linux.sh').stat().st_mode & 0o777)==0o755
     assert ((copy/'.env').stat().st_mode & 0o777)==0o600
-    assert 'APP_PORT=8083' in (copy/'.env').read_text()
+    assert 'APP_PORT=8085' in (copy/'.env').read_text()
 print('Extracción limpia: 7 comprobaciones de permisos/configuración correctas; sin Docker.')

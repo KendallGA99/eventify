@@ -80,3 +80,8 @@ Dev.30 → 390b1ef6dcbb9a9d76eaad8a910a80da364bb637: rama y etiqueta anotada con
 
 
 Dev.31 → 4088cbe34aef3e9c7ec12ead72b9781fd61efac8: revisión editorial de documentos, guías y comentarios existentes. Rama y etiqueta anotada v0.1.0-dev.31 confirmadas con git ls-remote. PDF de15 páginas revisado y ZIP exportado desde esta referencia; aplicación igual a dev.30. Sin despliegue ni nueva instalación del paquete; etiqueta de desarrollo.
+
+
+## Corte documental dev.32
+
+Rama codex/b09-cierre-documental desde2d0fb3c, sin modificar main ni reescribir historial. Dev.32 incorpora nombres confirmados, revisión de teclado y publicación dev.30; agrega elección de puerto e inventario de módulos al ensayo de entrega. Aplicación sin cambios respecto a dev.30, pero nuevos guiones de verificación con Docker pendientes de ejecución. Etiqueta de desarrollo; no estable. Render permanece en390b1ef, con AutoDeployOff y configuración de rama existente.

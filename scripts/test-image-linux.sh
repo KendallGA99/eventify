@@ -26,6 +26,11 @@ verify_images() {
             actual="$("${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint dpkg-query "$image" -W '-f=${Version}' "$package")"
             [[ "$actual" == '5.8.1-1+deb13u2' ]] || { echo "Versión corregida no comprobada: $package" >&2; return 1; }
         done
+        "${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint apache2ctl "$image" -M > "$record/${kind}-apache-modules.txt" 2>&1
+        if grep -Eq ' (heartmonitor|charset_lite|vhost_alias|xml2enc|proxy_uwsgi|auth_digest)_module ' "$record/${kind}-apache-modules.txt"; then
+            echo 'Un módulo de Apache pendiente de corrección está habilitado; revisar el registro privado.' >&2
+            return 1
+        fi
         "${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint php "$image" bin/lint.php
         for test in tests/unit/*.php; do
             "${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint php "$image" "$test"

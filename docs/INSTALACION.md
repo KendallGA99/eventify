@@ -132,3 +132,10 @@ Credenciales QA: `storage/qa/demo-credentials.json`, privadas/mode 600, nunca su
 ## Cierre de entrega y comprensión
 
 El ensayo desde ZIP Linux y sus límites están en COPIA-LIMPIA.md. Para el receptor Windows, seguir VERIFICACION-WINDOWS.md y registrar evidencia real antes de afirmar compatibilidad. DEFENSA.md ofrece un recorrido, mapa del código y ejercicios de comprensión; participación/dominio del estudiante permanecen como evidencia humana pendiente.
+
+
+## Ensayo de una nueva referencia sin ocupar destinos anteriores
+
+Desde el repositorio de desarrollo, `bash scripts/test-clean-linux.sh v0.1.0-dev.32 8085` exporta esa referencia, genera configuración nueva e inicia un proyecto aislado en una ruta con espacios. El puerto es opcional; por defecto8083. Seleccione uno libre: no detenga otras instalaciones para reutilizar su puerto. Este ensayo requiere Git/Python/OpenSSL en el equipo de desarrollo; el receptor no los necesita para iniciar el ZIP ya extraído.
+
+Los datos de demostración se crean solo en el destino nuevo del ensayo, explícitamente; los volúmenes anteriores permanecen. Al terminar correctamente quedan registros y credenciales ficticias privados en storage/clean-ID. Sigue pendiente comprobar ese destino en navegador y ejecutar el paquete en Windows.

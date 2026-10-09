@@ -3,7 +3,9 @@
 set -euo pipefail
 source "$(dirname -- "${BASH_SOURCE[0]}")/common-linux.sh"
 umask 077
-[[ $# == 1 ]] || { echo 'Uso: bash scripts/test-clean-linux.sh <commit-o-etiqueta>' >&2; exit 1; }
+[[ $# -ge 1 && $# -le 2 ]] || { echo 'Uso: bash scripts/test-clean-linux.sh <commit-o-etiqueta> [puerto]' >&2; exit 1; }
+EVENTIFY_CLEAN_PORT="${2:-8083}"
+[[ "$EVENTIFY_CLEAN_PORT" =~ ^[1-9][0-9]{3,4}$ ]] && (( EVENTIFY_CLEAN_PORT >= 1024 && EVENTIFY_CLEAN_PORT <= 65535 )) || { echo 'Puerto inválido: use un número entre 1024 y 65535.' >&2; exit 1; }
 command -v python3 >/dev/null
 command -v openssl >/dev/null
 EVENTIFY_CLEAN_REF="$1"
@@ -15,7 +17,7 @@ date -u +'%Y-%m-%dT%H:%M:%SZ' > "$EVENTIFY_CLEAN_DIR/status.txt"
 trap 'EVENTIFY_CLEAN_RESULT=$?; printf "exit_code=%s\n" "$EVENTIFY_CLEAN_RESULT" >> "$EVENTIFY_CLEAN_DIR/status.txt"' EXIT
 exec > >(tee "$EVENTIFY_CLEAN_DIR/test.log") 2>&1
 python3 "$EVENTIFY_ROOT/scripts/package-source.py" --ref "$EVENTIFY_CLEAN_REF" --output-dir "$EVENTIFY_CLEAN_DIR/package"
-python3 - "$EVENTIFY_CLEAN_DIR" <<'PY'
+python3 - "$EVENTIFY_CLEAN_DIR" "$EVENTIFY_CLEAN_PORT" <<'PY'
 import json, pathlib, zipfile
 import secrets
 import sys
@@ -36,7 +38,8 @@ with zipfile.ZipFile(packages[0].parent / manifest['archive']) as archive:
             (extraction / info.filename).chmod(0o755 if (info.external_attr >> 16) & 0o111 else 0o644)
 copy = root / 'Copia limpia con espacios' / 'Eventify'
 # Solo claves nuevas. Nunca leer/copiar .env ni datos del desarrollador.
-env = ('APP_ENV=local\nAPP_PORT=8083\nAPP_TIMEZONE=America/Costa_Rica\n'
+port = sys.argv[2] if len(sys.argv) > 2 else '8083'
+env = ('APP_ENV=local\nAPP_PORT=' + port + '\nAPP_TIMEZONE=America/Costa_Rica\n'
        'MYSQL_DATABASE=eventify_qa\nMYSQL_USER=eventify_qa\nWEATHER_ENABLED=false\n'
        + ''.join(name + '=' + secrets.token_hex(32) + '\n' for name in
                  ['APP_SECRET', 'MYSQL_PASSWORD', 'MYSQL_ROOT_PASSWORD']))
@@ -59,9 +62,9 @@ import json,sys
 c=json.load(sys.stdin); expected=sys.argv[1]
 assert c["name"]==expected, "Proyecto inesperado"
 assert all(v["name"].startswith(expected+"_") and not v.get("external",False) for v in c["volumes"].values()), "Volúmenes ajenos"
-assert c["services"]["web"]["ports"][0]["published"]=="8083", "Puerto inesperado"
+assert str(c["services"]["web"]["ports"][0]["published"])==sys.argv[2], "Puerto inesperado"
 assert all(v["type"]=="volume" for service in c["services"].values() for v in service.get("volumes",[])), "Montaje no aislado"
-' "$EVENTIFY_CLEAN_PROJECT"
+' "$EVENTIFY_CLEAN_PROJECT" "$EVENTIFY_CLEAN_PORT"
 bash "$EVENTIFY_CLEAN_COPY/scripts/start-linux.sh" --project "$EVENTIFY_CLEAN_PROJECT"
 "${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web php bin/seed-demo.php
 "${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web php bin/qa-persistence.php before
@@ -69,6 +72,6 @@ bash "$EVENTIFY_CLEAN_COPY/scripts/start-linux.sh" --project "$EVENTIFY_CLEAN_PR
 "${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web php bin/qa-persistence.php after
 "${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web cat storage/demo-credentials.json > "$EVENTIFY_CLEAN_DIR/demo-credentials.json"
 printf '%s\n' "$EVENTIFY_CLEAN_PROJECT" > "$EVENTIFY_CLEAN_DIR/project.txt"
-echo 'Copia limpia iniciada en http://localhost:8083; falta comprobar el flujo en navegador.'
+echo "Copia limpia iniciada en http://localhost:$EVENTIFY_CLEAN_PORT; falta comprobar el flujo en navegador."
 echo "Resultado/credenciales privados: storage/clean-$EVENTIFY_CLEAN_ID"
-echo 'Destino conservado. Si 8083 estaba ocupado, no detenga otras instancias: revise el fallo.'
+echo 'Destino conservado. Si el puerto estaba ocupado, no detenga otras instancias: revise el fallo.'
