@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.36 — Presentación de errores (B07/RNF-01/SEG-03)
+
+- Da estilo a formularios vencidos, acciones no permitidas y fallos generales de páginas HTML. Conserva códigos de error, controles CSRF/roles y formatos técnicos de API/consola.
+- Añade prueba de escape de título, mensaje y referencia; siete comprobaciones correctas. Sintaxis y seis respuestas HTTP verificadas con PHP CLI extraído de paquete oficial Ubuntu, sin instalarlo en el host. Integración MySQL de esta versión pendiente.
+- Captura humana confirma la página de acceso restringido dev.35 en Firefox al110%; no certifica dev.36 o zoom200%.
+
 ## 0.1.0-dev.35 — Página de acceso restringido (B07/RF-03/RNF-01)
 
 - Sustituye el texto aislado de rechazo administrativo por una página con la identidad visual de Eventify, explicación y enlaces a eventos, cuenta e historial.

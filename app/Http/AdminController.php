@@ -25,7 +25,10 @@ final class AdminController
             require PROJECT_ROOT . '/app/Views/access-denied.php';
             return;
         }
-        if ($method === 'POST' && !Session::validToken($_POST['csrf'] ?? null)) { http_response_code(403); echo 'Actualice el formulario antes de intentarlo de nuevo.'; return; }
+        if ($method === 'POST' && !Session::validToken($_POST['csrf'] ?? null)) {
+            ErrorPage::respond(403, 'El formulario venció.', 'Actualice el formulario antes de intentarlo de nuevo.');
+            return;
+        }
         $errors = [];
         $record = null;
         $rows = [];
@@ -57,7 +60,10 @@ final class AdminController
                     if (str_ends_with($path, '/estado')) { $service->state($id, $_POST['status'] ?? null); }
                     else { $service->event($id, $_POST); }
                     $destination = '/admin/eventos';
-                } else { http_response_code(405); return; }
+                } else {
+                    ErrorPage::respond(405, 'Esta acción no está disponible.', 'Abra de nuevo la página y utilice sus enlaces o botones para continuar.');
+                    return;
+                }
                 header('Location: ' . $destination . '?guardado=ok', true, 303); return;
             } catch (BusinessError $exception) { http_response_code($exception->httpStatus); $errors[] = $exception->getMessage(); }
         }

@@ -15,8 +15,7 @@ final class AuthController
         $errors = [];
         $values = ['full_name' => '', 'email' => ''];
         if ($method === 'POST' && !Session::validToken($_POST['csrf'] ?? null)) {
-            http_response_code(403);
-            echo 'La sesión del formulario venció. Vuelva a abrir la página e inténtelo de nuevo.';
+            ErrorPage::respond(403, 'El formulario venció.', 'La sesión del formulario venció. Vuelva a abrir la página e inténtelo de nuevo.');
             return;
         }
         if ($path === '/salir') {

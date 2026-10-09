@@ -21,6 +21,12 @@ set_exception_handler(static function (Throwable $exception): void {
     $reference = bin2hex(random_bytes(8));
     // No registrar mensajes/DSN/trace que puedan contener credenciales.
     error_log('eventify_error reference=' . $reference . ' type=' . get_class($exception));
+    $requestPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
+    // Las páginas HTML usan la misma presentación; API y consola conservan su respuesta técnica.
+    if (PHP_SAPI !== 'cli' && !str_starts_with((string) $requestPath, '/api/') && $requestPath !== '/salud') {
+        \Eventify\Http\ErrorPage::respond(500, 'No pudimos completar la solicitud.', 'Inténtelo de nuevo en unos minutos. Si el problema continúa, comparta esta referencia con quien administra el sitio.', $reference);
+        return;
+    }
     http_response_code(500);
     header('Content-Type: text/plain; charset=utf-8');
     header('Cache-Control: no-store');

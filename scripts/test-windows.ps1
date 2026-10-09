@@ -4,6 +4,7 @@ try {
     Initialize-EventifyEnv
     Invoke-EventifyCompose run --build --rm --no-deps web php bin/lint.php
     Invoke-EventifyCompose run --rm --no-deps web php tests/unit/config.php
+    Invoke-EventifyCompose run --rm --no-deps web php tests/unit/error-page.php
     Invoke-EventifyCompose run --rm --no-deps web php tests/unit/database-config.php
     Invoke-EventifyCompose run --rm --no-deps web php tests/unit/reservation-policy.php
     Invoke-EventifyCompose run --rm --no-deps web php tests/unit/registration.php

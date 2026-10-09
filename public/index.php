@@ -20,8 +20,12 @@ $allowed = $adminState ? ['POST'] : ($adminWrite ? ['GET', 'HEAD', 'POST'] : (in
 if (!in_array($method, $allowed, true)) {
     http_response_code(405);
     header('Allow: ' . implode(', ', $allowed));
-    header('Content-Type: text/plain; charset=utf-8');
-    echo 'Método no permitido.';
+    if (str_starts_with((string) $path, '/api/') || $path === '/salud') {
+        header('Content-Type: text/plain; charset=utf-8');
+        echo 'Método no permitido.';
+    } else {
+        Eventify\Http\ErrorPage::respond(405, 'Esta acción no está disponible.', 'Abra de nuevo la página y utilice sus enlaces o botones para continuar.');
+    }
     exit;
 }
 if ($path === '/salud') {
