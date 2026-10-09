@@ -1,5 +1,9 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.30 — 2026-10-08
+
+B07: corrige los nombres de imagen del ensayo aislado. mktemp generó mayúsculas y Docker rechazó el tag antes de construir; ahora se normaliza solo el nombre de imagen a minúsculas, conservando el directorio privado original. Bash y tres casos de formato comprobados, incluido el identificador que falló. Parche xz/liblzma de dev.29 intacto; construcción y escaneo posteriores aún pendientes.
+
 ## 0.1.0-dev.29 — 2026-10-08
 
 B07/SEG-09: fija la corrección Debian de liblzma5/xz-utils en ambas imágenes PHP. El escaneo de la imagen real dev.28 confirmó que todavía usa la versión anterior; dependencias Composer sin avisos en ese informe. Nuevo ensayo construye ambas variantes, verifica versiones y ejecuta sintaxis/unidades sin red, bases, puertos ni montajes; exporta imágenes para escaneo posterior. Construcción y corrección efectiva todavía pendientes de ejecución Docker. No modifica MySQL, datos ni publicación; persisten otros avisos por evaluar.

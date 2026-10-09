@@ -10,7 +10,7 @@ Actualizado 2026-10-08, America/Costa_Rica. Referencia operativa resumida; [HIST
 
 ## Versión e instancias
 
-- Rama: `codex/b08-rechazo-sin-tls`. VERSION `0.1.0-dev.29` (parche de imágenes preparado, ejecución pendiente); aplicación Render dev.26 `cabd6f3` Live; dev.24 `6baa754` y etiqueta `v0.1.0-dev.24` publicados y referencias remotas verificadas (ensayo sin TLS aprobado); dev.23 `3badc85`/`v0.1.0-dev.23` publicado, ensayo parcial y fallo del evaluador; cuentas verificadas en dev.22 (`4947823`, etiqueta `v0.1.0-dev.22`). Ninguna versión estable; CI manual preparado, no ejecutado.
+- Rama: `codex/b08-rechazo-sin-tls`. VERSION `0.1.0-dev.30` (parche de imágenes preparado, ejecución pendiente); aplicación Render dev.26 `cabd6f3` Live; dev.24 `6baa754` y etiqueta `v0.1.0-dev.24` publicados y referencias remotas verificadas (ensayo sin TLS aprobado); dev.23 `3badc85`/`v0.1.0-dev.23` publicado, ensayo parcial y fallo del evaluador; cuentas verificadas en dev.22 (`4947823`, etiqueta `v0.1.0-dev.22`). Ninguna versión estable; CI manual preparado, no ejecutado.
 - `main`: `3da680b74b41fa3da4069879edc1f649de9b97f2`. No reescribir historial ni hacer push forzado. Rollback de código no restaura MySQL.
 - Destinos existentes, según última verificación: normal `localhost:8080`; QA `localhost:8081` / `eventify-qa`; copia limpia `localhost:8083` / `eventify-clean-20261008160801-e96614c4`; restauración `localhost:8082` / `eventify-restore-20261008154302-2b8eb996`. No afirmar disponibilidad actual sin consultar; conservar sus volúmenes y datos.
 - Docker 29.1.3 / Compose 2.40.3. El agente no tiene acceso al socket y sudo no interactivo exige contraseña; las operaciones Docker necesarias se ejecutan en terminal del usuario. No modificar grupos/socket/sudoers para eludirlo.
@@ -249,3 +249,10 @@ Usuario exportó la imagen real de la copia limpia8084, sin datos/volúmenes. Ca
 Ambos paquetes xz/liblzma siguen en versión anterior: dev.29 fija corrección Debian5.8.1-1+deb13u2 en Dockerfile local/público. Imagen PHP/MySQL base y datos intactos; Render conserva dev.26 y copia limpia conserva dev.28. Nuevo scripts/test-image-linux.sh construye imágenes aisladas, verifica paquetes, sintaxis/unidades y exporta para escaneo posterior. Bash-n y diff correctos. Construcción/pruebas/escaneo de dev.29 pendientes del comando Docker en terminal del usuario; no marcar estable ni publicar automáticamente.
 
 Próxima acción: cd "/home/usuario/Documentos/ChatGPT/Proyecto U" && bash scripts/test-image-linux.sh. Leer storage/image-check-ID/status.txt/test.log y escanear ambos tar antes de dar el parche por comprobado. Sin reinstalar o detener el stack existente.
+
+
+## B07: corrección del nombre de imagen, dev.30
+
+Ensayo image-check-sFMEIgyi: exit_code=125. Docker rechazó eventify-image-check-sFMEIgyi-local por mayúsculas en el repositorio antes de construir; no llegó a pruebas, exportación ni actualización de servicios. Advertencia legacy builder separada, no causa del rechazo.
+
+Script normaliza el identificador de imagen con expansión Bash a minúsculas y conserva el directorio/log original. Bash-n y tres casos de formato, incluido sFMEIgyi, correctos. No equivalen a construir ni ejecutar PHP. VERSION dev.30 conserva el parche xz anterior; repetir scripts/test-image-linux.sh en terminal del usuario por restricción del servicio Docker. Registros fallidos preservados.

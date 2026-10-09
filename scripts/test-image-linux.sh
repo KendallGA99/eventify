@@ -7,6 +7,8 @@ record="$(mktemp -d "$EVENTIFY_ROOT/storage/image-check-XXXXXXXX")"
 version="$(cat VERSION)"
 [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+-dev\.[0-9]+$ ]] || { echo 'Versión de desarrollo inválida.' >&2; exit 1; }
 name="$(basename "$record")"
+# mktemp puede generar mayúsculas; Docker solo las permite en la etiqueta.
+image_name="${name,,}"
 git rev-parse HEAD > "$record/commit.txt"
 printf '%s\n' "$version" > "$record/version.txt"
 git status --porcelain > "$record/working-tree.txt"
@@ -18,7 +20,7 @@ verify_images() {
     for kind in local public; do
         dockerfile='Dockerfile'
         [[ "$kind" != public ]] || dockerfile='Dockerfile.public'
-        image="eventify-${name}-${kind}:${version}"
+        image="eventify-${image_name}-${kind}:${version}"
         "${EVENTIFY_DOCKER[@]}" build -f "$dockerfile" -t "$image" .
         for package in liblzma5 xz-utils; do
             actual="$("${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint dpkg-query "$image" -W '-f=${Version}' "$package")"
