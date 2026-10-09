@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 8 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.md](HISTORIAL.md) conserva los registros anteriores íntegros. Leer este archivo, el bloque activo de PLAN y los requisitos afectados al retomar. Los resultados siguientes tienen versiones y alcances distintos; no sumarlos como una sola suite.
+Corte: 9 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.md](HISTORIAL.md) conserva los registros anteriores íntegros. Leer este archivo, el bloque activo de PLAN y los requisitos afectados al retomar. Los resultados siguientes tienen versiones y alcances distintos; no sumarlos como una sola suite.
 
 ## Alcance y autorizaciones
 
@@ -11,7 +11,7 @@ Corte: 8 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.m
 
 ## Versiones y destinos
 
-- Código/documentación actual: **0.1.0-dev.34**, rama `codex/b07-runtime-aislado`, desde `58e3b66`. Dev.34 incorpora limpieza de herramientas ensayada en imágenes derivadas; construcción final y TLS aprobados sobre 6d41df5. Aplicación PHP igual a dev.30; dev.33 tiene parche gawk de MySQL construido, integración/TLS y escaneo comprobados; las instalaciones existentes conservan su versión anterior. Ninguna versión estable.
+- Código/documentación actual: **0.1.0-dev.36**, rama `codex/b07-acceso-denegado`, commit funcional `6c47cb0`. Dev.35/36 mejoran páginas de rechazo y error; actualización de web8086 y22 controles HTTP reales comprobados. Dev.34, rama `codex/b07-runtime-aislado`, desde `58e3b66`, conserva su evidencia de runtime. Dev.34 incorpora limpieza de herramientas ensayada en imágenes derivadas; construcción final y TLS aprobados sobre 6d41df5. Aplicación PHP igual a dev.30; dev.33 tiene parche gawk de MySQL construido, integración/TLS y escaneo comprobados; las instalaciones existentes conservan su versión anterior. Ninguna versión estable.
 - `main` conservada: `3da680b74b41fa3da4069879edc1f649de9b97f2`. VERSIONADO contiene la política y referencias anteriores. Git recupera código; no restaura MySQL.
 - Web pública: https://eventify-academico.onrender.com, **dev.30**, commit `390b1ef6dcbb9a9d76eaad8a910a80da364bb637`. Render `srv-db3vutm7bikc73ajj6og`, Free/Oregon/AutoDeployOff; misma rama de despliegue existente.
 - Último deploy: `dep-db44q9cs728c739ikr20`, 8 de octubre, 20:10:45 CST, **Deploy succeeded/Live**, 35 s. Referencia anterior `cabd6f3` conservada.
@@ -243,3 +243,10 @@ Vista HTML estática idéntica a la plantilla revisada en IAB, captura storage/a
 PHP8.3.6 extraído del paquete oficial Ubuntu php8.3-cli8.3.6-0ubuntu0.24.04.11 bajo storage/php-check, sin instalación del sistema. Sintaxis de todos los PHP correcta; prueba error-page con7 comprobaciones de código/escape/estilos/enlaces aprobada y añadida a guiones Linux/Windows. Servidor PHP local efímero8098: seis rutas comprobadas (/salirGET405HTML conAllow,/registroPOSTsinCSRF403HTML,/eventos500HTML por ausencia deliberada de PDO en este intérprete aislado,/api/eventos500plano conservado,/api/reservasGET405plano conAllow,/no-existe404conCSS). Sin credenciales MySQL ni conexión a bases. Registros privados php-check/lint.log,http-results.json,error-405.png. Vista405 revisada en IAB. Bash-n y diff --check correctos; PowerShell no ejecutado. No atribuir estas pruebas PHP8.3 al contenedor PHP8.4/MySQL: integración real dev.36 pendiente.
 
 No nuevas coincidencias de páginas HTML con texto aislado en el alcance revisado; API JSON, SVG y salud son respuestas técnicas deliberadas. Esto no certifica todos los tamaños o estados posibles. Instalación8086 siguedev.35 hasta actualización; no despliegue público ni estable. Próximo paso: ensayar integración aislada y actualizar solo web8086 desde terminal con acceso Docker; conservar MySQL,volúmenes y reservas. Firefox y seguridad residual siguen pendientes; Windows al final.
+
+
+## Dev.36: actualización8086 y controles HTTP reales
+
+9 de octubre de 2026. El usuario informa actualización ejecutada; GET /salir8086 responde405 con la nueva vista ErrorPage. Script privado Python ejecutado con urllib y cookies separadas, cuentas ficticias locales existentes:22 comprobaciones correctas. Ambos roles ingresan y salen; USUARIO obtiene403conCSS en/admin,/admin/reservas,/admin/eventos/nuevo; historialCANCELADA y ticket propio accesibles; tras logout el mismo ticket devuelve303a/ingresar. ADMINISTRADOR obtiene200conCSS en panel,categorías,eventos,reservas; POST categorías con CSRF inválido devuelve403con nueva vista sin ejecutar edición. Visitante405/404conCSS y registro sinCSRF403también correctos. Ambas sesiones propias cerradas; sesión Firefox del usuario intacta. Sin crear reservas, cambiar eventos/categorías o sembrar datos. Registro storage/dev36-http-check/resultados.json, sin contraseñas,cookies o tokens.
+
+Pruebas sobre HTTP real del destino actualizado complementan sintaxis PHP8.3 y ensayo aislado previo; no sustituyen suite completa PHP8.4/MySQL ni inspección visual Firefox. Bloqueo de ticket traslogout queda acreditado por HTTP, pendiente presentación Firefox si se exige evidencia de navegador. Próximas comprobaciones humanas Firefox: inicio y rechazo al200%, selección/cancelación de fechas y Tab/Shift+Tab,limpiar filtros y panel administrador. Seguridad residual, aceptación de paquete dev.36,PDF final y Windows siguen abiertos. No repetir instalación/persistencia Linux ya aprobadas.

@@ -28,3 +28,5 @@ Segunda evidencia del 9 de octubre: cinco capturas adicionales del historial y t
 La captura admin-denegado-original-200.png acredita el rechazo en Firefox, pero mostró texto sin diseño. Dev.35 sustituye esa presentación por access-denied.php con estilos existentes. Vista HTML estática revisada en IAB; la nueva respuesta PHP/403 y su presentación Firefox todavía requieren actualizar el contenedor y verificarlas. No atribuir la captura anterior a dev.35.
 
 Captura posterior admin-denegado-dev35-110.png: nueva página de acceso restringido correctamente presentada en Firefox sobre8086, zoom nativo110%. El usuario confirma actualización ejecutada. Supera el pendiente visual dev.35 a ese zoom; cierre de sesión y nueva presentación dev.36 continúan pendientes.
+
+Complemento HTTP dev.36 sobre8086:22 comprobaciones reales con sesiones independientes aprobadas, incluido ticket303a/ingresar traslogout,rol usuario403conCSS,panel administrador200yCSRF inválido403conCSS. Registro storage/dev36-http-check/resultados.json. Son pruebas de protocolo, no nuevas capturas Firefox ni evidencia de teclado/zoom.
