@@ -16,7 +16,7 @@ B07/C-06/C-07. Validación humana parcial con capturas aportadas por el usuario.
 | Teclado/foco/calendario | Foco visible y calendario Desde abierto. Selección/cancelación y navegación solo con teclado pendientes. |
 | Zoom 200% en flujos centrales | Indicador nativo 200%; catálogo y parte visible del detalle legibles. Historial y ticket legibles en las capturas de sus distintos tramos. Inicio pendiente. |
 | Historial, ticket y QR | Historial con dos entradas CANCELADAS; ticket, QR y aviso sin vigencia visibles al 200%. No se probó lectura del QR con escáner. |
-| Roles y logout | Acceso autenticado como Usuario de prueba visible. Rechazo de /admin, cierre de sesión y acceso posterior al ticket pendientes. |
+| Roles y logout | Acceso autenticado como Usuario de prueba visible. Rechazo de /admin visible en captura del usuario sobre dev.33. Cierre de sesión y acceso posterior al ticket pendientes. |
 
 La prueba Windows sigue su propio procedimiento en VERIFICACION-WINDOWS.md. Este recorrido no evalúa otra plataforma ni corrige avisos de bibliotecas.
 
@@ -24,3 +24,5 @@ La prueba Windows sigue su propio procedimiento en VERIFICACION-WINDOWS.md. Este
 Evidencia del 9 de octubre de 2026: cuatro capturas conservadas con huellas en storage/firefox-20261009. La búsqueda pertenece al formulario Eventify (q=Encuentro en URL y un resultado), no a Buscar en esta página. Calendario Desde visible completo dentro de la ventana y foco marcado. Esto no prueba cómo se abrió con teclado ni si la petición fue AJAX: una captura no observa su transporte. La copia 8086 corresponde a dev.33; PHP/CSS/JS de interfaz sin cambios en dev.34. No certificar por ello una instalación nueva o los flujos que faltan. Se observó el texto menor «1 eventos»; no impide el recorrido y no se cambió código durante la revisión.
 
 Segunda evidencia del 9 de octubre: cinco capturas adicionales del historial y ticket, conservadas con huellas en el mismo registro privado (nueve archivos en total). La reserva cancelada conserva dos entradas y enlace al ticket. El QR se muestra completo y el aviso indica que el ticket ya no está vigente; se conserva el historial. Los tramos visibles al 200% son legibles. Esto acredita presentación y estado conservado, sin certificar el procedimiento de autenticación, escaneo del QR, bloqueo por rol o cierre de sesión. Se observa también el texto menor «1 entradas» en otra reserva de demostración; sin cambio funcional durante esta revisión.
+
+La captura admin-denegado-original-200.png acredita el rechazo en Firefox, pero mostró texto sin diseño. Dev.35 sustituye esa presentación por access-denied.php con estilos existentes. Vista HTML estática revisada en IAB; la nueva respuesta PHP/403 y su presentación Firefox todavía requieren actualizar el contenedor y verificarlas. No atribuir la captura anterior a dev.35.

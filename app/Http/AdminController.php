@@ -20,7 +20,11 @@ final class AdminController
         $pdo = Database::connect();
         $user = (new Auth($pdo))->user();
         if ($user === null) { header('Location: /ingresar', true, 303); return; }
-        if ($user['role'] !== 'ADMINISTRADOR') { http_response_code(403); echo 'Su cuenta no tiene permiso para abrir la administración.'; return; }
+        if ($user['role'] !== 'ADMINISTRADOR') {
+            http_response_code(403);
+            require PROJECT_ROOT . '/app/Views/access-denied.php';
+            return;
+        }
         if ($method === 'POST' && !Session::validToken($_POST['csrf'] ?? null)) { http_response_code(403); echo 'Actualice el formulario antes de intentarlo de nuevo.'; return; }
         $errors = [];
         $record = null;

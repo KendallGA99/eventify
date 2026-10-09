@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.35 — Página de acceso restringido (B07/RF-03/RNF-01)
+
+- Sustituye el texto aislado de rechazo administrativo por una página con la identidad visual de Eventify, explicación y enlaces a eventos, cuenta e historial.
+- Conserva la validación de rol en servidor, el código HTTP403 y la salida antes de consultar datos administrativos. Sin migraciones ni cambios de reservas.
+- Versión de desarrollo; las pruebas anteriores corresponden a sus referencias y la instalación existente conserva su versión hasta actualizarla.
+
 ## 0.1.0-dev.34 — Runtime sin herramientas de construcción (B07/SEG-09)
 
 - Incorpora en ambos Dockerfile la limpieza ensayada: 32 paquetes retirados, versiones conservadas sin cambios. Las imágenes derivadas aprobaron 266 unidades y 219 comprobaciones MySQL cada una.
