@@ -85,7 +85,7 @@ def frame(canvas, doc):
     canvas.setFillColor(colors.HexColor('#60727a'))
     if doc.page > 1:
         canvas.drawString(48, A4[1]-29, 'EVENTIFY / Documento técnico / ' + VERSION)
-    canvas.drawString(48, 27, 'Corte: 09-10-2026 | Pendientes de evaluación indicados')
+    canvas.drawString(48, 27, 'Corte: 10-10-2026 | Pendientes de evaluación indicados')
     canvas.drawRightString(A4[0]-48, 27, str(doc.page))
     canvas.restoreState()
 
