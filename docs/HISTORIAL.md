@@ -863,3 +863,339 @@ Snapshots TLS privados antes y después: mismas filas y huellas en diez tablas; 
 C-10 avanza para esta referencia probada; no certifica aplicación del paquete documental dev.32 ni cierre de seguridad, Windows/Firefox o aceptación completa. Render conserva plan Free y AutoDeployOff; no asociar sus cuentas al receptor para instalar el ZIP local.
 
 Pronóstico posterior al despliegue observado en IAB: Taller de tecnología de evaluación, fecha12oct; temperatura17,3–24,1°C/precipitación100%, consultado8oct20:13CST. Respuesta útil real, no fixture; reserva disponible. Captura /tmp/eventify-publico-dev30.png revisada visualmente.
+
+
+---
+
+## Archivo íntegro del estado anterior: corte dev.37, 9 de octubre de 2026
+
+# EVENTIFY: estado actual y continuidad
+
+Corte: 9 de octubre de 2026, America/Costa_Rica. Resumen operativo; [HISTORIAL.md](HISTORIAL.md) conserva los registros anteriores íntegros. Leer este archivo, el bloque activo de PLAN y los requisitos afectados al retomar. Los resultados siguientes tienen versiones y alcances distintos; no sumarlos como una sola suite.
+
+## Alcance y autorizaciones
+
+- Aplicación académica PHP/MySQL, HTML/CSS/JS/jQuery/AJAX y sesiones. Desarrollo Linux; entrega local Docker Compose Linux/Windows. No modificar Código Tico.
+- Commits y push progresivos autorizados el 2026-10-08; repositorio privado [USUARIO_DESTINO/eventify](https://github.com/USUARIO_DESTINO/eventify), remoto SSH. Sin push forzado ni reescritura.
+- Publicación Render Free/Aiven MySQL Free autorizada expresamente: integración GitHub solo EVENTIFY, presupuesto ₡0, sin tarjeta ni planes pagados. No necesita nuevas cuentas de proveedores el receptor del paquete local.
+- Estudiante confirmado: Kendall Gamboa Arce. Docente confirmada: Rita Robles Loaiza. La fecha de entrega se omite por indicación del usuario. Defensa y comprensión humanas pendientes.
+
+## Versiones y destinos
+
+- Código/documentación actual: **0.1.0-dev.37**, rama `codex/b07-experiencia-final`; experiencia/perfil comprobados:225 controles MySQL/HTTP,30registro/errores yrecorrido IAB real aprobados sobre ab710a6. Dev.36, rama `codex/b07-acceso-denegado`, commit funcional `6c47cb0`, conserva la evidencia previa. Dev.35/36 mejoran páginas de rechazo y error; actualización de web8086 y22 controles HTTP reales comprobados. Dev.34, rama `codex/b07-runtime-aislado`, desde `58e3b66`, conserva su evidencia de runtime. Dev.34 incorpora limpieza de herramientas ensayada en imágenes derivadas; construcción final y TLS aprobados sobre 6d41df5. Aplicación PHP igual a dev.30; dev.33 tiene parche gawk de MySQL construido, integración/TLS y escaneo comprobados; las instalaciones existentes conservan su versión anterior. Ninguna versión estable.
+- `main` conservada: `3da680b74b41fa3da4069879edc1f649de9b97f2`. VERSIONADO contiene la política y referencias anteriores. Git recupera código; no restaura MySQL.
+- Web pública: https://eventify-academico.onrender.com, **dev.37**, commit `7c3a3e28435566349efcd4b2a66eace89de978d2`. Render `srv-db3vutm7bikc73ajj6og`, Free/Oregon/AutoDeployOff; misma rama de despliegue existente.
+- Último deploy: `dep-db4n8cbncjis73c7m4t0`, 9 de octubre, 17:09:37 CST, **Deploy succeeded/Live**, 34,8 s. Referencia anterior `390b1ef` conservada para rollback.
+- Copia limpia anterior: `localhost:8085`, dev.32 `1dd0ed8dec5a15db82c9543a4ce803b492c52915`, proyecto `eventify-clean-20261009022129-10f84d13`. Dev.28/8084 conservada.
+- Instalación `localhost:8086`: web actualizada a dev.37 sobre `ab710a6`; base y volúmenes conservados. La instalación limpia y persistencia anteriores se comprobaron con dev.33 `f4d6c5a05011c57e47295b06cedf11129a052681`, proyecto `eventify-clean-20261009035638-598f411d`. Detalle del recorrido al final.
+- Otros destinos conservados según última verificación anterior: normal8080, QA8081, restauración8082, copia limpia8083. No afirmar disponibilidad actual sin consultar. No detenerlos ni borrar volúmenes para reutilizar puertos.
+- Docker29.1.3/Compose2.40.3. Esta sesión no tiene acceso al socket; sudo no interactivo tampoco lo resuelve. No cambiar grupos/socket/sudoers. Operaciones Docker necesarias se ejecutan en terminal del usuario.
+- Configuración, cuentas, CA, registros y snapshots privados en storage/backups, ignorados por Git. Nunca imprimir credenciales ni incluirlos en el ZIP.
+
+## Evidencia vigente
+
+| Área | Resultado comprobado | Límite |
+| --- | --- | --- |
+| Imágenes dev.32 | Ambas construidas, sintaxis PHP8.4, 266 comprobaciones unitarias y QR; xz/liblzma corregido y módulos Apache revisados ausentes en ejecución. image-check-ERw4lEwZ, exit0. | Escaneo conserva145HIGH/2CRITICAL por imagen; revisión no cerrada. |
+| MySQL/HTTP dev.33 | 219 comprobaciones sobre imagen MySQL corregida, tres migraciones; concurrencia de reserva, administración y presupuesto meteorológico. | No certifica Windows ni toda la publicación. |
+| Copia limpia Linux dev.32 | ZIP exacto, ruta con espacios, migraciones y persistencia inicial; ambos roles, reserva/ticket/QR, cancelación e historial comprobados en8085. clean-20261009022129-10f84d13, exit0. | Recreación posterior al flujo y consulta de historial/ticket aprobadas; Windows pendiente. |
+| Copia limpia Linux dev.33 | Fuente f4d6c5a exacta, recorrido8086 y recreación posterior; diez tablas/cinco archivos idénticos, historial y QR conservados. dev33-persistence-lBxRJbW3,exit0. | Windows/Firefox/zoom y seguridad siguen pendientes; no versión estable. |
+| Restauración | Diez tablas y archivos comparados en destino aislado; registros privados conservados. | No prueba toda transferencia a Windows. |
+| Publicación dev.30 | Parche construido en Render; sintaxis, 39 pruebas de clima y44 de presupuesto en build. Snapshots antes/después idénticos en diez tablas. | No incluye nueva reserva/admin en esta ejecución. |
+| HTTPS dev.30 | 81 controles posteriores correctos: dos usuarios, sesiones, CSRF, rutas privadas y tickets ajenos; sin escrituras de negocio. | No es auditoría universal ni revisión completa de imágenes. |
+| API pública dev.30 | Pronóstico útil real después del deploy: 17,3–24,1°C/100% para evento ficticio del12oct; consultado8oct20:13CST. | Puede variar o fallar; no garantiza disponibilidad permanente. |
+| Dependencias/secretos | Composer sin avisos, jQuery verificado y505 blobs sin secretos conocidos en ejecución anterior. | No prueba ausencia de avisos futuros o secretos desconocidos. |
+| Windows | PowerShell5.1 real: seis scripts sin errores de parser. VM Win11 LTSC Evaluation identificada,4GiB. | Sin Docker/WSL ni ejecución completa; hace falta host compatible. |
+| Documentación | PDF dev.37 de 16 páginas, nombres confirmados, experiencia y pruebas actualizadas; páginas renderizadas y texto dentro de página. | Borrador: revisión final, Windows y defensa humanas pendientes. |
+
+Snapshots de publicación: `storage/aiven-evaluacion/snapshot-before-dev30.json` y `snapshot-after-dev30.json`, comparados antes de los logins de prueba. Capturas revisadas `/tmp/eventify-render-dev30.png` y `/tmp/eventify-publico-dev30.png`. No se cambiaron permisos, plan, base ni cuentas externas durante el deploy. Detalles en evidencias/B08.
+
+## Aceptación de interfaz
+
+C-01 a C-05 comprobados en IAB sobre dev.28; archivos de aplicación afectados sin diferencias respecto a la versión posterior. Detalles y límites en [evidencias/B07.md](evidencias/B07.md):
+
+- Registro: confirmación distinta, alta válida ficticia, duplicado, login incorrecto/correcto, permisos por URL y logout.
+- Catálogo: filtros combinados, vacío, fechas invertidas, carga, cancelación de consulta pendiente, desconexión de pestaña y recuperación.
+- Reserva: una sola respuesta201 perdida después del commit; confirmar deshabilitado, consulta de historial/ticket y cupos40→39. Reserva ficticia conservada; no repetirla.
+- Clima: fixtures locales de error/busy/horizonte/caché/éxito/HTTP429/timeout8s; sin llamadas al proveedor. Patrones retirados. Evidencia real pública separada.
+- Administración: aforo bajo reservas, precio negativo, cambio de fecha/estado con historial, finalización futura, categoría duplicada y permisos ajenos; valores conservados.
+- C-06 parcial: redistribución a390/768/1280/640px; foco visible y recorrido de detalle/reserva, historial y ticket. Una captura deformada del historial se descartó mediante observación directa; no se cambió CSS. Atajo de zoom IAB no modificó escala: **no certifica zoom200%**. Panel administrativo también recorrido con foco visible; faltan calendario nativo y zoom real.
+
+Incidencia anterior de inspección: se imprimieron por error credenciales ficticias de la copia local; no se copiaron a Git/documentación. Detalle conservado en B07/HISTORIAL. No confundirlas con cuentas externas.
+
+## Bloques y pendientes reales
+
+- B01/B02 comprobados; B03–B06 implementados con integración y aceptación parcial de navegador.
+- B07 abierto: completar compatibilidad Firefox en el alcance pendiente, Windows y revisión de avisos de imágenes. Zoom200% deja de bloquear por indicación del usuario; adaptación y recorrido IAB dev.36 registrados al final. [AVISOS-IMAGENES.md](AVISOS-IMAGENES.md) conserva condiciones y dudas: Apache/XML/kernel/curl/gosu/Python; no ocultar avisos. No repetir suites extensas sin cambio o duda concreta.
+- B08: servicio real actualizado a dev.37; TLS, 112 controles HTTPS y datos conservados. La última respuesta útil del clima corresponde a dev.30; dev.37 mostró indisponibilidad y conservó la reserva. Detalle al final.
+- B09: portada/manual/PDF y exportación de desarrollo dev.37 preparados; instalación final, receptor y ensayo humano pendientes. [CIERRE.md](CIERRE.md) organiza los casos; no marcar estable por tener un ZIP.
+
+## Próxima acción necesaria
+
+Dev.32 aprobó construcción de imágenes, instalación limpia Linux y persistencia posterior al recorrido del navegador. Ya no hace falta repetir los dos ensayos ni el helper para esta referencia. Resultado `storage/dev32-persistence-UMW4MUkC`, inicio20:28:23CST/exit0: snapshots idénticos de diez tablas y cinco archivos, ocho reservas y ocho tickets. Login posterior confirma historialCANCELADA, ticket/QR y datos conservados. Captura /tmp/eventify-dev32-persistencia.png revisada.
+
+Continuar revisión de seguridad y aceptación de la versión final, compatibilidad de navegador y Windows en equipo compatible; zoom200% no requerido por el usuario. Disponibilidad de Windows/Docker Desktop pendiente de confirmar. La fecha de entrega no es necesaria y deja de ser un pendiente. Defensa/participación humanas abiertas. No certificar entrega completa ni estabilidad por haber aprobado Linux.
+
+## Exportación dev.32 confirmada
+
+Etiqueta v0.1.0-dev.32 y rama publicadas; commit1dd0ed8dec5a15db82c9543a4ce803b492c52915, etiqueta anotada0c0c1b1ff0a8f3359a137a91083b1f6f19482734; refs remotas verificadas. Fuente en output/entrega/eventify-desarrollo-1dd0ed8dec5a/eventify-source.zip,188 archivos, SHA25677157fa2ef2e419fa8a234daeef2e196514eab1f5ddac3248d7ee20af436d8e9. Paquete de revisión con ese ZIP, PDF, guía, manifiesto y huellas: output/entrega/eventify-dev32-revision.zip, SHA25675a91451ca8e3f92272e5666b355bfe6d0ba83b8bee971fca51b8982efeaee18. Integridad/CRC comprobados; no instalación nueva ni entrega final certificada. PDF15 páginas con nombres/versión correctos, portada/evidencia revisadas y texto dentro de página. Registro posterior a la etiqueta solo documenta resultados, no cambia el paquete.
+
+Ampliación C-06: panel administrativo dev.28 a390px, ocho enlaces recorridos mediante Tab y contorno3px visible; seis tarjetas327px y scrollWidth375 sobre viewport390. Captura /tmp/eventify-admin-teclado-dev28.png revisada. Sin formularios enviados ni cambios de negocio; sesión cerrada al finalizar.
+
+Nuevo recorrido dev.32: reserva ficticia f5e075eec15b3bd971c1d487078aae79 cancelada y conservada; cupos40→38→40, ticket/QR sin vigencia. Ambos roles y logout correctos. Evidencia y límites en B07.
+
+Intento de zoom en Chrome real (conector disponible): Ctrl+plus no cambió innerWidth1920/devicePixelRatio1/visualViewport.scale1. No se certifica200%. Inventario actual expone Chrome e IAB, no Firefox. Ensayo Firefox/zoom requiere interacción directa del usuario o un acceso compatible; no sustituirlo por otra ejecución IAB.
+
+Paquete con fuente idéntica a la probada en Linux, PDF actualizado y resultados posteriores: output/entrega/eventify-dev32-linux-comprobado.zip, SHA256 83441a710cb0fdfd36c70a8b46b3681036cb9c79e23de41e72559e04d7dac18b. Se conservó el ZIP fuente188 archivos y su manifiesto originales; los documentos adjuntos explican que el estado interno de ese ZIP es del corte anterior. Integridad/CRC correctos. No es certificación Windows ni versión estable.
+
+## Revisión de seguridad dev.33
+
+Fecha de entrega omitida por indicación del usuario. Análisis exacto gosu amd64 del digest MySQL: capas y huella verificadas, binario oficial1.19/Go1.24.6; govulncheck1.8.0 sin exclusiones, ninguna función vulnerable detectada. Conserva57 coincidencias de módulo/paquete y47 filas Trivy; no auditoría de MySQL completo. ACL/ncurses/montajes/XML/Python contrastados; inventario completo por paquete en INVENTARIO-IMAGENES. Detalles, fuentes y evidencia privada en AVISOS-IMAGENES.
+
+Oracle publica parche compatible para los tres avisos gawk. Dockerfile.mysql y cuatro Compose preparados, servidor/volúmenes sin cambiar. Ensayo scripts/test-mysql-image-linux.sh exige versión RPM y prueba integración, TLS correcto y rechazo sin TLS en destinos efímeros. Bash-n y git diff --check correctos; cuatro configuraciones Compose examinadas sin daemon: build correcto, MySQL sin puertos/privilegios y ensayos con tmpfs/sin volúmenes persistentes. PDF dev.33 de15 páginas: portada y ampliación revisadas, texto dentro de página. Construcción real y escaneo pendientes de ejecución Docker en terminal. No actualizar8080/8085 ni marcar dev.33 estable. Paquetes dev.32 anteriores conservan su evidencia e integridad originales.
+
+Dev.33 publicada y referencias verificadas con git ls-remote: commit2f5ab7f5735eb7a4e58ff725d14f5ae9ea8afc03, etiqueta anotada b2ca86ad5474146423e752b793e6afd443d4f5d9, rama codex/b07-avisos-restantes. Etiqueta resuelta al mismo commit. Sin despliegue, construcción real todavía pendiente; main intacta.
+
+## Parche gawk dev.33 comprobado
+
+mysql-image-check-gpZ3It99, inicio8oct20:52:50CST, commit3489d430bf94c649c7bf7e61d6fb0e95fb531a33, árbol limpio, exit0. gawk5.1.0-6.el9_8.1 y servidor8.4.11. Integración219 controles correctos; public-tls-w378H7sm y public-no-tls-dKB7YKgK exit0, controles TLS/cuentas/recreación y rechazo/base vacía aprobados. Destinos efímeros retirados; instalaciones normales/copias existentes y Aiven conservadas.
+
+Trivy0.75.0 sobre imagen exportada:69→66 avisos, desaparecen únicamente los tres gawk, ningún identificador/paquete nuevo con la misma DB. Restantes1CRITICAL/29HIGH/29MEDIUM/6LOW/1UNKNOWN, sin exclusiones. El pendiente de construcción/regresión/escaneo anterior queda superado para esta referencia. Comparación privada mysql-scan.json/comparison.json. Curl ampliado con condiciones y diferencias de severidad del proveedor en AVISOS-IMAGENES; no se modifican reportes. No hace falta repetir el ensayo del parche por esta actualización documental. Siguen pendientes los grupos no evaluados, Windows/Firefox/zoom y el paquete final; dev.33 no es estable.
+
+PDF actualizado:15 páginas, resultado dev.33 y límites correctos; ampliación de seguridad renderizada/revisada, texto dentro de página. La actualización documental no cambia imágenes ni requiere repetir integración.
+
+
+## Ampliación de avisos base
+
+Revisión adicional documentada en AVISOS-BASE: 24 identificadores y 66 filas cotejados con el escaneo conservado (60 MEDIUM / 6 UNKNOWN). glibc: modos fopen fijos, conversiones/wordexp/DNS de depuración sin ruta directa encontrada, nscd ausente del inventario; limitaciones de llamadas nativas conservadas. zlib/Expat: discrepancias de rangos no resueltas; sin cambiar severidades. SQLite no es base usada por EVENTIFY; avisos dependen de su Session Extension, distinta de las sesiones PHP. Pod::Text/kernel sin severidad examinados sin declararlos inocuos.
+
+Inspección estática de once ELF setuid/setgid en la imagen local dev.32: ninguno tiene RPATH/RUNPATH, configuración de imagen sin LOCALDOMAIN. Host actual kernel 7.0.0-38-generic, hardlinks protegidos y configuración search/domain sin valores largos; solo lecturas agregadas, sin contenido DNS o variables privadas. Falta verificar DNS efectivo de contenedores/proveedor y parches del kernel real; consulta Ubuntu sin resultado verificable. No cambios funcionales, builds o nuevas suites. Corregido conteo libxml2 a 7 HIGH / 1 CRITICAL / 2 MEDIUM / 2 LOW según JSON. Dev.33/etiqueta conservadas; revisión general y entrega final siguen abiertas.
+
+
+## Apache y tar: revisión adicional
+
+Doce identificadores / 39 filas MEDIUM contrastados con Debian y el informe conservado. Ocho avisos Apache requieren módulos no cargados; rewrite está presente, pero falta la expresión lookahead necesaria para el noveno. Tar sí interviene en restauración QA: se revisaron formato no incremental, opciones y procedencia del archivo; un directorio nuevo o snapshots no prueban seguridad frente a archivos maliciosos. Detalles y límites en AVISOS-APACHE-TAR. Sin cambios funcionales ni repetición de suites. Continúan pendientes los demás grupos, DNS/kernel reales, Firefox/zoom, Windows y paquete final.
+
+
+## curl: diez avisos medios contrastados
+
+AVISOS-CURL coteja diez identificadores / veinte filas MEDIUM con fuentes originales y Debian. WeatherClient usa streams PHP; Composer y los ensayos sí ejecutan CLI. Avisos de callbacks, Digest/mTLS y reset se distinguen de los comandos utilizados;80229 también afecta CLI y permanece abierto por proveedores OpenSSL/pool. Configuración predeterminada curl y proxies externos no auditados; la huella Composer no parchea fallos de memoria durante descarga. Sin cambios funcionales ni suites repetidas.
+
+
+## Paquete de revisión dev.33 actualizado
+
+Fuente exacta f4d6c5a05011c57e47295b06cedf11129a052681:194 archivos, exportados por scripts/package-source.py; ZIP fuente SHA2567a23817f91ecad6453eda169ed09b17df5e3b3125149780ce195e724703cd897. Paquete output/entrega/eventify-dev33-revision.zip, SHA2565d0f663c66e0e34d02c5ab2ce4ffff0e6bf640a4d6d70f11e12a80dff4b2171b: fuente, manifiesto, PDF conservado y guía con límites. CRC y todas las huellas internas comprobadas; Dockerfile.mysql y guion Windows presentes. No contiene datos/credenciales de proveedores. La ejecución local no necesita Render/Aiven/GitHub; Docker/Compose e Internet inicial siguen siendo requisitos del host. PDF conserva su corte previo y las últimas revisiones de seguridad están en MD. No se instaló este paquete exacto: esa prueba y Windows/Firefox/zoom siguen pendientes. Paquetes anteriores conservados; no versión estable.
+
+
+## Herramientas y cobertura MEDIUM PHP/Apache
+
+AVISOS-HERRAMIENTAS añade13 identificadores /70 filas MEDIUM contrastados con Debian. Búsqueda de invocaciones y188 paquetes del inventario examinados; distingue servicios ausentes de bibliotecas presentes y llamadas nativas aún no auditadas. Cotejo conjunto:976 filas MEDIUM =189 fuera de linux-libc-dev con identificadores documentados +787 de cabeceras del kernel, sin evaluación individual. No confundir cobertura con remediación; LOW y condiciones nativas/entorno siguen pendientes. Fuentes/cobertura privadas en storage/image-audit/tools-medium-review. Sin cambios funcionales ni nuevas suites.
+
+Docker info sigue devolviendo1 en esta sesión; no modificar permisos. Puerto8086 libre al comprobarlo, sin reservarlo ni detener destinos. Próximo ensayo: scripts/test-clean-linux.sh con commit f4d6c5a05011c57e47295b06cedf11129a052681 y puerto8086, para instalar la misma fuente194 archivos del paquete dev.33. No ejecutado todavía; resultados no se presuponen.
+
+
+## Instalación y recorrido dev.33 comprobados
+
+Ensayo clean-20261009035638-598f411d, inicio8oct21:56:38CST, exit0. Fuente f4d6c5a05011c57e47295b06cedf11129a052681,194 archivos; SHA256 del ZIP7a23817f91ecad6453eda169ed09b17df5e3b3125149780ce195e724703cd897 idéntico al paquete de revisión. Proyecto eventify-clean-20261009035638-598f411d,localhost8086, ruta con espacios. Tres migraciones aplicadas; demo creada únicamente en destino nuevo. qa-persistence confirma tablas, marcador, credenciales e imágenes conservados tras recreación, antes del recorrido de negocio.
+
+Navegador IAB sobre8086: login de usuario, filtro AJAX Encuentro con un resultado, reserva de dos entradas gratuitas y navegación a ticket con QR. Reserva6a15f6dedaf22a5018d499ce09d07161, ticket85471e40c94c7ed6285d65b8caef043bc2fc03f2e59794dd737a38a0699d4446. Cupos40→38→40 tras cancelación; historialCANCELADA y ticket sin vigencia permanecen visibles. Clima desactivado en QA conserva la reserva disponible, sin llamadas externas. Acceso admin rechazado para usuario común; cuenta administrativa abre panel con estadísticas. Ambas sesiones cerradas y ticket requiere login después de logout. Captura /tmp/eventify-dev33-ticket-cancelado.png revisada.
+
+No se modificó código o configuración durante este recorrido. Solo se creó/canceló una reserva ficticia en la copia aislada; instalaciones anteriores y servicio público conservados. Persistencia ensayada antes del recorrido; recreación posterior a esta nueva reserva/cancelación aún no comprobada. No certifica Windows, Firefox, zoom ni cierre de seguridad. El pendiente de instalar la fuente exacta del paquete anterior queda superado en Linux para esta referencia; documentos posteriores mantienen su propio corte.
+
+Paquete con fuente exacta conservada y resultados posteriores: output/entrega/eventify-dev33-linux-comprobado.zip, SHA256ccf79b4b74f78859ae3da5d1d94f31a1df88024777ad10b94cf1987cdcffd3f9. CRC y huellas internas comprobados; no versión estable. Paquete anterior intacto.
+
+
+## Persistencia posterior dev.33: ensayo preparado
+
+Helper privado storage/clean-20261009035638-598f411d/verify-browser-persistence.sh preparado para el único proyecto eventify-clean-20261009035638-598f411d y puerto8086. Valida éxito previo, commit y SHA del ZIP, configuración local/eventify_qa, aislamiento de montajes y propietario de ambos volúmenes antes de detener web. Obtiene snapshots mediante qa-transfer, recrea sin build ni borrado, compara diez tablas/archivos y restablece web ante fallo. Agrega lectura DNS del contenedor con cantidades/longitudes y arquitectura, sin registrar dominios o variables privadas.
+
+Bash-n y comprobaciones del destino/no-build/no-borrado correctas. Docker info devuelve1; ejecución real pendiente en terminal del usuario. No se tocó la copia ni se generó evidencia ficticia de persistencia posterior. El helper es específico del ensayo, queda fuera del paquete del receptor y no cambia dev.33. Al finalizar, revisar status/snapshots/DNS y consultar en navegador el historialCANCELADA y ticket sin vigencia; no repetir la reserva.
+
+
+## Persistencia posterior dev.33 comprobada
+
+Registro storage/dev33-persistence-lBxRJbW3, inicio8oct22:17:00CST, exit0, proyecto eventify-clean-20261009035638-598f411d. Comparación completa before/after idéntica: diez tablas,cinco archivos,ocho reservas y ocho tickets. Contenedores recreados sin build ni borrado de volúmenes; tres rutas HTTP responden correctamente. El pendiente del helper preparado queda superado para esta copia exacta.
+
+DNS leído dentro del contenedor: arquitectura x86_64, un dominio search/domain de longitud1, LOCALDOMAIN ausente. No se encontró la condición de dominio largo del aviso8674 en ese runtime. Solo cifras, sin exponer nombres/variables. No extrapolar a Render, Windows, otro contenedor ni futuros cambios DNS; kernel y bibliotecas nativas conservan sus pendientes.
+
+Después de la recreación, navegador IAB8086: login correcto, historial de la reserva6a15f6dedaf22a5018d499ce09d07161 conserva CANCELADA y dos entradas; ticket85471e40c94c7ed6285d65b8caef043bc2fc03f2e59794dd737a38a0699d4446 conserva QR y mensaje sin vigencia. Captura /tmp/eventify-dev33-persistencia.png inspeccionada. Sesión cerrada, ninguna nueva reserva o cancelación; pestaña temporal cerrada. No hace falta repetir instalación/persistencia para esta referencia por cambios documentales.
+
+Linux: instalación limpia,recorrido y persistencia posterior aprobados para f4d6c5a. Pendientes restantes: Windows completo,Firefox/zoom/calendario,revisión de seguridad aún abierta,documentación final y defensa humana. No se marca estable ni se cierran todos los criterios B07. ZIP dev33-linux-comprobado conserva su corte previo; este registro añade la evidencia posterior sin alterar su fuente o huellas.
+
+
+## Continuación autónoma: documentos y avisos bajos
+
+El usuario pide continuar sin solicitar mensajes de continuidad; intervenir solo ante acceso/datos necesarios. README,INSTALACION,CIERRE y TECNICO actualizados a la evidencia Linux dev.33 y despliegue dev.30, conservando límites de cada ejecución. PDF regenerado:15 páginas, nombres correctos,texto dentro de página y páginas3/13/14/15 renderizadas/revisadas. No cambios funcionales ni nuevas suites.
+
+Avisos LOW PHP/Apache:882 filas =736 fuera de cabeceras +146 de linux-libc-dev.147 páginas Debian descargadas; AVISOS-BAJOS.csv reúne identificadores/condiciones/fuentes sin aprobarlos automáticamente. Doce avisos Apache contrastados con inventarios y configuración; PHP/prefork/negotiation activos, módulos necesarios de otros avisos ausentes. HostnameLookups Off en configuración local exportada. Range/consumo y riesgo de código local malicioso no descartados. Otros135 identificadores fuera de cabeceras siguen pendientes;69 de binutils se repiten en ocho paquetes. Registros privados storage/image-audit/low-review.
+
+VERIFICACION-FIREFOX prepara un recorrido concreto con teclado/calendario,zoom200%,roles e historial existente, sin nueva reserva. Solicitud de disponibilidad Firefox/Windows presentada al usuario; sin respuesta no se presume equipo compatible. Esta sesión no controla aplicaciones nativas y no puede certificar estos recorridos por IAB o por una mera instalación de navegador. Windows requiere host/Docker compatibles según su guía. No pedir de nuevo los ensayos Linux ya aprobados.
+
+
+## Alcance LOW ampliado
+
+AVISOS-BAJOS.csv agrega notas para otros 66 identificadores: 78 con contraste de configuración/uso junto a los doce Apache; 69 binutils aún pendientes individualmente. Búsqueda de invocaciones en aplicación, herramientas, Dockerfile y guiones; notas Debian TEMP consultadas. La ausencia de ruta web no elimina uso nativo, exposición local ni avisos del informe. GnuTLS/CBC, glibc, XML, herramientas privilegiadas y configuración externa curl continúan abiertos. No se aplicó parche ni se ejecutaron nuevas suites para cambios documentales.
+
+
+Binutils: los 69 identificadores también tienen delimitación inicial por tipo de entrada (símbolos, ELF/DWARF, enlace/BFD, XCOFF, DLX y plugin/LTO). Las 147 filas del CSV tienen fuente y nota de alcance; no equivale a descarte o parcheo. Backends/plugins, consumidores nativos y cadena de construcción siguen abiertos. Posible separación de herramientas de desarrollo requiere build/inventario/integración real antes de cambiar runtime; esta sesión carece de acceso Docker.
+
+
+## Paquete documental y versionado comprobados
+
+Commit 227461a59f429b755f7258de68c412c69209d07c publicado en codex/b07-avisos-restantes; git ls-remote confirma la referencia y main conserva 3da680b74b41fa3da4069879edc1f649de9b97f2. Sin etiqueta estable o despliegue.
+
+Paquete output/entrega/eventify-dev33-cierre-linux.zip, SHA256 8a51918698fc34e8f73cef4ef01ecb18cec12457e16382943f7e7b697e9eead4: quince entradas, CRC y huellas internas correctos. Conserva fuente exacta f4d6c5a y su manifiesto de 194 archivos ya comprobados en Linux; añade PDF de quince páginas y documentación complementaria del commit 227461a. Guía explica ambos cortes. No modifica código ni requiere repetir la instalación Linux; no contiene bases o credenciales privadas. Paquetes anteriores intactos.
+
+PDF regenerado y página de pruebas renderizada/revisada después de distinguir persistencia Linux dev.33 de la restauración QA previa. Pendientes que requieren acceso humano: Firefox real con zoom/calendario y Windows con Docker compatible. Seguridad conserva condiciones nativas/host y backends/plugins abiertos; no certificación estable. No pedir mensajes de continuidad ni repetir ensayos ya aprobados.
+
+
+## Ensayo aislado de reducción de herramientas: preparado
+
+9 de octubre de 2026. Rama codex/b07-runtime-aislado desde 58e3b66. C-09/SEG-09: Dockerfile.runtime-check y runtime-prune.sh derivan imágenes experimentales y retiran herramientas de desarrollo sin autoremove; plan simulado y bibliotecas/Apache/PDO protegidos. test-runtime-minimal-linux.sh construye variantes local/pública y ejecuta unidades/integración MySQL con proyecto exclusivo, red interna, tmpfs y claves nuevas; sin puertos, montajes ni volúmenes persistentes. No cambia Dockerfile de entrega, VERSION, dev.33, destinos actuales o publicación.
+
+Bash-n/sh-n y diff --check correctos. Generador Python ejecutado y Compose normalizado sin daemon: aislamiento y ausencia de herencia .env/build comprobados. Patrón amd64 revisado, gcc-base y bibliotecas requeridas no seleccionadas. Construcción, integración y reducción real de avisos NO ejecutadas: Docker info informa permiso denegado al socket. ENSAYO-RUNTIME contiene comando exacto y criterios. Tras ejecución humana, revisar registros e imágenes y escanear; no repetir instalación Linux dev.33. Windows/Firefox y defensa conservan sus pendientes.
+
+
+## Runtime reducido: ensayo aprobado y dev.34 preparada
+
+9 de octubre de 2026, 05:21:40 CST (11:21:40 UTC). Registro runtime-check-doJmuSur, commit b14fee3, exit0. Variantes local y pública: construcción y comprobación Apache/PDO correctas; 266 unidades y 219 controles MySQL/HTTP por variante. Proyectos efímeros retirados; inventarios y exportaciones conservados. Se retiraron 32 paquetes y no cambió la versión de ninguno conservado.
+
+Trivy sobre ambas exportaciones, misma base almacenada actualizada el 8 de octubre a las 19:05:21 UTC, sin actualización/exclusiones: 2.011 → 424 filas por variante. Restantes: 1 CRITICAL, 91 HIGH, 162 MEDIUM, 166 LOW, 4 UNKNOWN; ningún par nuevo de identificador/paquete/versión frente al informe conservado. JSON/log/comparison en storage/runtime-check-doJmuSur. La reducción de cabeceras no parchea el kernel del host; permanecen bibliotecas vulnerables y riesgos de construcción.
+
+Dev.34 incorpora exactamente runtime-prune.sh ensayado al final de ambos Dockerfile y verifica ausencia de herramientas en test-image-linux.sh. Sin cambios PHP, MySQL, datos o destinos activos. verify-runtime-release-linux.sh agrupa construcción/exportación de imágenes finales, unidades, rechazos públicos y TLS positivo/negativo en destinos efímeros. Bash-n/sh-n y diff --check correctos; construcción final y arranque Apache público/TLS pendientes de ejecución Docker en terminal. No afirmar que el ensayo derivado ya certifica estas imágenes finales.
+
+La instalación Linux dev.33 conserva su aprobación y paquete. Nueva versión aún de desarrollo; Windows, Firefox y aceptación de dev.34 pendientes. No desplegar o reemplazar paquetes antes de revisar este ensayo final.
+
+
+## Dev.34: imágenes finales y TLS aprobados
+
+9 de octubre de 2026, inicio 05:45:31 CST (11:45:31 UTC). runtime-release-pdzRD8Jx, commit 6d41df54a4df19c7c5895de6eac8120d263809d3, exit0. image-check-hGj1k1LD: ambas imágenes finales construidas; ausencia de herramientas retirada, sintaxis, 266 unidades y QR comprobados. public-start-noDIeuWq: tres rechazos de configuración pública correctos. public-tls-qSBzd2c1: arranque Apache/TLS, HTTP interno, cuentas/roles/hashes/rechazos y recreación aprobados. public-no-tls-bTdhnbR5: servidor sin TLS rechazado antes de servir/aplicar migraciones, base vacía comprobada; todos los registros exit0.
+
+Trivy sobre local.tar y public.tar finales con la misma base almacenada y sin exclusiones: 424 filas en cada una, idénticos identificadores/paquetes/versiones/severidades al ensayo derivado. Restan 1 CRITICAL, 91 HIGH, 162 MEDIUM, 166 LOW y 4 UNKNOWN; sin corrección publicada en el campo FixedVersion de este informe para los avisos restantes. Esto describe la base de avisos usada, no asegura inexistencia de una actualización posterior. JSON/log/comparison en image-check-hGj1k1LD. La retirada de cabeceras no parchea el host.
+
+El pendiente de construcción final/TLS queda superado para 6d41df5. Sin cambios funcionales posteriores, sin despliegue ni actualización de instalaciones existentes. Dev.33 conserva instalación limpia/persistencia; no atribuirlas a una instalación del ZIP dev.34. Pendientes: Windows real, Firefox/zoom/calendario, aceptación del paquete dev.34, riesgos residuales de seguridad y defensa humana. Solicitud de disponibilidad Windows presentada al usuario; no suponer Docker instalado por una captura del escritorio.
+
+
+Paquete fuente dev.34: output/entrega/eventify-desarrollo-23553476bd86/eventify-source.zip, commit 23553476bd86f31dd9b552f3f1d422839dbcbd14, 203 archivos, SHA256 8ab1a21852436e08ffbe200350282f32910fa483fa75d061208ef06d89c5a8f3. CRC y todas las huellas del manifiesto comprobados. Diferencia respecto a 6d41df5 exclusivamente MD: mismo código e imágenes declaradas que los ensayos aprobados. Paquete preparado para aceptación en receptor; todavía no instalado desde este ZIP en Windows. PDF técnico anterior conserva su corte dev.33; actualización final pendiente tras aceptación, sin presentarlo como documento dev.34.
+
+
+## Orden de cierre solicitado: Firefox y seguridad, Windows al final
+
+9 de octubre de 2026. El usuario prioriza C-06/C-07 y C-09; Windows queda para el final, sin eliminar su requisito. Firefox existe en el host, pero el inventario CUA solo expone IAB/MCP Apps y ninguna aplicación nativa; no se afirma control de Firefox. localhost:8086/eventos responde HTTP200. Solicitada comprobación humana de catálogo/búsqueda/zoom200% y versión. Corregida una separación accidental en la ruta de credenciales de VERIFICACION-FIREFOX, sin leer o publicar sus valores.
+
+Seguridad: AVISOS-XML contrasta nueve avisos altos antes sin mención individual con Debian; Trixie figura vulnerable. Búsqueda de parsers y revisión de WeatherClient/TicketQr limitan entrada XML directa, sin descartar consumidores nativos. Crítico6653 reconsultado; no parche compatible acreditado por esa fuente. CSV residual agrupa 424 filas PHP/Apache en156 identificadores con referencias documentales; cobertura no implica cierre ni aceptación del riesgo. No cambios funcionales, builds o suites repetidas.
+
+
+## Firefox: evidencia humana parcial recibida
+
+9 de octubre de 2026. Capturas del usuario: Firefox 157.0.1 (64 bits), Linux Mint, zoom nativo200%, localhost8086. Catálogo con q=Encuentro y un resultado; foco visible; calendario Desde abierto y contenido de formulario sin recorte esencial en lo visible. Captura previa de detalle muestra título/precio/botón legibles. Cuatro archivos y huellas conservados en storage/firefox-20261009. No acceso nativo ni ejecución automatizada de Firefox.
+
+VERIFICACION-FIREFOX actualizada. Pendientes: limpieza/combinación, selección/cancelación y teclado del calendario, inicio/historial/ticket al200%, login/roles/logout y casos de error. Capturas no acreditan transporte AJAX o navegación solo con teclado. Destino dev.33 con interfaz sin cambios en dev.34; no certificación de instalación nueva. Solo documentación; diff --check correcto, sin nuevas suites. Windows sigue al final.
+
+
+## Firefox: historial y ticket al 200%
+
+9 de octubre de 2026. Cinco capturas adicionales aportadas por el usuario sobre localhost8086: navegación autenticada como Usuario de prueba, historial con Encuentro de tecnología CANCELADA y dos entradas; ticket con identificador, QR completo y aviso sin vigencia. Texto y controles visibles legibles al zoom nativo200%. Nueve capturas acumuladas y huellas en storage/firefox-20261009. No se escaneó QR ni se controló Firefox desde esta sesión.
+
+VERIFICACION-FIREFOX actualizada. Próximo paso humano: comprobar rechazo de /admin como usuario; cerrar sesión desde Mi cuenta y volver a la URL del ticket para comprobar petición de acceso. Siguen pendientes panel administrador, limpieza/combinaciones de filtros, recorrido de teclado/selección/cancelación del calendario e inicio al200%. No repetir reserva, instalación Linux ni suites por este cambio documental. Dev.33 es el destino observado; seguridad residual y Windows siguen abiertos, Windows al final. Revisión documental y git diff --check correctos.
+
+
+## B07: presentación del acceso restringido, dev.35
+
+9 de octubre de 2026. El usuario confirma visualmente rechazo de /admin en Firefox200%, pero solicita mejorar su presentación. Captura original y huella privadas conservadas. Rama codex/b07-acceso-denegado: AdminController conserva comprobación de rol/HTTP403/return antes de datos administrativos; nueva vista access-denied.php utiliza estilos adaptables existentes, mensaje claro y enlaces a eventos, cuenta e historial. Sin cambios CSS, SQL, reservas o permisos. VERSION/CHANGELOG dev.35.
+
+Vista HTML estática idéntica a la plantilla revisada en IAB, captura storage/access-denied-preview/desktop.png. Revisión de diferencias y diff --check correctos. No PHP instalado en host y Docker/sudo no interactivo sin acceso: sintaxis PHP, integración y respuesta nueva en ejecución pendientes. No repetir suites Linux anteriores para atribuirlas a este cambio. Actualización propuesta: construir únicamente web con fuente actual y .env de la copia8086, proyecto eventify-clean-20261009035638-598f411d, --no-deps, conservando base y volúmenes. Requiere terminal del usuario; no ejecutada aquí. Firefox/logout/calendario, seguridad residual y Windows continúan con sus límites; Windows al final.
+
+
+## B07: revisión de respuestas sin estilo, dev.36
+
+9 de octubre de 2026. Captura humana admin-denegado-dev35-110.png confirma nueva página /admin en Firefox8086 al110%, conservada con huella privada. No equivale a comprobar200% ni toda la integración de dev.35. Revisión de controladores/enrutador/excepciones encontró texto aislado en CSRF de autenticación, CSRF administrativo,405 y error500 HTML, además de una salida405 vacía interna. Dev.36 agrega ErrorPage/vista compartida con escape y CSS existente. Conserva códigos,Allow,CSRF,roles y formatos API/consola; no revela mensajes internos.404,errores de validación y estados vacíos ya usan vistas con estilo. Sin cambios de BD/datos.
+
+PHP8.3.6 extraído del paquete oficial Ubuntu php8.3-cli8.3.6-0ubuntu0.24.04.11 bajo storage/php-check, sin instalación del sistema. Sintaxis de todos los PHP correcta; prueba error-page con7 comprobaciones de código/escape/estilos/enlaces aprobada y añadida a guiones Linux/Windows. Servidor PHP local efímero8098: seis rutas comprobadas (/salirGET405HTML conAllow,/registroPOSTsinCSRF403HTML,/eventos500HTML por ausencia deliberada de PDO en este intérprete aislado,/api/eventos500plano conservado,/api/reservasGET405plano conAllow,/no-existe404conCSS). Sin credenciales MySQL ni conexión a bases. Registros privados php-check/lint.log,http-results.json,error-405.png. Vista405 revisada en IAB. Bash-n y diff --check correctos; PowerShell no ejecutado. No atribuir estas pruebas PHP8.3 al contenedor PHP8.4/MySQL: integración real dev.36 pendiente.
+
+No nuevas coincidencias de páginas HTML con texto aislado en el alcance revisado; API JSON, SVG y salud son respuestas técnicas deliberadas. Esto no certifica todos los tamaños o estados posibles. Instalación8086 siguedev.35 hasta actualización; no despliegue público ni estable. Próximo paso: ensayar integración aislada y actualizar solo web8086 desde terminal con acceso Docker; conservar MySQL,volúmenes y reservas. Firefox y seguridad residual siguen pendientes; Windows al final.
+
+
+## Dev.36: actualización8086 y controles HTTP reales
+
+9 de octubre de 2026. El usuario informa actualización ejecutada; GET /salir8086 responde405 con la nueva vista ErrorPage. Script privado Python ejecutado con urllib y cookies separadas, cuentas ficticias locales existentes:22 comprobaciones correctas. Ambos roles ingresan y salen; USUARIO obtiene403conCSS en/admin,/admin/reservas,/admin/eventos/nuevo; historialCANCELADA y ticket propio accesibles; tras logout el mismo ticket devuelve303a/ingresar. ADMINISTRADOR obtiene200conCSS en panel,categorías,eventos,reservas; POST categorías con CSRF inválido devuelve403con nueva vista sin ejecutar edición. Visitante405/404conCSS y registro sinCSRF403también correctos. Ambas sesiones propias cerradas; sesión Firefox del usuario intacta. Sin crear reservas, cambiar eventos/categorías o sembrar datos. Registro storage/dev36-http-check/resultados.json, sin contraseñas,cookies o tokens.
+
+Pruebas sobre HTTP real del destino actualizado complementan sintaxis PHP8.3 y ensayo aislado previo; no sustituyen suite completa PHP8.4/MySQL ni inspección visual Firefox. Bloqueo de ticket traslogout queda acreditado por HTTP, pendiente presentación Firefox si se exige evidencia de navegador. Próximas comprobaciones humanas Firefox: inicio y rechazo al200%, selección/cancelación de fechas y Tab/Shift+Tab,limpiar filtros y panel administrador. Seguridad residual, aceptación de paquete dev.36,PDF final y Windows siguen abiertos. No repetir instalación/persistencia Linux ya aprobadas.
+
+
+## Dev.36: recorrido en navegador integrado solicitado por el usuario
+
+9 de octubre de 2026. El usuario solicita efectuar el recorrido en el navegador disponible. IAB8086: búsqueda Encuentro devuelve un resultado; Limpiar filtros recupera cuatro eventos y vacía búsqueda. Tab desde búsqueda lleva a categoría con contorno solid; Shift+Tab vuelve a búsqueda. Campo Desde acepta2026-10-15 y se borra; calendario nativo abierto mediante su botón y cerrado conEscape, fecha permanecevacía. No se certifica selección de día mediante celda ni recorrido completo de teclado. Ctrl+plus no modifica innerWidth1280/devicePixelRatio1: no se acredita zoom nativo200%, ni se sustituye por viewport.
+
+Prueba de adaptación mediante viewport390,640,1280×900: inicio,catálogo,ingreso (redirección desde/admin como visitante) y error405. Doce mediciones sin ancho de documento superior al viewport, CSS presente. Con cuentaUSUARIO se revisó rechazo/admin y captura390×844 sin desbordamiento; con ADMINISTRADOR se revisaron panel,categorías,eventos,reservas a390, todas sin desbordamiento de página. Capturas completas de catálogo,rechazo y panel revisadas visualmente. El nombre admin-390.png del primer recorrido corresponde al ingreso tras redirección, no al rechazo; denegado-390.png sí muestra403.
+
+Ambas sesiones de prueba cerradas desde botón; viewport restaurado y pestaña temporal cerrada. Sin creación/cancelación de reservas ni edición administrativa. Evidencia,mediciones y huellas en storage/dev36-browser-check. Solo documentación; sin nuevas suites ni incremento funcional. Firefox mantiene la evidencia humana previa y sus pendientes específicos; no sumar IAB como si fuera Firefox. Windows y seguridad residual siguen abiertos.
+
+
+## Criterio de entrega: diseño adaptable, zoom opcional
+
+9 de octubre de 2026. El usuario indica que solo requiere diseño responsive y descarta zoom200% como condición de cierre. Es una decisión de QA propia, no una exigencia del PDF; no se cambia ningún requisito académico. C-06 y guía Firefox actualizados; registros históricos de intentos y capturas se conservan. Se mantiene móvil/tableta/escritorio y compatibilidad Chrome/Firefox. IAB dev.36 acredita los tamaños y recorridos registrados; no convierte automáticamente pruebas IAB en Firefox.
+
+Siguiente prioridad técnica: cerrar evaluación de seguridad residual con sus límites y verificar integración de los cambios dev.35/36 en el entorno de pruebas aislado, sin repetir instalación/persistencia Linux anteriores. Después elegir y preparar referencia/paquete/PDF/publicación coherentes. Windows permanece último ensayo de plataforma; defensa y comprensión humanas pendientes. No marcar estable ni aceptar riesgos en nombre del usuario. Solo cambios documentales; diff --check correcto.
+
+
+## Dev.37: revisión de experiencia y perfil
+
+9 de octubre de 2026. Usuario autoriza pulir toda la experiencia y continuar seguridad/entrega con Windows al final. Rama codex/b07-experiencia-final. Registro/ingreso con ojos independientes y accesibles; login alinicio; navegación compartida por estado/rol; mensaje provisional retirado; cuenta convertida en perfil con edición real del nombre,correo conservado,accesos a reservas y logout. POST/cuentalimitado por CSRF e identidad de sesión, UPDATE preparado y validación de nombre reutilizada del registro. No cambio de correo/clave/rol ni migraciones. Transiciones cortas,respeto reduced-motion y singular/plural corregidos.
+
+PHPCLI8.3: sintaxis completa,23 controles registro/CSRF y7ErrorPage aprobados. Node --check ui.js correcto. Vistas renderizadas por PHP con fixtures ficticios y revisadas IAB a390/768/1280:12 mediciones sin desbordamiento. Dos ojos probados por separado,tipo yaria-pressed correctos; muestra de contraseña retirada antes de capturar. Evidencia storage/dev37-preview; perfil/escrituras/inicio autenticado son vistas previas,no integración. Pruebas HTTP/MySQL ampliadas y helper storage/dev37-review/verify-linux.sh preparado para integración efímera y actualización solo web8086. Docker sin acceso desde esta sesión; ejecución real y aceptación dev.37 pendientes. Instalación8086 conserva dev.36 hasta que termine el helper.
+
+REVISION-EXPERIENCIA documenta alcance,decisiones,pruebas ypendientes. Estado no estable; no atribuir capturas dev.36 a nuevas vistas. Próximo paso necesario: terminal del usuario para helper; después validar autónomamente la instalaciónactualizada por HTTP/navegador,conservar reservas y revisar nombre guardado. Seguridad residual,publicación/paquete/PDF final yWindows permanecen abiertos.
+
+
+## Dev.37: primer ensayo detenido por expectativa antigua
+
+9 de octubre de 2026. Helper ejecutado por usuario sobre d8829a7,exit1. Integración alcanza159 comprobaciones correctas y falla en reservas administrativas filtradas porque esperaba Usuario HTTP después de que el propio caso de perfil guardó Usuario Actualizado. Expectativa corregida al nombre actualizado, sin relajar código403,validaciones o filtros. Comprobaciones previas incluyen persistencia del nuevo nombre y conservación de correo/rol. No se ejecutó actualización de web8086 debido a set-e; conserva dev.36 y sus datos. Primeros registros conservados íntegros en storage/dev37-review/primer-intento. Sintaxis de prueba corregida y diff --check correctos; reejecución MySQL pendiente. Sin cambio funcional ni nueva versión.
+
+
+## Dev.37: integración y recorrido real aprobados
+
+9 de octubre de 2026. Segundo helper sobre ab710a671d40024bf84cc46026af4c4cd54a948d,exit0:225 comprobaciones MySQL/HTTP,sintaxis PHP8.4,23registro/CSRF y7ErrorPage aprobados,salud correcta. Actualizada únicamente web8086; DB yvolúmenes conservados. Registro storage/dev37-review/verify.log ystatus.txt.
+
+IAB sobre web actualizada: ojos independientes cambian tipo/estado; loginUSUARIO yADMINISTRADOR redirigen alinicio con navegación porrol. Perfil guarda nombre ficticio temporal; logout/nuevoingreso conservan cambio; nombre original Usuario de prueba restaurado yconfirmado. Historial conserva reservaCANCELADA de2entradas y corrige singular1entrada. Perfil a390/768/1280 sin desbordamiento. Administrador accede alpanel desde perfil. Ambas sesiones cerradas,viewport restaurado,pestaña temporal cerrada. No se crearon/cancelaron reservas ni editaron eventos. Capturas,medidas yresultado en storage/dev37-live.
+
+Superados los pendientes de integración y guardado dev.37 del helper. No equivale a nueva instalación limpia/ensayoWindows,ni certificaFirefoxporIAB. Seguridad residual,publicaciónactualdev.30,paquete/PDF con nueva referencia ydefensa humana conservan sus pendientes. No versión estable.
+
+
+## Dev.37: corte del documento técnico
+
+9 de octubre de 2026. Documento técnico actualizado a dev.37: 16 páginas, portada con los nombres confirmados, experiencia de usuario y evidencia de 225 controles de integración. Generador y contenido sincronizados; PDF renderizado y revisado visualmente, texto dentro de página y referencias comprobadas. Archivo output/pdf/EVENTIFY_Documento_Tecnico_Borrador.pdf. Se conserva como borrador mientras continúen los pendientes de entrega; no incorpora credenciales. Sin cambios de aplicación desde ab710a6 ni repetición de pruebas Linux.
+
+
+## Dev.37: paquete y respaldo GitHub
+
+Referencia exportada 7c3a3e28435566349efcd4b2a66eace89de978d2, misma aplicación verificada en ab710a6 y documentos posteriores. Rama y etiqueta anotada v0.1.0-dev.37 confirmadas con ls-remote; etiqueta resuelta al mismo commit. ZIP de213 archivos en output/entrega/eventify-desarrollo-7c3a3e284355: CRC, inventario y SHA-256 por archivo comprobados. ZIP SHA-256 9aac254df152d293013daa6cf714225772c30fd043e9ed23e80fa6d0faadad89. PDF acompañado con SHA-256 db2ccad78b39bc4064949e48c59c64dea8db6109241aa0fbc3671ae91a2af316. Sin secretos, base de datos ni credenciales locales. No se afirma instalación nueva de este ZIP ni Windows; Linux anterior conserva su evidencia.
+
+Reconsulta oficial dirigida: libxml26653 y Apache63292 siguen vulnerables en Trixie; sin parche compatible identificado en esas tablas. AVISOS-XML registra fuentes y límites. Sin nuevo escaneo, exclusiones ni aceptación automática del riesgo. Publicación conserva dev.30; Windows queda último y defensa humana pendiente. Esta actualización documental no mueve la etiqueta ni cambia el paquete ya exportado.
+
+
+## Publicación dev.37 y comprobaciones posteriores
+
+9 de octubre de 2026. Usuario autoriza actualizar la publicación y continuar seguridad. Aiven MySQL Free estaba Powered off; el servicio existente se reactivó y pasó por Rebuilding hasta Running, sin cambio de plan, credenciales, permisos o datos. El endpoint DNS no resolvía mientras estaba apagado. Antes del deploy se guardaron huellas privadas de diez tablas.
+
+Render Free desplegó manualmente el commit exacto de la etiqueta dev.37 y del paquete exportado, 7c3a3e28435566349efcd4b2a66eace89de978d2: dep-db4n8cbncjis73c7m4t0, Live,34,8s. Sin diferencias en migraciones/configuración/entrypoint respecto a dev.30. Snapshot posterior, antes de logins y clima, idéntico en las diez tablas. No se sembró demostración ni se hicieron escrituras de negocio.
+
+Seguridad pública:81 controles HTTPS de dos usuarios y31 del administrador aprobados. Login al inicio, cookie/sesión/CSRF, restricciones, tickets ajenos, páginas administrativas con estilos y POST inválidos de categoría/perfil comprobados. Sesiones propias cerradas. IAB público: inicio sin mensaje provisional, catálogo, registro y ojos independientes correctos. Capturas/registros/huellas en storage/public-dev37; pestaña pública conservada para el usuario.
+
+Clima: consulta del detalle recibió HTTP429 del proveedor, acreditado por diagnóstico redactado de Render. Mostró aviso y mantuvo el acceso a reserva; no se repitieron consultas para eludir el límite. No se afirma pronóstico útil nuevo en esta versión: la respuesta útil anterior pertenece a dev.30. El contador API puede cambiar después del snapshot por esta consulta esperada.
+
+Rendimiento dirigido: Eventos local HTTP7ms inicial/4ms siguiente; navegación IAB local TTFB3,2ms y carga101,9ms. IAB público activo: TTFB504,2ms, DOM1057,9ms y carga1060,2ms. Muestras únicas, no percentiles ni arranque en frío de Docker/Render ni medición de Firefox del usuario. No se reprodujo lentitud local. Plan gratuito puede dormir y Aiven puede apagarse por inactividad; revalidar ambos antes de evaluación.
+
+Seguridad de aplicación comprobada en este alcance, dependencia XML aún abierta. AVISOS-XML registra digest oficial sin cambios, estado Debian y alcance del parche nativo. No existe evidencia de corrección de libxml2 en la imagen entregada; no se oculta ni se marca estable. Windows y defensa humana siguen pendientes. Rama documental codex/b08-publicacion-dev37; etiqueta y paquete dev.37 no se mueven.
+
+
+## Documento y reconsulta pública: dev.37
+
+9 de octubre de 2026. PDF técnico sincronizado con la publicación dev.37, sus 112 controles HTTPS, conservación de diez tablas y límites de los servicios gratuitos. Se mantienen 16 páginas: render completo revisado visualmente, nombres y cifras comprobados, caracteres dentro de los límites de página. Consulta Packagist de las dos bibliotecas fijadas: cero avisos; no equivale a corregir libxml2 ni toda la imagen.
+
+Detalle público consultado cerca del vencimiento de la caché negativa y reintento posterior mediante el botón: ambos mostraron indisponibilidad, con ingreso para reservar accesible. No se repiten llamadas para eludir la cuota. El diagnóstico HTTP429 registrado anteriormente se conserva; el texto del último reintento por sí solo no acredita su código upstream. Evidencia privada storage/public-dev37/weather-retry.json y weather-retry.png.
+
+Solo documentación desde 74f1029; no se repite Linux ni se cambia aplicación, base, credenciales o red. Preparar paquete desde el commit documental resultante y acompañarlo con este PDF; conservar el ZIP anterior y la etiqueta dev.37 intactos. Continúan abiertos libxml2 y los restantes límites de la revisión de imágenes, compatibilidad Firefox pendiente, instalación Windows y defensa humana. No versión estable.
+
+
+Paquete documental actualizado: referencia 44bd3a9a936005db52bda8de65c90037803ae335, push confirmado en codex/b08-publicacion-dev37. Directorio output/entrega/eventify-desarrollo-44bd3a9a9360; ZIP de213 archivos, CRC e inventario/huellas individuales correctos, SHA256 d9494a9798e542ab3a47e3df9181ac7df01fbd8262a36b5df92b41055e138bf4. PDF de16 páginas acompañado, SHA256 a0189715ec1c8337738762718f628fc260ad8fb20021e57ea8a7522f4326b361. Código de aplicación,configuración,migraciones,dependencias e imágenes declaradas sin diferencias respecto a la publicación 7c3a3e2. Esto acredita correspondencia de fuente, no instalación nueva de este ZIP. El commit posterior solo registra estos resultados; no obliga a reexportar ni a mover etiqueta o despliegue.

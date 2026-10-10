@@ -6,7 +6,7 @@ Corte: 9 de octubre de 2026, dev.37; experiencia y perfil comprobados con 225 co
 
 - Linux: ZIP dev.33 exacto en ruta con espacios y puerto8086; ambos roles, reserva, ticket/QR, cancelación e historial. Recreación posterior conserva diez tablas/cinco archivos, ocho reservas y ocho tickets. Restauración QA aislada comprobada en su referencia anterior.
 - Aplicación: 219 comprobaciones MySQL/HTTP sobre imagen MySQL dev.33 corregida; imágenes PHP local/pública dev.32 con sintaxis,266 unidades y QR aprobados. Escaneo confirma parches xz/liblzma y gawk; conserva otros avisos.
-- Publicación actual dev.30: actualización Render comprobada, diez tablas conservadas,81 controles HTTPS posteriores y pronóstico útil. Flujos de reserva/admin y reinicio también tienen evidencia en la versión pública anterior; no atribuir esos recorridos a una ejecución nueva.
+- Publicación actual dev.37: despliegue Render comprobado, diez tablas conservadas,81 controles HTTPS de usuarios y31 del administrador aprobados. Pronóstico indisponible con HTTP429 y reserva accesible; última respuesta útil real corresponde a dev.30. Flujos de reserva y reinicio anteriores conservan su propia referencia.
 - Experiencia dev.37: ojos independientes, login al inicio, perfil con nombre persistente y navegación por rol comprobados en8086. Nombre ficticio restaurado y sesiones cerradas; sin nuevas reservas. PDF de16 páginas actualizado y revisado.
 - Interfaz: recorridos Chrome/IAB y tamaños registrados; registro a 390 px con Tab, foco visible y validación vacía. Esto no reemplaza la matriz de Firefox ni el registro válido completo.
 
