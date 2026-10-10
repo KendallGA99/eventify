@@ -250,3 +250,11 @@ Exportación documental dev.41 inicial bfe15dd:229 archivos, CRC/inventario/huel
 
 
 Exportación documental dev.41 final: fuente 636ef74f748afc0933687c09620402c32a0d3fae, ZIP output/entrega/eventify-desarrollo-636ef74f748a/eventify-source.zip, 229 archivos, SHA256 618552996894d5ce5ca0612a305a5c7e7e9da9b3916b02af6cc0b34fdfc6c18a. CRC, inventario y cada huella individual correctos; matriz C-09 coherente. PDF18 páginas adjunto, SHA256 d4e5534d8163722e29da2dfa4dd9434faac52698cbff079371b1aa38b2dbe173. entrega-manifest.json identifica ambos. Paquetes anteriores conservados; no se afirma instalación nueva de este ZIP ni Windows.
+
+## Seguimiento del clima público dev.41 — 10oct11:26CST
+
+La captura del usuario muestra un fallo real del pronóstico en el detalle público. Se verificó el registro de Render del deploy dev.41: `eventify_weather reason=http_status status=429` a las11:15:32 y11:26:25CST. El segundo registro corresponde a un único reintento desde el botón de la página, después de los diez minutos de caché negativa; volvió a mostrarse el aviso sin bloquear la reserva. No se vació la caché, reinició el presupuesto ni desactivó TLS.
+
+En el contenedor web local dev.41, el cliente real obtuvo una respuesta con16 fechas. `allow_url_fopen=1` y certificados predeterminados de OpenSSL disponibles. Esto confirma que el runtime corregido puede consultar al proveedor; no prueba disponibilidad del pronóstico desde Render. El HTTP429 confirma rechazo por límite del proveedor; una IP compartida del alojamiento es una posibilidad, no una causa demostrada. Open-Meteo documenta límites y ausencia de garantía de disponibilidad en su plan gratuito: https://open-meteo.com/en/pricing.
+
+RF-15 mantiene la evidencia anterior de integración útil y el manejo del error, pero la consulta pública actual sigue indisponible. No registrar este incidente como resuelto ni atribuirlo a Windows/Linux: ocurre en la conexión desde el servicio público. No hubo cambios de código, dependencias, configuración o datos de negocio en esta revisión.
