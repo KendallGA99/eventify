@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.42 — Respaldo del pronóstico (B07/RF-15)
+
+- Añade MET Norway como proveedor de respaldo cuando la consulta a Open-Meteo falla. Destinos HTTPS fijos, TLS verificado, respuestas acotadas, caché por ubicación y validación de datos.
+- Distingue el rango de muestras del respaldo de los extremos diarios de Open-Meteo. No inventa probabilidad de lluvia cuando no está disponible.
+- Conserva las reservas y el aviso de indisponibilidad cuando ambos proveedores fallan; pruebas y publicación se registran en ESTADO.
+
 ## 0.1.0-dev.41 — Corrección de dependencias nativas (B07/SEG-09)
 
 - Sustituye la base web por Alpine 3.24.2 con Apache 2.4.69, PHP 8.4.26 y bibliotecas corregidas. Conserva PHP/MySQL, las rutas y UID/GID 33 del almacenamiento.

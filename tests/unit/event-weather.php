@@ -72,6 +72,53 @@ try {
     $key = hash('sha256', '9.9281|-84.0907|2026-10-10');
     file_put_contents($root . '/' . $key . '.json', '{incorrecto');
     $assert($service->forEvent($event)['status'] === 'available' && $calls === 2);
+    // Respaldo: las muestras UTC se agrupan por la fecha de Costa Rica.
+    $met = ['type' => 'Feature', 'properties' => ['meta' => ['units' => ['air_temperature' => 'celsius']], 'timeseries' => []]];
+    foreach ([6 => 20, 12 => 23, 18 => 27, 24 => 22] as $hour => $temperature) {
+        $utc = (new DateTimeImmutable('2026-10-10 00:00:00', new DateTimeZone('UTC')))->modify("+$hour hours");
+        $met['properties']['timeseries'][] = ['time' => $utc->format('Y-m-d\TH:i:s\Z'), 'data' => ['instant' => ['details' => ['air_temperature' => $temperature]]]];
+    }
+    $metResult = EventWeather::extract($met, '2026-10-10');
+    $assert($metResult['minimum'] === 20 && $metResult['maximum'] === 27 && $metResult['source'] === 'met_norway');
+    $assert($metResult['rain_probability'] === null);
+    $assert(EventWeather::extract($met, '2026-10-11') === null);
+    $partial = $met;
+    array_pop($partial['properties']['timeseries']);
+    $assert(EventWeather::extract($partial, '2026-10-10') === null);
+    $invalid = $met;
+    $invalid['properties']['meta']['units']['air_temperature'] = 'fahrenheit';
+    $assert(EventWeather::extract($invalid, '2026-10-10') === null);
+    foreach ([null, '<script>', INF, 71] as $value) {
+        $invalid = $met;
+        $invalid['properties']['timeseries'][0]['data']['instant']['details']['air_temperature'] = $value;
+        $assert(EventWeather::extract($invalid, '2026-10-10') === null);
+    }
+    $invalid = $met;
+    $invalid['properties']['timeseries'][] = $invalid['properties']['timeseries'][0];
+    $assert(EventWeather::extract($invalid, '2026-10-10') === null);
+    $invalid = $met;
+    $invalid['properties']['timeseries'][0]['time'] = '2026-02-30T06:00:00Z';
+    $assert(EventWeather::extract($invalid, '2026-10-10') === null);
+    $metCache = $root . '/met-client';
+    mkdir($metCache, 0700, true);
+    $query = http_build_query(['lat' => 9.9281, 'lon' => -84.0907]);
+    $metCachePath = $metCache . '/' . hash('sha256', $query) . '.json';
+    file_put_contents($metCachePath, json_encode(['expires' => time() + 3600, 'modified' => '', 'data' => $met]));
+    $cachedMetClient = new Eventify\Infrastructure\MetWeatherClient($metCache);
+    $assert($cachedMetClient->fetch(9.9281, -84.0907) === $met);
+    $assert($cachedMetClient->fetch(9.92811, -84.09071) === $met);
+    $backupCalls = 0;
+    $backup = static function () use (&$backupCalls, $met): array { ++$backupCalls; return $met; };
+    $fallback = new Eventify\Infrastructure\WeatherFallbackClient($offline, $backup);
+    $metService = new EventWeather($root . '/met', $fallback->fetch(...), $now);
+    $assert($metService->forEvent($event)['forecast'] === $metResult && $backupCalls === 1);
+    $assert($metService->forEvent($event)['forecast'] === $metResult && $backupCalls === 1);
+    $assert((new EventWeather($root . '/met', $offline, $now->modify('+61 minutes')))->forEvent($event)['status'] === 'stale');
+    $assert((new EventWeather($root . '/met', $offline, $now->modify('+7 hours')))->forEvent($event)['status'] === 'unavailable');
+    $primary = new Eventify\Infrastructure\WeatherFallbackClient($fetch, $backup);
+    $assert($primary->fetch(9.9281, -84.0907) === $response && $backupCalls === 1);
+    $bothOffline = new EventWeather($root . '/both-offline', (new Eventify\Infrastructure\WeatherFallbackClient($offline, $offline))->fetch(...), $now);
+    $assert($bothOffline->forEvent($event)['status'] === 'unavailable');
     echo "Clima: $checks comprobaciones correctas.\n";
 } finally {
     if (is_dir($root)) {

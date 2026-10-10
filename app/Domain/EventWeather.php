@@ -6,6 +6,8 @@ use Closure;
 use DateTimeImmutable;
 use DateTimeZone;
 use Eventify\Infrastructure\WeatherClient;
+use Eventify\Infrastructure\MetWeatherClient;
+use Eventify\Infrastructure\WeatherFallbackClient;
 use Throwable;
 
 final class EventWeather
@@ -13,7 +15,10 @@ final class EventWeather
     private readonly Closure $fetch;
     public function __construct(private readonly string $directory, ?Closure $fetch = null, private readonly ?DateTimeImmutable $clock = null, private readonly bool $enabled = true, private readonly ?Closure $budget = null)
     {
-        $this->fetch = $fetch ?? (new WeatherClient())->fetch(...);
+        $this->fetch = $fetch ?? (new WeatherFallbackClient(
+            (new WeatherClient())->fetch(...),
+            (new MetWeatherClient($directory . '/met-norway'))->fetch(...),
+        ))->fetch(...);
     }
 
     public function forEvent(array $event): array
@@ -62,6 +67,9 @@ final class EventWeather
 
     public static function extract(array $response, string $date): ?array
     {
+        if (($response['type'] ?? '') === 'Feature') {
+            return MetForecast::extract($response, $date);
+        }
         if (($response['timezone'] ?? '') !== 'America/Costa_Rica'
             || ($response['daily_units']['temperature_2m_max'] ?? '') !== '°C'
             || ($response['daily_units']['temperature_2m_min'] ?? '') !== '°C'
@@ -106,6 +114,7 @@ final class EventWeather
         if ($data !== null) {
             foreach (['minimum' => [-100, 70], 'maximum' => [-100, 70], 'rain_probability' => [0, 100]] as $field => [$min, $max]) {
                 $value = $data[$field] ?? null;
+                if ($field === 'rain_probability' && $value === null && ($data['source'] ?? '') === 'met_norway') { continue; }
                 if ((!is_int($value) && !is_float($value)) || !is_finite((float) $value) || $value < $min || $value > $max) { return null; }
             }
         }

@@ -3,7 +3,7 @@
 
 Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Código, runtime local y publicación: dev.41. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
-Este documento explica cómo funciona el sistema y qué se ha comprobado. Dev.41 corrige las dependencias nativas de las imágenes web y MySQL, con cero avisos en un escaneo actualizado y sin exclusiones. Conserva PHP 8.4/MySQL 8.4, la interfaz y las reglas de negocio. Pasaron 234 controles MySQL/HTTP, unidades, arranque público, TLS positivo/negativo y recreación. La actualización local conservó diez tablas y ocho reservas/tickets; Render sirve el mismo commit y conservó sus diez tablas. La instalación limpia Linux original corresponde al ZIP dev.33. Windows, la matriz restante de Firefox y la defensa humana siguen pendientes. El pronóstico mantiene manejo de indisponibilidad; depende de Open-Meteo.
+Este documento explica cómo funciona el sistema y qué se ha comprobado. Dev.41 corrige las dependencias nativas de las imágenes web y MySQL, con cero avisos en un escaneo actualizado y sin exclusiones. Conserva PHP 8.4/MySQL 8.4, la interfaz y las reglas de negocio. Pasaron 234 controles MySQL/HTTP, unidades, arranque público, TLS positivo/negativo y recreación. La actualización local conservó diez tablas y ocho reservas/tickets; Render sirve el mismo commit y conservó sus diez tablas. La instalación limpia Linux original corresponde al ZIP dev.33. Windows, la matriz restante de Firefox y la defensa humana siguen pendientes. El pronóstico mantiene manejo de indisponibilidad; depende de proveedores externos; dev.42 añade MET Norway como respaldo.
 
 ## 1. Descripción y resultado esperado
 
@@ -375,3 +375,9 @@ MySQL conserva servidor 8.4.11 y clientes oficiales. Su OpenSSL se actualiza a 3
 Las tres imágenes finales se escanearon con Trivy 0.75.0 y base del 10 de octubre a las 12:33:35 UTC: cero avisos, sin exclusiones. Cada reporte se vinculó a la configuración OCI de su imagen. Pasaron 234 controles MySQL/HTTP, unidades, TLS válido, rechazo de CA/hostname incorrectos y servidor sin TLS, recreación y restricción de privilegios en cinco trabajadores Apache. Cero avisos conocidos no garantiza ausencia de vulnerabilidades futuras, ni audita el host o el proveedor administrado.
 
 Código probado y etiqueta v0.1.0-dev.41: 28c73cdd63386527ad4a07e03a8c1385198d9bf7. Actualización local 8086 saludable y diez tablas idénticas, ocho reservas/tickets conservados. Recorrido real: login al inicio, catálogo, historial, ticket/QR, perfil y logout. Render Free publicó ese mismo commit, dep-db5744rrjlhs73clgpj0, Live el 10 de octubre a las 11:13:25 CST; diez tablas Aiven conservadas y 81 controles HTTPS de usuarios y 36 de administración aprobados. Se mantienen respaldos y versiones anteriores. Windows conserva su prueba real pendiente.
+
+### Respaldo del clima dev.42
+
+Open-Meteo continúa como proveedor principal. Ante un fallo de su consulta, se consulta MET Norway desde PHP, con destino HTTPS fijo y certificado verificado. Es gratuito, sin clave ni cuenta, con datos CC BY4.0 y atribución visible. Conserva respuesta por ubicación al menos una hora, respeta Expires y revalida con If-Modified-Since. No se envían datos de cuentas o ubicación del visitante.
+
+El respaldo cubre hasta nueve días. El rango mostrado corresponde a muestras horarias o cada seis horas de la fecha en Costa Rica, con cobertura validada; no equivale a extremos exactos diarios. No se muestra una probabilidad de lluvia que el respaldo no entregue. Si ambos proveedores fallan o no cubren la fecha, el aviso permite continuar con la reserva. La disponibilidad no está garantizada. Resultados concretos y versión pública se consultan en ESTADO.md.
