@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 9 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.37**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
+Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.38**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
 
 ## Alcance y autorizaciones
 
@@ -14,7 +14,7 @@ Corte: 9 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.37**, toda
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-mysql-minimal`, desde `8554ef4`. Ensayo de imagen derivada, sin cambiar aplicación o imagen de entrega. Paquete conservado en su referencia documental. |
+| Rama actual | `codex/b07-mysql-minimal`, desde `8554ef4`. Receta MySQL reducida dev.38; verificación final en curso. Aplicación pública y paquete dev.37 conservados. |
 | Aplicación comprobada | `ab710a671d40024bf84cc46026af4c4cd54a948d`, dev.37. Los cambios documentales posteriores no modifican su código. |
 | Etiqueta conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `7c3a3e28435566349efcd4b2a66eace89de978d2`, dev.37. |
@@ -51,7 +51,7 @@ Registro, catálogo/AJAX, respuesta perdida de reserva, errores de clima y admin
 ## Seguridad: estado y límites
 
 - Dependencias PHP fijadas: consulta Packagist de9oct sin avisos para las dos bibliotecas. jQuery local con huella/licencia comprobadas. Esto no audita el sistema operativo.
-- PHP/Apache conserva424 filas:1 crítica,91 altas,162 medias,166 bajas y4 sin clasificación;156 identificadores únicos. Base Trivy del8oct19:05UTC. MySQL conserva66 filas. Conteos de escaneos anteriores, sin exclusiones; no presentarlos como un escaneo nuevo.
+- PHP/Apache conserva424 filas:1 crítica,91 altas,162 medias,166 bajas y4 sin clasificación;156 identificadores únicos. Base Trivy del8oct19:05UTC. MySQL dev.33 conserva66 filas; la candidata sin Shell conserva47, con comparación de la misma base, sin exclusiones. La imagen final dev.38 requiere su propia comprobación. Conteos de escaneos anteriores, sin exclusiones; no presentarlos como un escaneo nuevo.
 - Libxml2/CVE-2026-6653 sigue vulnerable en Trixie según Debian. Digest PHP oficial sin cambios en la revisión previa. Parche nativo examinado, no instalado: modifica parser y estructuras públicas; exige pruebas de compatibilidad que las unidades de EVENTIFY no cubren.
 - Apache/CVE-2026-63292 también sigue vulnerable en el paquete; su módulo mod_vhost_alias no estaba cargado en las imágenes examinadas. Esto delimita exposición, no corrige el paquete.
 - Sin entrada XML directa encontrada en la aplicación; clima consume JSON limitado y QR genera SVG numérico. No descarta consumidores nativos. Gosu tiene análisis de funciones propio; Python/mysqlsh, kernel/host y demás avisos conservan sus límites.
@@ -69,16 +69,16 @@ B01/B02 comprobados; B03–B06 implementados con evidencia por flujo. B07 sigue 
 
 ## Operación y conservación
 
-- Docker29.1.3/Compose2.40.3 en Linux; la sesión no tiene acceso al socket ni sudo no interactivo. Operaciones Docker necesarias requieren terminal del usuario; no modificar grupos/socket/sudoers.
+- Docker29.1.3/Compose2.40.3 en Linux. El usuario habilitó permisos temporales: sudo -n id devuelve root y sudo -n docker info funciona. Usar sudo -n sin contraseñas; no modificar grupos/socket/sudoers.
 - Configuración, cuentas ficticias, CA, snapshots y logs en storage/backups ignorados por Git. Nunca imprimirlos ni incluirlos en ZIP/imágenes. Cuentas locales8086: `storage/clean-20261009035638-598f411d/demo-credentials.json`.
 - Conservar destinos anteriores8080–8085 y todos sus volúmenes. Su disponibilidad actual no se presume. No borrar datos para resolver fallos ni reutilizar puertos deteniendo servicios ajenos.
 - Rollback Git recupera código, no MySQL; revisar migraciones y respaldos antes de actualizar. Dev.37 no cambió esquema respecto a la publicación anterior.
-- En este corte solo se ordenó documentación: estado anterior archivado íntegro, resumen y cierre sincronizados. Sin pruebas Linux repetidas ni cambios de aplicación, bases, permisos o servicios.
+- En este corte se ensaya y prepara la reducción de MySQL. No se recrearon las instalaciones existentes ni se repitió la aceptación Linux; no se cambió Aiven o la publicación dev.37.
 
-## Siguiente ensayo: MySQL sin Shell
+## MySQL sin Shell: dev.38
 
-Se prepara una candidata para retirar mysql-shell y sus bibliotecas Python, sin modificar Dockerfile.mysql ni los destinos existentes. La base RPM exportada no muestra otros paquetes que requieran sus capacidades; el entrypoint solo lo menciona en un comentario. Es una posibilidad de reducción de superficie, no una corrección acreditada de los19 avisos Python.
+Candidata `storage/mysql-minimal-zntFADgx`: integración225, respaldo/restauración de dos filas ficticias, inventario RPM y seis huellas conservadas correctos; solo desaparece mysql-shell. TLS `storage/public-tls-Qsvpge91` y rechazo sin TLS `storage/public-no-tls-qG1NpFx4` terminaron exit0. Escaneo Trivy0.75.0 con la base almacenada del8oct:66→47 filas, exactamente19 de Python retiradas, ninguna añadida. Restantes:1CRITICAL/21HIGH/22MEDIUM/2LOW/1UNKNOWN. Esto reduce superficie, no corrige libxml2, gosu ni el host.
 
-`scripts/test-mysql-minimal-linux.sh` construye una derivada aislada, exige RPM sin dependencias forzadas, compara inventario y huellas de las herramientas conservadas, ejecuta integración y respaldo/restauración ficticios y exporta la imagen. Bash-n y Python embebido correctos; configuración generada sin puertos/montajes del usuario, con red interna/tmpfs y permisos privados comprobados. No construcción ni pruebas de runtime todavía. Docker y sudo no interactivo reconsultados: ambos sin acceso.
+El primer intento `storage/mysql-minimal-ohVuHbye` falló: RPM dejó cachés Python sin propietario. La receta ahora comprueba propiedad antes de eliminar solo el directorio mysqlsh dentro de la imagen. El intento fallido conserva evidencia y no afectó bases del usuario.
 
-Próxima intervención necesaria: ejecutar el ensayo en la terminal del usuario. Después revisar resultados, escanear la candidata y comprobar TLS antes de considerar su incorporación. [Alcance y criterios](ENSAYO-MYSQL-MINIMAL.md). Windows queda al final; Firefox conserva la comprobación humana pendiente. No se repitieron pruebas sobre las instalaciones Linux existentes.
+Dockerfile.mysql incorpora la receta; la etapa mysql-with-shell permite repetir la comparación. VERSION dev.38, sin cambios de aplicación/esquema. La imagen final se construye y verifica antes de elegir un paquete nuevo. Publicación y paquete dev.37 siguen vigentes; no se cambia su etiqueta. [Detalle](ENSAYO-MYSQL-MINIMAL.md).

@@ -21,6 +21,11 @@ python3 scripts/make-tls-fixture.py "$EVENTIFY_NO_TLS_RUN/certs"
 } > "$EVENTIFY_NO_TLS_RUN/fixture.env"
 unset APP_SECRET MYSQL_PASSWORD MYSQL_ROOT_PASSWORD EVENTIFY_TLS_DIR COMPOSE_FILE COMPOSE_PROJECT_NAME
 EVENTIFY_NO_TLS_COMPOSE=("${EVENTIFY_DOCKER[@]}" compose --env-file "$EVENTIFY_NO_TLS_RUN/fixture.env" -p "$EVENTIFY_NO_TLS_PROJECT" -f "$EVENTIFY_ROOT/docker-compose.no-tls-test.yml")
+if [[ -n "${EVENTIFY_MYSQL_TEST_IMAGE:-}" ]]; then
+    "${EVENTIFY_NO_TLS_COMPOSE[@]}" config --format json > "$EVENTIFY_NO_TLS_RUN/resolved.json"
+    python3 scripts/use-mysql-test-image.py "$EVENTIFY_NO_TLS_RUN/resolved.json" "$EVENTIFY_NO_TLS_RUN/candidate.json" "$EVENTIFY_MYSQL_TEST_IMAGE"
+    EVENTIFY_NO_TLS_COMPOSE=("${EVENTIFY_DOCKER[@]}" compose --env-file "$EVENTIFY_NO_TLS_RUN/fixture.env" -p "$EVENTIFY_NO_TLS_PROJECT" -f "$EVENTIFY_NO_TLS_RUN/candidate.json")
+fi
 finish_no_tls() {
     local result=$?
     trap - EXIT

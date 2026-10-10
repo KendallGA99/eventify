@@ -1,6 +1,30 @@
-FROM mysql:8.4@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242
+FROM mysql:8.4@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242 AS mysql-with-shell
 
 # Oracle corrige tres avisos de gawk sin cambiar la versión del servidor MySQL.
 RUN microdnf install -y gawk-5.1.0-6.el9_8.1 \
     && test "$(rpm -q --qf '%{VERSION}-%{RELEASE}' gawk)" = '5.1.0-6.el9_8.1' \
     && microdnf clean all
+
+FROM mysql-with-shell
+
+# La aplicación usa PDO y los clientes SQL; Shell y su Python no son necesarios.
+RUN set -eu; \
+    rpm -q mysql-shell; \
+    rpm -e --test mysql-shell; \
+    for tool in mysqld mysql mysqladmin mysqldump; do \
+        command -v "$tool"; \
+    done; \
+    sha256sum /usr/sbin/mysqld /usr/bin/mysql /usr/bin/mysqladmin /usr/bin/mysqldump /usr/local/bin/gosu /usr/local/bin/docker-entrypoint.sh > /tmp/eventify-mysql-tools.sha256; \
+    rpm -e mysql-shell; \
+    if rpm -q mysql-shell; then exit 1; fi; \
+    if [ -d /usr/lib/mysqlsh ]; then \
+        find /usr/lib/mysqlsh -exec sh -ec 'for path do if rpm -qf "$path" >/dev/null 2>&1; then echo "La carpeta conserva archivos de otro paquete; construcción rechazada." >&2; exit 1; fi; done' sh {} +; \
+        rm -rf -- /usr/lib/mysqlsh; \
+    fi; \
+    test ! -e /usr/lib/mysqlsh; \
+    test ! -e /usr/bin/mysqlsh; \
+    sha256sum -c /tmp/eventify-mysql-tools.sha256; \
+    mysqld --version; \
+    mysql --version; \
+    mysqldump --version; \
+    rm /tmp/eventify-mysql-tools.sha256

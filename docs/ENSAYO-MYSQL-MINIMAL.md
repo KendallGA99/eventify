@@ -1,6 +1,6 @@
 # Ensayo de MySQL sin el cliente Shell
 
-B07/RNF-03/SEG-09. Candidata experimental; no modifica `Dockerfile.mysql`, los Compose de entrega, VERSION ni las instalaciones existentes.
+B07/RNF-03/SEG-09. Receta incorporada en Dockerfile.mysql para dev.38 tras el ensayo aislado. No actualiza las instalaciones existentes ni el servidor administrado Aiven.
 
 ## Motivo y revisión previa
 
@@ -10,7 +10,7 @@ La [imagen oficial MySQL](https://github.com/docker-library/mysql/blob/master/8.
 
 ## Qué comprueba el ensayo
 
-1. Construye la base corregida de gawk mediante el Dockerfile.mysql existente y una derivada con nombre propio.
+1. Construye la base corregida de gawk mediante la etapa mysql-with-shell de Dockerfile.mysql y una derivada con nombre propio.
 2. Ejecuta `rpm -e --test mysql-shell` antes de retirarlo. Usa RPM sin forzar dependencias ni autoremove; si hay un conflicto, la construcción falla.
 3. Comprueba que solo desaparece mysql-shell del inventario RPM. Verifica las huellas de mysqld, mysql, mysqladmin, mysqldump, gosu y entrypoint antes y después.
 4. Comprueba ausencia del ejecutable y directorio de Shell y conserva las versiones de las herramientas SQL.
@@ -28,6 +28,13 @@ Desde la raíz del proyecto:
 bash scripts/test-mysql-minimal-linux.sh
 ```
 
-La sesión actual no tiene acceso al servicio Docker ni a sudo no interactivo; la construcción debe ejecutarse en la terminal del usuario. Bash-n, compilación del Python embebido y generación de configuración comprobados. Se verificaron nombre/imagen candidata, aislamiento, tmpfs y permisos privados del archivo generado. No se han ejecutado todavía construcción, RPM, SQL, integración ni exportación de esta candidata.
+El usuario habilitó sudo no interactivo; se verificaron identidad root y acceso Docker sin utilizar contraseñas. Las pruebas se ejecutaron de forma autónoma en proyectos efímeros.
 
-Si termina correctamente, revisar el escaneo y comprobar TLS antes de proponer incorporarla a Dockerfile.mysql. No reducir el contador por inferencia ni afirmar que quitar Shell corrige sus bibliotecas. El objetivo es eliminar un componente no utilizado del runtime. Libxml2/PHP y los avisos de gosu se revisan por separado; el ensayo no los corrige. Render/Aiven no se actualizan y los paquetes dev.37 conservan su referencia.
+## Resultados del 10 de octubre
+
+- Primer intento mysql-minimal-ohVuHbye: falló la ausencia de /usr/lib/mysqlsh porque RPM dejó cachés Python sin propietario. No se relajó el control: se añadió comprobación de propiedad de todos los restos antes de retirar ese directorio dentro de la imagen. Un archivo aún perteneciente a cualquier RPM hace fallar la construcción.
+- Candidata mysql-minimal-zntFADgx: exit0, 225 comprobaciones MySQL/HTTP, inventario RPM sin otros paquetes eliminados, seis huellas idénticas y respaldo/restauración exactos de dos filas ficticias. Servidor8.4.11 conservado.
+- public-tls-Qsvpge91: exit0; conexión verificada, rechazo de CA/nombre ajenos, arranque/HTTP y recreación. public-no-tls-qG1NpFx4: exit0; TCP disponible pero producción rechaza conexión y arranque antes de migraciones; base vacía antes/después.
+- Trivy0.75.0 con la misma DB del8oct, sin exclusiones:66→47 filas; exactamente19 retiradas de pip/pyOpenSSL/cryptography/paramiko/urllib3, ninguna añadida. Restantes1CRITICAL/21HIGH/22MEDIUM/2LOW/1UNKNOWN. Informes y comparación en storage/mysql-minimal-zntFADgx.
+
+La receta final dev.38 conserva una etapa con Shell para repetir el experimento. Su construcción y pruebas propias se registran en ESTADO al concluir; los resultados de la candidata no se atribuyen automáticamente a la imagen final. Quitar Shell elimina componentes sin uso; no corrige bibliotecas conservadas, libxml2/PHP, gosu o el host. Los proyectos de ensayo se retiraron sin tocar instalaciones existentes. Render/Aiven y el paquete dev.37 permanecen en su referencia.

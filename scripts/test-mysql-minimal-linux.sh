@@ -32,7 +32,7 @@ finish() {
 trap finish EXIT
 
 verify_candidate() {
-    "${EVENTIFY_DOCKER[@]}" build -f Dockerfile.mysql -t "$base" .
+    "${EVENTIFY_DOCKER[@]}" build -f Dockerfile.mysql --target mysql-with-shell -t "$base" .
     "${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint rpm "$base" -qa --qf '%{NAME}\n' | sort > "$record/before.txt"
     "${EVENTIFY_DOCKER[@]}" build -f docker/Dockerfile.mysql-minimal-check --build-arg "EVENTIFY_MYSQL_BASE=$base" -t "$candidate" docker
     "${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint rpm "$candidate" -qa --qf '%{NAME}\n' | sort > "$record/after.txt"

@@ -1,9 +1,10 @@
 # Historial de versiones de Eventify
 
-## Ensayo MySQL sin Shell (B07/SEG-09)
+## 0.1.0-dev.38 — MySQL sin cliente Shell (B07/RNF-03/SEG-09)
 
-- Prepara una imagen derivada de prueba que retira únicamente mysql-shell mediante RPM, sin forzar dependencias ni modificar la imagen de entrega.
-- Compara inventarios y herramientas conservadas; prepara integración y respaldo/restauración en MySQL efímero, sin puertos o volúmenes persistentes. Construcción y resultados reales pendientes; VERSION permanece en dev.37.
+- Retira mysql-shell y sus restos Python mediante RPM, sin forzar dependencias. Conserva servidor 8.4.11, clientes SQL, gosu y entrypoint con huellas comprobadas; rechaza la limpieza si quedan archivos de otro paquete.
+- La candidata aprobó 225 controles MySQL/HTTP, respaldo/restauración ficticios y TLS positivo/negativo. Escaneo con la misma base: 66 → 47 filas, exactamente 19 de Python retiradas, ninguna nueva ni exclusiones. La imagen final tiene verificación propia registrada en ESTADO.
+- No actualiza bases existentes ni Aiven. PHP/libxml2 y la certificación final conservan sus pendientes.
 
 ## 0.1.0-dev.37 — Inicio, perfil y experiencia de uso (B07/RF-01/02/03/RNF-01/02)
 

@@ -11,6 +11,10 @@ RUN set -eu; \
     sha256sum /usr/sbin/mysqld /usr/bin/mysql /usr/bin/mysqladmin /usr/bin/mysqldump /usr/local/bin/gosu /usr/local/bin/docker-entrypoint.sh > /tmp/eventify-mysql-tools.sha256; \
     rpm -e mysql-shell; \
     if rpm -q mysql-shell; then exit 1; fi; \
+    if [ -d /usr/lib/mysqlsh ]; then \
+        find /usr/lib/mysqlsh -exec sh -ec 'for path do if rpm -qf "$path" >/dev/null 2>&1; then echo "La carpeta conserva archivos de otro paquete; ensayo rechazado." >&2; exit 1; fi; done' sh {} +; \
+        rm -rf -- /usr/lib/mysqlsh; \
+    fi; \
     test ! -e /usr/lib/mysqlsh; \
     test ! -e /usr/bin/mysqlsh; \
     sha256sum -c /tmp/eventify-mysql-tools.sha256; \

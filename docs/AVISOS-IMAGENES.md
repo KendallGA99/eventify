@@ -126,3 +126,8 @@ Dev.34 aplica la receta ensayada en los Dockerfile finales. Su construcción fin
 
 
 La construcción final dev.34 de 6d41df5 ya fue aprobada: runtime-release-pdzRD8Jx, todos los subensayos exit0. Escaneos de image-check-hGj1k1LD idénticos al ensayo reducido: 424 filas por variante. TLS/HTTP interno, cuentas y recreación aprobados; rechazo sin TLS conserva base vacía. Este resultado supera el pendiente anterior, sin afirmar seguridad completa o despliegue.
+
+
+## MySQL sin Shell: candidata dev.38
+
+El10oct, mysql-minimal-zntFADgx aprobó225 controles, respaldo/restauración ficticios, inventario y huellas; TLS positivo y negativo también exit0. Con la misma DB Trivy del8oct:66→47 filas, exactamente19 de bibliotecas Python retiradas, ninguna nueva, sin exclusiones. Restantes1CRITICAL/21HIGH/22MEDIUM/2LOW/1UNKNOWN. Dockerfile.mysql incorpora la reducción de componentes; la imagen final tiene comprobación separada antes de elegir paquete. No se modifica Aiven ni se cierra seguridad: libxml2 y los avisos conservados mantienen sus límites. Ver ENSAYO-MYSQL-MINIMAL y ESTADO.
