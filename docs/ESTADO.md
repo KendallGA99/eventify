@@ -14,7 +14,7 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.39**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-cierre-pendientes`. Publicación dev.39 verificada; receta MySQL reducida dev.38 conservada. |
+| Rama actual | `codex/b09-seguridad-defensa`. Publicación dev.39 verificada; receta MySQL reducida dev.38 conservada. |
 | Aplicación comprobada | Local dev.39 sobre `0e6be15`: integración225 y recorrido IAB. Publicación dev.37 conserva su evidencia propia. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `0e3aae247da50deaa0150be4e235728cbe3db12a`, dev.39. |
@@ -153,3 +153,10 @@ CIERRE.md y VERIFICACION-FIREFOX.md sincronizados con dev.39, paquete de 217 arc
 El control de navegador consultado sigue exponiendo Chrome/IAB, sin Firefox. Ante la propuesta de prueba separada mediante geckodriver y perfil temporal, el usuario respondió «Mantener solo el control de navegador disponible». No se instaló ni ejecutó esa alternativa. C-07 conserva su evidencia parcial y bloqueo; no se reclasifica IAB como Firefox.
 
 Consulta oficial Debian de libxml2/CVE-2026-6653 y Apache/CVE-2026-63292: Trixie continúa vulnerable; correcciones de forky/sid no se incorporan a esta base. C-09 conserva los riesgos documentados, sin aceptación automática. Sin cambios de runtime, nuevo escaneo, despliegue o pruebas Linux repetidas. La defensa y revisión del receptor siguen como actividades humanas de C-12. Por tanto, no es posible declarar que Windows sea el único pendiente con la evidencia y las condiciones actuales.
+
+
+## Preparación de seguridad y defensa
+
+Inspección local dev.39: PHP8.4.26/libxml2 2.9.14, extensiones XML presentes; display_errors/expose_php desactivados, sesiones estrictas. Apache sin vhost_alias/xml2enc/proxy/CGI en el inventario inspeccionado. Contenedor no privilegiado y puerto ligado a127.0.0.1. Esta evidencia local no certifica módulos del proceso Render ni corrige paquetes. C-09 permanece abierto. Resumen en SEGURIDAD-ENTREGA.md; registro privado storage/security-defense-20261010.
+
+ENSAYO-DEFENSA.md añade recorrido de15 minutos, diez archivos de lectura, doce preguntas razonadas, condiciones de preparación y ejercicio de borde. El comando real de reservation-policy.php aprobó19 comprobaciones en la copia local; sin escrituras. Enlaces al código verificados. Preparación documental terminada; práctica, comprensión y defensa humanas aún no registradas. No cambia VERSION/runtime, publicación o paquete previo.

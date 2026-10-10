@@ -71,3 +71,6 @@ El historial se conserva en el repositorio privado [USUARIO_DESTINO/eventify](ht
 - [Demostración y defensa](docs/DEFENSA.md): recorrido, mapa del código y ejercicios; no certifica dominio.
 - [Revisión de seguridad](docs/SEGURIDAD.md): dependencias y controles comprobados, con límites.
 - [Fuente del documento técnico](docs/TECNICO.md): documento dev.39, publicación dev.39, límites y evidencia de cada referencia.
+
+- [Ensayo de defensa](docs/ENSAYO-DEFENSA.md): recorrido, lectura guiada, preguntas y ejercicio de reglas.
+- [Seguridad de la entrega](docs/SEGURIDAD-ENTREGA.md): controles comprobados, riesgos residuales y condiciones para actualizarlos.

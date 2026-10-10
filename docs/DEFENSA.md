@@ -2,6 +2,8 @@
 
 Esta guía ayuda a preparar la exposición: qué mostrar, qué partes del código revisar y qué decisiones explicar. Conviene practicar el recorrido y responder con ejemplos del proyecto. Al final se registra la preparación realizada; tener la guía no significa haber completado la defensa.
 
+Material complementario: [ensayo guiado de 15 minutos, lectura de código y preguntas](ENSAYO-DEFENSA.md). El ejemplo de reglas fue comprobado en dev.39; eso no registra una práctica del estudiante. Para explicar los avisos sin confundirlos con errores funcionales, consultar [Seguridad de la entrega](SEGURIDAD-ENTREGA.md).
+
 ## Recorrido de demostración propuesto
 
 Usar una instalación local/evaluación aislada con datos ficticios. Revisar VERSION y ESTADO antes de empezar; no demostrar sobre la única copia de datos de trabajo. No mostrar .env, contraseñas, dumps ni logs completos en la presentación.
