@@ -14,7 +14,7 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.43**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-clima-diseno`. Dev.43 simplifica la tarjeta del pronóstico y está aplicada a8086/Render; versiones anteriores conservadas. |
+| Rama actual | `codex/b07-qa-firefox`; QA autónomo en `547d7df`. Dev.43 simplifica la tarjeta del pronóstico y está aplicada a8086/Render; versiones anteriores conservadas. |
 | Aplicación comprobada | Dev.43 sobre `f9eac94`: sintaxis, clima58, presupuesto44 y navegador móvil/escritorio correctos. Integración234 y HTTPS81 corresponden a dev.42; no se repiten por el cambio de presentación. Dev.41 conserva evidencia de corrección nativa; Windows/Firefox restantes pendientes. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `f9eac9454cd24b2bb85ad865a00d0a3d78804017`, dev.43. |
