@@ -59,7 +59,7 @@ Cada fila tiene su propio alcance; no sumarlas como una sola suite.
 
 Registro, catálogo/AJAX, respuesta perdida de reserva, errores de clima y administración tienen aceptación IAB anterior con sus referencias en [evidencias/B07.md](evidencias/B07.md). IAB no sustituye Firefox. Restauración aislada anterior tiene evidencia propia; no certifica transferencia a Windows.
 
-## Seguridad anterior: referencias de las instalaciones previas
+## Seguridad anterior: referencias históricas de las instalaciones previas
 
 - Dependencias PHP fijadas: consulta Packagist de9oct sin avisos para las dos bibliotecas. jQuery local con huella/licencia comprobadas. Esto no audita el sistema operativo.
 - PHP/Apache conserva424 filas:1 crítica,91 altas,162 medias,166 bajas y4 sin clasificación;156 identificadores únicos. Base Trivy del8oct19:05UTC. MySQL dev.33 conserva66 filas; la candidata sin Shell conserva47, con comparación de la misma base, sin exclusiones. La imagen final dev.38 confirmó las mismas47 filas con identidad OCI verificada. Conteos de escaneos anteriores, sin exclusiones; no presentarlos como un escaneo nuevo.
@@ -71,12 +71,12 @@ Registro, catálogo/AJAX, respuesta perdida de reserva, errores de clima y admin
 ## Pendientes y próxima acción
 
 1. **C-07 Firefox:** completar limpieza/combinación de filtros, selección/borrado de fecha y teclado, perfil dev.37, logout/ticket y panel administrativo. Se solicitó comprobación humana: el control disponible no expone Firefox. [Procedimiento](VERIFICACION-FIREFOX.md).
-2. **C-09 seguridad:** corrección dev.41 probada: tres imágenes finales sin avisos, 234 controles y TLS positivo/negativo aprobados. Aplicación a destinos y referencias de publicación se registran al final; no atribuir estos resultados a las versiones anteriores.
+2. **C-09 seguridad, corregida en el corte dev.41:** tres imágenes finales sin avisos, 234 controles y TLS positivo/negativo aprobados. Aplicación a destinos y referencias de publicación se registran al final; no atribuir estos resultados a las versiones anteriores.
 3. **C-08/C-11 Windows, al final:** instalación del paquete elegido en un Windows compatible con Docker Desktop/WSL2 y recursos suficientes; arranque, roles, reserva/ticket/cancelación y persistencia reales. La VM revisada no acredita esas condiciones. [Procedimiento](VERIFICACION-WINDOWS.md).
 4. **C-12 entrega humana:** revisión del receptor, acceso del evaluador al repositorio privado/cuentas y ensayo de defensa. No inventar participación o dominio del código.
 5. **Operación pública:** Aiven Free estaba apagado por inactividad y se reactivó antes del deploy. Render puede dormir. Comprobar ambos antes de evaluar; la disponibilidad del clima depende también del proveedor.
 
-B01/B02 comprobados; B03–B06 implementados con evidencia por flujo. B07 sigue abierto por los pendientes anteriores. B08 tiene deploy dev.37 y controles posteriores con sus límites. B09 tiene manual/PDF/paquete preparados, sin aceptación final. [CIERRE.md](CIERRE.md) organiza los casos; implementado, probado y publicado son estados distintos.
+B01/B02 comprobados; B03–B06 implementados con evidencia por flujo. B07 sigue abierto por los pendientes anteriores. B08 tiene deploy dev.43 y controles anteriores con sus límites. B09 tiene manual/PDF/paquete preparados, sin aceptación final. [CIERRE.md](CIERRE.md) organiza los casos; implementado, probado y publicado son estados distintos.
 
 ## Operación y conservación
 
@@ -293,3 +293,9 @@ Solicitud: simplificar la información meteorológica y reducir el texto visible
 Verificación previa: JavaScript con `node --check`, PHP de la vista y `git diff --check` correctos. Imágenes local y pública dev.43 construidas; 8086 saludable tras recrear únicamente web. Navegador local confirma aviso de clima desactivado y desplegable cerrado. La configuración local mantiene WEATHER_ENABLED=false. Publicación y revisión del pronóstico en móvil/escritorio pendientes en este punto. No se repite la suite extensa de Linux por este cambio de presentación.
 
 Cierre de presentación dev.43: commit `f9eac9454cd24b2bb85ad865a00d0a3d78804017`, etiqueta `v0.1.0-dev.43` y rama enviados a GitHub. Render `dep-db57le7lk1mc7391a8u0` Live; navegador confirma rango real 17,9–26,4 °C, desplegable cerrado inicialmente, fuente MET Norway/licencia/adaptación visibles al abrir con Enter. Móvil: ancho efectivo375px, scrollWidth375px, tarjeta327px; sin desbordamiento. Capturas privadas `storage/weather-dev43/public-weather.png` y `public-weather-mobile.png`. Construcción pública ejecutó clima58 y presupuesto44; unidad de clima58 también pasó en imagen local. Un intento manual apuntó a `tests/unit/weather.php` inexistente; se corrigió a `tests/unit/event-weather.php`. Windows, Firefox restante y defensa mantienen sus pendientes; no se declara estable.
+
+## B09 — Sincronización documental dev.43
+
+README, CIERRE y documento técnico actualizados con la aplicación pública dev.43. Se corrigieron textos de portada que todavía describían dev.38/39/41 como vigentes o presentaban avisos históricos como actuales. Los ensayos antiguos conservan su versión; no se atribuyen pruebas nuevas por equivalencia de código. La corrección C-09 corresponde al corte dev.41 y ya está aplicada; los pendientes de acceso Firefox, instalación Windows y participación humana permanecen.
+
+PDF generado con `scripts/build-technical-pdf.py`:18 páginas, portada dev.43, render completo revisado en tres láminas, sin texto fuera de página. SHA256 `012dd9954cc4b7e1016d939fa8d978bc91fa6f22a618bc4280de87517d5055f4`. Evidencia privada `storage/documental-dev43`. Solo documentos; no se modificó la aplicación ni se repitieron pruebas Linux, migraciones o despliegue. La nueva exportación se identifica después de crear el paquete.

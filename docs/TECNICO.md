@@ -1,9 +1,11 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Aplicación y publicación: dev.42; dependencias nativas corregidas en dev.41. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Aplicación y publicación: dev.43; dependencias nativas corregidas en dev.41. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
-Este documento explica cómo funciona el sistema y qué se ha comprobado. Dev.42 añade un respaldo meteorológico verificado en la web pública; Dev.41 corrige las dependencias nativas de las imágenes web y MySQL, con cero avisos en un escaneo actualizado y sin exclusiones. Conserva PHP 8.4/MySQL 8.4, la interfaz y las reglas de negocio. Pasaron 234 controles MySQL/HTTP, unidades, arranque público, TLS positivo/negativo y recreación. La actualización local conservó diez tablas y ocho reservas/tickets; Render sirve el mismo commit y conservó sus diez tablas. La instalación limpia Linux original corresponde al ZIP dev.33. Windows, la matriz restante de Firefox y la defensa humana siguen pendientes. El pronóstico mantiene manejo de indisponibilidad; depende de proveedores externos; dev.42 añade MET Norway como respaldo.
+Este documento explica cómo funciona el sistema y qué se ha comprobado. Dev.43 simplifica la tarjeta de clima y reúne sus detalles en un desplegable accesible. Dev.42 añadió un respaldo meteorológico verificado en la web pública. Dev.41 corrigió las dependencias nativas de las imágenes web y MySQL, con cero avisos en su escaneo del 10 de octubre, sin exclusiones; ese resultado no audita el host ni el proveedor ni descarta vulnerabilidades futuras.
+
+Se conservan PHP 8.4/MySQL 8.4 y las reglas de negocio. Dev.41 y dev.42 aprobaron 234 controles MySQL/HTTP en sus ensayos; dev.43 aprobó sintaxis, unidades de clima y presupuesto meteorológico, construcción y revisión visual en móvil/escritorio. No se repite ni se atribuye la integración anterior al cambio de presentación. La actualización dev.41 conservó diez tablas locales y públicas; dev.42 conservó nueve tablas públicas y solo cambió el contador de consultas del clima. Dev.43 recreó únicamente web, sin cambiar esquema o volúmenes. La instalación limpia Linux original corresponde al ZIP dev.33. Windows, el recorrido restante de Firefox y la defensa humana siguen pendientes.
 
 ## 1. Descripción y resultado esperado
 
@@ -334,7 +336,7 @@ Dev.37 aprobó 225 comprobaciones de integración MySQL/HTTP, sintaxis PHP 8.4, 
 
 Dev.34 retiró 32 paquetes de construcción de ambas imágenes PHP y mantuvo versiones de los paquetes conservados. Imágenes finales, unidades y arranque público con TLS positivo/negativo tienen evidencia propia sobre 6d41df5. Con la misma base Trivy almacenada, el informe pasó de 2011 a 424 filas por imagen, sin identificadores/paquetes/versiones nuevos ni exclusiones: 1 crítico, 91 altos, 162 medios, 166 bajos y 4 sin clasificación. Esta reducción no corrige el kernel del host ni demuestra que las bibliotecas restantes estén libres de vulnerabilidades.
 
-El informe histórico MySQL dev.33 conserva 66 filas. La reducción sin Shell dev.38 elimina 19 filas de bibliotecas Python sin uso; los 47 avisos conservados mantienen sus límites documentados. No se acepta el riesgo residual automáticamente ni se presenta la versión como estable. En ese corte la web pública ejecutaba dev.37; su despliegue y controles históricos se registran a continuación. La publicación vigente es dev.41; los avisos de este apartado son históricos. El paquete dev.37 requiere aceptación propia; Windows se ensaya al final.
+El informe histórico MySQL dev.33 conserva 66 filas. La reducción sin Shell dev.38 elimina 19 filas de bibliotecas Python sin uso; los 47 avisos conservados mantienen sus límites documentados. No se acepta el riesgo residual automáticamente ni se presenta la versión como estable. En ese corte la web pública ejecutaba dev.37; su despliegue y controles históricos se registran a continuación. La publicación vigente es dev.43; los avisos de este apartado son históricos. El paquete dev.37 requiere aceptación propia; Windows se ensaya al final.
 
 
 ### Publicación y límites del alojamiento: corte dev.37
@@ -383,3 +385,9 @@ Open-Meteo continúa como proveedor principal. Ante un fallo de su consulta, se 
 El respaldo cubre hasta nueve días. El rango mostrado corresponde a muestras horarias o cada seis horas de la fecha en Costa Rica, con cobertura validada; no equivale a extremos exactos diarios. No se muestra una probabilidad de lluvia que el respaldo no entregue. Si ambos proveedores fallan o no cubren la fecha, el aviso permite continuar con la reserva. La disponibilidad no está garantizada. Resultados concretos y versión pública se consultan en ESTADO.md.
 
 Verificación del respaldo el 10 de octubre: 58 controles de clima y 234 de MySQL/HTTP correctos. Render publicó bd7e3e5 y el navegador mostró un rango de 17,9 a 26,4 °C para las muestras del 12 de octubre, con fuente MET Norway. El despliegue conservó nueve tablas de Aiven; únicamente cambió el contador weather_budget durante las consultas. La instalación local conservó sus diez tablas. Estas pruebas no certifican la instalación en Windows ni el recorrido restante de Firefox.
+
+### Presentación del clima dev.43
+
+La tarjeta destaca el rango de temperatura y muestra la probabilidad de lluvia únicamente cuando el proveedor entrega ese dato. «Sobre el pronóstico» reúne fuente, licencia CC BY4.0, adaptación, hora de consulta y límites del rango mostrado. El desplegable funciona con teclado y empieza cerrado. Los avisos de carga, indisponibilidad e información almacenada se mantienen; el clima no bloquea una reserva.
+
+Render publicó f9eac94, deploy dep-db57le7lk1mc7391a8u0. La revisión del 10 de octubre comprobó el pronóstico real, el desplegable y el botón de actualización. A ancho efectivo de 375px, la tarjeta mide 327px y la página no presenta desbordamiento horizontal. No cambia API, proveedores, migraciones ni datos de negocio.
