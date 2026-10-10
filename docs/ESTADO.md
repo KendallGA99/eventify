@@ -56,8 +56,8 @@ Incidencia anterior de inspección: se imprimieron por error credenciales fictic
 
 - B01/B02 comprobados; B03–B06 implementados con integración y aceptación parcial de navegador.
 - B07 abierto: completar compatibilidad Firefox en el alcance pendiente, Windows y revisión de avisos de imágenes. Zoom200% deja de bloquear por indicación del usuario; adaptación y recorrido IAB dev.36 registrados al final. [AVISOS-IMAGENES.md](AVISOS-IMAGENES.md) conserva condiciones y dudas: Apache/XML/kernel/curl/gosu/Python; no ocultar avisos. No repetir suites extensas sin cambio o duda concreta.
-- B08: servicio real actualizado a dev.30; TLS, controles HTTPS, datos conservados y API útil. C-10 documentado para esa referencia, no para toda variante ni un paquete distinto.
-- B09: portada/manual/PDF y exportación de desarrollo dev.32 preparados; instalación final, receptor y ensayo humano pendientes. [CIERRE.md](CIERRE.md) organiza los casos; no marcar estable por tener un ZIP.
+- B08: servicio real actualizado a dev.37; TLS, 112 controles HTTPS y datos conservados. La última respuesta útil del clima corresponde a dev.30; dev.37 mostró indisponibilidad y conservó la reserva. Detalle al final.
+- B09: portada/manual/PDF y exportación de desarrollo dev.37 preparados; instalación final, receptor y ensayo humano pendientes. [CIERRE.md](CIERRE.md) organiza los casos; no marcar estable por tener un ZIP.
 
 ## Próxima acción necesaria
 
@@ -316,3 +316,12 @@ Clima: consulta del detalle recibió HTTP429 del proveedor, acreditado por diagn
 Rendimiento dirigido: Eventos local HTTP7ms inicial/4ms siguiente; navegación IAB local TTFB3,2ms y carga101,9ms. IAB público activo: TTFB504,2ms, DOM1057,9ms y carga1060,2ms. Muestras únicas, no percentiles ni arranque en frío de Docker/Render ni medición de Firefox del usuario. No se reprodujo lentitud local. Plan gratuito puede dormir y Aiven puede apagarse por inactividad; revalidar ambos antes de evaluación.
 
 Seguridad de aplicación comprobada en este alcance, dependencia XML aún abierta. AVISOS-XML registra digest oficial sin cambios, estado Debian y alcance del parche nativo. No existe evidencia de corrección de libxml2 en la imagen entregada; no se oculta ni se marca estable. Windows y defensa humana siguen pendientes. Rama documental codex/b08-publicacion-dev37; etiqueta y paquete dev.37 no se mueven.
+
+
+## Documento y reconsulta pública: dev.37
+
+9 de octubre de 2026. PDF técnico sincronizado con la publicación dev.37, sus 112 controles HTTPS, conservación de diez tablas y límites de los servicios gratuitos. Se mantienen 16 páginas: render completo revisado visualmente, nombres y cifras comprobados, caracteres dentro de los límites de página. Consulta Packagist de las dos bibliotecas fijadas: cero avisos; no equivale a corregir libxml2 ni toda la imagen.
+
+Detalle público consultado cerca del vencimiento de la caché negativa y reintento posterior mediante el botón: ambos mostraron indisponibilidad, con ingreso para reservar accesible. No se repiten llamadas para eludir la cuota. El diagnóstico HTTP429 registrado anteriormente se conserva; el texto del último reintento por sí solo no acredita su código upstream. Evidencia privada storage/public-dev37/weather-retry.json y weather-retry.png.
+
+Solo documentación desde 74f1029; no se repite Linux ni se cambia aplicación, base, credenciales o red. Preparar paquete desde el commit documental resultante y acompañarlo con este PDF; conservar el ZIP anterior y la etiqueta dev.37 intactos. Continúan abiertos libxml2 y los restantes límites de la revisión de imágenes, compatibilidad Firefox pendiente, instalación Windows y defensa humana. No versión estable.

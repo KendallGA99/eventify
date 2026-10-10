@@ -3,7 +3,7 @@
 
 Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 9 de octubre de 2026. Código de referencia: v0.1.0-dev.37. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
-Este documento explica cómo funciona el sistema y qué se ha comprobado. Hay evidencia de integración MySQL, restauración, instalación desde ZIP en Linux y uso de la web pública. La web ejecuta dev.30 con el parche xz/liblzma. Después del despliegue se comprobaron las huellas de diez tablas y los 81 controles HTTPS. El ZIP dev.33 conserva la misma aplicación y añade MySQL con gawk corregido. Aprobó instalación limpia Linux, ambos roles, reserva/cancelación y persistencia posterior. El pronóstico público ya tiene respuesta útil comprobada. Windows, Firefox y la aceptación final siguen pendientes.
+Este documento explica cómo funciona el sistema y qué se ha comprobado. La web pública ejecuta dev.37: ingreso al inicio, perfil editable y controles de acceso revisados. El despliegue conservó las diez tablas; después se aprobaron 81 controles HTTPS de usuarios y 31 del administrador. La instalación limpia Linux y su persistencia se comprobaron en el ZIP dev.33; los cambios de aplicación dev.37 tienen 225 controles MySQL/HTTP y recorrido real del navegador. Windows, la matriz restante de Firefox y los riesgos de las imágenes siguen pendientes. El pronóstico tuvo respuestas útiles en dev.30; en la consulta posterior a publicar dev.37 el proveedor respondió HTTP 429 y la reserva permaneció disponible.
 
 ## 1. Descripción y resultado esperado
 
@@ -332,4 +332,15 @@ Dev.37 aprobó 225 comprobaciones de integración MySQL/HTTP, sintaxis PHP 8.4, 
 
 Dev.34 retiró 32 paquetes de construcción de ambas imágenes PHP y mantuvo versiones de los paquetes conservados. Imágenes finales, unidades y arranque público con TLS positivo/negativo tienen evidencia propia sobre 6d41df5. Con la misma base Trivy almacenada, el informe pasó de 2011 a 424 filas por imagen, sin identificadores/paquetes/versiones nuevos ni exclusiones: 1 crítico, 91 altos, 162 medios, 166 bajos y 4 sin clasificación. Esta reducción no corrige el kernel del host ni demuestra que las bibliotecas restantes estén libres de vulnerabilidades.
 
-El informe MySQL conserva 66 filas y sus límites documentados. No se acepta el riesgo residual automáticamente ni se presenta la versión como estable. La web pública conserva dev.30 hasta desplegar y verificar una referencia nueva. El paquete dev.37 requiere aceptación propia; Windows se ensaya al final.
+El informe MySQL conserva 66 filas y sus límites documentados. No se acepta el riesgo residual automáticamente ni se presenta la versión como estable. La web pública ya ejecuta dev.37, con el resultado del despliegue y sus controles registrados a continuación. El paquete dev.37 requiere aceptación propia; Windows se ensaya al final.
+
+
+### Publicación y límites del alojamiento: corte dev.37
+
+Render Free publicó el commit 7c3a3e28435566349efcd4b2a66eace89de978d2 el 9 de octubre a las 17:09:37 CST. Diez tablas conservaron filas y huellas antes y después del despliegue. Las comprobaciones HTTPS posteriores aprobaron 81 controles de usuarios y 31 del administrador, sin escrituras de negocio.
+
+Aiven MySQL Free estaba apagado por inactividad; se reactivó el servicio existente. Render también puede dormir: conviene comprobar ambos antes de evaluar. Una muestra de Eventos cargó en 101,9 ms localmente y 1060,2 ms públicamente con el servicio activo; no mide arranque en frío ni garantiza latencia.
+
+El pronóstico recibió HTTP 429 del proveedor. Se mostró el aviso de indisponibilidad y se mantuvo el acceso a reservar. Un reintento posterior mantuvo la indisponibilidad. La respuesta útil anterior conserva su propia evidencia; no se inventan valores ni se eluden límites.
+
+Packagist no devolvió avisos para las dos bibliotecas de Composer. Libxml2 sigue abierto en la imagen base; no se instaló un parche nativo sin pruebas. El documento sigue siendo borrador hasta completar la aceptación.
