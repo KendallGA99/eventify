@@ -4,7 +4,7 @@ Revisión vigente: 10 de octubre de 2026. IDs y criterios completos en [REQUISIT
 
 ## Funciones
 
-Rutas de código y pruebas relativas a la raíz del repositorio. Integración aislada vigente: 234 comprobaciones MySQL/HTTP sobre la aplicación dev.39 y Compose dev.40, incluidas caducidad y rechazo de sesión inventada. Las 266 unidades/QR pertenecen a sus ejecuciones históricas indicadas en ESTADO. Recorrido IAB dev.39 terminado; Firefox conserva evidencia humana parcial y no está disponible en el control autorizado. No se atribuyen pruebas de una referencia a otra por compartir este índice.
+Rutas de código y pruebas relativas a la raíz del repositorio. Integración aislada vigente: 234 comprobaciones MySQL/HTTP sobre el runtime corregido dev.41, incluidas caducidad y rechazo de sesión inventada. Las 266 unidades/QR pertenecen a sus ejecuciones históricas indicadas en ESTADO. Recorrido IAB dev.39 terminado; Firefox conserva evidencia humana parcial y no está disponible en el control autorizado. No se atribuyen pruebas de una referencia a otra por compartir este índice.
 
 | ID | Código principal | Prueba pertinente | Evidencia vigente / falta |
 | --- | --- | --- | --- |
@@ -35,24 +35,24 @@ Rutas de código y pruebas relativas a la raíz del repositorio. Integración ai
 | IDs | Código/documentación | Evidencia y pendiente |
 | --- | --- | --- |
 | RNF-01/02 | public/assets/css/app.css; app/Views | C-06 y ESTADO: vistas/teclado comprobados en los tamaños registrados; perfil/panel dev.39 a390/768/1280 sin desbordamiento. Firefox restante pendiente; zoom200% opcional por instrucción del usuario |
-| RNF-03 | app/Security; controladores; migraciones | HTTP propiedad/roles/CSRF y sesiones; integración234. Publicación dev.39:81 controles HTTPS de usuarios/36 administrativos. Restricción de privilegios local dev.40 aplicada. Dependencias e imágenes conservan sus informes/avisos; C-09 abierto |
+| RNF-03 | app/Security; controladores; migraciones | HTTP propiedad/roles/CSRF y sesiones; integración234. Publicación dev.41:81 controles HTTPS de usuarios/36 administrativos. NoNewPrivs y cinco trabajadores UID33 comprobados. Tres imágenes finales sin avisos, base Trivy10oct12:33UTC; C-09 cerrado para ese corte. Informes antiguos conservados como historia |
 | RNF-04 | bootstrap/controladores/clientes AJAX | C-03 resultado desconocido real tras201; C-04 simula timeout/error/cuota y comprueba recuperación. Pruebas de clientes y errores HTML con estilo tienen referencias propias en ESTADO |
 | RNF-05 | CatalogRepository/AdminReadRepository; EventWeather | Paginación/índices/snapshot de dashboard/caché y presupuesto API implementados; no afirmar benchmark no medido |
 | RNF-06 | Chrome QA | Chrome/IAB y capturas humanas Firefox157.0.1 con alcance parcial. Inventario autorizado expone Chrome/IAB, sin Firefox; usuario descartó geckodriver. C-07 bloqueado |
 | RNF-07 | app/Domain, Http, Infrastructure, Security, Views | Responsabilidades separadas; revisión final pendiente |
 | RT-01/02/03 | reservations.js; catalog.js; experiences.js; weather.js | Dos funcionalidades jQuery y más de tres operaciones AJAX; C-02/C-03/C-04 y recorrido IAB dev.39 con evidencia. No sustituye compatibilidad Firefox |
 | RT-04/05 | PHP/MySQL; docs/DATOS.md; database/migrations | Migraciones/relaciones/CRUD e integración aprobados; no sustituir tecnologías |
-| RT-06 / U-01 | Dockerfile; docker-compose.yml; scripts Linux/Windows | ZIP Linux dev.33 exacto instalado y persistencia posterior comprobada; Compose dev.40 aplicado solo a web local. Windows: seis scripts con parser PowerShell5.1 real; instalación Docker pendiente |
+| RT-06 / U-01 | Dockerfile; docker-compose.yml; scripts Linux/Windows | ZIP Linux dev.33 exacto instalado y persistencia posterior comprobada; Web/MySQL dev.41 actualizados en8086, diez tablas y ocho reservas/tickets conservados. Windows: seis scripts con parser PowerShell5.1 real; instalación Docker pendiente |
 | RT-09 / U-02 | docs/ARQUITECTURA.md; docs/PUBLICACION.md | Render PHP + Aiven MySQL Free publicados; TLS, URL HTTPS, flujos centrales, persistencia y pronóstico útil reales comprobados. No garantiza disponibilidad permanente; revisión final pendiente |
 | RT-07 / U-05 | GitHub privado; docs/VERSIONADO.md; CHANGELOG.md | Historial/push/etiquetas reales; acceso de evaluador, CI si procede y entrega final pendientes |
 | RT-08 | README.md; docs/INSTALACION.md | Manual, tecnologías y enlace público disponibles; paquete final y revisión del receptor pendientes |
 | U-03 | docs/INSTALACION.md; docs/RESPALDO.md; docs/PAQUETE.md; scripts/package-source.py; scripts/test-restore-qa-linux.sh; bin/qa-transfer.php | ZIP dev.14 real con 153 huellas correctas; 13 checks de empaquetado. 40 checks de orquestación simulada y dump/import MySQL real aprobados; comparación exacta de diez tablas/archivos. ZIP Linux dev.17 con flujo Chrome aprobado; HTTP restaurado autenticado y persistencia posterior al flujo Linux aprobados (existing-iAQixJNV); transferencia al receptor y Windows pendientes |
 | U-04/06 | AGENTS.md; PLAN/ESTADO/MATRIZ/evidencias | Protocolo aplicado; estado breve e historial conservado. No certificar pruebas pendientes |
-| ENT / defensa | docs/REQUISITOS.md | PDF dev.40 de17 páginas y paquete219 archivos revisados/verificados; cuentas ficticias gestionadas fuera de Git. Guías preparadas. Revisión del receptor, entrega de accesos y ensayo/defensa humanos pendientes |
+| ENT / defensa | docs/REQUISITOS.md | PDF dev.41 de18 páginas y paquete229 archivos revisados/verificados; cuentas ficticias gestionadas fuera de Git. Guías preparadas. Revisión del receptor, entrega de accesos y ensayo/defensa humanos pendientes |
 
 ## Siguiente revisión dirigida
 
-Los casos concretos y sus criterios están en [CIERRE.md](CIERRE.md). La preparación del PDF/paquete dev.40 y la integración234 no cierran Firefox, Windows, riesgos nativos o participación humana. Conservar las evidencias históricas siguientes, que describen etapas anteriores. No cerrar B07 ni marcar estable mientras falten criterios.
+Los casos concretos y sus criterios están en [CIERRE.md](CIERRE.md). La corrección nativa dev.41 y la preparación del paquete no cierran Firefox, Windows o participación humana. Conservar las evidencias históricas siguientes, que describen etapas anteriores. No cerrar B07 ni marcar estable mientras falten criterios.
 
 | ENT-C / ENT-E/F | docs/TECNICO.md; scripts/build-technical-pdf.py | PDF borrador actualizado dev.17 de 15 páginas generado/revisado visualmente; 21 RF/7 RNF presentes. Documento final y revisión/dominio/defensa humana pendientes |
 

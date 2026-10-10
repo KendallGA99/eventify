@@ -20,7 +20,7 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.41**, tod
 | Web pública | https://eventify-academico.onrender.com, commit `28c73cdd63386527ad4a07e03a8c1385198d9bf7`, dev.41. |
 | Render | Free, AutoDeployOff; deploy `dep-db5744rrjlhs73clgpj0`, fuente28c73cd, Live10oct11:13:25CST, duración33,5s. Dev.39 conservada para rollback. |
 | Local8086 | Web y MySQL dev.41 saludables; diez tablas, ocho reservas/ocho tickets conservados. Proyecto `eventify-clean-20261009035638-598f411d`; instalación limpia original dev.33 y actualización dev.41 con evidencia propia. |
-| Paquete documental dev.40 vigente | `output/entrega/eventify-desarrollo-0ab59e9566ed/eventify-source.zip`, 219 archivos y PDF adjunto de17 páginas; fuente `0ab59e9566ed6181a1e56e75db3f6db842d741b2`. Integridad comprobada; instalación Windows pendiente. |
+| Paquete documental dev.40 conservado | `output/entrega/eventify-desarrollo-0ab59e9566ed/eventify-source.zip`, 219 archivos y PDF adjunto de17 páginas; fuente `0ab59e9566ed6181a1e56e75db3f6db842d741b2`. Integridad comprobada; instalación Windows pendiente. |
 | Paquete documental dev.39 conservado | `output/entrega/eventify-desarrollo-82b47edbe4cf/eventify-source.zip`, 219 archivos, incluye guías de seguridad/defensa; misma aplicación dev.39. Integridad comprobada; instalación Windows pendiente. |
 | Paquete dev.39 anterior | `output/entrega/eventify-desarrollo-37b1f642c294/eventify-source.zip`, commit `37b1f642c29429ad232a92acdc951267d202d141`, 217 archivos y PDF adjunto. CRC/huellas comprobados; instalación Windows pendiente. |
 | Paquete dev.38 conservado | `output/entrega/eventify-desarrollo-f01ee0e3cf0f/eventify-source.zip`, commit `f01ee0e3cf0f784740390d33a997e0b6fb756fdf`,217 archivos, manifiesto/CRC/huellas correctos. Imagen MySQL final probada; aplicación pública permanece dev.37. Este ZIP no se ha instalado de nuevo en Linux ni Windows. |
@@ -243,3 +243,6 @@ Verificación pública posterior dev.41: 81 controles HTTPS de usuarios y36 de a
 
 
 Documento técnico dev.41 regenerado:18 páginas renderizadas y revisadas visualmente; texto dentro de página. SHA256 d4e5534d8163722e29da2dfa4dd9434faac52698cbff079371b1aa38b2dbe173. Incluye corrección nativa, regresión, referencias locales/públicas y pendientes reales; los conteos de imágenes antiguas se conservan como historia. El siguiente paquete corresponde a su propio commit documental, manteniendo la etiqueta probada28c73cd.
+
+
+Exportación documental dev.41 inicial bfe15dd:229 archivos, CRC/inventario/huellas individuales correctos, PDF18 páginas adjunto. ZIP SHA256988b29c2e81ae451ef0b2319f261c42b17915d0285df7bd40cb45e9b64306abf. La primera ejecución usó el destino por defecto backups/entrega; se conservó y se exportó explícitamente a output/entrega. La verificación posterior detectó que MATRIZ aún describía C-09 abierto; se sincronizó la matriz y se prepara una exportación documental posterior con esas referencias coherentes. No cambia aplicación ni imágenes probadas.

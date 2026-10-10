@@ -1,6 +1,6 @@
 # Ensayo de defensa de Eventify
 
-Referencia de la aplicación: dev.39; protección de Compose añadida en dev.40. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
+Referencia de la aplicación y publicación: dev.41. Corrección nativa y controles en RUNTIME-CORREGIDO.md; protección de Compose conservada desde dev.40. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
 Este material sirve para estudiar y practicar con el proyecto abierto. Los tiempos son una propuesta de preparación, no una duración exigida por el enunciado. Cada explicación debe poder relacionarse con una pantalla, una función o una prueba. La práctica del estudiante todavía no está registrada.
 
