@@ -16,11 +16,12 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.39**, tod
 | --- | --- |
 | Rama actual | `codex/b08-publicacion-dev39`. Publicación dev.39 verificada; receta MySQL reducida dev.38 conservada. |
 | Aplicación comprobada | Local dev.39 sobre `0e6be15`: integración225 y recorrido IAB. Publicación dev.37 conserva su evidencia propia. |
-| Etiqueta conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
+| Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `0e3aae247da50deaa0150be4e235728cbe3db12a`, dev.39. |
 | Render | Servicio `srv-db3vutm7bikc73ajj6og`, Free. Deploy `dep-db52frajnfac7390qf80`, Live el10oct05:57:03CST, duración32,7s; fuente `0e3aae2`. Rama configurada y AutoDeployOff conservados. Dev.37 disponible para rollback compatible. |
 | Local8086 | Web actualizada a dev.39; base y volúmenes conservados. Proyecto `eventify-clean-20261009035638-598f411d`. Instalación limpia/persistencia originales corresponden a dev.33 `f4d6c5a05011c57e47295b06cedf11129a052681`. |
-| Paquete dev.38 | `output/entrega/eventify-desarrollo-f01ee0e3cf0f/eventify-source.zip`, commit `f01ee0e3cf0f784740390d33a997e0b6fb756fdf`,217 archivos, manifiesto/CRC/huellas correctos. Imagen MySQL final probada; aplicación pública permanece dev.37. Este ZIP no se ha instalado de nuevo en Linux ni Windows. |
+| Paquete dev.39 | `output/entrega/eventify-desarrollo-37b1f642c294/eventify-source.zip`, commit `37b1f642c29429ad232a92acdc951267d202d141`, 217 archivos y PDF adjunto. CRC/huellas comprobados; instalación Windows pendiente. |
+| Paquete dev.38 conservado | `output/entrega/eventify-desarrollo-f01ee0e3cf0f/eventify-source.zip`, commit `f01ee0e3cf0f784740390d33a997e0b6fb756fdf`,217 archivos, manifiesto/CRC/huellas correctos. Imagen MySQL final probada; aplicación pública permanece dev.37. Este ZIP no se ha instalado de nuevo en Linux ni Windows. |
 | Paquete documental dev.37 conservado | `output/entrega/eventify-desarrollo-44bd3a9a9360/eventify-source.zip`, commit `44bd3a9a936005db52bda8de65c90037803ae335`, 213 archivos. Misma aplicación, configuración, migraciones, dependencias e imágenes declaradas que la web pública. |
 | PDF dev.39 | Documento técnico de17 páginas, actualizado con publicación dev.39 y recorrido IAB; todavía borrador de evaluación. |
 
