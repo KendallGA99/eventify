@@ -18,6 +18,18 @@ verify_mysql() {
     actual="$("${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint rpm "$image" -q --qf '%{VERSION}-%{RELEASE}' gawk)"
     [[ "$actual" == '5.1.0-6.el9_8.1' ]] || { echo 'No se comprobó la versión corregida de gawk.' >&2; return 1; }
     printf '%s\n' "$actual" > "$record/gawk-version.txt"
+    for package in openssl openssl-libs; do
+        actual="$("${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint rpm "$image" -q --qf '%{VERSION}-%{RELEASE}' "$package")"
+        [[ "$actual" == '3.5.8-2.0.1.el9_8' ]] || { echo "No se comprobó OpenSSL corregido: $package" >&2; return 1; }
+    done
+    "${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint gosu "$image" --version > "$record/gosu-version.txt"
+    grep -q '^1.19 (go1.27.2 on linux/' "$record/gosu-version.txt"
+    "${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint sh "$image" -c '
+        [ "$(gosu mysql id -u)" = "$(id -u mysql)" ]
+        [ "$(gosu mysql id -g)" = "$(id -g mysql)" ]
+        ! command -v go
+    '
+
     "${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint mysqld "$image" --version > "$record/mysql-version.txt"
     "${EVENTIFY_DOCKER[@]}" image inspect --format '{{.Id}}' "$image" > "$record/image-id.txt"
     "${EVENTIFY_DOCKER[@]}" image save "$image" > "$record/mysql.tar"

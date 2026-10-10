@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.40**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
+Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.41**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
 
 ## Alcance y autorizaciones
 
@@ -14,7 +14,7 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.40**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-caducidad-sesiones`. Configuración local dev.40 verificada, integración ampliada a234; publicación dev.39 y paquete documental dev.40 conservados. |
+| Rama actual | `codex/b07-runtime-corregido`. Corrección nativa en evaluación aislada; instalaciones y paquete anteriores conservados. |
 | Aplicación comprobada | Local dev.39 sobre `0e6be15`: integración225 y recorrido IAB. Publicación dev.37 conserva su evidencia propia. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `0e3aae247da50deaa0150be4e235728cbe3db12a`, dev.39. |
@@ -57,7 +57,7 @@ Cada fila tiene su propio alcance; no sumarlas como una sola suite.
 
 Registro, catálogo/AJAX, respuesta perdida de reserva, errores de clima y administración tienen aceptación IAB anterior con sus referencias en [evidencias/B07.md](evidencias/B07.md). IAB no sustituye Firefox. Restauración aislada anterior tiene evidencia propia; no certifica transferencia a Windows.
 
-## Seguridad: estado y límites
+## Seguridad anterior: referencias de las instalaciones previas
 
 - Dependencias PHP fijadas: consulta Packagist de9oct sin avisos para las dos bibliotecas. jQuery local con huella/licencia comprobadas. Esto no audita el sistema operativo.
 - PHP/Apache conserva424 filas:1 crítica,91 altas,162 medias,166 bajas y4 sin clasificación;156 identificadores únicos. Base Trivy del8oct19:05UTC. MySQL dev.33 conserva66 filas; la candidata sin Shell conserva47, con comparación de la misma base, sin exclusiones. La imagen final dev.38 confirmó las mismas47 filas con identidad OCI verificada. Conteos de escaneos anteriores, sin exclusiones; no presentarlos como un escaneo nuevo.
@@ -69,7 +69,7 @@ Registro, catálogo/AJAX, respuesta perdida de reserva, errores de clima y admin
 ## Pendientes y próxima acción
 
 1. **C-07 Firefox:** completar limpieza/combinación de filtros, selección/borrado de fecha y teclado, perfil dev.37, logout/ticket y panel administrativo. Se solicitó comprobación humana: el control disponible no expone Firefox. [Procedimiento](VERIFICACION-FIREFOX.md).
-2. **C-09 seguridad:** dependencia libxml2 y condiciones residuales siguen abiertas. No repetir escaneos con la misma base ni compilaciones sin una corrección candidata; no ocultar avisos o sustituir bibliotecas sin regresión.
+2. **C-09 seguridad:** corrección dev.41 probada: tres imágenes finales sin avisos, 234 controles y TLS positivo/negativo aprobados. Aplicación a destinos y referencias de publicación se registran al final; no atribuir estos resultados a las versiones anteriores.
 3. **C-08/C-11 Windows, al final:** instalación del paquete elegido en un Windows compatible con Docker Desktop/WSL2 y recursos suficientes; arranque, roles, reserva/ticket/cancelación y persistencia reales. La VM revisada no acredita esas condiciones. [Procedimiento](VERIFICACION-WINDOWS.md).
 4. **C-12 entrega humana:** revisión del receptor, acceso del evaluador al repositorio privado/cuentas y ensayo de defensa. No inventar participación o dominio del código.
 5. **Operación pública:** Aiven Free estaba apagado por inactividad y se reactivó antes del deploy. Render puede dormir. Comprobar ambos antes de evaluar; la disponibilidad del clima depende también del proveedor.
@@ -214,3 +214,19 @@ Control de navegador consultado nuevamente: Chrome e IAB disponibles; Firefox no
 MATRIZ.md estaba fechada8oct e indicaba como pendientes varios casos ya comprobados. Se sincronizaron RF-01/02/03/04/05/06/07/08/18/19, RNF-01/02/03/04/06, jQuery/AJAX, portabilidad y entregables contra CIERRE, ESTADO y B07. Se conserva el alcance de cada evidencia:234 integración aislada, IAB dev.39, C-01–05 previos, ZIP Linux dev.33, PDF/paquete dev.40. Se retiró zoom como bloqueo y se mantuvieron resultados históricos sin reescribirlos. No cambia el comportamiento de la aplicación; no se repiten pruebas funcionales ni se regenera el paquete por actualizar este índice.
 
 Siguiente avance material: una corrección compatible nueva para C-09, evidencia real de Firefox mediante el canal autorizado, equipo Windows compatible al final o participación humana para revisión/defensa. El seguimiento y las pruebas adicionales no sustituyen esas condiciones. Las guías están preparadas y no se introducen funcionalidades para aparentar un cierre.
+
+
+## Corrección nativa autorizada — B07/SEG-09
+
+El usuario solicitó corregir los riesgos, sin limitar el cambio al paquete Debian anterior. Se preparó una base web Alpine 3.24.2 con PHP8.4.26/Apache2.4.69 y bibliotecas corregidas; se conservan PHP/MySQL, UID/GID33 y los controles de arranque público. Decisión y procedencia en RUNTIME-CORREGIDO.md. Rama codex/b07-runtime-corregido, sin cambios de esquema o datos.
+
+Primera candidata web: 234 comprobaciones MySQL/HTTP correctas. Recetas local/pública construidas, sintaxis/unidades aprobadas; arranque público inválido rechazado, TLS válido aceptado, CA/hostname incorrectos rechazados, recreación y rechazo de servidor sin TLS aprobados. Evidencia storage/security-alpine-20261010, storage/image-check-VzQVjwp8 y storage/runtime-release-4qJKdhtX. Escaneo actualizado al10oct12:33:35UTC de la candidata web: cero avisos sin exclusiones. La imagen de prueba inicial detectó zlib pendiente y se incorporó 1.3.2-r1 antes de este resultado.
+
+MySQL: reconstrucción inicial de gosu con Go1.27.2 elimina los avisos del compilador anterior; la base nueva del escáner detectó cuatro filas restantes (dos OpenSSL, moby/sys/user y x/sys). Se preparan sus actualizaciones y se exige repetir integración/TLS con la imagen final antes de actualizar instalaciones. No presentar todavía esta candidata MySQL ni los destinos anteriores como corregidos.
+
+
+Imágenes finales dev.41 aprobadas: web local/publica en image-check-VzQVjwp8; MySQL en mysql-image-check-jflBfUpi, exit0. Integración final234, arranque TLS, CA/hostname incorrectos, recreación y servidor sin TLS verificados con las nuevas recetas. También31 comprobaciones de orquestación y sintaxis shell correctas. Apache aislado con cinco trabajadores UID33 y NoNewPrivs1 sirve CSS.
+
+Escáner Trivy0.75.0, base UpdatedAt2026-10-10T12:33:35.352381306Z, descargada17:03:38UTC: local0, pública0, MySQL0 avisos, sin exclusiones. Cada reporte se vinculó al blob de configuración dentro de su exportación OCI; los identificadores de manifiesto Docker difieren de esos blobs y no se confunden. Evidencia storage/security-alpine-20261010/*-final-scan.json y final-scan-summary.json. Cero avisos no garantiza ausencia de vulnerabilidades desconocidas o futuras ni audita host/proveedor.
+
+Se conserva respaldo SQL completo y archivo de storage antes de actualizar8086. El primer dump sin --no-tablespaces informó falta de PROCESS; se corrigió usando esa opción, sin ampliar permisos, y el respaldo completo terminó exit0. Snapshot público de diez tablas guardado antes del despliegue, sin imprimir contenido o credenciales. Instalación y publicación dev.41 se registran después de verificarlas; las versiones anteriores siguen disponibles.

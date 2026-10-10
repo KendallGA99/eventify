@@ -12,6 +12,7 @@ for case, port, failure, success in [
     ('zero', '0', '', False), ('large', '65536', '', False),
     ('injection', '80;echo-private', '', False), ('preflight', None, 'preflight', False),
     ('apache', None, 'apache', False), ('migration', None, 'migration', False),
+    ('worker', None, 'worker', False), ('health', None, 'health', False),
 ]:
     with tempfile.TemporaryDirectory(prefix='eventify-public-start-') as directory:
         path = pathlib.Path(directory)
@@ -27,16 +28,17 @@ for case, port, failure, success in [
 import os,sys,pathlib
 name=pathlib.Path(sys.argv[0]).name
 step=('preflight' if 'public-preflight.php' in sys.argv[-1] else 'migration') if name=='php' else ('apache' if name=='apache2ctl' else name)
+if name=='su':step='worker' if 'public-preflight.php' in sys.argv[-2] else 'health'
 with open(os.environ['TEST_LOG'],'a') as f:f.write(step+'\\n')
 sys.exit(1 if os.environ['TEST_FAILURE']==step else 0)
 '''
-        for name in ['php', 'apache2ctl', 'chown', 'docker-php-entrypoint']:
+        for name in ['php', 'apache2ctl', 'chown', 'install', 'su', 'apache2-foreground']:
             file = commands / name
             file.write_text(mock)
             file.chmod(0o755)
         script = path / 'entry.sh'
         script.write_text(source.replace('/var/www/html', str(app)).replace('/etc/apache2', str(apache)))
-        environment = dict(os.environ, PATH=str(commands)+os.pathsep+os.environ['PATH'], TEST_LOG=str(log), TEST_FAILURE=failure)
+        environment = dict(os.environ, PATH=str(commands)+os.pathsep+os.environ['PATH'], TEST_LOG=str(log), TEST_FAILURE=failure, DB_TLS_CA=str(path / 'ca.pem'))
         environment.pop('PORT', None)
         if port is not None:
             environment['PORT'] = port
@@ -44,10 +46,10 @@ sys.exit(1 if os.environ['TEST_FAILURE']==step else 0)
         calls = log.read_text().splitlines() if log.exists() else []
         assert (result.returncode == 0) == success, case
         checks += 1
-        assert ('docker-php-entrypoint' in calls) == success, case
+        assert ('apache2-foreground' in calls) == success, case
         checks += 1
         if success:
-            assert calls == ['preflight', 'chown', 'apache', 'migration', 'docker-php-entrypoint'], case
+            assert calls == ['preflight', 'chown', 'install', 'install', 'worker', 'apache', 'migration', 'health', 'apache2-foreground'], case
             assert (apache / 'ports.conf').read_text() == 'Listen '+(port or '10000')+'\n', case
             assert '<VirtualHost *:'+(port or '10000')+'>' in (apache / 'sites-available/000-default.conf').read_text(), case
             checks += 3

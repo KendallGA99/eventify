@@ -28,4 +28,4 @@ su -s /bin/sh -c 'php bin/health.php' www-data || {
     echo 'Arranque público rechazado: el proceso web no puede verificar la conexión TLS.' >&2
     exit 1
 }
-exec docker-php-entrypoint "$@"
+exec "$@"

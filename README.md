@@ -6,7 +6,7 @@ Plataforma académica PHP/MySQL para descubrir eventos, reservar entradas, consu
 
 Eventify permite crear una cuenta, explorar eventos, reservar entradas, consultar tickets con QR y cancelar reservas. El administrador gestiona categorías, eventos y reservas desde su panel.
 
-La versión de desarrollo es **0.1.0-dev.40**. Dev.40 añade una restricción de privilegios al contenedor web de Compose, verificada y aplicada localmente; no cambia el runtime de Render. Dev.39 corrige la presentación de cantidades y estados en el historial; su evidencia propia está en ESTADO. La [web pública](https://eventify-academico.onrender.com/eventos) ejecuta **dev.39**, con ingreso al inicio, perfil editable y controles para mostrar u ocultar contraseñas. La publicación conservó las diez tablas; después se aprobaron 81 controles HTTPS de usuarios y 36 de administrador.
+La versión de desarrollo es **0.1.0-dev.41**. Corrige las dependencias nativas de las imágenes web y MySQL: escaneo actualizado sin avisos y regresión de 234 controles más TLS positivo/negativo. [Detalle del entorno](docs/RUNTIME-CORREGIDO.md). La versión aplicada localmente y en la [web pública](https://eventify-academico.onrender.com/eventos), junto con sus verificaciones, está en [ESTADO](docs/ESTADO.md). Windows conserva su instalación pendiente; la versión todavía no se declara estable.
 
 La imagen MySQL dev.38 retira el cliente Shell que la aplicación no utiliza. Su construcción, 225 comprobaciones MySQL/HTTP y pruebas TLS positivo/negativo están aprobadas. El escaneo comparable pasó de 66 a 47 avisos, sin avisos nuevos ni exclusiones. Las imágenes PHP conservan riesgos documentados; esta versión todavía no se certifica como estable.
 

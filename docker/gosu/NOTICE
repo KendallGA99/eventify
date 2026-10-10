@@ -1,0 +1,8 @@
+Gosu 1.19, proyecto de Tianon Gravi y sus colaboradores.
+Fuente: https://github.com/tianon/gosu
+Commit: 6456aaa0f3c854d199d0f037f068eb97515b7513
+
+Eventify conserva el código de esa versión y modifica sus archivos de
+módulos para usar github.com/moby/sys/user 0.4.1 y golang.org/x/sys 0.44.0.
+El ejecutable se reconstruye con Go 1.27.2 para incorporar correcciones
+sin distribuir el compilador dentro del contenedor MySQL.

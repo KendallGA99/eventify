@@ -2,7 +2,7 @@
 
 ## Decisiones adoptadas
 
-- PHP 8.4 + Apache, MySQL 8.4 LTS; imágenes oficiales con digest multi-arquitectura fijado. No usar `latest`.
+- PHP 8.4 + Apache sobre Alpine 3.24.2 y MySQL 8.4 LTS sobre su imagen oficial; bases con digest multi-arquitectura fijado. No usar `latest`. La corrección nativa dev.41 y sus límites se describen en [RUNTIME-CORREGIDO.md](RUNTIME-CORREGIDO.md).
 - PHP organizado por responsabilidades, sin framework para la base inicial; autoload del namespace Eventify. Composer/QR se incorporarán al implementar tickets con versiones bloqueadas.
 - PDO MySQL, consultas preparadas nativas, utf8mb4 y hora UTC. Regla de negocio/ER pendientes de B02.
 - Docker Compose con web y db; red backend interna, MySQL sin puerto publicado, web local en 127.0.0.1.

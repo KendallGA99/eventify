@@ -1,0 +1,6 @@
+#!/bin/sh
+set -eu
+mkdir -p /run/apache2
+# El PID puede quedar en la capa del contenedor después de una interrupción.
+rm -f /run/apache2/httpd.pid
+exec httpd -DFOREGROUND "$@"

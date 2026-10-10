@@ -22,19 +22,19 @@ verify_images() {
         [[ "$kind" != public ]] || dockerfile='Dockerfile.public'
         image="eventify-${image_name}-${kind}:${version}"
         "${EVENTIFY_DOCKER[@]}" build -f "$dockerfile" -t "$image" .
-        for package in liblzma5 xz-utils; do
-            actual="$("${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint dpkg-query "$image" -W '-f=${Version}' "$package")"
-            [[ "$actual" == '5.8.1-1+deb13u2' ]] || { echo "Versión corregida no comprobada: $package" >&2; return 1; }
+        # Comprobar las correcciones reales y conservar el inventario completo.
+        "${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint apk "$image" info -v > "$record/${kind}-packages.txt"
+        for package in apache2-2.4.69-r0 libxml2-2.13.9-r2 libexpat-2.8.5-r0 zlib-1.3.2-r1 libssl3-3.5.9-r0 php84-8.4.26-r0; do
+            grep -Fxq "$package" "$record/${kind}-packages.txt" || { echo "Paquete corregido no comprobado: $package" >&2; return 1; }
         done
-        # La imagen final no debe conservar compiladores o cabeceras retirados.
         "${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint sh "$image" -c '
-            for package in binutils gcc g++ make autoconf m4 patch re2c libc6-dev linux-libc-dev; do
-                status=$(dpkg-query -W -f="\${db:Status-Status}" "$package" 2>/dev/null || true)
-                if [ "$status" = installed ]; then
+            for package in binutils gcc g++ make autoconf m4 patch re2c musl-dev linux-headers unzip; do
+                if apk info -e "$package" >/dev/null 2>&1; then
                     echo "Herramienta de construcción aún instalada: $package" >&2
                     exit 1
                 fi
             done
+            [ "$(id -u www-data)" = 33 ] && [ "$(id -g www-data)" = 33 ]
         '
         "${EVENTIFY_DOCKER[@]}" run --rm --network none --entrypoint apache2ctl "$image" -M > "$record/${kind}-apache-modules.txt" 2>&1
         if grep -Eq ' (heartmonitor|charset_lite|vhost_alias|xml2enc|proxy_uwsgi|auth_digest)_module ' "$record/${kind}-apache-modules.txt"; then

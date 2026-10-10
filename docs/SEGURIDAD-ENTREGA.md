@@ -1,6 +1,6 @@
 # Seguridad de la entrega
 
-Corte: 10 de octubre de 2026. Resumen operativo de las comprobaciones y los riesgos que permanecen; no reemplaza los informes detallados ni constituye aceptación automática del riesgo.
+Corte: 10 de octubre de 2026. Dev.41 corrige el entorno nativo: imágenes web local/pública y MySQL sin avisos en el escaneo de esa fecha, sin exclusiones. Las tres recetas pasaron regresión, 234 controles MySQL/HTTP y TLS positivo/negativo. [Cambio y alcance](RUNTIME-CORREGIDO.md). ESTADO.md identifica qué versión está aplicada en cada destino. Los apartados siguientes conservan la evidencia anterior; no describen las bibliotecas de dev.41.
 
 ## Controles comprobados
 
@@ -19,7 +19,7 @@ Criterios de aceptación: Apache inicia, sirve CSS, mantiene trabajadores www-da
 
 Esta configuración pertenece a Docker Compose. No acredita la misma protección en Render, que utiliza su propio runtime, ni una instalación Windows todavía no verificada. No parchea libxml2 o Apache y no elimina los riesgos siguientes.
 
-## Decisiones pendientes
+## Referencias anteriores a dev.41
 
 ### Caducidad y modo estricto: comprobación adicional
 

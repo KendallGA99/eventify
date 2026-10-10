@@ -1,5 +1,12 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.41 — Corrección de dependencias nativas (B07/SEG-09)
+
+- Sustituye la base web por Alpine 3.24.2 con Apache 2.4.69, PHP 8.4.26 y bibliotecas corregidas. Conserva PHP/MySQL, las rutas y UID/GID 33 del almacenamiento.
+- Actualiza OpenSSL de MySQL y reconstruye gosu con Go 1.27.2 y dependencias corregidas; el compilador queda fuera de la imagen final.
+- Imágenes finales local, pública y MySQL: cero avisos con Trivy actualizado al 10 de octubre, sin exclusiones. Integración: 234 controles; unidades, arranque público, TLS positivo/negativo, recreación y restricción de privilegios aprobados.
+- Publicación y aplicación a instalaciones se registran por separado en ESTADO.md. Windows sigue pendiente; no se marca estable.
+
 ## Verificación adicional de dev.40 — Caducidad de sesiones (B07/RNF-03)
 
 - Añade nueve controles HTTP de modo estricto y caducidad: identidad, permisos, renovación y destrucción de sesión, CSRF y reenvío de cookie anterior.

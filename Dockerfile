@@ -1,36 +1,44 @@
-# Imagen multi-arquitectura fijada por digest; actualizar con verificación.
-FROM php:8.4-apache@sha256:901b0dbcd2419cc9cd307ea05e57403449ce722ccd5b32335da6e8d39f2b1ee0
+# Base oficial y paquetes de una sola distribución soportada.
+FROM alpine:3.24.2@sha256:294b683cb724975bec92580e1e685676bd4b50bda910ddb8c51d4cabeaec77e6
 
-RUN docker-php-ext-install pdo_mysql \
-    && a2enmod rewrite headers \
-    && mkdir -p /var/www/html/storage \
-    && chown www-data:www-data /var/www/html/storage
+RUN apk upgrade --no-cache \
+    && apk add --no-cache apache2=2.4.69-r0 \
+        php84=8.4.26-r0 php84-apache2=8.4.26-r0 \
+        php84-pdo_mysql=8.4.26-r0 php84-iconv=8.4.26-r0 \
+        php84-ctype=8.4.26-r0 php84-session=8.4.26-r0 \
+        php84-openssl=8.4.26-r0 php84-phar=8.4.26-r0 \
+        libxml2=2.13.9-r2 libexpat=2.8.5-r0 zlib=1.3.2-r1 \
+        libssl3=3.5.9-r0 libcrypto3=3.5.9-r0 bash curl ca-certificates \
+    && ln -s /usr/bin/php84 /usr/local/bin/php \
+    && delgroup www-data \
+    && addgroup -g 33 www-data \
+    && adduser -S -D -H -u 33 -G www-data www-data \
+    && mkdir -p /var/www/html/storage /etc/apache2/sites-available /run/apache2 \
+    && chown 33:33 /var/www/html/storage \
+    && printf 'Listen 80\n' > /etc/apache2/ports.conf
 
+# Mantener UID/GID 33 permite reutilizar los volúmenes de las versiones anteriores.
+COPY docker/httpd-alpine.conf /etc/apache2/httpd.conf
 COPY docker/apache.conf /etc/apache2/sites-available/000-default.conf
-COPY docker/php.ini /usr/local/etc/php/conf.d/eventify.ini
+COPY docker/php.ini /etc/php84/conf.d/99-eventify.ini
+COPY docker/apache2-foreground docker/apache2ctl /usr/local/bin/
+RUN chmod 755 /usr/local/bin/apache2-foreground /usr/local/bin/apache2ctl
 WORKDIR /var/www/html
 COPY composer.json composer.lock ./
-# Composer instala archivos dist ZIP; extractor solo durante la construcción.
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        liblzma5=5.8.1-1+deb13u2 xz-utils=5.8.1-1+deb13u2 \
-    && apt-get install -y --no-install-recommends unzip \
+RUN apk add --no-cache --virtual .composer-build unzip \
     && curl -fsSL https://getcomposer.org/download/2.10.3/composer.phar -o /tmp/composer.phar \
     && echo '7a2d379d5b8ffdaa028580ef26494c36d2feef4b178d3dd1473a4dbc5e17c8d6  /tmp/composer.phar' | sha256sum -c - \
     && php /tmp/composer.phar install --no-dev --no-plugins --no-scripts --prefer-dist --no-interaction --no-progress --optimize-autoloader \
     && php /tmp/composer.phar check-platform-reqs --no-dev \
-    && apt-get purge -y unzip \
-    && rm /tmp/composer.phar \
-    && rm -rf /var/lib/apt/lists/*
+    && apk del .composer-build \
+    && rm /tmp/composer.phar
 COPY app/ app/
 COPY config/ config/
 COPY database/ database/
 COPY public/ public/
 COPY bin/ bin/
 COPY tests/ tests/
-
-# Las extensiones ya están compiladas; retirar herramientas del runtime.
-COPY docker/runtime-prune.sh /tmp/eventify-runtime-prune.sh
-RUN sh /tmp/eventify-runtime-prune.sh && rm /tmp/eventify-runtime-prune.sh
+RUN apache2ctl configtest
 
 EXPOSE 80
+CMD ["apache2-foreground"]
