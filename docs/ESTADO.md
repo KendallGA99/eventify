@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.42**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
+Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.43**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
 
 ## Alcance y autorizaciones
 
@@ -14,12 +14,12 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.42**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-clima-respaldo`. Dev.42 añade respaldo meteorológico y está aplicada a8086/Render; paquetes anteriores conservados. |
-| Aplicación comprobada | Dev.42 sobre `bd7e3e5`: clima58, integración234, HTTPS público81 y pronóstico real de respaldo visible. Dev.41 conserva evidencia de corrección nativa; Windows/Firefox restantes pendientes. |
+| Rama actual | `codex/b07-clima-diseno`. Dev.43 simplifica la tarjeta del pronóstico y está aplicada a8086/Render; versiones anteriores conservadas. |
+| Aplicación comprobada | Dev.43 sobre `f9eac94`: sintaxis, clima58, presupuesto44 y navegador móvil/escritorio correctos. Integración234 y HTTPS81 corresponden a dev.42; no se repiten por el cambio de presentación. Dev.41 conserva evidencia de corrección nativa; Windows/Firefox restantes pendientes. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
-| Web pública | https://eventify-academico.onrender.com, commit `bd7e3e5802c91e3a81412e7cae76060a7feec42a`, dev.42. |
-| Render | Free, AutoDeployOff; deploy `dep-db57g12jnfac739gk1eg`, fuente bd7e3e5, iniciado10oct11:38:12CST y Live tras27,1s. Dev.41 conservada para rollback. |
-| Local8086 | Web dev.42 y MySQL dev.41 saludables; diez tablas conservadas en la actualización. Proyecto `eventify-clean-20261009035638-598f411d`; instalación limpia original dev.33 y actualización dev.41 con evidencia propia. |
+| Web pública | https://eventify-academico.onrender.com, commit `f9eac9454cd24b2bb85ad865a00d0a3d78804017`, dev.43. |
+| Render | Free, AutoDeployOff; deploy `dep-db57le7lk1mc7391a8u0`, fuente f9eac94, iniciado10oct11:49:44CST y Live tras21,7s. Dev.42 conservada para rollback. |
+| Local8086 | Web dev.43 y MySQL dev.41 saludables; solo se recreó web, sin cambiar migraciones, configuración ni volúmenes. La comparación de diez tablas corresponde a dev.42. Proyecto `eventify-clean-20261009035638-598f411d`; instalación limpia original dev.33 y actualización dev.41 con evidencia propia. |
 | Paquete documental dev.42 vigente | `output/entrega/eventify-desarrollo-05ab8db4fb01/eventify-source.zip`, 232 archivos, fuente `05ab8db4fb0131b224d2c14b85a0538d283efc6e`, PDF de18 páginas adjunto. CRC/inventario/huellas verificados; Windows pendiente. |
 | Paquete documental dev.41 conservado | `output/entrega/eventify-desarrollo-636ef74f748a/eventify-source.zip`, 229 archivos, fuente `636ef74f748afc0933687c09620402c32a0d3fae` y PDF18 páginas adjunto. Integridad comprobada; Windows pendiente. |
 | Paquete documental dev.40 conservado | `output/entrega/eventify-desarrollo-0ab59e9566ed/eventify-source.zip`, 219 archivos y PDF adjunto de17 páginas; fuente `0ab59e9566ed6181a1e56e75db3f6db842d741b2`. Integridad comprobada; instalación Windows pendiente. |
@@ -291,3 +291,5 @@ Paquete dev.42 final: fuente 05ab8db4fb0131b224d2c14b85a0538d283efc6e, output/en
 Solicitud: simplificar la información meteorológica y reducir el texto visible de fuentes. RF-15/RNF-01: rango destacado, lluvia cuando existe, controles accesibles y estados de indisponibilidad conservados. Fuente, licencia, adaptación y límites del respaldo quedan en «Sobre el pronóstico», disponible con teclado. No modifica API, proveedores, esquema ni reservas.
 
 Verificación previa: JavaScript con `node --check`, PHP de la vista y `git diff --check` correctos. Imágenes local y pública dev.43 construidas; 8086 saludable tras recrear únicamente web. Navegador local confirma aviso de clima desactivado y desplegable cerrado. La configuración local mantiene WEATHER_ENABLED=false. Publicación y revisión del pronóstico en móvil/escritorio pendientes en este punto. No se repite la suite extensa de Linux por este cambio de presentación.
+
+Cierre de presentación dev.43: commit `f9eac9454cd24b2bb85ad865a00d0a3d78804017`, etiqueta `v0.1.0-dev.43` y rama enviados a GitHub. Render `dep-db57le7lk1mc7391a8u0` Live; navegador confirma rango real 17,9–26,4 °C, desplegable cerrado inicialmente, fuente MET Norway/licencia/adaptación visibles al abrir con Enter. Móvil: ancho efectivo375px, scrollWidth375px, tarjeta327px; sin desbordamiento. Capturas privadas `storage/weather-dev43/public-weather.png` y `public-weather-mobile.png`. Construcción pública ejecutó clima58 y presupuesto44; unidad de clima58 también pasó en imagen local. Un intento manual apuntó a `tests/unit/weather.php` inexistente; se corrigió a `tests/unit/event-weather.php`. Windows, Firefox restante y defensa mantienen sus pendientes; no se declara estable.
