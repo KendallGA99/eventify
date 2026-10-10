@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.43 — Presentación del clima (B07/RF-15/RNF-01)
+
+- Destaca el rango de temperatura y presenta la lluvia solo cuando existe ese dato.
+- Agrupa fuente, licencia, hora de consulta y límites del pronóstico en un desplegable accesible. Conserva los avisos de error y de información almacenada.
+- Mantiene proveedores, caché, API y reservas sin cambios; validación visual y publicación en ESTADO.
+
 ## 0.1.0-dev.42 — Respaldo del pronóstico (B07/RF-15)
 
 - Añade MET Norway como proveedor de respaldo cuando la consulta a Open-Meteo falla. Destinos HTTPS fijos, TLS verificado, respuestas acotadas, caché por ubicación y validación de datos.

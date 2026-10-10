@@ -64,8 +64,27 @@ select:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
 @media (max-width: 900px) { .catalog-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .catalog-filters { grid-template-columns: 1fr; } }
 
-.weather-panel { margin-block: 28px; padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: #fffef9; }
-.weather-panel p { line-height: 1.65; }
+.weather-panel { margin-block: 28px; padding: 24px; border: 1px solid var(--line); border-radius: 14px; background: linear-gradient(135deg, #fffef9, #eff3e9); }
+.weather-heading { display: flex; align-items: center; gap: 12px; }
+.weather-heading h2 { margin: 0 0 4px; font-size: 18px; }
+.weather-icon { display: grid; place-items: center; flex: 0 0 46px; height: 46px; border-radius: 14px; background: #e1e9da; color: var(--accent); }
+.weather-subtitle, .weather-message { color: var(--muted); font-size: 14px; }
+.weather-panel p { line-height: 1.6; }
+.weather-message { margin: 18px 0 0; }
+.weather-message:empty { display: none; }
+.weather-values { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+.weather-temperature { margin: 22px 0; }
+.weather-temperature strong { display: block; font-size: clamp(28px, 4vw, 38px); font-weight: 650; letter-spacing: -1px; line-height: 1.2; }
+.weather-temperature span { display: block; margin-top: 6px; color: var(--muted); font-size: 13px; }
+.weather-rain { padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px; }
+.weather-actions { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 20px; margin-top: 16px; }
+.weather-actions .button { font-size: 13px; padding: 10px 14px; }
+.weather-details { flex: 1 1 170px; color: var(--muted); font-size: 12px; }
+.weather-details summary { width: fit-content; padding-block: 12px; cursor: pointer; }
+.weather-details summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+.weather-detail-copy { padding-top: 4px; }
+.weather-detail-copy p { margin: 0 0 8px; }
+@media (max-width: 480px) { .weather-panel { padding: 20px; } .weather-heading h2 { font-size: 16px; } }
 [hidden] { display: none !important; }
 .admin-form-card { padding: 24px; margin-block: 28px; border: 1px solid var(--line); border-radius: 10px; background: #fffef9; }
 .admin-form, .admin-form fieldset { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; min-width: 0; }

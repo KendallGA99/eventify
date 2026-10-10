@@ -285,3 +285,9 @@ Seguridad pública posterior:81 controles HTTPS correctos, sin escrituras de neg
 Documento técnico dev.42 actualizado: 18 páginas renderizadas y revisadas, sin texto fuera de página; diagrama y explicación incluyen ambos proveedores. PDF SHA256 62970d6de74941b0eca0232678043d5ed5da2fffbff6081ae1de90e09d5e0e44. Etiqueta anotada v0.1.0-dev.42 apunta al código probado bd7e3e5; push confirmado. La exportación documental posterior conserva su propia referencia.
 
 Paquete dev.42 final: fuente 05ab8db4fb0131b224d2c14b85a0538d283efc6e, output/entrega/eventify-desarrollo-05ab8db4fb01/eventify-source.zip, 232 archivos, ZIP SHA256 e7a53cd5e19f39167a7a4b4c2ca11973e86240a083232eb8602b86f7a7eccc01. PDF adjunto SHA256 62970d6de74941b0eca0232678043d5ed5da2fffbff6081ae1de90e09d5e0e44. CRC, inventario y huellas individuales comprobados; contiene el cliente de respaldo y VERSION dev.42. Entrega-manifest.json identifica fuente y artefactos. Paquetes anteriores conservados; no se afirma instalación nueva de este ZIP ni certificación Windows.
+
+## B07 — Tarjeta de clima dev.43
+
+Solicitud: simplificar la información meteorológica y reducir el texto visible de fuentes. RF-15/RNF-01: rango destacado, lluvia cuando existe, controles accesibles y estados de indisponibilidad conservados. Fuente, licencia, adaptación y límites del respaldo quedan en «Sobre el pronóstico», disponible con teclado. No modifica API, proveedores, esquema ni reservas.
+
+Verificación previa: JavaScript con `node --check`, PHP de la vista y `git diff --check` correctos. Imágenes local y pública dev.43 construidas; 8086 saludable tras recrear únicamente web. Navegador local confirma aviso de clima desactivado y desplegable cerrado. La configuración local mantiene WEATHER_ENABLED=false. Publicación y revisión del pronóstico en móvil/escritorio pendientes en este punto. No se repite la suite extensa de Linux por este cambio de presentación.

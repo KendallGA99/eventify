@@ -24,7 +24,25 @@ $title = match ($page) { 'event' => $event['name'], 'ticket' => 'Ticket de reser
     <div data-catalog-results><?php require PROJECT_ROOT . '/app/Views/catalog-helpers.php'; require PROJECT_ROOT . '/app/Views/catalog-results.php'; ?></div>
 <?php elseif ($page === 'event'): ?>
     <div class="event-detail"><section><img class="event-image" src="<?= $escape($event['image_path']) ?>" alt="<?= $escape($event['name']) ?>"><p class="eyebrow"><?= $escape($event['category']) ?></p><p class="event-description"><?= nl2br($escape($event['description'])) ?></p><dl><dt>Fecha y hora</dt><dd><?= $date($event['starts_at']) ?> (Costa Rica)</dd><dt>Ubicación</dt><dd><?= $escape($event['location']) ?></dd><dt>Capacidad</dt><dd><?= (int) $event['capacity'] ?> personas</dd><dt>Espacios disponibles</dt><dd><?= (int) $event['available'] ?></dd></dl>
-    <section class="weather-panel" data-event-weather="/api/eventos/<?= $escape($event['slug']) ?>/clima" aria-labelledby="weather-title"><h2 id="weather-title">Clima para tu experiencia</h2><p data-weather-message role="status" aria-live="polite">Active JavaScript para consultar el pronóstico. Su reserva está disponible sin esta información.</p><div data-weather-values></div><button class="button" type="button" data-weather-retry hidden>Consultar de nuevo</button><p class="field-help">Datos de <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> o <a href="https://api.met.no/" target="_blank" rel="noopener noreferrer">MET Norway</a>, <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Resumen diario adaptado para Eventify.</p></section>
+    <section class="weather-panel" data-event-weather="/api/eventos/<?= $escape($event['slug']) ?>/clima" aria-labelledby="weather-title">
+        <div class="weather-heading">
+            <span class="weather-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M9 14.5V5a3 3 0 0 1 6 0v9.5a5 5 0 1 1-6 0Z"/><path d="M12 8v10m6-12h3m-3 4h2"/></svg></span>
+            <div><h2 id="weather-title">Clima para tu experiencia</h2><span class="weather-subtitle">Para el día del evento</span></div>
+        </div>
+        <p class="weather-message" data-weather-message role="status" aria-live="polite">Active JavaScript para consultar el pronóstico. Puede reservar sin esta información.</p>
+        <div class="weather-values" data-weather-values></div>
+        <div class="weather-actions">
+            <button class="button button-secondary" type="button" data-weather-retry hidden>Actualizar pronóstico</button>
+            <details class="weather-details">
+                <summary>Sobre el pronóstico</summary>
+                <div class="weather-detail-copy">
+                    <p data-weather-description>Pronóstico orientativo; puede cambiar. Resumen adaptado por Eventify.</p>
+                    <p data-weather-checked hidden></p>
+                    <p>Datos de <a data-weather-source="open_meteo" href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a><span data-weather-source-join> o </span><a data-weather-source="met_norway" href="https://api.met.no/" target="_blank" rel="noopener noreferrer">MET Norway</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.</p>
+                </div>
+            </details>
+        </div>
+    </section>
     </section>
     <aside class="auth-card reserve-card"><h2>Tu próxima experiencia</h2><p><?= $money($event['price']) ?> por entrada</p>
     <?php if ($event['display_status'] !== 'PUBLICADO'): ?><p class="notice"><?= $event['display_status'] === 'CANCELADO' ? 'Este evento fue cancelado.' : 'Este evento ya finalizó.' ?> Su información permanece disponible.</p>
