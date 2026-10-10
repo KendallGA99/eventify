@@ -6,11 +6,11 @@ Plataforma académica PHP/MySQL para descubrir eventos, reservar entradas, consu
 
 Eventify permite crear una cuenta, explorar eventos, reservar entradas, consultar tickets con QR y cancelar reservas. El administrador gestiona categorías, eventos y reservas desde su panel.
 
-La versión pública está disponible en [eventify-academico.onrender.com](https://eventify-academico.onrender.com/eventos). La versión de desarrollo actual es **0.1.0-dev.34**. La web ejecuta dev.30 con el parche de imágenes xz/liblzma; diez tablas conservaron sus huellas y 81 controles HTTPS posteriores pasaron. Se comprobaron los accesos de ambos roles, la creación de un evento ficticio, una reserva con ticket, su cancelación y la conservación de los datos tras reiniciar la web.
+La versión de desarrollo es **0.1.0-dev.38**. La [web pública](https://eventify-academico.onrender.com/eventos) ejecuta **dev.37**, con ingreso al inicio, perfil editable y controles para mostrar u ocultar contraseñas. La publicación conservó las diez tablas; después se aprobaron 81 controles HTTPS de usuarios y 31 de administrador.
 
-Las últimas pruebas locales registradas incluyen 266 comprobaciones unitarias y 219 de integración con MySQL/HTTP. Corresponden a las ejecuciones indicadas en [ESTADO.md](docs/ESTADO.md); los cambios posteriores tienen sus propias verificaciones. Dev.33 también aprobó instalación limpia Linux, reserva/cancelación y persistencia posterior en el puerto 8086. Estos resultados no equivalen a una entrega final aprobada.
+La imagen MySQL dev.38 retira el cliente Shell que la aplicación no utiliza. Su construcción, 225 comprobaciones MySQL/HTTP y pruebas TLS positivo/negativo están aprobadas. El escaneo comparable pasó de 66 a 47 avisos, sin avisos nuevos ni exclusiones. Las imágenes PHP conservan riesgos documentados; esta versión todavía no se certifica como estable.
 
-El pronóstico público tuvo una respuesta útil comprobada. Dev.34 aprobó construcción final, unidades y arranque público con TLS en ensayos aislados. Sus imágenes reducen los registros del escaneo de 2.011 a 424, con avisos residuales documentados. El ZIP fuente dev.33 ya tiene instalación limpia y persistencia comprobadas en Linux. Faltan Windows, Firefox, casos de interfaz y seguridad restantes, y el cierre de entrega. Los casos concretos están en [CIERRE.md](docs/CIERRE.md). El clima puede fallar sin impedir una reserva.
+La instalación limpia Linux y su persistencia se comprobaron con el ZIP dev.33. El paquete dev.38 tiene integridad verificada y pruebas propias de imagen; eso no equivale a haberlo instalado en Windows. Faltan las comprobaciones restantes de Firefox, Windows y la aceptación humana. [ESTADO.md](docs/ESTADO.md) identifica cada referencia y [CIERRE.md](docs/CIERRE.md) organiza los pendientes. El pronóstico público tuvo una respuesta útil en dev.30; la consulta del 10 de octubre estuvo indisponible. Sus fallos no impiden reservar.
 
 ## Inicio local
 
@@ -30,7 +30,7 @@ bash scripts/start-linux.sh
 
 En Windows: instalar/abrir Docker Desktop en modo Linux y ejecutar `iniciar-windows.cmd`. Los scripts preparan claves locales únicas y conservan la configuración existente. Abrir `http://localhost:8080` cuando el inicio termine correctamente.
 
-Detener: `bash scripts/stop-linux.sh` o `detener-windows.cmd`. Pruebas B01: `bash scripts/test-linux.sh` o `scripts/test-windows.ps1` desde PowerShell. No borrar volúmenes para resolver fallos.
+Detener: `bash scripts/stop-linux.sh` o `detener-windows.cmd`. Verificaciones locales: `bash scripts/test-linux.sh` o `scripts/test-windows.ps1` desde PowerShell. No borrar volúmenes para resolver fallos.
 
 Pruebas MySQL aisladas: `bash scripts/test-database-linux.sh`; demostración opcional: `bash scripts/demo-linux.sh`. Consulte [DATOS.md](docs/DATOS.md).
 
@@ -49,7 +49,7 @@ Actualizar y verificar Linux: `bash scripts/verify-linux.sh`. La instalación co
 | [INSTALACION.md](docs/INSTALACION.md) | Arranque, detención, configuración y problemas comunes. |
 | [DATOS.md](docs/DATOS.md) | Modelo, migraciones, demostración y pruebas aisladas. |
 | [Evidencia B04](docs/evidencias/B04.md) | Reservas/transacciones y dos carreras aprobadas; cuatro carreras administrativas también aprobadas. |
-| [Evidencia B03](docs/evidencias/B03.md) | Autenticación/permisos/sesiones verificados por HTTP; flujo navegador completo pendiente. |
+| [Evidencia B03](docs/evidencias/B03.md) | Evidencia histórica de autenticación; aceptación de navegador y límites actuales en ESTADO. |
 | [Evidencia B02](docs/evidencias/B02.md) | Validación y límites del modelo de datos. |
 | [Evidencia B01](docs/evidencias/B01.md) | Pruebas ejecutadas y límites de la verificación. |
 
@@ -70,4 +70,4 @@ El historial se conserva en el repositorio privado [USUARIO_DESTINO/eventify](ht
 - [Verificación Windows](docs/VERIFICACION-WINDOWS.md): procedimiento pendiente de equipo real.
 - [Demostración y defensa](docs/DEFENSA.md): recorrido, mapa del código y ejercicios; no certifica dominio.
 - [Revisión de seguridad](docs/SEGURIDAD.md): dependencias y controles comprobados, con límites.
-- [Fuente del documento técnico](docs/TECNICO.md): borrador actualizado a dev.32, con la misma aplicación de dev.30, con límites y evidencia.
+- [Fuente del documento técnico](docs/TECNICO.md): documento dev.38, publicación dev.37, límites y evidencia de cada referencia.

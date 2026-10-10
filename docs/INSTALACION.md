@@ -2,7 +2,7 @@
 
 ## Estado de esta guía
 
-Stack Docker Linux con PHP/MySQL, autenticación, reservas y administración implementados y probados parcialmente; ver [ESTADO.md](ESTADO.md). QA comprobó persistencia tras recrear contenedores. Arranque desde ZIP Linux dev.28, restauración de datos QA y acceso HTTP autenticado al destino restaurado comprobados. Windows y los criterios finales siguen pendientes. La página inicial conserva el aviso de construcción hasta cerrar los requisitos.
+El proyecto incluye autenticación, catálogo, reservas, tickets con QR y administración. La referencia de desarrollo es dev.38; la publicación es dev.37. La instalación limpia Linux y la persistencia tienen evidencia sobre dev.33; dev.38 añade la imagen MySQL reducida con integración y TLS comprobados. El ZIP nuevo no tiene aceptación de instalación propia en Windows. Consulte [ESTADO.md](ESTADO.md) para distinguir estos resultados.
 
 Ejecute los comandos desde la carpeta raíz de EVENTIFY.
 
@@ -26,7 +26,7 @@ No hace falta instalar PHP ni MySQL en el host. El proyecto puede residir en una
 
 ## Linux Mint del desarrollador
 
-Equipo detectado: Linux Mint 22.3 basado en Ubuntu noble, x86_64. Docker no estaba instalado al iniciar B01 y sudo requiere contraseña interactiva.
+Equipo detectado: Linux Mint 22.3 basado en Ubuntu noble, x86_64. Docker se instaló durante B01. Los permisos del servicio dependen de cada equipo; la instalación no modifica automáticamente grupos o sudoers.
 
 Desde la carpeta del proyecto, instalar por una única vez:
 
@@ -92,7 +92,7 @@ Para el ensayo aislado de exportación/restauración y sus resultados reales, co
 
 - `.env.example` contiene marcadores, no contraseñas utilizables. Los scripts crean `.env` y tres claves aleatorias diferentes. Nunca subir `.env` a GitHub ni incluirlo en el paquete público.
 - Si `.env` ya existe, no se sobrescribe. Si contiene marcadores, el inicio falla y solicita corregirlo.
-- APP_PORT configura puerto; APP_TIMEZONE define la zona de presentación futura. PHP/MySQL operan en UTC.
+- APP_PORT configura puerto; APP_TIMEZONE define la zona de presentación. PHP/MySQL operan en UTC.
 - Los datos MySQL residen en el volumen `mysql_data`, los archivos en `app_storage`.
 - Detener/iniciar y reconstruir la imagen no deben borrar esos volúmenes. Persistencia por recreación comprobada en QA; la instalación receptora sigue requiriendo su propia validación.
 - No ejecutar `docker compose down -v`, `docker volume prune` ni eliminar `.env` para reparar errores. Puede perder datos o romper acceso al volumen existente.
@@ -118,7 +118,7 @@ Para el ensayo aislado de exportación/restauración y sus resultados reales, co
 
 Las condiciones pueden cambiar; comprobar nuevamente antes de preparar la entrega Windows final.
 
-La imagen instala temporalmente `unzip` para extraer los paquetes de Composer durante el build y lo retira después. No se requiere instalarlo en Linux/Windows del receptor. Si aparece «zip extension and unzip/7z commands are both missing», comprobar que se está construyendo el Dockerfile vigente (dev.6 o posterior) y repetir la verificación; no borrar volúmenes para corregir este fallo de construcción.
+La imagen instala temporalmente `unzip` para extraer los paquetes de Composer durante el build y lo retira después. No se requiere instalarlo en Linux/Windows del receptor. Si aparece «zip extension and unzip/7z commands are both missing», comprobar que se está construyendo el Dockerfile vigente (incluido en su paquete) y repetir la verificación; no borrar volúmenes para corregir este fallo de construcción.
 
 Para comprobar únicamente un cambio en las pruebas de integración/MySQL, use `bash scripts/verify-integration-linux.sh` en Linux. Ejecuta el stack aislado de pruebas y guarda `storage/integration-status.txt` e `storage/integration.log` privados; conserva los volúmenes/datos de la aplicación. Este resultado es independiente del registro de verify-dev-linux.sh. Requiere acceso Docker y puede solicitar sudo en esa terminal. No sustituye pruebas unitarias o de entrega final cuando cambió la aplicación.
 

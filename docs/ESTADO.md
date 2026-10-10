@@ -102,3 +102,9 @@ Paquete217 archivos: SHA256 `1a4e84d401218fb5db71c5d0cb26428d3168c9ac4e484f91236
 - Control de navegadores consultado: Chrome e IAB disponibles; Firefox no expuesto. VM Windows apagada; host7,6GiB totales y aproximadamente3GiB disponibles durante la consulta. No se inició ni amplió la VM, ni se ejecutó una instalación Windows con recursos insuficientes.
 
 Siguiente cierre posible: evidencia real de Firefox mediante un canal compatible y Windows con recursos suficientes. La entrega estable también conserva la revisión/decisión sobre riesgos residuales y aceptación humana; no declararlas resueltas por esta revisión de disponibilidad. La web pública dev.37 y el paquete dev.38 permanecen en sus referencias; este cambio solo actualiza documentación.
+
+## Manuales sincronizados con dev.38
+
+Se revisaron README, INSTALACION y DATOS contra VERSION, migraciones001–003, DemoSeeder, ReservationService y la composición de la suite de integración. Se retiraron afirmaciones antiguas de funciones pendientes, aviso de construcción y publicación dev.30; README ahora distingue imagen/dev.38, aplicación pública/dev.37 e instalación limpia/dev.33. DATOS incorpora weather_budget y el acceso privado a las cuentas locales generadas, con instrucciones por sistema y proyecto Compose. No se copiaron ni imprimieron credenciales reales.
+
+Enlaces locales, bloques de comandos y referencias de archivos comprobados; git diff --check correcto. Solo documentación, sin cambios de runtime ni suites Linux repetidas. Se solicitó el resultado humano del recorrido restante de Firefox, que no está expuesto al control disponible; hasta recibir evidencia, C-07 continúa pendiente. Windows permanece al final.
