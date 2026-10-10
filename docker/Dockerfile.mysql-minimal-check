@@ -1,0 +1,20 @@
+ARG EVENTIFY_MYSQL_BASE
+FROM ${EVENTIFY_MYSQL_BASE}
+
+# Ensayo: retirar únicamente el cliente Shell, conservando servidor y clientes SQL.
+RUN set -eu; \
+    rpm -q mysql-shell; \
+    rpm -e --test mysql-shell; \
+    for tool in mysqld mysql mysqladmin mysqldump; do \
+        command -v "$tool"; \
+    done; \
+    sha256sum /usr/sbin/mysqld /usr/bin/mysql /usr/bin/mysqladmin /usr/bin/mysqldump /usr/local/bin/gosu /usr/local/bin/docker-entrypoint.sh > /tmp/eventify-mysql-tools.sha256; \
+    rpm -e mysql-shell; \
+    if rpm -q mysql-shell; then exit 1; fi; \
+    test ! -e /usr/lib/mysqlsh; \
+    test ! -e /usr/bin/mysqlsh; \
+    sha256sum -c /tmp/eventify-mysql-tools.sha256; \
+    mysqld --version; \
+    mysql --version; \
+    mysqldump --version; \
+    rm /tmp/eventify-mysql-tools.sha256

@@ -14,7 +14,7 @@ Corte: 9 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.37**, toda
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b08-publicacion-dev37`. Último registro de paquete: `e4ea7ac`; los commits posteriores son documentación, salvo indicación expresa. |
+| Rama actual | `codex/b07-mysql-minimal`, desde `8554ef4`. Ensayo de imagen derivada, sin cambiar aplicación o imagen de entrega. Paquete conservado en su referencia documental. |
 | Aplicación comprobada | `ab710a671d40024bf84cc46026af4c4cd54a948d`, dev.37. Los cambios documentales posteriores no modifican su código. |
 | Etiqueta conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `7c3a3e28435566349efcd4b2a66eace89de978d2`, dev.37. |
@@ -74,3 +74,11 @@ B01/B02 comprobados; B03–B06 implementados con evidencia por flujo. B07 sigue 
 - Conservar destinos anteriores8080–8085 y todos sus volúmenes. Su disponibilidad actual no se presume. No borrar datos para resolver fallos ni reutilizar puertos deteniendo servicios ajenos.
 - Rollback Git recupera código, no MySQL; revisar migraciones y respaldos antes de actualizar. Dev.37 no cambió esquema respecto a la publicación anterior.
 - En este corte solo se ordenó documentación: estado anterior archivado íntegro, resumen y cierre sincronizados. Sin pruebas Linux repetidas ni cambios de aplicación, bases, permisos o servicios.
+
+## Siguiente ensayo: MySQL sin Shell
+
+Se prepara una candidata para retirar mysql-shell y sus bibliotecas Python, sin modificar Dockerfile.mysql ni los destinos existentes. La base RPM exportada no muestra otros paquetes que requieran sus capacidades; el entrypoint solo lo menciona en un comentario. Es una posibilidad de reducción de superficie, no una corrección acreditada de los19 avisos Python.
+
+`scripts/test-mysql-minimal-linux.sh` construye una derivada aislada, exige RPM sin dependencias forzadas, compara inventario y huellas de las herramientas conservadas, ejecuta integración y respaldo/restauración ficticios y exporta la imagen. Bash-n y Python embebido correctos; configuración generada sin puertos/montajes del usuario, con red interna/tmpfs y permisos privados comprobados. No construcción ni pruebas de runtime todavía. Docker y sudo no interactivo reconsultados: ambos sin acceso.
+
+Próxima intervención necesaria: ejecutar el ensayo en la terminal del usuario. Después revisar resultados, escanear la candidata y comprobar TLS antes de considerar su incorporación. [Alcance y criterios](ENSAYO-MYSQL-MINIMAL.md). Windows queda al final; Firefox conserva la comprobación humana pendiente. No se repitieron pruebas sobre las instalaciones Linux existentes.

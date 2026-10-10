@@ -1,5 +1,10 @@
 # Historial de versiones de Eventify
 
+## Ensayo MySQL sin Shell (B07/SEG-09)
+
+- Prepara una imagen derivada de prueba que retira únicamente mysql-shell mediante RPM, sin forzar dependencias ni modificar la imagen de entrega.
+- Compara inventarios y herramientas conservadas; prepara integración y respaldo/restauración en MySQL efímero, sin puertos o volúmenes persistentes. Construcción y resultados reales pendientes; VERSION permanece en dev.37.
+
 ## 0.1.0-dev.37 — Inicio, perfil y experiencia de uso (B07/RF-01/02/03/RNF-01/02)
 
 - Mostrar/ocultar cada contraseña con control accesible; ingreso vuelve al inicio y navegación distingue visitante, usuario y administrador.
