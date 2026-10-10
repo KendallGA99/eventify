@@ -20,8 +20,9 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.38**, tod
 | Web pública | https://eventify-academico.onrender.com, commit `7c3a3e28435566349efcd4b2a66eace89de978d2`, dev.37. |
 | Render | Servicio `srv-db3vutm7bikc73ajj6og`, Free/Oregon/AutoDeployOff. Deploy `dep-db4n8cbncjis73c7m4t0`, Live el 9 de octubre a las17:09:37 CST, 34,8s. Referencia anterior `390b1ef` conservada para rollback. |
 | Local8086 | Web actualizada a dev.37; base y volúmenes conservados. Proyecto `eventify-clean-20261009035638-598f411d`. Instalación limpia/persistencia originales corresponden a dev.33 `f4d6c5a05011c57e47295b06cedf11129a052681`. |
-| Paquete documental | `output/entrega/eventify-desarrollo-44bd3a9a9360/eventify-source.zip`, commit `44bd3a9a936005db52bda8de65c90037803ae335`, 213 archivos. Misma aplicación, configuración, migraciones, dependencias e imágenes declaradas que la web pública. |
-| PDF acompañado | Documento técnico de16 páginas, actualizado con publicación dev.37 y limitaciones; todavía borrador de evaluación. |
+| Paquete dev.38 | `output/entrega/eventify-desarrollo-2a738b703ad1/eventify-source.zip`, commit `2a738b703ad1a129ed53d75e2da9d784dd6f37af`,217 archivos, manifiesto/CRC/huellas correctos. Imagen MySQL final probada; aplicación pública permanece dev.37. Este ZIP no se ha instalado de nuevo en Linux ni Windows. |
+| Paquete documental dev.37 conservado | `output/entrega/eventify-desarrollo-44bd3a9a9360/eventify-source.zip`, commit `44bd3a9a936005db52bda8de65c90037803ae335`, 213 archivos. Misma aplicación, configuración, migraciones, dependencias e imágenes declaradas que la web pública. |
+| PDF dev.38 | Documento técnico de17 páginas, actualizado con reducción MySQL, publicación dev.37 y limitaciones; todavía borrador de evaluación. |
 
 ZIP SHA256: `d9494a9798e542ab3a47e3df9181ac7df01fbd8262a36b5df92b41055e138bf4`.
 PDF SHA256: `a0189715ec1c8337738762718f628fc260ad8fb20021e57ea8a7522f4326b361`.
@@ -83,3 +84,7 @@ Candidata `storage/mysql-minimal-zntFADgx`: integración225, respaldo/restauraci
 El primer intento `storage/mysql-minimal-ohVuHbye` falló: RPM dejó cachés Python sin propietario. La receta ahora comprueba propiedad antes de eliminar solo el directorio mysqlsh dentro de la imagen. El intento fallido conserva evidencia y no afectó bases del usuario.
 
 Dockerfile.mysql incorpora la receta; la etapa mysql-with-shell permite repetir la comparación. VERSION dev.38, sin cambios de aplicación/esquema. Imagen final sobre9321f68/árbol limpio: mysql-image-check-YmuG4fAM exit0;225 controles, TLS public-tls-NB0m9r8w exit0 y rechazo public-no-tls-wnPk03Vg exit0. Escaneo47 filas idénticas a la candidata; identidad confirmada contra el blob de configuración OCI, sin exclusiones. PDF actualizado a17 páginas y revisado visualmente. Etiqueta v0.1.0-dev.38 en4c833353f1e8978a248a1b83f8257f2e58ba19dd, push confirmado; conserva el incremento probado. Paquete217 archivos exportado y CRC/huellas comprobados; referencia final documental registrada después de exportar. No se instaló un ZIP nuevo ni se certificó Windows. Publicación y paquete dev.37 siguen vigentes; no se cambia su etiqueta. [Detalle](ENSAYO-MYSQL-MINIMAL.md).
+
+## Exportación dev.38
+
+Paquete217 archivos: SHA256 `1a4e84d401218fb5db71c5d0cb26428d3168c9ac4e484f912368070e450a7dee`. PDF17 páginas: SHA256 `6074435a154bd3f89027566b41fc23c4849aa3950ebc70e92583a8af5bff5759`. Archivo de referencia documental `2a738b703ad1a129ed53d75e2da9d784dd6f37af`, sin cambios de runtime respecto al ensayo9321f68. Versiones anteriores preservadas. Etiqueta de desarrollo dev.38 conserva4c83335; no se mueve por correcciones documentales. Seguridad residual, Firefox restante, Windows al final y aceptación humana siguen pendientes.
