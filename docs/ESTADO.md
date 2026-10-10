@@ -138,3 +138,8 @@ Diez tablas mantuvieron filas y huellas antes/después del despliegue, antes de 
 Evidencia privada: `storage/public-dev39/`, snapshots, security.log, admin-security.log, result.json, render-live.png, catalogo-publico.png y admin-reserva.png. El paquete/PDF dev.38 permanece conservado; la nueva sincronización documental no equivale a instalación Windows. Seguridad residual, Firefox específico y aceptación humana siguen abiertos.
 
 PDF dev.39 regenerado: 17 páginas renderizadas y revisadas visualmente; texto dentro de página. SHA256 `ab3e4fedaf7ed93b8dc50eb44cc7999f0f346dbcab1e7f4ffa23589231803583`. Manuales sincronizados con publicación dev.39; el paquete anterior se conserva y la exportación nueva se registra después de comprobarla.
+
+
+## Paquete dev.39 sincronizado
+
+Exportación `output/entrega/eventify-desarrollo-37b1f642c294/eventify-source.zip`, commit `37b1f642c29429ad232a92acdc951267d202d141`, 217 archivos. SHA256 `4d3279d80d8f87ca74ad3ac16ebd5ab81ffc1984e2df78c93575001aef4df5a3`. CRC, inventario y huellas individuales correctos; manuales, código de reservas y receta MySQL coinciden con Git. PDF de17 páginas incluido al lado del ZIP, SHA256 `ab3e4fedaf7ed93b8dc50eb44cc7999f0f346dbcab1e7f4ffa23589231803583`. Paquetes anteriores conservados. No se instaló este ZIP en Windows ni se repitió la instalación Linux. Esta referencia reemplaza al paquete dev.38 para la entrega de desarrollo; no modifica el commit público ni mueve etiquetas.
