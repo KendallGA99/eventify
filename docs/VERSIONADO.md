@@ -119,3 +119,8 @@ Publicación dev.37: Render despliega7c3a3e28435566349efcd4b2a66eace89de978d2, m
 ## Dev.39: presentación y publicación
 
 Implementación0e6be15, corte0e3aae247da50deaa0150be4e235728cbe3db12a.225 controles MySQL/HTTP y recorrido IAB local aprobados. Etiqueta anotada v0.1.0-dev.39 confirmada en origin y resuelta a0e3aae2. Render Free publicó ese mismo commit, dep-db52frajnfac7390qf80 Live: diez tablas conservadas y117 controles HTTPS posteriores. Main y versiones anteriores intactos; desarrollo, sin certificación estable. Documentación posterior conserva su referencia propia para exportación.
+
+
+## Dev.41: corrección nativa comprobada
+
+Rama codex/b07-runtime-corregido, commit28c73cdd63386527ad4a07e03a8c1385198d9bf7 y etiqueta anotada v0.1.0-dev.41 confirmados en origin. Tres imágenes finales sin avisos en base Trivy10oct12:33UTC;234 controles, unidades y TLS positivo/negativo aprobados. Web y MySQL8086 actualizados, diez tablas y ocho reservas/tickets conservados. Render Free publicó el mismo commit, dep-db5744rrjlhs73clgpj0, Live10oct11:13:25CST; diez tablas conservadas y117 controles HTTPS posteriores. Main y referencias anteriores intactas. La documentación y exportación posteriores conservan su propio commit; no mueven esta etiqueta ni certifican Windows.

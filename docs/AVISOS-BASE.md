@@ -1,5 +1,8 @@
 # Avisos de bibliotecas base: condiciones y límites
 
+Referencia histórica: estos resultados corresponden a las imágenes anteriores. Dev.41 corrige el entorno y sus tres imágenes finales no reportan avisos en el escaneo del10oct. Consulte [RUNTIME-CORREGIDO.md](RUNTIME-CORREGIDO.md) y [ESTADO.md](ESTADO.md) para versiones aplicadas, pruebas y límites.
+
+
 B07/SEG-09. Revisión dirigida de 24 identificadores del informe PHP/Apache dev.32, cuyo código servido también corresponde a dev.33. Complementa [AVISOS-IMAGENES.md](AVISOS-IMAGENES.md) y [INVENTARIO-IMAGENES.md](INVENTARIO-IMAGENES.md). Las páginas oficiales de Debian se consultaron nuevamente; sus copias y el cotejo con el JSON del escáner quedan en el registro privado storage/image-audit/remaining-review.
 
 Las observaciones se basan en código/configuración e inventario de paquetes, no en ataques ni análisis completo de funciones nativas. «No encontrado» no significa que una dependencia nunca pueda usar la función. No se cambian severidades ni se eliminan avisos del informe.

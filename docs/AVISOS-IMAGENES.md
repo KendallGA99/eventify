@@ -1,5 +1,8 @@
 # Avisos de imágenes: revisión de alcance
 
+Referencia histórica: estos resultados corresponden a las imágenes anteriores. Dev.41 corrige el entorno y sus tres imágenes finales no reportan avisos en el escaneo del10oct. Consulte [RUNTIME-CORREGIDO.md](RUNTIME-CORREGIDO.md) y [ESTADO.md](ESTADO.md) para versiones aplicadas, pruebas y límites.
+
+
 B07/SEG-09, 8 de octubre de 2026. Complementa SEGURIDAD.md; no elimina avisos del escáner ni certifica ausencia de vulnerabilidades. Se revisaron las imágenes local/pública dev.30 exportadas en image-check-APnvo9xh, el código que EVENTIFY llama y fuentes oficiales. No se ejecutaron ataques ni se cambiaron módulos, paquetes o permisos.
 
 ## Apache

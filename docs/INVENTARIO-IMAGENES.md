@@ -1,5 +1,8 @@
 # Inventario de avisos de imágenes
 
+Referencia histórica: estos resultados corresponden a las imágenes anteriores. Dev.41 corrige el entorno y sus tres imágenes finales no reportan avisos en el escaneo del10oct. Consulte [RUNTIME-CORREGIDO.md](RUNTIME-CORREGIDO.md) y [ESTADO.md](ESTADO.md) para versiones aplicadas, pruebas y límites.
+
+
 B07/SEG-09. Corte del escaneo: DB Trivy del 8 de octubre de 2026, 19:05 UTC. Este inventario agrupa todas las filas por paquete; no constituye revisión de explotabilidad de cada aviso. Las condiciones contrastadas se documentan en [AVISOS-IMAGENES.md](AVISOS-IMAGENES.md).
 
 No se aplicaron exclusiones. Una misma vulnerabilidad puede aparecer en varios paquetes. «Con versión corregida» significa que el informe contiene FixedVersion, no que la corrección esté instalada.

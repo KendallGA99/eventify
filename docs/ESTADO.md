@@ -14,12 +14,12 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.41**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-runtime-corregido`. Corrección nativa en evaluación aislada; instalaciones y paquete anteriores conservados. |
+| Rama actual | `codex/b07-runtime-corregido`. Dev.41 corregida y aplicada a8086/Render; pruebas y despliegue al final. Paquetes anteriores conservados. |
 | Aplicación comprobada | Local dev.39 sobre `0e6be15`: integración225 y recorrido IAB. Publicación dev.37 conserva su evidencia propia. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
-| Web pública | https://eventify-academico.onrender.com, commit `0e3aae247da50deaa0150be4e235728cbe3db12a`, dev.39. |
-| Render | Servicio `srv-db3vutm7bikc73ajj6og`, Free. Deploy `dep-db52frajnfac7390qf80`, Live el10oct05:57:03CST, duración32,7s; fuente `0e3aae2`. Rama configurada y AutoDeployOff conservados. Dev.37 disponible para rollback compatible. |
-| Local8086 | Aplicación dev.39 con restricción de privilegios de Compose dev.40 aplicada; base y volúmenes conservados. Proyecto `eventify-clean-20261009035638-598f411d`. Instalación limpia/persistencia originales corresponden a dev.33 `f4d6c5a05011c57e47295b06cedf11129a052681`. |
+| Web pública | https://eventify-academico.onrender.com, commit `28c73cdd63386527ad4a07e03a8c1385198d9bf7`, dev.41. |
+| Render | Free, AutoDeployOff; deploy `dep-db5744rrjlhs73clgpj0`, fuente28c73cd, Live10oct11:13:25CST, duración33,5s. Dev.39 conservada para rollback. |
+| Local8086 | Web y MySQL dev.41 saludables; diez tablas, ocho reservas/ocho tickets conservados. Proyecto `eventify-clean-20261009035638-598f411d`; instalación limpia original dev.33 y actualización dev.41 con evidencia propia. |
 | Paquete documental dev.40 vigente | `output/entrega/eventify-desarrollo-0ab59e9566ed/eventify-source.zip`, 219 archivos y PDF adjunto de17 páginas; fuente `0ab59e9566ed6181a1e56e75db3f6db842d741b2`. Integridad comprobada; instalación Windows pendiente. |
 | Paquete documental dev.39 conservado | `output/entrega/eventify-desarrollo-82b47edbe4cf/eventify-source.zip`, 219 archivos, incluye guías de seguridad/defensa; misma aplicación dev.39. Integridad comprobada; instalación Windows pendiente. |
 | Paquete dev.39 anterior | `output/entrega/eventify-desarrollo-37b1f642c294/eventify-source.zip`, commit `37b1f642c29429ad232a92acdc951267d202d141`, 217 archivos y PDF adjunto. CRC/huellas comprobados; instalación Windows pendiente. |
@@ -230,3 +230,16 @@ Imágenes finales dev.41 aprobadas: web local/publica en image-check-VzQVjwp8; M
 Escáner Trivy0.75.0, base UpdatedAt2026-10-10T12:33:35.352381306Z, descargada17:03:38UTC: local0, pública0, MySQL0 avisos, sin exclusiones. Cada reporte se vinculó al blob de configuración dentro de su exportación OCI; los identificadores de manifiesto Docker difieren de esos blobs y no se confunden. Evidencia storage/security-alpine-20261010/*-final-scan.json y final-scan-summary.json. Cero avisos no garantiza ausencia de vulnerabilidades desconocidas o futuras ni audita host/proveedor.
 
 Se conserva respaldo SQL completo y archivo de storage antes de actualizar8086. El primer dump sin --no-tablespaces informó falta de PROCESS; se corrigió usando esa opción, sin ampliar permisos, y el respaldo completo terminó exit0. Snapshot público de diez tablas guardado antes del despliegue, sin imprimir contenido o credenciales. Instalación y publicación dev.41 se registran después de verificarlas; las versiones anteriores siguen disponibles.
+
+
+## Aplicación de dev.41 y publicación
+
+Commit de corrección28c73cdd63386527ad4a07e03a8c1385198d9bf7 y etiqueta anotada v0.1.0-dev.41 con push confirmado. Main y etiquetas anteriores intactas. 8086 actualizado con las imágenes finales comprobadas, sin reconstruir ni borrar volúmenes: web061d447b, MySQLce89253c. Ambos saludables; snapshot antes/después idéntico en diez tablas, ocho reservas y ocho tickets. Recorrido IAB: inicio, catálogo, login al inicio, historial, ticket/QR existente, perfil y logout correctos; sin nuevas reservas ni cambios del perfil. Respaldo SQL completo y storage conservados.
+
+Render Free desplegó ese mismo commit: dep-db5744rrjlhs73clgpj0,33,5s, Live10oct11:13:25CST. Logs confirman Apache2.4.69, ninguna migración repetida y salud200. Antes de las pruebas de login se compararon diez tablas Aiven y sus huellas: idénticas. No se modificó configuración, plan, permisos ni servidor Aiven. 81 controles HTTPS de usuarios aprobados; comprobación administrativa posterior registrada a continuación. Captura storage/security-alpine-20261010/render-dev41.png. La web pública reconstruye la receta; su imagen propia no se exportó ni escaneó desde Render, por lo que los cero avisos pertenecen a las imágenes finales locales comprobadas.
+
+
+Verificación pública posterior dev.41: 81 controles HTTPS de usuarios y36 de administración correctos, sin escrituras de negocio. IAB confirmó catálogo y detalle con estilos; el clima mostró su aviso de indisponibilidad y mantuvo acceso a reservar, sin atribuirle un código upstream no observado. Evidencia public-security.log, public-admin-security.log y public-event.png. La actualización de las dependencias no certifica la disponibilidad permanente de Open-Meteo.
+
+
+Documento técnico dev.41 regenerado:18 páginas renderizadas y revisadas visualmente; texto dentro de página. SHA256 d4e5534d8163722e29da2dfa4dd9434faac52698cbff079371b1aa38b2dbe173. Incluye corrección nativa, regresión, referencias locales/públicas y pendientes reales; los conteos de imágenes antiguas se conservan como historia. El siguiente paquete corresponde a su propio commit documental, manteniendo la etiqueta probada28c73cd.

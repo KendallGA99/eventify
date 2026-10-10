@@ -70,7 +70,7 @@ El historial se conserva en el repositorio privado [USUARIO_DESTINO/eventify](ht
 - [Verificación Windows](docs/VERIFICACION-WINDOWS.md): procedimiento pendiente de equipo real.
 - [Demostración y defensa](docs/DEFENSA.md): recorrido, mapa del código y ejercicios; no certifica dominio.
 - [Revisión de seguridad](docs/SEGURIDAD.md): dependencias y controles comprobados, con límites.
-- [Fuente del documento técnico](docs/TECNICO.md): documento dev.40, publicación dev.39, límites y evidencia de cada referencia.
+- [Fuente del documento técnico](docs/TECNICO.md): documento dev.41, corrección nativa, publicación y límites de cada evidencia.
 
 - [Ensayo de defensa](docs/ENSAYO-DEFENSA.md): recorrido, lectura guiada, preguntas y ejercicio de reglas.
 - [Seguridad de la entrega](docs/SEGURIDAD-ENTREGA.md): controles comprobados, riesgos residuales y condiciones para actualizarlos.

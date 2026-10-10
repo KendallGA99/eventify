@@ -1,5 +1,8 @@
 # XML: avisos residuales de dev.34
 
+Referencia histórica: estos resultados corresponden a las imágenes anteriores. Dev.41 corrige el entorno y sus tres imágenes finales no reportan avisos en el escaneo del10oct. Consulte [RUNTIME-CORREGIDO.md](RUNTIME-CORREGIDO.md) y [ESTADO.md](ESTADO.md) para versiones aplicadas, pruebas y límites.
+
+
 Revisión del 9 de octubre de 2026, B07/C-09/SEG-09. Nueve identificadores altos del informe final no tenían mención individual en las revisiones anteriores. Este documento completa su descripción, sin descartarlos ni cambiar su severidad.
 
 | Fuente Debian | Condición |

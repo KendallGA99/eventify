@@ -1,9 +1,9 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Código de referencia: dev.40; aplicación y publicación dev.39. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Código, runtime local y publicación: dev.41. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
-Este documento explica cómo funciona el sistema y qué se ha comprobado. La web pública ejecuta dev.39: ingreso al inicio, perfil editable y controles de acceso revisados. El despliegue conservó las diez tablas; después se aprobaron 81 controles HTTPS de usuarios y 36 del administrador. La instalación limpia Linux y su persistencia se comprobaron en el ZIP dev.33; los cambios de aplicación dev.39 tienen 225 controles MySQL/HTTP y recorrido real del navegador. Dev.40 añade una restricción de privilegios a Docker Compose, probada y aplicada a la web local sin cambiar la aplicación o MySQL. Windows, la matriz restante de Firefox y los riesgos de las imágenes siguen pendientes. El pronóstico tuvo respuestas útiles en dev.30; en la consulta posterior a publicar dev.37 el proveedor respondió HTTP 429 y la reserva permaneció disponible.
+Este documento explica cómo funciona el sistema y qué se ha comprobado. Dev.41 corrige las dependencias nativas de las imágenes web y MySQL, con cero avisos en un escaneo actualizado y sin exclusiones. Conserva PHP 8.4/MySQL 8.4, la interfaz y las reglas de negocio. Pasaron 234 controles MySQL/HTTP, unidades, arranque público, TLS positivo/negativo y recreación. La actualización local conservó diez tablas y ocho reservas/tickets; Render sirve el mismo commit y conservó sus diez tablas. La instalación limpia Linux original corresponde al ZIP dev.33. Windows, la matriz restante de Firefox y la defensa humana siguen pendientes. El pronóstico mantiene manejo de indisponibilidad; depende de Open-Meteo.
 
 ## 1. Descripción y resultado esperado
 
@@ -285,7 +285,7 @@ La demostración pública comprobó login de ambos roles, creación de categorí
 
 | Evidencia ejecutada | Resultado | Qué no demuestra |
 | --- | --- | --- |
-| Desarrollo Linux | 266 comprobaciones unitarias, sintaxis PHP8.4 y QR en cada imagen local/pública dev.32; módulos Apache revisados ausentes en ejecución. | No cubre por inferencia cambios posteriores ni Windows. |
+| Desarrollo Linux | 266 comprobaciones unitarias, sintaxis PHP 8.4 y QR en cada imagen local/pública dev.32; módulos Apache revisados ausentes en ejecución. | No cubre por inferencia cambios posteriores ni Windows. |
 | Integración MySQL/HTTP | 219 comprobaciones, tres migraciones y carreras de reserva, administración y presupuesto; 16:31:25 UTC. | No equivale a pruebas completas de la web pública. |
 | Persistencia Linux | ZIP dev.33, ruta con espacios: diez tablas y cinco archivos idénticos tras recrear después de reservar/cancelar; ocho reservas y tickets. | Comprobado el ZIP fuente dev.33 exacto; no certifica Windows u otro paquete. |
 | Chrome y diseño adaptable | Flujos de ambos roles, reserva, QR, cancelación y vistas en móvil/tableta/escritorio. | Registro móvil con foco/teclado y validación vacía comprobados; Firefox con capturas humanas parciales; matriz restante pendiente. Zoom200% opcional por indicación del usuario. |
@@ -305,7 +305,7 @@ La persona responsable debe explicar ruta navegador-PHP-PDO-MySQL, sesión/rol/C
 
 Ejercicios sugeridos: explicar por qué un ticket ajeno devuelve 404; demostrar rechazo a exactamente 24 h; localizar el cálculo del precio y contrastarlo con el total visual; recorrer una migración y explicar qué pasa si se interrumpe; mostrar que el clima falla sin impedir reservar. Son propuestas de preparación, no evidencias ejecutadas.
 
-La base funcional y la web pública tienen evidencia real de sus flujos principales. Para cerrar quedan Windows, Firefox y casos de interfaz restantes, revisión de los avisos de imágenes, instalación limpia del paquete final y revisión del documento por el estudiante. La preparación y defensa individual necesitan participación humana real. Este documento mantiene visibles esas limitaciones.
+La base funcional y la web pública tienen evidencia real de sus flujos principales. Para cerrar quedan la instalación Windows, los casos restantes de Firefox y la revisión del documento por el estudiante. La corrección de imágenes dev.41 tiene sus pruebas y límites registrados en el apartado final. La preparación y defensa individual necesitan participación humana real. Este documento mantiene visibles esas limitaciones.
 
 ## 12. Referencias y trazabilidad
 
@@ -334,7 +334,7 @@ Dev.37 aprobó 225 comprobaciones de integración MySQL/HTTP, sintaxis PHP 8.4, 
 
 Dev.34 retiró 32 paquetes de construcción de ambas imágenes PHP y mantuvo versiones de los paquetes conservados. Imágenes finales, unidades y arranque público con TLS positivo/negativo tienen evidencia propia sobre 6d41df5. Con la misma base Trivy almacenada, el informe pasó de 2011 a 424 filas por imagen, sin identificadores/paquetes/versiones nuevos ni exclusiones: 1 crítico, 91 altos, 162 medios, 166 bajos y 4 sin clasificación. Esta reducción no corrige el kernel del host ni demuestra que las bibliotecas restantes estén libres de vulnerabilidades.
 
-El informe histórico MySQL dev.33 conserva 66 filas. La reducción sin Shell dev.38 elimina 19 filas de bibliotecas Python sin uso; los 47 avisos conservados mantienen sus límites documentados. No se acepta el riesgo residual automáticamente ni se presenta la versión como estable. En ese corte la web pública ejecutaba dev.37; su despliegue y controles históricos se registran a continuación. La publicación vigente es dev.39. El paquete dev.37 requiere aceptación propia; Windows se ensaya al final.
+El informe histórico MySQL dev.33 conserva 66 filas. La reducción sin Shell dev.38 elimina 19 filas de bibliotecas Python sin uso; los 47 avisos conservados mantienen sus límites documentados. No se acepta el riesgo residual automáticamente ni se presenta la versión como estable. En ese corte la web pública ejecutaba dev.37; su despliegue y controles históricos se registran a continuación. La publicación vigente es dev.41; los avisos de este apartado son históricos. El paquete dev.37 requiere aceptación propia; Windows se ensaya al final.
 
 
 ### Publicación y límites del alojamiento: corte dev.37
@@ -345,7 +345,7 @@ Aiven MySQL Free estaba apagado por inactividad; se reactivó el servicio existe
 
 El pronóstico recibió HTTP 429 del proveedor. Se mostró el aviso de indisponibilidad y se mantuvo el acceso a reservar. Un reintento posterior mantuvo la indisponibilidad. La respuesta útil anterior conserva su propia evidencia; no se inventan valores ni se eluden límites.
 
-Packagist no devolvió avisos para las dos bibliotecas de Composer. Libxml2 sigue abierto en la imagen base; no se instaló un parche nativo sin pruebas. El documento sigue siendo borrador hasta completar la aceptación.
+Packagist no devolvió avisos para las dos bibliotecas de Composer. En aquel corte libxml2 seguía abierto en la imagen base; no se instaló un parche nativo sin pruebas. El documento sigue siendo borrador hasta completar la aceptación.
 
 
 ### Reducción de MySQL: dev.38
@@ -363,4 +363,15 @@ El historial y su actualización AJAX muestran FINALIZADO cuando un evento publi
 
 Render Free desplegó el commit 0e3aae247da50deaa0150be4e235728cbe3db12a el 10 de octubre. El despliegue dep-db52frajnfac7390qf80 quedó Live y tardó 32,7 segundos. Las diez tablas mantuvieron filas y huellas; después se aprobaron 81 controles HTTPS de usuarios y 36 administrativos. IAB confirmó panel, reserva cancelada existente y catálogo; las sesiones se cerraron. No se crearon reservas o cuentas públicas. Dev.37 se conserva como referencia anterior para rollback compatible.
 
-El paquete actualizado requiere su comprobación Windows; la instalación Linux original dev.33 conserva evidencia propia. Libxml2 y los demás riesgos residuales mantienen sus límites. Este documento sigue siendo borrador de evaluación; la defensa y comprensión requieren participación real del estudiante.
+El paquete actualizado requiere su comprobación Windows; la instalación Linux original dev.33 conserva evidencia propia. Los avisos nativos de esas imágenes anteriores se corrigieron en dev.41, con el alcance descrito a continuación. Este documento sigue siendo borrador de evaluación; la defensa y comprensión requieren participación real del estudiante.
+
+
+### Corrección de dependencias y publicación: dev.41
+
+La web usa Alpine 3.24.2 fijada por digest, PHP 8.4.26 y Apache 2.4.69. libxml2 es 2.13.9-r2; CVE-2026-6653 estaba corregida desde 2.11.0, mientras Debian conservaba una base 2.9.14. Se incorporan Expat 2.8.5, OpenSSL 3.5.9 y zlib 1.3.2-r1. Las recetas local y pública comparten versiones y configuración; mantienen UID/GID 33, almacenamiento persistente y comprobaciones del arranque público.
+
+MySQL conserva servidor 8.4.11 y clientes oficiales. Su OpenSSL se actualiza a 3.5.8-2.0.1.el9_8. gosu 1.19 se reconstruye con Go 1.27.2 y sus dos dependencias corregidas, con código, huella y archivos de módulos fijados. El compilador no queda en la imagen final. No cambia el esquema ni se borran datos.
+
+Las tres imágenes finales se escanearon con Trivy 0.75.0 y base del 10 de octubre a las 12:33:35 UTC: cero avisos, sin exclusiones. Cada reporte se vinculó a la configuración OCI de su imagen. Pasaron 234 controles MySQL/HTTP, unidades, TLS válido, rechazo de CA/hostname incorrectos y servidor sin TLS, recreación y restricción de privilegios en cinco trabajadores Apache. Cero avisos conocidos no garantiza ausencia de vulnerabilidades futuras, ni audita el host o el proveedor administrado.
+
+Código probado y etiqueta v0.1.0-dev.41: 28c73cdd63386527ad4a07e03a8c1385198d9bf7. Actualización local 8086 saludable y diez tablas idénticas, ocho reservas/tickets conservados. Recorrido real: login al inicio, catálogo, historial, ticket/QR, perfil y logout. Render Free publicó ese mismo commit, dep-db5744rrjlhs73clgpj0, Live el 10 de octubre a las 11:13:25 CST; diez tablas Aiven conservadas y 81 controles HTTPS de usuarios y 36 de administración aprobados. Se mantienen respaldos y versiones anteriores. Windows conserva su prueba real pendiente.
