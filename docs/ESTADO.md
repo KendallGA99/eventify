@@ -20,13 +20,13 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.38**, tod
 | Web pública | https://eventify-academico.onrender.com, commit `7c3a3e28435566349efcd4b2a66eace89de978d2`, dev.37. |
 | Render | Servicio `srv-db3vutm7bikc73ajj6og`, Free/Oregon/AutoDeployOff. Deploy `dep-db4n8cbncjis73c7m4t0`, Live el 9 de octubre a las17:09:37 CST, 34,8s. Referencia anterior `390b1ef` conservada para rollback. |
 | Local8086 | Web actualizada a dev.37; base y volúmenes conservados. Proyecto `eventify-clean-20261009035638-598f411d`. Instalación limpia/persistencia originales corresponden a dev.33 `f4d6c5a05011c57e47295b06cedf11129a052681`. |
-| Paquete dev.38 | `output/entrega/eventify-desarrollo-2a738b703ad1/eventify-source.zip`, commit `2a738b703ad1a129ed53d75e2da9d784dd6f37af`,217 archivos, manifiesto/CRC/huellas correctos. Imagen MySQL final probada; aplicación pública permanece dev.37. Este ZIP no se ha instalado de nuevo en Linux ni Windows. |
+| Paquete dev.38 | `output/entrega/eventify-desarrollo-f01ee0e3cf0f/eventify-source.zip`, commit `f01ee0e3cf0f784740390d33a997e0b6fb756fdf`,217 archivos, manifiesto/CRC/huellas correctos. Imagen MySQL final probada; aplicación pública permanece dev.37. Este ZIP no se ha instalado de nuevo en Linux ni Windows. |
 | Paquete documental dev.37 conservado | `output/entrega/eventify-desarrollo-44bd3a9a9360/eventify-source.zip`, commit `44bd3a9a936005db52bda8de65c90037803ae335`, 213 archivos. Misma aplicación, configuración, migraciones, dependencias e imágenes declaradas que la web pública. |
 | PDF dev.38 | Documento técnico de17 páginas, actualizado con reducción MySQL, publicación dev.37 y limitaciones; todavía borrador de evaluación. |
 
 Huellas del paquete dev.38 indicado arriba:
 
-ZIP SHA256: `1a4e84d401218fb5db71c5d0cb26428d3168c9ac4e484f912368070e450a7dee`.
+ZIP SHA256: `ec52a996819fb7ff78af4619a57eda89114fc79615547e58223295dfc62dff94`.
 PDF SHA256: `6074435a154bd3f89027566b41fc23c4849aa3950ebc70e92583a8af5bff5759`.
 
 Las huellas dev.37 se conservan en el manifiesto de su propio paquete; no usarlas para validar dev.38.
@@ -108,3 +108,5 @@ Siguiente cierre posible: evidencia real de Firefox mediante un canal compatible
 Se revisaron README, INSTALACION y DATOS contra VERSION, migraciones001–003, DemoSeeder, ReservationService y la composición de la suite de integración. Se retiraron afirmaciones antiguas de funciones pendientes, aviso de construcción y publicación dev.30; README ahora distingue imagen/dev.38, aplicación pública/dev.37 e instalación limpia/dev.33. DATOS incorpora weather_budget y el acceso privado a las cuentas locales generadas, con instrucciones por sistema y proyecto Compose. No se copiaron ni imprimieron credenciales reales.
 
 Enlaces locales, bloques de comandos y referencias de archivos comprobados; git diff --check correcto. Solo documentación, sin cambios de runtime ni suites Linux repetidas. Se solicitó el resultado humano del recorrido restante de Firefox, que no está expuesto al control disponible; hasta recibir evidencia, C-07 continúa pendiente. Windows permanece al final.
+
+Paquete documental actualizado: `output/entrega/eventify-desarrollo-f01ee0e3cf0f/eventify-source.zip`,217 archivos, commit `f01ee0e3cf0f784740390d33a997e0b6fb756fdf`, SHA256 `ec52a996819fb7ff78af4619a57eda89114fc79615547e58223295dfc62dff94`. CRC, huellas de todos los archivos y coincidencia de manuales/receta MySQL comprobados. PDF17 páginas conservado sin cambios, huella6074435a154bd3f89027566b41fc23c4849aa3950ebc70e92583a8af5bff5759. Los paquetes anteriores permanecen; no hubo instalación nueva ni cambios de código. Esta referencia sustituye al paquete anterior para los manuales actualizados, sin mover etiquetas históricas.
