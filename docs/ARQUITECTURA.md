@@ -16,7 +16,7 @@ flowchart LR
     W --> P[PHP / controladores y servicios]
     P -->|PDO / red interna| D[(MySQL / volumen persistente)]
     P --> S[Archivos / volumen persistente]
-    P -. Clima en detalle .-> A[Open-Meteo: API académica gratuita]
+    P -. Clima en detalle .-> A[Open-Meteo y respaldo MET Norway]
 ```
 
 ## Imágenes resueltas

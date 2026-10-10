@@ -60,7 +60,7 @@ class Diagram(Flowable):
             for x in [109, 238, 367]:
                 edge(x, 141, x+20, 141, '>', x+5, 145)
             box(129, 30, 'API clima PHP')
-            box(387, 30, 'Open-Meteo', 109)
+            box(387, 30, 'Open-Meteo / MET', 109)
             edge(184, 120, 184, 72, 'ruta clima', 190, 91)
             edge(239, 51, 387, 51, 'HTTPS / JSON', 268, 61)
         else:

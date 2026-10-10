@@ -1,9 +1,9 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Código, runtime local y publicación: dev.41. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Aplicación y publicación: dev.42; dependencias nativas corregidas en dev.41. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
-Este documento explica cómo funciona el sistema y qué se ha comprobado. Dev.41 corrige las dependencias nativas de las imágenes web y MySQL, con cero avisos en un escaneo actualizado y sin exclusiones. Conserva PHP 8.4/MySQL 8.4, la interfaz y las reglas de negocio. Pasaron 234 controles MySQL/HTTP, unidades, arranque público, TLS positivo/negativo y recreación. La actualización local conservó diez tablas y ocho reservas/tickets; Render sirve el mismo commit y conservó sus diez tablas. La instalación limpia Linux original corresponde al ZIP dev.33. Windows, la matriz restante de Firefox y la defensa humana siguen pendientes. El pronóstico mantiene manejo de indisponibilidad; depende de proveedores externos; dev.42 añade MET Norway como respaldo.
+Este documento explica cómo funciona el sistema y qué se ha comprobado. Dev.42 añade un respaldo meteorológico verificado en la web pública; Dev.41 corrige las dependencias nativas de las imágenes web y MySQL, con cero avisos en un escaneo actualizado y sin exclusiones. Conserva PHP 8.4/MySQL 8.4, la interfaz y las reglas de negocio. Pasaron 234 controles MySQL/HTTP, unidades, arranque público, TLS positivo/negativo y recreación. La actualización local conservó diez tablas y ocho reservas/tickets; Render sirve el mismo commit y conservó sus diez tablas. La instalación limpia Linux original corresponde al ZIP dev.33. Windows, la matriz restante de Firefox y la defensa humana siguen pendientes. El pronóstico mantiene manejo de indisponibilidad; depende de proveedores externos; dev.42 añade MET Norway como respaldo.
 
 ## 1. Descripción y resultado esperado
 
@@ -24,12 +24,12 @@ La suficiencia define el alcance académico; las condiciones del usuario añaden
 | Identidad | Sesiones PHP, hashes de contraseña, CSRF y roles comprobados en servidor. |
 | QR | BaconQrCode 3.1.1 y dasprid/enum 1.0.7; generación SVG local con composer.lock. |
 | Entorno | Docker Compose, scripts Bash/PowerShell, volúmenes persistentes en local. |
-| API externa | Open-Meteo por HTTPS, destino fijo, timeout, caché y límite global. |
+| API externa | Open-Meteo y respaldo MET Norway por HTTPS, destinos fijos, timeout, caché y límite global. |
 | Desarrollo | Git/GitHub privado; pruebas PHP, Python y Node como herramientas de desarrollo. |
 
 ```architecture
 Navegador -> Apache/PHP -> PDO -> MySQL
-Navegador -> API clima PHP -> Open-Meteo HTTPS
+Navegador -> API clima PHP -> Open-Meteo HTTPS; MET Norway como respaldo
 ```
 
 public/index.php es el punto de entrada y decide ruta/método. app/Http coordina respuestas y autorización; app/Domain concentra reglas y transacciones; app/Infrastructure realiza acceso a MySQL/API y migraciones; app/Views renderiza; app/Security administra identidad; public/assets contiene estilos, JavaScript, bibliotecas e imágenes locales. La raíz pública es public, no el repositorio completo.
@@ -381,3 +381,5 @@ Código probado y etiqueta v0.1.0-dev.41: 28c73cdd63386527ad4a07e03a8c1385198d9b
 Open-Meteo continúa como proveedor principal. Ante un fallo de su consulta, se consulta MET Norway desde PHP, con destino HTTPS fijo y certificado verificado. Es gratuito, sin clave ni cuenta, con datos CC BY4.0 y atribución visible. Conserva respuesta por ubicación al menos una hora, respeta Expires y revalida con If-Modified-Since. No se envían datos de cuentas o ubicación del visitante.
 
 El respaldo cubre hasta nueve días. El rango mostrado corresponde a muestras horarias o cada seis horas de la fecha en Costa Rica, con cobertura validada; no equivale a extremos exactos diarios. No se muestra una probabilidad de lluvia que el respaldo no entregue. Si ambos proveedores fallan o no cubren la fecha, el aviso permite continuar con la reserva. La disponibilidad no está garantizada. Resultados concretos y versión pública se consultan en ESTADO.md.
+
+Verificación del respaldo el 10 de octubre: 58 controles de clima y 234 de MySQL/HTTP correctos. Render publicó bd7e3e5 y el navegador mostró un rango de 17,9 a 26,4 °C para las muestras del 12 de octubre, con fuente MET Norway. El despliegue conservó nueve tablas de Aiven; únicamente cambió el contador weather_budget durante las consultas. La instalación local conservó sus diez tablas. Estas pruebas no certifican la instalación en Windows ni el recorrido restante de Firefox.

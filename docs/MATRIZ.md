@@ -77,3 +77,7 @@ Actualización dev.23/24: public-no-tls-HVqp1VtN exit 1. Sintaxis PHP 8.4/contro
 
 
 Resultado vigente dev.24: public-no-tls-QnTPzu56, 19:55:27 UTC / exit 0. Rechazo de MySQL sin TLS y arranque detenido con exit 1 reales; dos controles TCP/base vacía correctos. Supera el fallo parcial dev.23. RNF-03/04: este control aprobado; RT-09/ENT-A siguen pendientes por proveedor/HTTPS/URL.
+
+## Incremento dev.42 — RF-15
+
+Respaldo MET Norway integrado en app/Infrastructure/MetWeatherClient.php y WeatherFallbackClient.php; muestras revisadas en app/Domain/MetForecast.php. Clima:58 comprobaciones correctas; integración aislada234 y seguridad pública81. Render sirve bd7e3e5; detalle público del12oct muestra17,9-26,4°C, fuente y fecha de consulta. Móvil con ancho efectivo375px sin desbordamiento. La actualización local conservó diez tablas y la pública nueve, con cambio únicamente en weather_budget. No se atribuye un nuevo escaneo de imágenes ni certificación Windows/Firefox a este incremento.

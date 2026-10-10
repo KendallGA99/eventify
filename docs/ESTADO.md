@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.41**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
+Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.42**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
 
 ## Alcance y autorizaciones
 
@@ -14,12 +14,12 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.41**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-runtime-corregido`. Dev.41 corregida y aplicada a8086/Render; pruebas y despliegue al final. Paquetes anteriores conservados. |
-| Aplicación comprobada | Local dev.39 sobre `0e6be15`: integración225 y recorrido IAB. Publicación dev.37 conserva su evidencia propia. |
+| Rama actual | `codex/b07-clima-respaldo`. Dev.42 añade respaldo meteorológico y está aplicada a8086/Render; paquetes anteriores conservados. |
+| Aplicación comprobada | Dev.42 sobre `bd7e3e5`: clima58, integración234, HTTPS público81 y pronóstico real de respaldo visible. Dev.41 conserva evidencia de corrección nativa; Windows/Firefox restantes pendientes. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
-| Web pública | https://eventify-academico.onrender.com, commit `28c73cdd63386527ad4a07e03a8c1385198d9bf7`, dev.41. |
-| Render | Free, AutoDeployOff; deploy `dep-db5744rrjlhs73clgpj0`, fuente28c73cd, Live10oct11:13:25CST, duración33,5s. Dev.39 conservada para rollback. |
-| Local8086 | Web y MySQL dev.41 saludables; diez tablas, ocho reservas/ocho tickets conservados. Proyecto `eventify-clean-20261009035638-598f411d`; instalación limpia original dev.33 y actualización dev.41 con evidencia propia. |
+| Web pública | https://eventify-academico.onrender.com, commit `bd7e3e5802c91e3a81412e7cae76060a7feec42a`, dev.42. |
+| Render | Free, AutoDeployOff; deploy `dep-db57g12jnfac739gk1eg`, fuente bd7e3e5, iniciado10oct11:38:12CST y Live tras27,1s. Dev.41 conservada para rollback. |
+| Local8086 | Web dev.42 y MySQL dev.41 saludables; diez tablas conservadas en la actualización. Proyecto `eventify-clean-20261009035638-598f411d`; instalación limpia original dev.33 y actualización dev.41 con evidencia propia. |
 | Paquete documental dev.41 vigente | `output/entrega/eventify-desarrollo-636ef74f748a/eventify-source.zip`, 229 archivos, fuente `636ef74f748afc0933687c09620402c32a0d3fae` y PDF18 páginas adjunto. Integridad comprobada; Windows pendiente. |
 | Paquete documental dev.40 conservado | `output/entrega/eventify-desarrollo-0ab59e9566ed/eventify-source.zip`, 219 archivos y PDF adjunto de17 páginas; fuente `0ab59e9566ed6181a1e56e75db3f6db842d741b2`. Integridad comprobada; instalación Windows pendiente. |
 | Paquete documental dev.39 conservado | `output/entrega/eventify-desarrollo-82b47edbe4cf/eventify-source.zip`, 219 archivos, incluye guías de seguridad/defensa; misma aplicación dev.39. Integridad comprobada; instalación Windows pendiente. |
@@ -270,3 +270,15 @@ Fuentes verificadas10oct: https://api.met.no/doc/TermsOfService, https://api.met
 Verificación candidata dev.42: imágenes local/pública construidas con las mismas dependencias nativas corregidas, sintaxis PHP y unidades aprobadas. Clima amplía39→58 controles: fecha Costa Rica, cobertura incompleta, unidades/valores/fechas inválidos, fuente, caché compartida, respaldo, error de ambos proveedores y resultado anterior/caducidad. Integración aislada MySQL:234 controles correctos, proyecto eventify-weather42-tests con datos efímeros, detenido al terminar sin tocar instalaciones existentes. Sintaxis JavaScript correcta con Node del runtime disponible.
 
 Cliente MET Norway real desde el contenedor:17,9–26,4°C en las muestras del12oct; segunda lectura conserva contenido y archivo de caché. La primera comprobación exploratoria usó igualdad estricta de arrays JSON y falló por tipos numéricos tras serializar; corregida a equivalencia de contenido más hash de archivo, sin cambiar comportamiento ni datos. La construcción inicial de imágenes llevaba56 controles; las imágenes finales repiten58. Publicación todavía no verificada en este punto.
+
+### Aplicación y resultado público de dev.42
+
+Commit bd7e3e5802c91e3a81412e7cae76060a7feec42a con push confirmado. Solo se recreó la web8086 con eventify-weather-web:0.1.0-dev.42, conservando MySQL dev.41, volúmenes y diez tablas idénticas. IAB verificó detalle con atribución nueva; el pronóstico local sigue desactivado por su configuración previa, sin modificarla para la prueba. Cliente real MET y simulación del fallo principal se verificaron por separado.
+
+Render deploy dep-db57g12jnfac739gk1eg, iniciado10oct11:38:12CST, Live después de27,1s, mismo commit. La comparación Aiven detectó cambio únicamente en weather_budget; nueve tablas restantes, incluidas cuentas/eventos/reservas/tickets, conservan filas y huellas. La primera comparación estricta informó diferencia; se comprobó por tabla sin atribuir identidad al contador de solicitudes. No hubo escrituras de negocio de esta revisión.
+
+Recorrido IAB público: detalle del taller, pronóstico real de MET Norway para12oct con muestras17,9–26,4°C, fuente y fecha10oct11:39CST visibles. No muestra probabilidad diaria inventada; ingreso para reservar sigue disponible. Evidencia storage/weather-dev42/public-weather.png y public-weather.txt. El incidente observado queda corregido mediante respaldo, sin prometer disponibilidad permanente ni cubrir con MET fechas fuera de su horizonte. Dependencias nativas conservadas; el escaneo de cero avisos documentado corresponde a las imágenes dev.41, no se presenta como un nuevo escaneo de dev.42.
+
+Seguridad pública posterior:81 controles HTTPS correctos, sin escrituras de negocio. Revisión adaptable: ancho solicitado390px, ancho efectivo reportado por el navegador375px, contenido375px y panel327px; captura completa revisada, sin desbordamiento horizontal. Vista de escritorio y atribución correctas. El viewport temporal se restauró. No se repitió instalación limpia Linux ni se modificó Windows.
+
+Documento técnico dev.42 actualizado: 18 páginas renderizadas y revisadas, sin texto fuera de página; diagrama y explicación incluyen ambos proveedores. PDF SHA256 62970d6de74941b0eca0232678043d5ed5da2fffbff6081ae1de90e09d5e0e44. Etiqueta anotada v0.1.0-dev.42 apunta al código probado bd7e3e5; push confirmado. La exportación documental posterior conserva su propia referencia.

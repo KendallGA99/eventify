@@ -124,3 +124,7 @@ Implementación0e6be15, corte0e3aae247da50deaa0150be4e235728cbe3db12a.225 contro
 ## Dev.41: corrección nativa comprobada
 
 Rama codex/b07-runtime-corregido, commit28c73cdd63386527ad4a07e03a8c1385198d9bf7 y etiqueta anotada v0.1.0-dev.41 confirmados en origin. Tres imágenes finales sin avisos en base Trivy10oct12:33UTC;234 controles, unidades y TLS positivo/negativo aprobados. Web y MySQL8086 actualizados, diez tablas y ocho reservas/tickets conservados. Render Free publicó el mismo commit, dep-db5744rrjlhs73clgpj0, Live10oct11:13:25CST; diez tablas conservadas y117 controles HTTPS posteriores. Main y referencias anteriores intactas. La documentación y exportación posteriores conservan su propio commit; no mueven esta etiqueta ni certifican Windows.
+
+## Respaldo meteorológico dev.42
+
+Rama codex/b07-clima-respaldo; código bd7e3e5802c91e3a81412e7cae76060a7feec42a con push confirmado. Render dep-db57g12jnfac739gk1eg, iniciado10oct11:38:12CST y Live tras27,1s. Local8086 conserva MySQL dev.41 y volúmenes. Pruebas:58 controles de clima,234 MySQL/HTTP y81 HTTPS públicos; pronóstico de respaldo visible y muestra móvil revisada. Código dev.41 y su despliegue anterior conservados para rollback; sin cambio de esquema. Los documentos y el paquete posterior tienen su propia referencia y no alteran el código publicado. No marcar estable: Windows, Firefox restante y defensa humana pendientes.
