@@ -24,7 +24,7 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.40**, tod
 | Paquete dev.39 anterior | `output/entrega/eventify-desarrollo-37b1f642c294/eventify-source.zip`, commit `37b1f642c29429ad232a92acdc951267d202d141`, 217 archivos y PDF adjunto. CRC/huellas comprobados; instalación Windows pendiente. |
 | Paquete dev.38 conservado | `output/entrega/eventify-desarrollo-f01ee0e3cf0f/eventify-source.zip`, commit `f01ee0e3cf0f784740390d33a997e0b6fb756fdf`,217 archivos, manifiesto/CRC/huellas correctos. Imagen MySQL final probada; aplicación pública permanece dev.37. Este ZIP no se ha instalado de nuevo en Linux ni Windows. |
 | Paquete documental dev.37 conservado | `output/entrega/eventify-desarrollo-44bd3a9a9360/eventify-source.zip`, commit `44bd3a9a936005db52bda8de65c90037803ae335`, 213 archivos. Misma aplicación, configuración, migraciones, dependencias e imágenes declaradas que la web pública. |
-| PDF dev.39 | Documento técnico de17 páginas, actualizado con publicación dev.39 y recorrido IAB; todavía borrador de evaluación. |
+| PDF dev.40 | Documento técnico de17 páginas, actualizado con restricción de privilegios local, publicación dev.39 y preparación de defensa; todavía borrador de evaluación. |
 
 Huellas del paquete dev.38 indicado arriba:
 
@@ -177,3 +177,10 @@ Evidencia privada: storage/security-nnp-20261010/apache-smoke.log, integration.l
 
 
 Referencia dev.40: commit `6a4e2fdf7746920ab0e947741cdd10595d5e99fd`, rama codex/b07-contenedor-sin-privilegios y etiqueta v0.1.0-dev.40 con push confirmado. Exportación de código `output/entrega/eventify-desarrollo-6a4e2fdf7746/eventify-source.zip`, 219 archivos, SHA256 `0268b8865eff060780f324a2228a8eedd0781fae95eb9c9321fd0679d462e82b`. CRC, huella del ZIP y todas las huellas individuales correctos; ambas recetas Compose incluyen la restricción. Este ZIP es de desarrollo, sin una instalación nueva ni certificación Windows. El PDF dev.39 y su paquete documental anterior permanecen conservados; no se adjunta ni presenta ese PDF como uno regenerado para dev.40.
+
+
+## Sincronización documental dev.40
+
+README, CIERRE y TECNICO sincronizados con VERSION dev.40. El documento distingue aplicación/publicación dev.39, protección Compose local dev.40, evidencia histórica Linux dev.33 y los pendientes humanos. Incluye no-new-privileges y las guías de ensayo/seguridad; corrige frases históricas que parecían describir una publicación dev.37 vigente. No cambia código de aplicación, infraestructura o datos.
+
+PDF regenerado, 17 páginas renderizadas y revisadas visualmente; sin caracteres fuera de página. SHA256 `9118d409b739c090a364c6418335fd2b246e8ecb69011a80de711524fd9cf36b`. Consulta oficial del10oct confirma que Trixie continúa vulnerable en CVE-2026-6653/libxml2 y CVE-2026-63292/Apache; no se encontró en esas páginas una corrección Trixie para incorporar. No se repiten builds/escaneos sin una candidata. La exportación documental se registra después de verificar su integridad.

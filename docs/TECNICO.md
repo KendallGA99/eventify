@@ -1,9 +1,9 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Código de referencia: dev.39; publicación dev.39. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Código de referencia: dev.40; aplicación y publicación dev.39. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
-Este documento explica cómo funciona el sistema y qué se ha comprobado. La web pública ejecuta dev.39: ingreso al inicio, perfil editable y controles de acceso revisados. El despliegue conservó las diez tablas; después se aprobaron 81 controles HTTPS de usuarios y 36 del administrador. La instalación limpia Linux y su persistencia se comprobaron en el ZIP dev.33; los cambios de aplicación dev.39 tienen 225 controles MySQL/HTTP y recorrido real del navegador. Windows, la matriz restante de Firefox y los riesgos de las imágenes siguen pendientes. El pronóstico tuvo respuestas útiles en dev.30; en la consulta posterior a publicar dev.37 el proveedor respondió HTTP 429 y la reserva permaneció disponible.
+Este documento explica cómo funciona el sistema y qué se ha comprobado. La web pública ejecuta dev.39: ingreso al inicio, perfil editable y controles de acceso revisados. El despliegue conservó las diez tablas; después se aprobaron 81 controles HTTPS de usuarios y 36 del administrador. La instalación limpia Linux y su persistencia se comprobaron en el ZIP dev.33; los cambios de aplicación dev.39 tienen 225 controles MySQL/HTTP y recorrido real del navegador. Dev.40 añade una restricción de privilegios a Docker Compose, probada y aplicada a la web local sin cambiar la aplicación o MySQL. Windows, la matriz restante de Firefox y los riesgos de las imágenes siguen pendientes. El pronóstico tuvo respuestas útiles en dev.30; en la consulta posterior a publicar dev.37 el proveedor respondió HTTP 429 y la reserva permaneció disponible.
 
 ## 1. Descripción y resultado esperado
 
@@ -243,6 +243,8 @@ En producción MySQL exige TLS con CA e identidad del servidor verificadas. La a
 
 Las cuentas públicas de evaluación se crean por una operación CLI explícita, con claves únicas y datos ficticios; nunca por siembra automática al arrancar. Render utiliza eventify_app, limitado a SELECT, INSERT, UPDATE, DELETE y CREATE en una sola base. CREATE permite las comprobaciones de tablas del gestor de migraciones; no se conceden DROP, ALTER ni permisos globales de administración.
 
+La web de Compose y el servicio de integración dev.40 usan no-new-privileges. Esta opción impide adquirir privilegios adicionales al ejecutar archivos; Apache conserva su proceso principal root y trabajadores www-data. En aislamiento se comprobó el servicio de CSS y la restricción en cinco trabajadores; la integración MySQL/HTTP aprobó 225 controles. Después se aplicó solo a la web local: salud y seis respuestas HTTP correctas, contenedor e imagen MySQL conservados. La opción no parchea las bibliotecas ni configura automáticamente Render.
+
 ## 8. AJAX y API externa
 
 | Operación | Entrada | Respuesta y protección |
@@ -299,7 +301,7 @@ Cada fila corresponde a su ejecución y alcance. No se suman como una suite úni
 
 ## 11. Preparación de defensa y conclusiones
 
-La persona responsable debe explicar ruta navegador-PHP-PDO-MySQL, sesión/rol/CSRF, total del servidor, bloqueo de cupos, estados e historia, jQuery/AJAX, API externa y limitaciones de despliegue. Ensayar demo con datos ficticios y una modificación menor real. Registrar participación y resultados humanos cuando ocurran; este documento no acredita comprensión ni defensa.
+La persona responsable debe explicar ruta navegador-PHP-PDO-MySQL, sesión/rol/CSRF, total del servidor, bloqueo de cupos, estados e historia, jQuery/AJAX, API externa y limitaciones de despliegue. Ensayar demo con datos ficticios y una modificación menor real. ENSAYO-DEFENSA.md organiza un recorrido de 15 minutos, archivos de lectura, preguntas y un ejercicio del límite de cancelación; SEGURIDAD-ENTREGA.md explica los controles y riesgos. Son material de estudio, no una práctica humana ya realizada. Registrar participación y resultados humanos cuando ocurran; este documento no acredita comprensión ni defensa.
 
 Ejercicios sugeridos: explicar por qué un ticket ajeno devuelve 404; demostrar rechazo a exactamente 24 h; localizar el cálculo del precio y contrastarlo con el total visual; recorrer una migración y explicar qué pasa si se interrumpe; mostrar que el clima falla sin impedir reservar. Son propuestas de preparación, no evidencias ejecutadas.
 
@@ -307,7 +309,7 @@ La base funcional y la web pública tienen evidencia real de sus flujos principa
 
 ## 12. Referencias y trazabilidad
 
-Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.39 (inicio, navegación, perfil y controles de contraseña actualizados; imagen MySQL corregida). Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
+Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.40 (aplicación dev.39 y restricción de privilegios de Compose; imagen MySQL reducida). Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
 
 Documentos operativos: INSTALACION.md, ARQUITECTURA.md, DATOS.md, PUBLICACION.md, RESPALDO.md, VERSIONADO.md, PAQUETE.md, COPIA-LIMPIA.md, SEGURIDAD.md, AVISOS-IMAGENES.md y CIERRE.md. Los documentos históricos pueden describir etapas anteriores: las migraciones/código y el estado vigente prevalecen al comprobar una afirmación técnica.
 
@@ -332,7 +334,7 @@ Dev.37 aprobó 225 comprobaciones de integración MySQL/HTTP, sintaxis PHP 8.4, 
 
 Dev.34 retiró 32 paquetes de construcción de ambas imágenes PHP y mantuvo versiones de los paquetes conservados. Imágenes finales, unidades y arranque público con TLS positivo/negativo tienen evidencia propia sobre 6d41df5. Con la misma base Trivy almacenada, el informe pasó de 2011 a 424 filas por imagen, sin identificadores/paquetes/versiones nuevos ni exclusiones: 1 crítico, 91 altos, 162 medios, 166 bajos y 4 sin clasificación. Esta reducción no corrige el kernel del host ni demuestra que las bibliotecas restantes estén libres de vulnerabilidades.
 
-El informe histórico MySQL dev.33 conserva 66 filas. La reducción sin Shell dev.38 elimina 19 filas de bibliotecas Python sin uso; los 47 avisos conservados mantienen sus límites documentados. No se acepta el riesgo residual automáticamente ni se presenta la versión como estable. La web pública ya ejecuta dev.37, con el resultado del despliegue y sus controles registrados a continuación. El paquete dev.37 requiere aceptación propia; Windows se ensaya al final.
+El informe histórico MySQL dev.33 conserva 66 filas. La reducción sin Shell dev.38 elimina 19 filas de bibliotecas Python sin uso; los 47 avisos conservados mantienen sus límites documentados. No se acepta el riesgo residual automáticamente ni se presenta la versión como estable. En ese corte la web pública ejecutaba dev.37; su despliegue y controles históricos se registran a continuación. La publicación vigente es dev.39. El paquete dev.37 requiere aceptación propia; Windows se ensaya al final.
 
 
 ### Publicación y límites del alojamiento: corte dev.37
@@ -352,7 +354,7 @@ La imagen final retira mysql-shell mediante RPM y comprueba que servidor, client
 
 La imagen final de 9321f68 aprobó construcción,225 controles, TLS positivo/negativo y escaneo propios en mysql-image-check-YmuG4fAM. El escaneo con la misma base Trivy del 8 de octubre confirma 47 filas idénticas a la candidata, sin avisos nuevos o exclusiones: 1 crítico, 21 altos, 22 medios, 2 bajos y 1 sin clasificación. Retirar componentes no corrige vulnerabilidades de gosu o del host, ni los avisos PHP/libxml2.
 
-No hay cambios de aplicación o esquema. La web pública permanece en dev.37 y Aiven no cambia; la receta MySQL afecta futuras construcciones locales. Las instalaciones existentes conservan datos e imágenes. La instalación Windows, las comprobaciones restantes de Firefox y la aceptación humana continúan pendientes.
+No hay cambios de aplicación o esquema. En el corte dev.38 la web pública permanecía en dev.37 y Aiven no cambió; la receta MySQL afecta futuras construcciones locales. Las instalaciones existentes conservan datos e imágenes. La instalación Windows, las comprobaciones restantes de Firefox y la aceptación humana continúan pendientes.
 
 
 ### Presentación y publicación: dev.39
