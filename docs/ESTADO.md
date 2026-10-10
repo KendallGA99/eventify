@@ -14,7 +14,7 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.40**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-contenedor-sin-privilegios`. Configuración local dev.40 verificada; publicación y paquete documental dev.39 conservados. |
+| Rama actual | `codex/b07-caducidad-sesiones`. Configuración local dev.40 verificada, integración ampliada a234; publicación dev.39 y paquete documental dev.40 conservados. |
 | Aplicación comprobada | Local dev.39 sobre `0e6be15`: integración225 y recorrido IAB. Publicación dev.37 conserva su evidencia propia. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `0e3aae247da50deaa0150be4e235728cbe3db12a`, dev.39. |
@@ -188,3 +188,16 @@ PDF regenerado, 17 páginas renderizadas y revisadas visualmente; sin caracteres
 
 
 Exportación documental dev.40 comprobada: fuente `0ab59e9566ed6181a1e56e75db3f6db842d741b2`, ZIP `output/entrega/eventify-desarrollo-0ab59e9566ed/eventify-source.zip`,219 archivos, SHA256 `adce6305e78405f70fc85044593a19943bbacee1b17f4515179fe01ed036d409`. PDF17 páginas adjunto con SHA256 `9118d409b739c090a364c6418335fd2b246e8ecb69011a80de711524fd9cf36b`. CRC, inventario y cada huella individual correctos; README, documento técnico, dos guías y Compose coinciden con Git. entrega-manifest.json identifica ambos artefactos. Paquetes anteriores conservados; sin nueva instalación Linux/Windows, despliegue o pruebas de aplicación por estos cambios documentales.
+
+
+## Sesiones: ampliación de evidencia B07/RNF-03
+
+Objetivo: acreditar dos controles ya implementados en Session::start que no tenían un caso HTTP específico: rechazo de identificador inventado y revocación después de más de1800 segundos sin actividad. Criterios: sesión desconocida sustituida sin conservar archivo, pérdida de identidad AJAX y permisos administrativos al caducar, identificador renovado, archivo anterior eliminado, CSRF anterior rechazado y cookie anterior incapaz de recuperar acceso.
+
+Se añadió tests/integration/http-session-expiry.php y dos comprobaciones a http-auth.php. La prueba de caducidad exige APP_ENV=test/DB_DATABASE=eventify_test y modifica únicamente last_activity del archivo de su propia sesión temporal. No altera tiempo del host, reglas de negocio o sesiones del navegador. Sintaxis PHP de los dos archivos correcta en imagen de pruebas; git diff --check correcto.
+
+Primera ejecución falló en «Cookie inicial protegida»: el nuevo caso había creado una sesión antes de la petición que esperaba emitirla. No fue un fallo de la aplicación ni se relajó la comprobación: se movió el caso al primer acceso administrativo que ya probaba esa cookie. Evidencia conservada en storage/session-expiry-20261010/attempt-1.log, exit1,130 comprobaciones previas correctas.
+
+Ejecución corregida: scripts/test-database-linux.sh, sudo no interactivo, 234 comprobaciones MySQL/HTTP correctas y exit0. Nuevo entorno efímero eventify-tests, retirado al terminar; evidencia storage/session-expiry-20261010/integration.log. La inspección no cambió bibliotecas ni realizó un escaneo nuevo. No se repitió instalación limpia Linux ni se desplegó o actualizó una instalación.
+
+Incremento solo de pruebas y guías; VERSION conserva dev.40 y las etiquetas no se mueven. El paquete/PDF dev.40 anterior sigue disponible y no incluye este archivo de pruebas nuevo; no es un cambio de su comportamiento de aplicación. Seguridad residual nativa, Firefox específico, Windows y ensayo humano mantienen sus pendientes. La prueba automatizada no se presenta como práctica realizada por el estudiante.

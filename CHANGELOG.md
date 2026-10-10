@@ -1,5 +1,10 @@
 # Historial de versiones de Eventify
 
+## Verificación adicional de dev.40 — Caducidad de sesiones (B07/RNF-03)
+
+- Añade nueve controles HTTP de modo estricto y caducidad: identidad, permisos, renovación y destrucción de sesión, CSRF y reenvío de cookie anterior.
+- Integración aislada: 234 comprobaciones correctas. No modifica aplicación, esquema, VERSION, publicación ni etiquetas existentes; evidencia e intento inicial fallido en ESTADO.md.
+
 ## 0.1.0-dev.40 — Restricción de privilegios del contenedor (B07/RNF-03)
 
 - Activa `no-new-privileges` en la web de Docker Compose y en el servicio de integración. Impide adquirir privilegios mediante ejecutables setuid o capacidades de archivo; Apache conserva su arranque y sus trabajadores www-data.

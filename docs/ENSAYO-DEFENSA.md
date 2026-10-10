@@ -57,6 +57,8 @@ No es necesario ejecutar todas las validaciones negativas durante una exposició
 
 **¿Hashing y CSRF resuelven el mismo problema?** No. El hash permite verificar la contraseña sin almacenarla en texto plano. CSRF comprueba que una operación de escritura lleva el token de la sesión correspondiente.
 
+**¿Qué ocurre al dejar la cuenta abierta sin actividad?** Después de más de 30 minutos, la siguiente petición pierde la identidad y renueva la sesión. El token anterior ya no autoriza escrituras y la cookie anterior no recupera los permisos. Session::start aplica la regla; [http-session-expiry.php](../tests/integration/http-session-expiry.php) la comprueba con una sesión temporal envejecida, sin cambiar el reloj del equipo.
+
 **¿Cómo se impide registrarse como administrador?** Auth::register fija el rol USUARIO mediante SQL. Un campo role añadido a la petición no participa en esa asignación.
 
 **¿Qué ocurre si el clima falla?** Se muestra un estado de indisponibilidad y la reserva sigue disponible. El servidor limita tiempo, tamaño y solicitudes. No se inventa un pronóstico ni se cambia el proveedor para eludir su cuota.

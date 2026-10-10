@@ -52,8 +52,12 @@ try {
     [$status, $body] = $request('/api/eventos?state=all');
     $catalog = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
     $assert($status === 200 && str_contains($catalog['html'], 'Evento cancelado') && str_contains($catalog['html'], 'Evento finalizado') && !str_contains($catalog['html'], 'borrador'), 'Estados públicos visibles y borrador privado');
+    $unknownSessionId = bin2hex(random_bytes(24));
+    $cookie = 'eventify_session=' . $unknownSessionId;
     [$status, , $headers] = $request('/admin');
     $assert($status === 303, 'Visitante redirigido al ingreso');
+    $assert($cookie !== 'eventify_session=' . $unknownSessionId, 'Modo estricto rechaza identificador de sesión inventado');
+    $assert(!is_file(PROJECT_ROOT . '/storage/sessions/sess_' . $unknownSessionId), 'Identificador inventado no crea una sesión reutilizable');
     $assert(stripos(implode(' ', $headers), 'HttpOnly') !== false && stripos(implode(' ', $headers), 'SameSite=Lax') !== false, 'Cookie inicial protegida');
     [$status] = $request('/api/experiencias');
     $assert($status === 401, 'Historial AJAX requiere sesión');
@@ -147,6 +151,7 @@ try {
     $assert($status === 404, 'Ticket de otra cuenta rechazado');
     [$status] = $request($created['ticket_url'] . '/qr.svg');
     $assert($status === 404, 'QR de otra cuenta rechazado');
+    require __DIR__ . '/http-session-expiry.php';
 } finally {
     proc_terminate($server);
     proc_close($server);

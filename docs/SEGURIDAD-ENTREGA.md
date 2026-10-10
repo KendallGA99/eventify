@@ -21,6 +21,12 @@ Esta configuración pertenece a Docker Compose. No acredita la misma protección
 
 ## Decisiones pendientes
 
+### Caducidad y modo estricto: comprobación adicional
+
+La integración aislada del 10 de octubre amplía 225 a 234 comprobaciones, sin cambios del código de aplicación. Verifica el rechazo de un identificador de sesión inventado y, tras envejecer únicamente last_activity de una sesión temporal, la pérdida de identidad AJAX y permisos administrativos, renovación del identificador, eliminación del archivo de sesión anterior y rechazo del CSRF antiguo. Reenviar la cookie eliminada tampoco recupera acceso.
+
+El caso está en tests/integration/http-session-expiry.php, incluido desde http-auth.php. Solo acepta APP_ENV=test y la base eventify_test. No cambia el reloj del equipo ni las sesiones de las instalaciones locales o públicas. El primer intento tuvo un fallo de orden en la prueba de cookie inicial, conservado en ESTADO; la ejecución corregida terminó con 234 controles y exit0. Esto acredita comportamiento de sesiones PHP, no remedia los avisos nativos siguientes.
+
 | Riesgo | Evidencia y límite | Qué permite avanzar |
 | --- | --- | --- |
 | libxml2, CVE-2026-6653 y otros XML | PHP local carga libxml2 2.9.14 y las extensiones DOM, SimpleXML, XML, XMLReader y XMLWriter. No es correcto declarar ausente la biblioteca. No se encontró una entrada XML del visitante en las rutas revisadas; esto no demuestra ausencia de todo consumidor nativo. | Corrección compatible y probada del runtime, o aceptación explícita del riesgo con alcance de evaluación y responsable. |
