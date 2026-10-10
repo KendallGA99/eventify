@@ -24,8 +24,12 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.38**, tod
 | Paquete documental dev.37 conservado | `output/entrega/eventify-desarrollo-44bd3a9a9360/eventify-source.zip`, commit `44bd3a9a936005db52bda8de65c90037803ae335`, 213 archivos. Misma aplicación, configuración, migraciones, dependencias e imágenes declaradas que la web pública. |
 | PDF dev.38 | Documento técnico de17 páginas, actualizado con reducción MySQL, publicación dev.37 y limitaciones; todavía borrador de evaluación. |
 
-ZIP SHA256: `d9494a9798e542ab3a47e3df9181ac7df01fbd8262a36b5df92b41055e138bf4`.
-PDF SHA256: `a0189715ec1c8337738762718f628fc260ad8fb20021e57ea8a7522f4326b361`.
+Huellas del paquete dev.38 indicado arriba:
+
+ZIP SHA256: `1a4e84d401218fb5db71c5d0cb26428d3168c9ac4e484f912368070e450a7dee`.
+PDF SHA256: `6074435a154bd3f89027566b41fc23c4849aa3950ebc70e92583a8af5bff5759`.
+
+Las huellas dev.37 se conservan en el manifiesto de su propio paquete; no usarlas para validar dev.38.
 
 CRC, inventario y huellas individuales del paquete comprobados. PDF renderizado completo y revisado; texto dentro de página. No afirmar instalación nueva de este ZIP ni Windows por equivalencia de código. Paquete anterior `7c3a3e284355` preservado; no sobrescribirlo.
 
@@ -88,3 +92,13 @@ Dockerfile.mysql incorpora la receta; la etapa mysql-with-shell permite repetir 
 ## Exportación dev.38
 
 Paquete217 archivos: SHA256 `1a4e84d401218fb5db71c5d0cb26428d3168c9ac4e484f912368070e450a7dee`. PDF17 páginas: SHA256 `6074435a154bd3f89027566b41fc23c4849aa3950ebc70e92583a8af5bff5759`. Archivo de referencia documental `2a738b703ad1a129ed53d75e2da9d784dd6f37af`, sin cambios de runtime respecto al ensayo9321f68. Versiones anteriores preservadas. Etiqueta de desarrollo dev.38 conserva4c83335; no se mueve por correcciones documentales. Seguridad residual, Firefox restante, Windows al final y aceptación humana siguen pendientes.
+
+## Revisión posterior del 10 de octubre
+
+- Registro Docker oficial: php:8.4-apache mantiene901b0dbcd2419cc9cd307ea05e57403449ce722ccd5b32335da6e8d39f2b1ee0. Debian mantiene vulnerables libxml2/CVE-2026-6653 y Apache/CVE-2026-63292 en Trixie; no se encontró corrección nueva de esa distribución en los trackers consultados. Gosu sigue en release1.19; su análisis de símbolos anterior conserva su alcance. No se compilaron bibliotecas personalizadas ni se repitieron escaneos sin candidata nueva.
+- Comprobación pública de solo lectura: inicio, eventos, ingreso y registro HTTP200; /salud HTTP200/status ok. /.env, /.git/config, /config/database.php y ruta inexistente HTTP404 con hoja de estilo; X-Powered-By ausente en las seis respuestas dirigidas. No hubo escrituras de negocio ni sesiones autenticadas.
+- Una consulta meteorológica devolvió status unavailable; este resultado no revela el código upstream. No atribuirle HTTP429 por el resultado histórico ni eludir cuotas.
+- Evidencia privada: storage/security-refresh-20261010/php-registry.json y public-check.json. La consulta inicial a /health devolvió404: la ruta real de salud es /salud, que luego se comprobó correctamente. No hay fallo de salud por esa URL inexistente.
+- Control de navegadores consultado: Chrome e IAB disponibles; Firefox no expuesto. VM Windows apagada; host7,6GiB totales y aproximadamente3GiB disponibles durante la consulta. No se inició ni amplió la VM, ni se ejecutó una instalación Windows con recursos insuficientes.
+
+Siguiente cierre posible: evidencia real de Firefox mediante un canal compatible y Windows con recursos suficientes. La entrega estable también conserva la revisión/decisión sobre riesgos residuales y aceptación humana; no declararlas resueltas por esta revisión de disponibilidad. La web pública dev.37 y el paquete dev.38 permanecen en sus referencias; este cambio solo actualiza documentación.
