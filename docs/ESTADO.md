@@ -201,3 +201,16 @@ Primera ejecución falló en «Cookie inicial protegida»: el nuevo caso había 
 Ejecución corregida: scripts/test-database-linux.sh, sudo no interactivo, 234 comprobaciones MySQL/HTTP correctas y exit0. Nuevo entorno efímero eventify-tests, retirado al terminar; evidencia storage/session-expiry-20261010/integration.log. La inspección no cambió bibliotecas ni realizó un escaneo nuevo. No se repitió instalación limpia Linux ni se desplegó o actualizó una instalación.
 
 Incremento solo de pruebas y guías; VERSION conserva dev.40 y las etiquetas no se mueven. El paquete/PDF dev.40 anterior sigue disponible y no incluye este archivo de pruebas nuevo; no es un cambio de su comportamiento de aplicación. Seguridad residual nativa, Firefox específico, Windows y ensayo humano mantienen sus pendientes. La prueba automatizada no se presenta como práctica realizada por el estudiante.
+
+
+## Disponibilidad de correcciones y matriz vigente
+
+Consulta real de metadatos APT en contenedor temporal derivado de la imagen web local: apt-get update y apt-cache policy terminaron exit0. apache2, curl, libcurl4t64, libxml2, libexpat1, libc6 y libssl3t64 tienen instalada la misma versión que su candidata Trixie. No se encontró en esos repositorios una actualización para ensayar; no equivale a ausencia de vulnerabilidades. Sin instalar paquetes, construir imágenes o repetir escaneos. Contenedor temporal retirado; instalaciones, volúmenes y datos intactos. Evidencia storage/security-candidates-20261010/apt-candidates.txt, image-id.txt y result.json; versiones y fuentes en SEGURIDAD-ENTREGA.md.
+
+Trackers oficiales consultados: libxml2/6653, Apache/63292, Expat/66046 y curl/80229 mantienen Trixie vulnerable. Reconsulta limitada a esos cuatro avisos, sin cambiar severidades, conteos o aceptación. No repetir esta consulta en cada continuación sin un cambio de versión, candidata o tiempo relevante que lo justifique.
+
+Control de navegador consultado nuevamente: Chrome e IAB disponibles; Firefox no expuesto, aplicaciones nativas vacías. Se conserva la decisión del usuario de no usar geckodriver. No se navegaron pestañas personales ni se afirma una prueba Firefox.
+
+MATRIZ.md estaba fechada8oct e indicaba como pendientes varios casos ya comprobados. Se sincronizaron RF-01/02/03/04/05/06/07/08/18/19, RNF-01/02/03/04/06, jQuery/AJAX, portabilidad y entregables contra CIERRE, ESTADO y B07. Se conserva el alcance de cada evidencia:234 integración aislada, IAB dev.39, C-01–05 previos, ZIP Linux dev.33, PDF/paquete dev.40. Se retiró zoom como bloqueo y se mantuvieron resultados históricos sin reescribirlos. No cambia el comportamiento de la aplicación; no se repiten pruebas funcionales ni se regenera el paquete por actualizar este índice.
+
+Siguiente avance material: una corrección compatible nueva para C-09, evidencia real de Firefox mediante el canal autorizado, equipo Windows compatible al final o participación humana para revisión/defensa. El seguimiento y las pruebas adicionales no sustituyen esas condiciones. Las guías están preparadas y no se introducen funcionalidades para aparentar un cierre.

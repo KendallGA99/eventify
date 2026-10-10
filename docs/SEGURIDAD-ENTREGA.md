@@ -43,3 +43,20 @@ El material sirve para evaluación académica con datos ficticios. No se afirma 
 Ante una corrección candidata: conservar las imágenes anteriores, construir en aislamiento, comparar inventarios y avisos, ejecutar reglas/integración/TLS según el componente afectado y actualizar con respaldo y comprobación de persistencia. Un escaneo vacío por exclusiones no es el criterio de éxito.
 
 Evidencia privada de esta inspección: storage/security-defense-20261010, con módulos Apache, versión/extensiones PHP, límites del contenedor y ejecución del ejemplo de reglas de reserva. No incluye contraseñas ni volcados de MySQL.
+
+
+## Actualizaciones compatibles consultadas
+
+El10oct se ejecutó apt-get update y apt-cache policy en un contenedor temporal de la imagen web local, sin puertos, montajes, secretos o acceso a los volúmenes de Eventify. Se consultaron exclusivamente los repositorios Trixie configurados; no se instalaron paquetes ni se construyó una imagen nueva.
+
+| Paquete | Versión instalada y candidata, idénticas |
+| --- | --- |
+| apache2 | 2.4.68-1~deb13u1 |
+| curl | 8.14.1-2+deb13u5 |
+| libcurl4t64 | 8.14.1-2+deb13u5 |
+| libxml2 | 2.12.7+dfsg+really2.9.14-2.1+deb13u3 |
+| libexpat1 | 2.8.3-1~deb13u1 |
+| libc6 | 2.41-12+deb13u4 |
+| libssl3t64 | 3.5.7-1~deb13u3 |
+
+No apareció una actualización para esos siete paquetes. Esto acredita disponibilidad de versiones en ese momento, no ausencia de vulnerabilidades ni cobertura de todos los paquetes. Los trackers consultados conservan Trixie vulnerable para [libxml2/6653](https://security-tracker.debian.org/tracker/CVE-2026-6653), [Apache/63292](https://security-tracker.debian.org/tracker/CVE-2026-63292), [Expat/66046](https://security-tracker.debian.org/tracker/CVE-2026-66046) y [curl/80229](https://security-tracker.debian.org/tracker/CVE-2026-80229). No se importan paquetes de otras distribuciones por aparecer allí como corregidos. Evidencia privada en storage/security-candidates-20261010.
