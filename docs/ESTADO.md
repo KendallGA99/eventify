@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.38**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
+Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.39**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
 
 ## Alcance y autorizaciones
 
@@ -110,3 +110,9 @@ Se revisaron README, INSTALACION y DATOS contra VERSION, migraciones001–003, D
 Enlaces locales, bloques de comandos y referencias de archivos comprobados; git diff --check correcto. Solo documentación, sin cambios de runtime ni suites Linux repetidas. Se solicitó el resultado humano del recorrido restante de Firefox, que no está expuesto al control disponible; hasta recibir evidencia, C-07 continúa pendiente. Windows permanece al final.
 
 Paquete documental actualizado: `output/entrega/eventify-desarrollo-f01ee0e3cf0f/eventify-source.zip`,217 archivos, commit `f01ee0e3cf0f784740390d33a997e0b6fb756fdf`, SHA256 `ec52a996819fb7ff78af4619a57eda89114fc79615547e58223295dfc62dff94`. CRC, huellas de todos los archivos y coincidencia de manuales/receta MySQL comprobados. PDF17 páginas conservado sin cambios, huella6074435a154bd3f89027566b41fc23c4849aa3950ebc70e92583a8af5bff5759. Los paquetes anteriores permanecen; no hubo instalación nueva ni cambios de código. Esta referencia sustituye al paquete anterior para los manuales actualizados, sin mover etiquetas históricas.
+
+## Recorrido autónomo de navegador y presentación dev.39
+
+Por indicación del usuario, el recorrido se ejecuta desde IAB sobre8086/dev.37; no se exige intervención para repetirlo en ese navegador ni se atribuye a Firefox. Comprobados filtros combinados/limpieza, llenado/borrado de fechas, Tab búsqueda→categoría, calendario/Escape, login al inicio, nombre persistente y restaurado, historial/ticket cancelado/QR, logout y acceso directo al ticket redirigido al ingreso. Administrador: inicio, panel, categorías, eventos y reservas. Panel sin desbordamiento a390/768/1280; capturas en storage/browser-review-20261010. Sin reservas nuevas ni cancelaciones; nombre ficticio original restaurado.
+
+Se detectaron dos detalles reales: singular administrativo y estado visual del historial de un evento publicado pasado. Dev.39 añade estado derivado a las consultas propias de reservas, conservando event_status persistido; la vista muestra el derivado. Solo lectura y textos, sin migraciones o cambios de reglas. Rama codex/b07-reservas-presentacion; comprobación de integración/imagen y recorrido posterior pendientes en este commit. Firefox conserva su alcance específico; Windows al final.

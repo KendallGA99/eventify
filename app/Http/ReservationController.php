@@ -49,7 +49,7 @@ final class ReservationController
             return;
         }
         session_write_close();
-        $query = $pdo->prepare('SELECT r.id, r.code AS reservation_code, r.quantity, r.total, r.status, e.name, e.starts_at, e.location, e.status AS event_status, t.code AS ticket_code FROM reservations r JOIN events e ON e.id = r.event_id JOIN tickets t ON t.reservation_id = r.id WHERE r.user_id = ? ORDER BY r.created_at DESC, r.id DESC');
+        $query = $pdo->prepare('SELECT r.id, r.code AS reservation_code, r.quantity, r.total, r.status, e.name, e.starts_at, e.location, e.status AS event_status, CASE WHEN e.status = \'PUBLICADO\' AND e.starts_at <= UTC_TIMESTAMP() THEN \'FINALIZADO\' ELSE e.status END AS display_event_status, t.code AS ticket_code FROM reservations r JOIN events e ON e.id = r.event_id JOIN tickets t ON t.reservation_id = r.id WHERE r.user_id = ? ORDER BY r.created_at DESC, r.id DESC');
         $query->execute([$user['id']]);
         $rows = $query->fetchAll();
         require PROJECT_ROOT . '/app/Views/catalog-helpers.php';
@@ -70,7 +70,7 @@ final class ReservationController
         if ($path === '/experiencias' || str_starts_with($path, '/tickets/')) {
             if ($user === null) { header('Location: /ingresar', true, 303); return; }
             $page = $path === '/experiencias' ? 'reservations' : 'ticket';
-            $sql = 'SELECT r.id, r.code AS reservation_code, r.quantity, r.total, r.status, e.name, e.starts_at, e.location, e.status AS event_status, t.code AS ticket_code FROM reservations r JOIN events e ON e.id = r.event_id JOIN tickets t ON t.reservation_id = r.id WHERE r.user_id = ?';
+            $sql = 'SELECT r.id, r.code AS reservation_code, r.quantity, r.total, r.status, e.name, e.starts_at, e.location, e.status AS event_status, CASE WHEN e.status = \'PUBLICADO\' AND e.starts_at <= UTC_TIMESTAMP() THEN \'FINALIZADO\' ELSE e.status END AS display_event_status, t.code AS ticket_code FROM reservations r JOIN events e ON e.id = r.event_id JOIN tickets t ON t.reservation_id = r.id WHERE r.user_id = ?';
             $params = [$user['id']];
             $qr = str_ends_with($path, '/qr.svg');
             if ($page === 'ticket') { $sql .= ' AND t.code = ?'; $params[] = substr($qr ? substr($path, 0, -7) : $path, 9); }

@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.39 — Presentación de reservas (B07/RF-12/20/RNF-01)
+
+- El historial del usuario muestra FINALIZADO cuando un evento publicado ya pasó, con el mismo criterio UTC del catálogo y administración. Conserva el estado persistido y los controles de vigencia/cancelación.
+- Corrige «1 entrada» en el listado y detalle administrativos; cantidades mayores mantienen «entradas».
+- Detectado durante recorrido real del navegador integrado. Pruebas y actualización local se registran con su referencia en ESTADO; la publicación pública conserva dev.37 hasta desplegarla.
+
 ## 0.1.0-dev.38 — MySQL sin cliente Shell (B07/RNF-03/SEG-09)
 
 - Retira mysql-shell y sus restos Python mediante RPM, sin forzar dependencias. Conserva servidor 8.4.11, clientes SQL, gosu y entrypoint con huellas comprobadas; rechaza la limpieza si quedan archivos de otro paquete.
