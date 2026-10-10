@@ -1,6 +1,6 @@
 # Ensayo de defensa de Eventify
 
-Referencia: dev.39. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
+Referencia de la aplicación: dev.39; protección de Compose añadida en dev.40. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
 Este material sirve para estudiar y practicar con el proyecto abierto. Los tiempos son una propuesta de preparación, no una duración exigida por el enunciado. Cada explicación debe poder relacionarse con una pantalla, una función o una prueba. La práctica del estudiante todavía no está registrada.
 
@@ -66,6 +66,8 @@ No es necesario ejecutar todas las validaciones negativas durante una exposició
 **¿Git permite recuperar la base de datos?** No. Recupera código versionado. Los datos viven en MySQL y los volúmenes; necesitan respaldo y restauración separados. Hay que comprobar compatibilidad de migraciones antes de volver a una versión de código.
 
 **¿Qué significa que haya avisos de seguridad?** Hay que distinguir un control de la aplicación de una vulnerabilidad de una biblioteca del contenedor. Los informes conservan avisos y condiciones de exposición; las pruebas funcionales no certifican ausencia de vulnerabilidades nativas.
+
+**¿Para qué sirve no-new-privileges?** La web de Compose pide al kernel que sus procesos no puedan adquirir nuevos privilegios al ejecutar otro archivo. Apache aún inicia con su proceso principal root y atiende peticiones mediante trabajadores www-data. Se comprobó que estos trabajadores mantienen la restricción y que la integración MySQL funciona. Es una capa adicional: no corrige bibliotecas vulnerables ni acredita la configuración del proveedor público.
 
 ## Ejercicio verificable sin cambiar reglas
 

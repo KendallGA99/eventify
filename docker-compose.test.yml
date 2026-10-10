@@ -3,6 +3,8 @@ name: eventify-tests
 services:
   tests:
     build: .
+    security_opt:
+      - no-new-privileges:true
     command: ["php", "tests/integration/database.php"]
     environment:
       APP_ENV: test

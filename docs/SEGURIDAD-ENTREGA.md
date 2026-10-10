@@ -1,4 +1,4 @@
-# Seguridad de la entrega dev.39
+# Seguridad de la entrega
 
 Corte: 10 de octubre de 2026. Resumen operativo de las comprobaciones y los riesgos que permanecen; no reemplaza los informes detallados ni constituye aceptación automática del riesgo.
 
@@ -9,7 +9,15 @@ Corte: 10 de octubre de 2026. Resumen operativo de las comprobaciones y los ries
 - Apache cargado en esa copia: vhost_alias, xml2enc, proxy y CGI no aparecen. Esto confirma la configuración local, no el inventario vivo del proveedor público.
 - Código de WeatherClient: destino HTTPS fijo, comprobación de certificado y nombre, sin seguimiento de redirecciones, respuesta limitada a 128 KiB y análisis JSON. TicketQr produce SVG con una matriz y coordenadas numéricas; no analiza un documento XML recibido del visitante.
 
-La revisión es de configuración y rutas de código. No se enviaron ataques ni se cambiaron bibliotecas, permisos, datos o configuración del servicio.
+La inspección dev.39 es de configuración y rutas de código. Sus resultados no se presentan como un escaneo nuevo.
+
+## Protección del contenedor dev.40
+
+La web de `docker-compose.yml` y el servicio de integración de `docker-compose.test.yml` activan `security_opt: no-new-privileges:true`. El kernel impide que un proceso obtenga privilegios adicionales al ejecutar archivos setuid o con capacidades. Apache puede iniciar como root y reducir el usuario de sus trabajadores a www-data; la opción no convierte por sí sola todo el contenedor en un proceso sin root ni bloquea cualquier ataque.
+
+Criterios de aceptación: Apache inicia, sirve CSS, mantiene trabajadores www-data con `NoNewPrivs=1` y la integración MySQL/HTTP conserva sus controles. Se prueba primero en aislamiento, sin publicar puertos ni conectar volúmenes de la instalación. El resultado y la aplicación local se registran en ESTADO.md.
+
+Esta configuración pertenece a Docker Compose. No acredita la misma protección en Render, que utiliza su propio runtime, ni una instalación Windows todavía no verificada. No parchea libxml2 o Apache y no elimina los riesgos siguientes.
 
 ## Decisiones pendientes
 

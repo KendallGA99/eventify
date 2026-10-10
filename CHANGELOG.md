@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.40 — Restricción de privilegios del contenedor (B07/RNF-03)
+
+- Activa `no-new-privileges` en la web de Docker Compose y en el servicio de integración. Impide adquirir privilegios mediante ejecutables setuid o capacidades de archivo; Apache conserva su arranque y sus trabajadores www-data.
+- No modifica MySQL, migraciones, reservas o bibliotecas. Es una protección adicional del contenedor, sin corregir los avisos residuales de las imágenes. Compose no configura el runtime administrado de Render.
+- Resultados y alcance de actualización en ESTADO.md. Windows conserva su verificación pendiente.
+
 ## 0.1.0-dev.39 — Presentación de reservas (B07/RF-12/20/RNF-01)
 
 - El historial del usuario muestra FINALIZADO cuando un evento publicado ya pasó, con el mismo criterio UTC del catálogo y administración. Conserva el estado persistido y los controles de vigencia/cancelación.

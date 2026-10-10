@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.39**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
+Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.40**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
 
 ## Alcance y autorizaciones
 
@@ -14,12 +14,12 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.39**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b09-seguridad-defensa`. Publicación dev.39 verificada; receta MySQL reducida dev.38 conservada. |
+| Rama actual | `codex/b07-contenedor-sin-privilegios`. Configuración local dev.40 verificada; publicación y paquete documental dev.39 conservados. |
 | Aplicación comprobada | Local dev.39 sobre `0e6be15`: integración225 y recorrido IAB. Publicación dev.37 conserva su evidencia propia. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `0e3aae247da50deaa0150be4e235728cbe3db12a`, dev.39. |
 | Render | Servicio `srv-db3vutm7bikc73ajj6og`, Free. Deploy `dep-db52frajnfac7390qf80`, Live el10oct05:57:03CST, duración32,7s; fuente `0e3aae2`. Rama configurada y AutoDeployOff conservados. Dev.37 disponible para rollback compatible. |
-| Local8086 | Web actualizada a dev.39; base y volúmenes conservados. Proyecto `eventify-clean-20261009035638-598f411d`. Instalación limpia/persistencia originales corresponden a dev.33 `f4d6c5a05011c57e47295b06cedf11129a052681`. |
+| Local8086 | Aplicación dev.39 con restricción de privilegios de Compose dev.40 aplicada; base y volúmenes conservados. Proyecto `eventify-clean-20261009035638-598f411d`. Instalación limpia/persistencia originales corresponden a dev.33 `f4d6c5a05011c57e47295b06cedf11129a052681`. |
 | Paquete documental dev.39 vigente | `output/entrega/eventify-desarrollo-82b47edbe4cf/eventify-source.zip`, 219 archivos, incluye guías de seguridad/defensa; misma aplicación dev.39. Integridad comprobada; instalación Windows pendiente. |
 | Paquete dev.39 anterior | `output/entrega/eventify-desarrollo-37b1f642c294/eventify-source.zip`, commit `37b1f642c29429ad232a92acdc951267d202d141`, 217 archivos y PDF adjunto. CRC/huellas comprobados; instalación Windows pendiente. |
 | Paquete dev.38 conservado | `output/entrega/eventify-desarrollo-f01ee0e3cf0f/eventify-source.zip`, commit `f01ee0e3cf0f784740390d33a997e0b6fb756fdf`,217 archivos, manifiesto/CRC/huellas correctos. Imagen MySQL final probada; aplicación pública permanece dev.37. Este ZIP no se ha instalado de nuevo en Linux ni Windows. |
@@ -163,3 +163,14 @@ Inspección local dev.39: PHP8.4.26/libxml2 2.9.14, extensiones XML presentes; d
 ENSAYO-DEFENSA.md añade recorrido de15 minutos, diez archivos de lectura, doce preguntas razonadas, condiciones de preparación y ejercicio de borde. El comando real de reservation-policy.php aprobó19 comprobaciones en la copia local; sin escrituras. Enlaces al código verificados. Preparación documental terminada; práctica, comprensión y defensa humanas aún no registradas. No cambia VERSION/runtime, publicación o paquete previo.
 
 Exportación documental con las dos guías: commit `82b47edbe4cf1245c755c5ca6faf5fefeefcd98c`, 219 archivos, ZIP SHA256 `a620e371108cf439b31b807d281184440195a1f5106b251ba76ae73d6d6c3926`. CRC y todas las huellas individuales correctos; guías coinciden con fuente. PDF dev.39 adjunto conservado, SHA256 `ab3e4fedaf7ed93b8dc50eb44cc7999f0f346dbcab1e7f4ffa23589231803583`. No se generó un PDF distinto ni se repitieron pruebas de runtime por este incremento documental.
+
+
+## Restricción de privilegios: dev.40
+
+B07/RNF-03: `no-new-privileges:true` incorporado a la web de Compose y al servicio de integración. Objetivo y aceptación en SEGURIDAD-ENTREGA.md. Sin cambios de PHP, MySQL, esquema, rutas o reglas de negocio; VERSION identifica el incremento de configuración.
+
+Prueba inicial con la imagen local en contenedor aislado: red none, sin puertos publicados ni volúmenes; Apache sirvió CSS, cinco trabajadores www-data y proceso principal con NoNewPrivs=1. Contenedor de ensayo retirado. `scripts/test-database-linux.sh` ejecutado con sudo no interactivo: 225 comprobaciones MySQL/HTTP correctas, exit0. Proyecto eventify-tests retirado por su propio cleanup; no se repitió instalación limpia Linux.
+
+Aplicación local: `compose --env-file [configuración privada] -p eventify-clean-20261009035638-598f411d up --no-deps --detach --wait --wait-timeout 90 web`, sin reconstrucción porque la imagen de aplicación no cambió. Web saludable; proceso principal y cinco trabajadores con NoNewPrivs=1. Identificador e imagen de MySQL idénticos antes/después. No hubo migraciones, borrado o recreación de base/volúmenes. Inicio, catálogo, ingreso, registro, CSS y salud devolvieron HTTP200 con contenido.
+
+Evidencia privada: storage/security-nnp-20261010/apache-smoke.log, integration.log, web-update.log, local-policy.txt, db-before.txt, db-after.txt y http.json. git diff --check correcto. Esta restricción reduce posibilidades de elevación mediante exec; no elimina root del proceso principal ni corrige CVE de bibliotecas. No aplica automáticamente a Render. Publicación y paquete documental dev.39 permanecen vigentes; el paquete aún no incluye este cambio de Compose. Firefox específico, seguridad residual, Windows y ensayo humano siguen pendientes. No se marca una versión estable.
