@@ -1,6 +1,6 @@
 # Ensayo de defensa de Eventify
 
-Referencia de la aplicación y publicación: dev.41. Corrección nativa y controles en RUNTIME-CORREGIDO.md; protección de Compose conservada desde dev.40. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
+Referencia de la aplicación y publicación: dev.43. Corrección nativa y controles en RUNTIME-CORREGIDO.md; protección de Compose conservada desde dev.40. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
 Este material sirve para estudiar y practicar con el proyecto abierto. Los tiempos son una propuesta de preparación, no una duración exigida por el enunciado. Cada explicación debe poder relacionarse con una pantalla, una función o una prueba. La práctica del estudiante todavía no está registrada.
 
@@ -38,7 +38,7 @@ No es necesario ejecutar todas las validaciones negativas durante una exposició
 | [Auth.php](../app/Security/Auth.php) | Hash/verificación de contraseña, rol USUARIO fijo al registrar y limitación de intentos. |
 | [catalog.js](../public/assets/js/catalog.js) | Debounce, cancelación de petición y número de secuencia para respuestas tardías. |
 | [experiences.js](../public/assets/js/experiences.js) | Actualización del historial y cancelación mediante AJAX. |
-| [WeatherClient.php](../app/Infrastructure/WeatherClient.php) | URL fija, TLS, redirecciones deshabilitadas, timeout y límite de 128 KiB; JSON. |
+| [WeatherClient.php](../app/Infrastructure/WeatherClient.php), [WeatherFallbackClient.php](../app/Infrastructure/WeatherFallbackClient.php) y [MetWeatherClient.php](../app/Infrastructure/MetWeatherClient.php) | Open-Meteo como principal; MET Norway como respaldo independiente. HTTPS fijo, TLS, respuestas limitadas, caché y errores. |
 | [TicketQr.php](../app/Support/TicketQr.php) | Identificador hexadecimal, matriz QR y SVG numérico; no valida acceso físico al evento. |
 
 ## Preguntas con razonamiento esperado
@@ -61,13 +61,13 @@ No es necesario ejecutar todas las validaciones negativas durante una exposició
 
 **¿Cómo se impide registrarse como administrador?** Auth::register fija el rol USUARIO mediante SQL. Un campo role añadido a la petición no participa en esa asignación.
 
-**¿Qué ocurre si el clima falla?** Se muestra un estado de indisponibilidad y la reserva sigue disponible. El servidor limita tiempo, tamaño y solicitudes. No se inventa un pronóstico ni se cambia el proveedor para eludir su cuota.
+**¿Qué ocurre si el clima falla?** Si Open-Meteo falla, WeatherFallbackClient consulta el respaldo independiente MET Norway. No se repite la petición rechazada ni se cambia de IP. Si ambos fallan o no cubren la fecha, se informa la indisponibilidad y la reserva sigue disponible. PHP limita tiempo, tamaño y solicitudes, y conserva caché. No se inventan temperaturas ni probabilidad de lluvia. El rango del respaldo corresponde a muestras del día; sus límites y atribución se consultan en «Sobre el pronóstico».
 
 **¿Qué tiene de AJAX este proyecto?** Catálogo, historial, reserva, cancelación y clima tienen peticiones asincrónicas. Explicar al menos tres siguiendo sus rutas concretas; abrir la pestaña de red solo si puede hacerlo sin exponer cookies o credenciales.
 
 **¿Git permite recuperar la base de datos?** No. Recupera código versionado. Los datos viven en MySQL y los volúmenes; necesitan respaldo y restauración separados. Hay que comprobar compatibilidad de migraciones antes de volver a una versión de código.
 
-**¿Qué significa que haya avisos de seguridad?** Hay que distinguir un control de la aplicación de una vulnerabilidad de una biblioteca del contenedor. Los informes conservan avisos y condiciones de exposición; las pruebas funcionales no certifican ausencia de vulnerabilidades nativas.
+**¿Cómo explico el resultado de seguridad?** Dev.41 corrigió las dependencias nativas: las tres imágenes finales tuvieron cero avisos en el escaneo del 10 de octubre, sin exclusiones. Los informes de versiones anteriores conservan sus avisos como historia. Ese resultado no garantiza que nunca aparezcan vulnerabilidades ni audita Linux/Windows del receptor o el proveedor administrado. Las pruebas funcionales verifican reglas y flujos; no reemplazan el análisis de dependencias.
 
 **¿Para qué sirve no-new-privileges?** La web de Compose pide al kernel que sus procesos no puedan adquirir nuevos privilegios al ejecutar otro archivo. Apache aún inicia con su proceso principal root y atiende peticiones mediante trabajadores www-data. Se comprobó que estos trabajadores mantienen la restricción y que la integración MySQL funciona. Es una capa adicional: no corrige bibliotecas vulnerables ni acredita la configuración del proveedor público.
 
@@ -90,3 +90,18 @@ Como práctica de modificación, añadir en una rama propia el caso de cancelaci
 ## Criterios de preparación
 
 El ensayo está listo cuando el estudiante puede hacer el recorrido, localizar las funciones indicadas, explicar los resultados sin leer respuestas, reconocer un fallo de proveedor y realizar una modificación menor con su comprobación. Registrar fecha, quién participó, dificultad encontrada y qué se corrigió en [DEFENSA.md](DEFENSA.md).
+
+## Registro breve del ensayo
+
+Cuando Kendall esté disponible, anotar sus respuestas antes de consultar la explicación de esta guía:
+
+| Paso | Pregunta o acción | Evidencia que debe aportar Kendall |
+| --- | --- | --- |
+| 1 | Dos personas intentan reservar el último espacio. | Explicación propia y ubicación de beginTransaction, lockEvent y FOR UPDATE en ReservationService.php. |
+| 2 | El navegador envía un precio alterado. | Identificar de dónde toma PHP el precio y dónde conserva el histórico. |
+| 3 | Faltan exactamente 24 horas. | Predecir rechazo, localizar canCancel y explicar la comparación estricta. |
+| 4 | Open-Meteo no responde. | Seguir respaldo/caché/aviso, distinguir rango de muestras y reservar sin depender del clima. |
+| 5 | Modificación menor. | En una rama de práctica, añadir el caso de 48 horas propuesto, conservar diff y salida, y explicarlos. |
+| 6 | Demo de ambos roles. | Mostrar navegación, reserva/ticket e historial de evaluación; distinguir permisos de servidor y presentación. |
+
+El registro debe incluir fecha, participante, respuesta inicial, dificultad y corrección. Si una respuesta necesita ayuda, anotarlo y volver a practicar; una guía preparada o una prueba ejecutada por otra persona no demuestra dominio individual. El 10 de octubre se informó que Kendall no estaba disponible; no se registra un ensayo realizado.
