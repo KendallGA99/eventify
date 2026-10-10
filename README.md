@@ -6,7 +6,7 @@ Plataforma académica PHP/MySQL para descubrir eventos, reservar entradas, consu
 
 Eventify permite crear una cuenta, explorar eventos, reservar entradas, consultar tickets con QR y cancelar reservas. El administrador gestiona categorías, eventos y reservas desde su panel.
 
-La versión de desarrollo es **0.1.0-dev.39**. Dev.39 corrige la presentación de cantidades y estados en el historial; su evidencia propia está en ESTADO. La [web pública](https://eventify-academico.onrender.com/eventos) ejecuta **dev.37**, con ingreso al inicio, perfil editable y controles para mostrar u ocultar contraseñas. La publicación conservó las diez tablas; después se aprobaron 81 controles HTTPS de usuarios y 31 de administrador.
+La versión de desarrollo es **0.1.0-dev.39**. Dev.39 corrige la presentación de cantidades y estados en el historial; su evidencia propia está en ESTADO. La [web pública](https://eventify-academico.onrender.com/eventos) ejecuta **dev.39**, con ingreso al inicio, perfil editable y controles para mostrar u ocultar contraseñas. La publicación conservó las diez tablas; después se aprobaron 81 controles HTTPS de usuarios y 36 de administrador.
 
 La imagen MySQL dev.38 retira el cliente Shell que la aplicación no utiliza. Su construcción, 225 comprobaciones MySQL/HTTP y pruebas TLS positivo/negativo están aprobadas. El escaneo comparable pasó de 66 a 47 avisos, sin avisos nuevos ni exclusiones. Las imágenes PHP conservan riesgos documentados; esta versión todavía no se certifica como estable.
 
@@ -70,4 +70,4 @@ El historial se conserva en el repositorio privado [USUARIO_DESTINO/eventify](ht
 - [Verificación Windows](docs/VERIFICACION-WINDOWS.md): procedimiento pendiente de equipo real.
 - [Demostración y defensa](docs/DEFENSA.md): recorrido, mapa del código y ejercicios; no certifica dominio.
 - [Revisión de seguridad](docs/SEGURIDAD.md): dependencias y controles comprobados, con límites.
-- [Fuente del documento técnico](docs/TECNICO.md): documento dev.38, publicación dev.37, límites y evidencia de cada referencia.
+- [Fuente del documento técnico](docs/TECNICO.md): documento dev.39, publicación dev.39, límites y evidencia de cada referencia.

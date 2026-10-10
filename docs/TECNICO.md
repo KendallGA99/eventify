@@ -1,9 +1,9 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Código de referencia: dev.38; publicación dev.37. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Código de referencia: dev.39; publicación dev.39. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
-Este documento explica cómo funciona el sistema y qué se ha comprobado. La web pública ejecuta dev.37: ingreso al inicio, perfil editable y controles de acceso revisados. El despliegue conservó las diez tablas; después se aprobaron 81 controles HTTPS de usuarios y 31 del administrador. La instalación limpia Linux y su persistencia se comprobaron en el ZIP dev.33; los cambios de aplicación dev.37 tienen 225 controles MySQL/HTTP y recorrido real del navegador. Windows, la matriz restante de Firefox y los riesgos de las imágenes siguen pendientes. El pronóstico tuvo respuestas útiles en dev.30; en la consulta posterior a publicar dev.37 el proveedor respondió HTTP 429 y la reserva permaneció disponible.
+Este documento explica cómo funciona el sistema y qué se ha comprobado. La web pública ejecuta dev.39: ingreso al inicio, perfil editable y controles de acceso revisados. El despliegue conservó las diez tablas; después se aprobaron 81 controles HTTPS de usuarios y 36 del administrador. La instalación limpia Linux y su persistencia se comprobaron en el ZIP dev.33; los cambios de aplicación dev.39 tienen 225 controles MySQL/HTTP y recorrido real del navegador. Windows, la matriz restante de Firefox y los riesgos de las imágenes siguen pendientes. El pronóstico tuvo respuestas útiles en dev.30; en la consulta posterior a publicar dev.37 el proveedor respondió HTTP 429 y la reserva permaneció disponible.
 
 ## 1. Descripción y resultado esperado
 
@@ -307,7 +307,7 @@ La base funcional y la web pública tienen evidencia real de sus flujos principa
 
 ## 12. Referencias y trazabilidad
 
-Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.37 (inicio, navegación, perfil y controles de contraseña actualizados; imagen MySQL corregida). Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
+Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.39 (inicio, navegación, perfil y controles de contraseña actualizados; imagen MySQL corregida). Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
 
 Documentos operativos: INSTALACION.md, ARQUITECTURA.md, DATOS.md, PUBLICACION.md, RESPALDO.md, VERSIONADO.md, PAQUETE.md, COPIA-LIMPIA.md, SEGURIDAD.md, AVISOS-IMAGENES.md y CIERRE.md. Los documentos históricos pueden describir etapas anteriores: las migraciones/código y el estado vigente prevalecen al comprobar una afirmación técnica.
 
@@ -353,3 +353,12 @@ La imagen final retira mysql-shell mediante RPM y comprueba que servidor, client
 La imagen final de 9321f68 aprobó construcción,225 controles, TLS positivo/negativo y escaneo propios en mysql-image-check-YmuG4fAM. El escaneo con la misma base Trivy del 8 de octubre confirma 47 filas idénticas a la candidata, sin avisos nuevos o exclusiones: 1 crítico, 21 altos, 22 medios, 2 bajos y 1 sin clasificación. Retirar componentes no corrige vulnerabilidades de gosu o del host, ni los avisos PHP/libxml2.
 
 No hay cambios de aplicación o esquema. La web pública permanece en dev.37 y Aiven no cambia; la receta MySQL afecta futuras construcciones locales. Las instalaciones existentes conservan datos e imágenes. La instalación Windows, las comprobaciones restantes de Firefox y la aceptación humana continúan pendientes.
+
+
+### Presentación y publicación: dev.39
+
+El historial y su actualización AJAX muestran FINALIZADO cuando un evento publicado ya pasó, conservando el estado almacenado. Las reservas administrativas usan «1 entrada» en singular. No cambian cupos, precios, permisos ni esquema. La integración aprobó 225 controles MySQL/HTTP; IAB comprobó filtros, perfil persistente y restaurado, logout, tickets, roles y administración. El panel se revisó a 390, 768 y 1280 píxeles sin desbordamiento. Estas pruebas no certifican Firefox.
+
+Render Free desplegó el commit 0e3aae247da50deaa0150be4e235728cbe3db12a el 10 de octubre. El despliegue dep-db52frajnfac7390qf80 quedó Live y tardó 32,7 segundos. Las diez tablas mantuvieron filas y huellas; después se aprobaron 81 controles HTTPS de usuarios y 36 administrativos. IAB confirmó panel, reserva cancelada existente y catálogo; las sesiones se cerraron. No se crearon reservas o cuentas públicas. Dev.37 se conserva como referencia anterior para rollback compatible.
+
+El paquete actualizado requiere su comprobación Windows; la instalación Linux original dev.33 conserva evidencia propia. Libxml2 y los demás riesgos residuales mantienen sus límites. Este documento sigue siendo borrador de evaluación; la defensa y comprensión requieren participación real del estudiante.

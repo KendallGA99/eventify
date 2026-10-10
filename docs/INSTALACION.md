@@ -2,7 +2,7 @@
 
 ## Estado de esta guía
 
-El proyecto incluye autenticación, catálogo, reservas, tickets con QR y administración. La referencia de desarrollo es dev.38; la publicación es dev.37. La instalación limpia Linux y la persistencia tienen evidencia sobre dev.33; dev.38 añade la imagen MySQL reducida con integración y TLS comprobados. El ZIP nuevo no tiene aceptación de instalación propia en Windows. Consulte [ESTADO.md](ESTADO.md) para distinguir estos resultados.
+El proyecto incluye autenticación, catálogo, reservas, tickets con QR y administración. La referencia de desarrollo y la publicación son dev.39. La instalación limpia Linux y la persistencia tienen evidencia sobre dev.33; dev.38 añade la imagen MySQL reducida con integración y TLS comprobados. El ZIP nuevo no tiene aceptación de instalación propia en Windows. Consulte [ESTADO.md](ESTADO.md) para distinguir estos resultados.
 
 Ejecute los comandos desde la carpeta raíz de EVENTIFY.
 

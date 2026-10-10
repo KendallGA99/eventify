@@ -114,3 +114,8 @@ Implementación d8829a7, ajuste de expectativa de prueba ab710a6 y corte documen
 
 
 Publicación dev.37: Render despliega7c3a3e28435566349efcd4b2a66eace89de978d2, mismo commit de etiqueta/paquete; dep-db4n8cbncjis73c7m4t0 Live el9oct17:09:37CST. Comparación de diez tablas y112 controles HTTPS dirigidos correctos. Referencia anterior390b1ef conservada para rollback compatible sin cambio de esquema. Rama de seguimiento y AutoDeployOff conservados; desplegar un commit específico no cambia la rama configurada. Registro posterior en codex/b08-publicacion-dev37; no mueve la etiqueta ni declara estabilidad final.
+
+
+## Dev.39: presentación y publicación
+
+Implementación0e6be15, corte0e3aae247da50deaa0150be4e235728cbe3db12a.225 controles MySQL/HTTP y recorrido IAB local aprobados. Etiqueta anotada v0.1.0-dev.39 confirmada en origin y resuelta a0e3aae2. Render Free publicó ese mismo commit, dep-db52frajnfac7390qf80 Live: diez tablas conservadas y117 controles HTTPS posteriores. Main y versiones anteriores intactos; desarrollo, sin certificación estable. Documentación posterior conserva su referencia propia para exportación.

@@ -14,15 +14,15 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.39**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-reservas-presentacion`. Presentación dev.39 comprobada sobre `0e6be15`; receta MySQL reducida dev.38 conservada. |
+| Rama actual | `codex/b08-publicacion-dev39`. Publicación dev.39 verificada; receta MySQL reducida dev.38 conservada. |
 | Aplicación comprobada | Local dev.39 sobre `0e6be15`: integración225 y recorrido IAB. Publicación dev.37 conserva su evidencia propia. |
 | Etiqueta conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
-| Web pública | https://eventify-academico.onrender.com, commit `7c3a3e28435566349efcd4b2a66eace89de978d2`, dev.37. |
-| Render | Servicio `srv-db3vutm7bikc73ajj6og`, Free/Oregon/AutoDeployOff. Deploy `dep-db4n8cbncjis73c7m4t0`, Live el 9 de octubre a las17:09:37 CST, 34,8s. Referencia anterior `390b1ef` conservada para rollback. |
+| Web pública | https://eventify-academico.onrender.com, commit `0e3aae247da50deaa0150be4e235728cbe3db12a`, dev.39. |
+| Render | Servicio `srv-db3vutm7bikc73ajj6og`, Free. Deploy `dep-db52frajnfac7390qf80`, Live el10oct05:57:03CST, duración32,7s; fuente `0e3aae2`. Rama configurada y AutoDeployOff conservados. Dev.37 disponible para rollback compatible. |
 | Local8086 | Web actualizada a dev.39; base y volúmenes conservados. Proyecto `eventify-clean-20261009035638-598f411d`. Instalación limpia/persistencia originales corresponden a dev.33 `f4d6c5a05011c57e47295b06cedf11129a052681`. |
 | Paquete dev.38 | `output/entrega/eventify-desarrollo-f01ee0e3cf0f/eventify-source.zip`, commit `f01ee0e3cf0f784740390d33a997e0b6fb756fdf`,217 archivos, manifiesto/CRC/huellas correctos. Imagen MySQL final probada; aplicación pública permanece dev.37. Este ZIP no se ha instalado de nuevo en Linux ni Windows. |
 | Paquete documental dev.37 conservado | `output/entrega/eventify-desarrollo-44bd3a9a9360/eventify-source.zip`, commit `44bd3a9a936005db52bda8de65c90037803ae335`, 213 archivos. Misma aplicación, configuración, migraciones, dependencias e imágenes declaradas que la web pública. |
-| PDF dev.38 | Documento técnico de17 páginas, actualizado con reducción MySQL, publicación dev.37 y limitaciones; todavía borrador de evaluación. |
+| PDF dev.39 | Documento técnico de17 páginas, actualizado con publicación dev.39 y recorrido IAB; todavía borrador de evaluación. |
 
 Huellas del paquete dev.38 indicado arriba:
 
@@ -127,3 +127,14 @@ Se reconstruyó y recreó únicamente web8086 mediante `up --build --no-deps --d
 IAB posterior confirmó FINALIZADO en historial y actualización AJAX, singular en lista y detalle administrativo, filtro administrativo por evento/estado y403 con estilo para el usuario. Perfil ficticio restaurado y sesiones cerradas; sin nuevas reservas ni cancelaciones. El panel anterior se comprobó a390/768/1280 sin desbordamiento. No atribuir ese recorrido a Firefox ni a una instalación Windows.
 
 Evidencia privada: `storage/browser-review-20261010/resultado.json`, `integration.log`, `lint.log`, `web-update.log`, `db-before.txt`, `db-after.txt`, `runtime-reference.txt` y capturas `historial-dev39.png`/`admin-detalle-dev39.png`. Las capturas contienen únicamente datos ficticios de evaluación. Recorrido autónomo IAB terminado; no requiere que el usuario lo repita. C-07 conserva solamente su alcance específico de Firefox. Publicación dev.37, paquete/PDF dev.38, seguridad residual, Windows y aceptación humana conservan sus límites anteriores.
+
+
+## Publicación dev.39: 10 de octubre
+
+Render Free desplegó `0e3aae247da50deaa0150be4e235728cbe3db12a`; estado Live, duración32,7s. Etiqueta anotada `v0.1.0-dev.39` publicada y resuelta al mismo commit. Main y etiquetas anteriores conservados. No se cambiaron variables, plan, rama configurada o auto deploy; sin migraciones nuevas ni sembrado.
+
+Diez tablas mantuvieron filas y huellas antes/después del despliegue, antes de autenticar. Después:81 controles HTTPS de usuarios y36 de administración correctos. IAB comprobó ingreso del administrador al inicio, panel, lista/detalle de la reserva cancelada existente, cierre de sesión y catálogo. Sin escrituras de negocio. Los casos de1 entrada/evento finalizado tienen evidencia local dev.39; no se crearon datos públicos para repetirlos.
+
+Evidencia privada: `storage/public-dev39/`, snapshots, security.log, admin-security.log, result.json, render-live.png, catalogo-publico.png y admin-reserva.png. El paquete/PDF dev.38 permanece conservado; la nueva sincronización documental no equivale a instalación Windows. Seguridad residual, Firefox específico y aceptación humana siguen abiertos.
+
+PDF dev.39 regenerado: 17 páginas renderizadas y revisadas visualmente; texto dentro de página. SHA256 `ab3e4fedaf7ed93b8dc50eb44cc7999f0f346dbcab1e7f4ffa23589231803583`. Manuales sincronizados con publicación dev.39; el paquete anterior se conserva y la exportación nueva se registra después de comprobarla.
