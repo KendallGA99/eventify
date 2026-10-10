@@ -1,7 +1,7 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 9 de octubre de 2026. Código de referencia: v0.1.0-dev.37. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Código de referencia: dev.38; publicación dev.37. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
 Este documento explica cómo funciona el sistema y qué se ha comprobado. La web pública ejecuta dev.37: ingreso al inicio, perfil editable y controles de acceso revisados. El despliegue conservó las diez tablas; después se aprobaron 81 controles HTTPS de usuarios y 31 del administrador. La instalación limpia Linux y su persistencia se comprobaron en el ZIP dev.33; los cambios de aplicación dev.37 tienen 225 controles MySQL/HTTP y recorrido real del navegador. Windows, la matriz restante de Firefox y los riesgos de las imágenes siguen pendientes. El pronóstico tuvo respuestas útiles en dev.30; en la consulta posterior a publicar dev.37 el proveedor respondió HTTP 429 y la reserva permaneció disponible.
 
@@ -332,7 +332,7 @@ Dev.37 aprobó 225 comprobaciones de integración MySQL/HTTP, sintaxis PHP 8.4, 
 
 Dev.34 retiró 32 paquetes de construcción de ambas imágenes PHP y mantuvo versiones de los paquetes conservados. Imágenes finales, unidades y arranque público con TLS positivo/negativo tienen evidencia propia sobre 6d41df5. Con la misma base Trivy almacenada, el informe pasó de 2011 a 424 filas por imagen, sin identificadores/paquetes/versiones nuevos ni exclusiones: 1 crítico, 91 altos, 162 medios, 166 bajos y 4 sin clasificación. Esta reducción no corrige el kernel del host ni demuestra que las bibliotecas restantes estén libres de vulnerabilidades.
 
-El informe MySQL conserva 66 filas y sus límites documentados. No se acepta el riesgo residual automáticamente ni se presenta la versión como estable. La web pública ya ejecuta dev.37, con el resultado del despliegue y sus controles registrados a continuación. El paquete dev.37 requiere aceptación propia; Windows se ensaya al final.
+El informe histórico MySQL dev.33 conserva 66 filas. La reducción sin Shell dev.38 elimina 19 filas de bibliotecas Python sin uso; los 47 avisos conservados mantienen sus límites documentados. No se acepta el riesgo residual automáticamente ni se presenta la versión como estable. La web pública ya ejecuta dev.37, con el resultado del despliegue y sus controles registrados a continuación. El paquete dev.37 requiere aceptación propia; Windows se ensaya al final.
 
 
 ### Publicación y límites del alojamiento: corte dev.37
@@ -344,3 +344,12 @@ Aiven MySQL Free estaba apagado por inactividad; se reactivó el servicio existe
 El pronóstico recibió HTTP 429 del proveedor. Se mostró el aviso de indisponibilidad y se mantuvo el acceso a reservar. Un reintento posterior mantuvo la indisponibilidad. La respuesta útil anterior conserva su propia evidencia; no se inventan valores ni se eluden límites.
 
 Packagist no devolvió avisos para las dos bibliotecas de Composer. Libxml2 sigue abierto en la imagen base; no se instaló un parche nativo sin pruebas. El documento sigue siendo borrador hasta completar la aceptación.
+
+
+### Reducción de MySQL: dev.38
+
+La imagen final retira mysql-shell mediante RPM y comprueba que servidor, clientes SQL, gosu y entrypoint conserven sus huellas. RPM puede dejar cachés Python; solo se elimina su directorio después de comprobar que ningún resto pertenece a otro paquete. La candidata aprobó 225 controles MySQL/HTTP, respaldo/restauración ficticios y TLS positivo/negativo.
+
+La imagen final de 9321f68 aprobó construcción,225 controles, TLS positivo/negativo y escaneo propios en mysql-image-check-YmuG4fAM. El escaneo con la misma base Trivy del 8 de octubre confirma 47 filas idénticas a la candidata, sin avisos nuevos o exclusiones: 1 crítico, 21 altos, 22 medios, 2 bajos y 1 sin clasificación. Retirar componentes no corrige vulnerabilidades de gosu o del host, ni los avisos PHP/libxml2.
+
+No hay cambios de aplicación o esquema. La web pública permanece en dev.37 y Aiven no cambia; la receta MySQL afecta futuras construcciones locales. Las instalaciones existentes conservan datos e imágenes. La instalación Windows, las comprobaciones restantes de Firefox y la aceptación humana continúan pendientes.

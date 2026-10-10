@@ -1,6 +1,6 @@
 # EVENTIFY: casos pendientes para la entrega
 
-Corte: 9 de octubre de 2026, dev.37; experiencia y perfil comprobados con 225 controles MySQL/HTTP, 30 comprobaciones de registro/errores y recorrido IAB real. Instalación limpia/persistencia corresponden a dev.33; MySQL conserva parche gawk comprobado. Este archivo organiza la aceptación que falta; ESTADO y las evidencias conservan lo ya ejecutado. Un caso se cierra con el resultado real y su versión, no por estar descrito aquí.
+Corte: 10 de octubre de 2026, imagen MySQL dev.38 y publicación dev.37; experiencia y perfil comprobados con 225 controles MySQL/HTTP, 30 comprobaciones de registro/errores y recorrido IAB real. Instalación limpia/persistencia corresponden a dev.33; MySQL conserva parche gawk comprobado. Este archivo organiza la aceptación que falta; ESTADO y las evidencias conservan lo ya ejecutado. Un caso se cierra con el resultado real y su versión, no por estar descrito aquí.
 
 ## Evidencia disponible
 
@@ -9,6 +9,8 @@ Corte: 9 de octubre de 2026, dev.37; experiencia y perfil comprobados con 225 co
 - Publicación actual dev.37: despliegue Render comprobado, diez tablas conservadas,81 controles HTTPS de usuarios y31 del administrador aprobados. Pronóstico indisponible con HTTP429 y reserva accesible; última respuesta útil real corresponde a dev.30. Flujos de reserva y reinicio anteriores conservan su propia referencia.
 - Experiencia dev.37: ojos independientes, login al inicio, perfil con nombre persistente y navegación por rol comprobados en8086. Nombre ficticio restaurado y sesiones cerradas; sin nuevas reservas. PDF de16 páginas actualizado y revisado.
 - Interfaz: recorridos Chrome/IAB y tamaños registrados; registro a 390 px con Tab, foco visible y validación vacía. Esto no reemplaza la matriz de Firefox ni el registro válido completo.
+
+- MySQL dev.38: imagen final9321f68 con225 controles y TLS positivo/negativo aprobados;47 avisos restantes frente a66, sin nuevos ni exclusiones. Instalaciones existentes y Aiven conservados. Evidencia en ESTADO y ENSAYO-MYSQL-MINIMAL.
 
 ## Casos que faltan
 

@@ -14,7 +14,7 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.38**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-mysql-minimal`, desde `8554ef4`. Receta MySQL reducida dev.38; verificación final en curso. Aplicación pública y paquete dev.37 conservados. |
+| Rama actual | `codex/b07-mysql-minimal`, desde `8554ef4`. Receta MySQL reducida dev.38; imagen final comprobada sobre9321f68. Aplicación pública y paquete dev.37 conservados. |
 | Aplicación comprobada | `ab710a671d40024bf84cc46026af4c4cd54a948d`, dev.37. Los cambios documentales posteriores no modifican su código. |
 | Etiqueta conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `7c3a3e28435566349efcd4b2a66eace89de978d2`, dev.37. |
@@ -42,6 +42,7 @@ Cada fila tiene su propio alcance; no sumarlas como una sola suite.
 | Rendimiento dirigido | Eventos local HTTP7ms inicial/4ms siguiente; IAB local carga101,9ms. Público activo carga1060,2ms. Muestras únicas; no percentiles, arranque en frío ni medición del Firefox del usuario. | `storage/public-dev37/*performance.json` |
 | Linux y persistencia dev.33 | Fuente f4d6c5a en ruta con espacios; recorrido8086 y recreación posterior. Diez tablas/cinco archivos idénticos; ocho reservas/ocho tickets conservados. No repetir esta suite sin cambios o dudas. | `storage/dev33-persistence-lBxRJbW3` |
 | Runtime dev.34 | Imágenes finales, unidades y TLS positivo/negativo aprobados sobre6d41df5. Retirados32 paquetes de construcción; escaneo con la misma DB pasó2011→424 filas por variante, sin avisos nuevos ni exclusiones. | `storage/runtime-release-pdzRD8Jx`; ver ENSAYO-RUNTIME |
+| MySQL dev.38 | Imagen final9321f68: construcción,225 controles MySQL/HTTP, TLS positivo/negativo exit0. Escaneo47 filas idénticas a candidata, identidad confirmada contra blob OCI. Sin cambios de aplicación/esquema ni actualización de instalaciones. | `storage/mysql-image-check-YmuG4fAM` |
 | MySQL dev.33 | gawk5.1.0-6.el9_8.1, servidor8.4.11; construcción,219 controles y TLS aprobados. Escaneo69→66 filas, solo tres gawk eliminadas. | `storage/mysql-image-check-gpZ3It99` |
 | Firefox humano | Firefox157.0.1/Linux Mint: búsqueda, foco y calendario abierto; historial cancelado/ticket/QR al200%; rechazo administrativo con estilo al110%. Capturas parciales, no recorrido completo. | `storage/firefox-20261009` |
 | Windows parcial | PowerShell5.1 real: seis scripts sin errores de parser. VM Win11 LTSC Evaluation,4GiB; sin Docker/WSL ni instalación completa acreditada. | Ver VERIFICACION-WINDOWS |
@@ -51,7 +52,7 @@ Registro, catálogo/AJAX, respuesta perdida de reserva, errores de clima y admin
 ## Seguridad: estado y límites
 
 - Dependencias PHP fijadas: consulta Packagist de9oct sin avisos para las dos bibliotecas. jQuery local con huella/licencia comprobadas. Esto no audita el sistema operativo.
-- PHP/Apache conserva424 filas:1 crítica,91 altas,162 medias,166 bajas y4 sin clasificación;156 identificadores únicos. Base Trivy del8oct19:05UTC. MySQL dev.33 conserva66 filas; la candidata sin Shell conserva47, con comparación de la misma base, sin exclusiones. La imagen final dev.38 requiere su propia comprobación. Conteos de escaneos anteriores, sin exclusiones; no presentarlos como un escaneo nuevo.
+- PHP/Apache conserva424 filas:1 crítica,91 altas,162 medias,166 bajas y4 sin clasificación;156 identificadores únicos. Base Trivy del8oct19:05UTC. MySQL dev.33 conserva66 filas; la candidata sin Shell conserva47, con comparación de la misma base, sin exclusiones. La imagen final dev.38 confirmó las mismas47 filas con identidad OCI verificada. Conteos de escaneos anteriores, sin exclusiones; no presentarlos como un escaneo nuevo.
 - Libxml2/CVE-2026-6653 sigue vulnerable en Trixie según Debian. Digest PHP oficial sin cambios en la revisión previa. Parche nativo examinado, no instalado: modifica parser y estructuras públicas; exige pruebas de compatibilidad que las unidades de EVENTIFY no cubren.
 - Apache/CVE-2026-63292 también sigue vulnerable en el paquete; su módulo mod_vhost_alias no estaba cargado en las imágenes examinadas. Esto delimita exposición, no corrige el paquete.
 - Sin entrada XML directa encontrada en la aplicación; clima consume JSON limitado y QR genera SVG numérico. No descarta consumidores nativos. Gosu tiene análisis de funciones propio; Python/mysqlsh, kernel/host y demás avisos conservan sus límites.
@@ -81,4 +82,4 @@ Candidata `storage/mysql-minimal-zntFADgx`: integración225, respaldo/restauraci
 
 El primer intento `storage/mysql-minimal-ohVuHbye` falló: RPM dejó cachés Python sin propietario. La receta ahora comprueba propiedad antes de eliminar solo el directorio mysqlsh dentro de la imagen. El intento fallido conserva evidencia y no afectó bases del usuario.
 
-Dockerfile.mysql incorpora la receta; la etapa mysql-with-shell permite repetir la comparación. VERSION dev.38, sin cambios de aplicación/esquema. La imagen final se construye y verifica antes de elegir un paquete nuevo. Publicación y paquete dev.37 siguen vigentes; no se cambia su etiqueta. [Detalle](ENSAYO-MYSQL-MINIMAL.md).
+Dockerfile.mysql incorpora la receta; la etapa mysql-with-shell permite repetir la comparación. VERSION dev.38, sin cambios de aplicación/esquema. Imagen final sobre9321f68/árbol limpio: mysql-image-check-YmuG4fAM exit0;225 controles, TLS public-tls-NB0m9r8w exit0 y rechazo public-no-tls-wnPk03Vg exit0. Escaneo47 filas idénticas a la candidata; identidad confirmada contra el blob de configuración OCI, sin exclusiones. PDF actualizado a17 páginas; paquete nuevo se registra al exportar. Publicación y paquete dev.37 siguen vigentes; no se cambia su etiqueta. [Detalle](ENSAYO-MYSQL-MINIMAL.md).

@@ -132,3 +132,8 @@ En MySQL, Python está empaquetado dentro de mysqlsh y gosu tiene análisis de b
 ## MySQL dev.33 después del parche comprobado
 
 Imagen exportada en mysql-image-check-gpZ3It99, construcción e integración exit0. Escaneo con la misma DB y sin exclusiones:66 identificadores/filas,1CRITICAL/29HIGH/29MEDIUM/6LOW/1UNKNOWN. Se eliminaron únicamente las tres filas gawk de la tabla histórica anterior; los19 avisos Python y47 de gosu siguen visibles. Ningún par identificador/paquete nuevo respecto a la base. Diferencia comprobada en comparison.json; la ausencia de funciones vulnerables de gosu se trata aparte y no altera los conteos Trivy.
+
+
+## Reducción MySQL dev.38 (10oct)
+
+Imagen final9321f68: mysql-image-check-YmuG4fAM exit0;225 controles y TLS positivo/negativo aprobados. Solo mysql-shell se retira del inventario RPM; herramientas SQL/gosu/entrypoint conservan huellas. El escaneo del archivo exportado coincide con candidata mysql-minimal-zntFADgx:47 filas (1CRITICAL/21HIGH/22MEDIUM/2LOW/1UNKNOWN), exactamente19 Python menos que dev.33, ninguna nueva ni exclusiones. Identidad Trivy comprobada contra el blob de configuración OCI; imagen Docker y config pueden tener digest distintos. Conteos con la misma DB almacenada del8oct, no auditoría nueva del proveedor o del host.

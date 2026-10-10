@@ -92,7 +92,7 @@ def frame(canvas, doc):
 
 story = [Spacer(1, 75), Paragraph('EVENTIFY', styles['CoverTitle']),
          Paragraph('Documento técnico<br/>Borrador de evaluación', styles['CoverSubtitle']),
-         Paragraph('SC-502 Ambiente Web Cliente-Servidor<br/>Código de referencia: ' + text(VERSION) + '<br/>9 de octubre de 2026', styles['Text']),
+         Paragraph('SC-502 Ambiente Web Cliente-Servidor<br/>Código de referencia: ' + text(VERSION) + '<br/>10 de octubre de 2026', styles['Text']),
          Spacer(1, 25), Paragraph('<b>Estado:</b> implementación con verificación parcial. Linux desde ZIP, integración y restauración de datos comprobados. Web pública y controles HTTPS comprobados. Pronóstico público útil comprobado. Windows, Firefox y criterios finales pendientes.', styles['Text']),
          Paragraph('<b>Estudiante:</b> Kendall Gamboa Arce<br/><b>Docente:</b> Rita Robles Loaiza', styles['Text']),
          PageBreak(), Paragraph('Contenido', styles['Subsection'])]
