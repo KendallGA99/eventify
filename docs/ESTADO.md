@@ -71,7 +71,7 @@ Registro, catálogo/AJAX, respuesta perdida de reserva, errores de clima y admin
 
 ## Pendientes y próxima acción
 
-1. **C-07 Firefox:** completar limpieza/combinación de filtros, selección/borrado de fecha y teclado, perfil dev.37, logout/ticket y panel administrativo. Se solicitó comprobación humana: el control disponible no expone Firefox. [Procedimiento](VERIFICACION-FIREFOX.md).
+1. **C-07 Firefox:** QA autónomo de54 comprobaciones aprobado sobre dev.43; filtros, perfil, ticket/QR, roles/logout y administración con pantallas a390/768/1280. Límite restante: entrada segmentada/selección visual del calendario nativo no acreditada por WebDriver; el filtrado de fecha sí fue comprobado. [Resultado](VERIFICACION-FIREFOX.md).
 2. **C-09 seguridad, corregida en el corte dev.41:** tres imágenes finales sin avisos, 234 controles y TLS positivo/negativo aprobados. Aplicación a destinos y referencias de publicación se registran al final; no atribuir estos resultados a las versiones anteriores.
 3. **C-08/C-11 Windows, al final:** instalación del paquete elegido en un Windows compatible con Docker Desktop/WSL2 y recursos suficientes; arranque, roles, reserva/ticket/cancelación y persistencia reales. La VM revisada no acredita esas condiciones. [Procedimiento](VERIFICACION-WINDOWS.md).
 4. **C-12 entrega humana:** revisión del receptor, acceso del evaluador al repositorio privado/cuentas y ensayo de defensa. No inventar participación o dominio del código.
@@ -308,3 +308,9 @@ Paquete dev.43: fuente `b9262591da071531a91cb8f3e671d5c62d5429e6`, 232 archivos,
 Inventario de control: Chrome/IAB disponibles; Firefox y aplicaciones nativas no expuestos. No se ejecutó geckodriver ni se repitieron recorridos IAB como sustituto. Se solicitó evidencia manual concreta de filtros/limpieza/fecha/Tab; respuesta aún pendiente. VERIFICACION-FIREFOX conserva la evidencia anterior y una lista corta de los casos restantes.
 
 El usuario informó que Kendall no está disponible ahora. ENSAYO-DEFENSA actualizado a dev.43: respaldo meteorológico, rango de muestras, corrección nativa y seis pasos con evidencia a aportar por el estudiante. Preparación documental realizada; ensayo, comprensión, modificación y aceptación humanas no realizados. Sin cambios de aplicación, datos, despliegue o etiqueta. El ZIP/PDF dev.43 anterior conserva su propia referencia y no contiene estas últimas ampliaciones de las guías. Windows permanece al final.
+
+## B07 — QA autónomo Firefox autorizado
+
+El usuario pidió realizar las pruebas Firefox como QA sin intervención manual. Se ejecutó Firefox157.0.1 con geckodriver0.37.1 oficial, digest verificado, Selenium4.51.0, perfil temporal y cuentas ficticias de8086/dev.43. Resultado final:54 comprobaciones aprobadas, ocho pantallas a390/768/1280 efectivos con viewport BiDi, capturas revisadas. Evidencia `storage/firefox-qa-20261010/verified` y `data-comparison.json`. Nueve tablas conservadas; auth_limits cambió por los ingresos. Sin creación/cancelación de reservas, edición de perfiles o administración, ni cambios de runtime.
+
+Ensayo versionado en tests/browser; dependencias de QA separadas de la aplicación. VERIFICACION-FIREFOX conserva los intentos fallidos y el límite del calendario: valor/change probado; escritura segmentada/selección visual nativa no acreditadas. No se marca esa interacción como aprobada. No se repitió instalación Linux, suites MySQL o despliegue. VERSION y etiqueta dev.43 permanecen. ZIP/PDF anteriores conservan su referencia; no contienen este nuevo script. Kendall no está disponible para ensayo humano y Windows sigue al final.

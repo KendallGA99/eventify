@@ -1,6 +1,6 @@
 # Recorrido de Firefox y diseño adaptable
 
-B07/C-06/C-07. Validación humana parcial con capturas aportadas por el usuario. La copia http://localhost:8086 ejecuta dev.43; instalación limpia y persistencia originales corresponden a dev.33. IAB dev.39 está comprobado; Firefox conserva los resultados parciales de la tabla siguiente. El 10 de octubre, el usuario eligió mantener solo el control de navegador disponible, que no expone Firefox, y no autorizó el ensayo alternativo con geckodriver. El caso permanece bloqueado por ese acceso. No repetir instalación, sembrar datos ni solicitar de nuevo la misma autorización sin cambios en las condiciones.
+B07/C-06/C-07. Copia local dev.43, instalación limpia y persistencia originales dev.33. El 10 de octubre el usuario pidió expresamente realizar QA autónomo en Firefox, reemplazando para este ensayo la preferencia anterior de mantener solo el control disponible. Se ejecutó Firefox157.0.1 real mediante geckodriver oficial0.37.1/Selenium4.51.0, con perfil temporal y sin pestañas personales. Resultado:54 comprobaciones aprobadas. No confundir este recorrido con IAB ni con una instalación nueva. El calendario nativo mantiene el límite específico descrito abajo.
 
 1. Abrir Firefox y consultar su versión en Ayuda/Acerca de Firefox. Abrir http://localhost:8086/eventos. Buscar Encuentro y limpiar filtros; comprobar un resultado y recuperación del catálogo, sin errores visibles.
 2. Comprobar navegación con Tab y Shift+Tab: búsqueda, categoría, fechas, disponibilidad, estado y botón. El foco debe ser visible. Abrir los campos de fecha con teclado; comprobar selección/cancelación del calendario sin enviar un rango accidental.
@@ -45,3 +45,18 @@ Registrar por separado, sin repetir los casos ya acreditados:
 - Administración: ingresar como ADMINISTRADOR y abrir panel, categorías, eventos y reservas, sin guardar ediciones; cerrar sesión.
 
 Anotar versión de Firefox, fecha, URL base, acción y resultado. Si hay un fallo, indicar el paso exacto y conservar una captura sin secretos. Estos resultados requieren Firefox real; los recorridos IAB anteriores no los sustituyen.
+
+## Resultado QA autónomo en Firefox157.0.1
+
+Ensayo reproducible: [tests/browser/firefox-qa.py](../tests/browser/firefox-qa.py), herramientas e instrucciones en [tests/browser/README.md](../tests/browser/README.md). Evidencia privada: `storage/firefox-qa-20261010/verified/result.json` y capturas por pantalla/ancho.
+
+- Aprobados búsqueda, nombre/categoría combinados, limpieza, vacío y navegación Tab/Shift+Tab con foco visible.
+- Filtrado por fecha y borrado aprobados al cambiar el valor del control y emitir change. Entrada de segmentos y selección visual del calendario nativo no acreditadas: intentos WebDriver no completaron la fecha. No se atribuye ese límite a un fallo manual de la aplicación.
+- Aprobados ojo de contraseña, ingreso al inicio, perfil leído sin guardar, historial cancelado con dos entradas, QR cargado y ticket inválido.
+- Usuario rechazado en /admin con estilos; logout seguido del ticket exige ingreso. Administrador abre panel, categorías, eventos y reservas; cierra sesión.
+- Ocho pantallas a anchos efectivos390/768/1280 sin desbordamiento horizontal. Medidas y capturas verificadas; capturas móviles de perfil/panel/rechazo/catálogo revisadas.
+- Sin escrituras de negocio. Nueve tablas idénticas antes/después; solo cambió auth_limits por los ingresos de prueba. Perfiles temporales cerrados.
+
+Intentos conservados: entorno venv del host no tenía ensurepip; se usó Python empaquetado y Selenium en directorio privado. Entrada nativa de fecha no funcionó en el automatismo y se separó de la prueba de filtrado. Una aserción leyó la tarjeta de rechazo durante su animación inicial; se corrigió la espera de contenido y de fin de animaciones, sin cambiar la aplicación. Primera medición con set_window_size tuvo mínimo500px de Firefox; se sustituyó por viewport BiDi y se verificaron390px reales. No se relajaron permisos o reglas para aprobar.
+
+C-07 dispone ahora de QA autónomo de los flujos centrales. Sigue sin acreditarse la interacción visual/segmentada del calendario nativo; las capturas humanas anteriores sí muestran el calendario abierto. La evidencia no acredita escaneo óptico del QR, Windows ni ensayo individual.
