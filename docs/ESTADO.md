@@ -14,7 +14,7 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.39**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b08-publicacion-dev39`. Publicación dev.39 verificada; receta MySQL reducida dev.38 conservada. |
+| Rama actual | `codex/b07-cierre-pendientes`. Publicación dev.39 verificada; receta MySQL reducida dev.38 conservada. |
 | Aplicación comprobada | Local dev.39 sobre `0e6be15`: integración225 y recorrido IAB. Publicación dev.37 conserva su evidencia propia. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `0e3aae247da50deaa0150be4e235728cbe3db12a`, dev.39. |
@@ -144,3 +144,12 @@ PDF dev.39 regenerado: 17 páginas renderizadas y revisadas visualmente; texto d
 ## Paquete dev.39 sincronizado
 
 Exportación `output/entrega/eventify-desarrollo-37b1f642c294/eventify-source.zip`, commit `37b1f642c29429ad232a92acdc951267d202d141`, 217 archivos. SHA256 `4d3279d80d8f87ca74ad3ac16ebd5ab81ffc1984e2df78c93575001aef4df5a3`. CRC, inventario y huellas individuales correctos; manuales, código de reservas y receta MySQL coinciden con Git. PDF de17 páginas incluido al lado del ZIP, SHA256 `ab3e4fedaf7ed93b8dc50eb44cc7999f0f346dbcab1e7f4ffa23589231803583`. Paquetes anteriores conservados. No se instaló este ZIP en Windows ni se repitió la instalación Linux. Esta referencia reemplaza al paquete dev.38 para la entrega de desarrollo; no modifica el commit público ni mueve etiquetas.
+
+
+## Alcance de cierre confirmado el 10 de octubre
+
+CIERRE.md y VERIFICACION-FIREFOX.md sincronizados con dev.39, paquete de 217 archivos y PDF de 17 páginas. C-10 comprobado; C-11 conserva la verificación Windows. No se repite Linux por instrucción del usuario. IAB terminado; no se solicita repetir ese recorrido.
+
+El control de navegador consultado sigue exponiendo Chrome/IAB, sin Firefox. Ante la propuesta de prueba separada mediante geckodriver y perfil temporal, el usuario respondió «Mantener solo el control de navegador disponible». No se instaló ni ejecutó esa alternativa. C-07 conserva su evidencia parcial y bloqueo; no se reclasifica IAB como Firefox.
+
+Consulta oficial Debian de libxml2/CVE-2026-6653 y Apache/CVE-2026-63292: Trixie continúa vulnerable; correcciones de forky/sid no se incorporan a esta base. C-09 conserva los riesgos documentados, sin aceptación automática. Sin cambios de runtime, nuevo escaneo, despliegue o pruebas Linux repetidas. La defensa y revisión del receptor siguen como actividades humanas de C-12. Por tanto, no es posible declarar que Windows sea el único pendiente con la evidencia y las condiciones actuales.
