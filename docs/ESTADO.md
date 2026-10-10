@@ -14,12 +14,12 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.39**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-mysql-minimal`, desde `8554ef4`. Receta MySQL reducida dev.38; imagen final comprobada sobre9321f68. Aplicación pública y paquete dev.37 conservados. |
-| Aplicación comprobada | `ab710a671d40024bf84cc46026af4c4cd54a948d`, dev.37. Los cambios documentales posteriores no modifican su código. |
+| Rama actual | `codex/b07-reservas-presentacion`. Presentación dev.39 comprobada sobre `0e6be15`; receta MySQL reducida dev.38 conservada. |
+| Aplicación comprobada | Local dev.39 sobre `0e6be15`: integración225 y recorrido IAB. Publicación dev.37 conserva su evidencia propia. |
 | Etiqueta conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `7c3a3e28435566349efcd4b2a66eace89de978d2`, dev.37. |
 | Render | Servicio `srv-db3vutm7bikc73ajj6og`, Free/Oregon/AutoDeployOff. Deploy `dep-db4n8cbncjis73c7m4t0`, Live el 9 de octubre a las17:09:37 CST, 34,8s. Referencia anterior `390b1ef` conservada para rollback. |
-| Local8086 | Web actualizada a dev.37; base y volúmenes conservados. Proyecto `eventify-clean-20261009035638-598f411d`. Instalación limpia/persistencia originales corresponden a dev.33 `f4d6c5a05011c57e47295b06cedf11129a052681`. |
+| Local8086 | Web actualizada a dev.39; base y volúmenes conservados. Proyecto `eventify-clean-20261009035638-598f411d`. Instalación limpia/persistencia originales corresponden a dev.33 `f4d6c5a05011c57e47295b06cedf11129a052681`. |
 | Paquete dev.38 | `output/entrega/eventify-desarrollo-f01ee0e3cf0f/eventify-source.zip`, commit `f01ee0e3cf0f784740390d33a997e0b6fb756fdf`,217 archivos, manifiesto/CRC/huellas correctos. Imagen MySQL final probada; aplicación pública permanece dev.37. Este ZIP no se ha instalado de nuevo en Linux ni Windows. |
 | Paquete documental dev.37 conservado | `output/entrega/eventify-desarrollo-44bd3a9a9360/eventify-source.zip`, commit `44bd3a9a936005db52bda8de65c90037803ae335`, 213 archivos. Misma aplicación, configuración, migraciones, dependencias e imágenes declaradas que la web pública. |
 | PDF dev.38 | Documento técnico de17 páginas, actualizado con reducción MySQL, publicación dev.37 y limitaciones; todavía borrador de evaluación. |
@@ -115,4 +115,15 @@ Paquete documental actualizado: `output/entrega/eventify-desarrollo-f01ee0e3cf0f
 
 Por indicación del usuario, el recorrido se ejecuta desde IAB sobre8086/dev.37; no se exige intervención para repetirlo en ese navegador ni se atribuye a Firefox. Comprobados filtros combinados/limpieza, llenado/borrado de fechas, Tab búsqueda→categoría, calendario/Escape, login al inicio, nombre persistente y restaurado, historial/ticket cancelado/QR, logout y acceso directo al ticket redirigido al ingreso. Administrador: inicio, panel, categorías, eventos y reservas. Panel sin desbordamiento a390/768/1280; capturas en storage/browser-review-20261010. Sin reservas nuevas ni cancelaciones; nombre ficticio original restaurado.
 
-Se detectaron dos detalles reales: singular administrativo y estado visual del historial de un evento publicado pasado. Dev.39 añade estado derivado a las consultas propias de reservas, conservando event_status persistido; la vista muestra el derivado. Solo lectura y textos, sin migraciones o cambios de reglas. Rama codex/b07-reservas-presentacion; comprobación de integración/imagen y recorrido posterior pendientes en este commit. Firefox conserva su alcance específico; Windows al final.
+Se detectaron dos detalles reales: singular administrativo y estado visual del historial de un evento publicado pasado. Dev.39 añade estado derivado a las consultas propias de reservas, conservando event_status persistido; la vista muestra el derivado. Solo lectura y textos, sin migraciones o cambios de reglas. Rama codex/b07-reservas-presentacion. Firefox conserva su alcance específico; Windows al final. El resultado posterior se registra a continuación.
+
+
+### Resultado del recorrido y actualización local
+
+Código `0e6be15`, dev.39: integración MySQL/HTTP225 comprobaciones correctas, helper exit0 y sintaxis PHP correcta. El ensayo usó el proyecto aislado eventify-tests; sus contenedores y red se retiraron al terminar. No se repitió la instalación limpia Linux.
+
+Se reconstruyó y recreó únicamente web8086 mediante `up --build --no-deps --detach --wait web`. Contenedor saludable; identificador e imagen del contenedor MySQL idénticos antes y después. No hubo migraciones ni borrado de volúmenes.
+
+IAB posterior confirmó FINALIZADO en historial y actualización AJAX, singular en lista y detalle administrativo, filtro administrativo por evento/estado y403 con estilo para el usuario. Perfil ficticio restaurado y sesiones cerradas; sin nuevas reservas ni cancelaciones. El panel anterior se comprobó a390/768/1280 sin desbordamiento. No atribuir ese recorrido a Firefox ni a una instalación Windows.
+
+Evidencia privada: `storage/browser-review-20261010/resultado.json`, `integration.log`, `lint.log`, `web-update.log`, `db-before.txt`, `db-after.txt`, `runtime-reference.txt` y capturas `historial-dev39.png`/`admin-detalle-dev39.png`. Las capturas contienen únicamente datos ficticios de evaluación. Recorrido autónomo IAB terminado; no requiere que el usuario lo repita. C-07 conserva solamente su alcance específico de Firefox. Publicación dev.37, paquete/PDF dev.38, seguridad residual, Windows y aceptación humana conservan sus límites anteriores.
