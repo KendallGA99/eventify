@@ -419,3 +419,5 @@ Entrega dev.48: output/entrega/eventify-desarrollo-c13916bde03f/Eventify-Windows
 ## B09 — RAM informativa en el instalador principal dev.49
 
 Tras informar el usuario que seguía viendo el bloqueo, se eliminó el rechazo por RAM del instalador principal; ahora advierte y continúa incluso sin AllowLowMemory. No se afirma cuál archivo anterior ejecutó el usuario. Se conservan los otros controles, datos e infraestructura. Parser real PowerShell5.1: nueve fuentes correctas;61 controles aprobados, incluido host simulado4GiB con/sin parámetro. Evidencia storage/windows-cmd-dev49/guest-result.json. No se instaló software ni reinició VM; no se repitieron Linux/MySQL ni se publicó Render. ZIP nuevo en preparación; Windows integral pendiente.
+
+Entrega dev.49: output/entrega/eventify-desarrollo-799c8955fec1/Eventify-Windows-dev.49.zip, fuente799c8955fec1ea42e7272a26664f2029997cb9cf, SHA256 77f3a6a461f2890b7714029e747d86ab71a70ae3425dbb922a329d8664fc342c. CRC/huellas/contenido Git correctos, CRLF esperado. Verificado que el código del ZIP ya no contiene el mensaje de rechazo anterior. Sin datos privados; paquetes anteriores preservados. Windows integral pendiente.
