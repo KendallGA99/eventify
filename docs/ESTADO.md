@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 11 de octubre de 2026, America/Costa_Rica. Paquete Windows **0.1.0-dev.47**; aplicación pública dev.46, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
+Corte: 11 de octubre de 2026, America/Costa_Rica. Paquete Windows **0.1.0-dev.48**; aplicación pública dev.46, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
 
 ## Alcance y autorizaciones
 
@@ -407,3 +407,8 @@ No cambia reglas, esquema, dependencias nativas ni despliegue. No se repiten Lin
 
 
 Entrega CMD dev.47 comprobada: fuente7ffb65f91f7d, ZIP output/entrega/eventify-desarrollo-7ffb65f91f7d/Eventify-Windows-dev.47.zip, 258 archivos fuente/262 entradas finales,702.310 bytes, SHA256 71d49bd8b8cdcf375dad185dc76dfc414d30ad25f8927159cfc77ae4c0bd5aba. CRC, todas las huellas y cotejo contra Git correctos, normalizando CRLF únicamente para scripts Windows. INSTALAR-EVENTIFY.cmd disponible directamente al extraer; el mismo lanzador funciona dentro de Eventify. PDF original dev.46 identificado como documento de esa aplicación; guías dev.47 explican instalación nueva. Sin claves, bases, caches o herramientas personales. ZIP dev.46 previo preservado. Rama enviada a GitHub; sin publicación nueva en Render ni cambio de instalaciones locales. No se afirma aceptación completa de Windows.
+
+
+## B09 — Validación con memoria reducida dev.48
+
+Solicitud directa: omitir el requisito de RAM para ensayar Windows. Rama codex/b09-validacion-ram. VALIDAR-EVENTIFY.cmd/validar-windows.cmd pasan AllowLowMemory al asistente y al acceso de inicio. Solo omiten el control propio de RAM; instalación normal mantiene el límite, controles restantes y datos intactos. Después de un reinicio se debe repetir el CMD de validación. No se alteran los requisitos internos de Docker ni la memoria de la VM. Parser PowerShell5.1 sobre nueve fuentes y61 comprobaciones correctas, incluidos host simulado4GiB/parametrización/acceso. Operaciones de instalación simuladas; sin instalar ni reiniciar VM. Evidencia privada storage/windows-cmd-dev48/guest-result.json. Linux, web pública dev.46, datos y PDF de aplicación conservados. ZIP nuevo en preparación; aceptación Windows sigue pendiente.

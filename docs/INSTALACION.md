@@ -95,6 +95,10 @@ Para detener: `detener-windows.cmd`. Para pruebas: `powershell.exe -NoProfile -E
 
 Scripts preparados para Windows PowerShell 5.1+, sin requerir bash/PHP/MySQL locales. La sintaxis de seis scripts fue analizada en Windows PowerShell5.1 real; su ejecución completa con Docker y la compatibilidad de entrega siguen pendientes.
 
+### Ensayo con menos de 8 GB
+
+Por autorización del usuario, dev.48 incluye `VALIDAR-EVENTIFY.cmd` en la raíz del ZIP y `validar-windows.cmd` dentro de Eventify. Invocan el asistente con `-AllowLowMemory`, que omite únicamente la comprobación de RAM propia de Eventify. Los controles de arquitectura, build, virtualización, firma, motor Linux y los requisitos internos de Docker/WSL siguen vigentes. Si pide reinicio, repetir ese mismo CMD. El acceso Iniciar Eventify creado en este modo apunta al CMD de validación; ejecutar el instalador normal vuelve a crear accesos normales. Ninguna base, configuración o volumen se borra por cambiar de modo. Esta opción permite ensayar; no afirma soporte oficial ni estabilidad de una VM con memoria insuficiente.
+
 ## Configuración y persistencia
 
 Para el ensayo aislado de exportación/restauración y sus resultados reales, consultar [RESPALDO.md](RESPALDO.md). No restaurar sobre la instancia normal ni confundir una preparación de scripts con una prueba aprobada.

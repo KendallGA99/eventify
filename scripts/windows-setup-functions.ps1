@@ -8,6 +8,7 @@ function Update-EventifyWindowsPath {
 }
 
 function Assert-EventifyWindowsHost {
+    param([switch]$AllowLowMemory)
     if ([Environment]::OSVersion.Platform -ne [PlatformID]::Win32NT) {
         throw 'Este instalador es para Windows.'
     }
@@ -21,7 +22,10 @@ function Assert-EventifyWindowsHost {
         throw 'Windows necesita actualizarse. Revise los requisitos oficiales de Docker Desktop.'
     }
     if ([long]$computer.TotalPhysicalMemory -lt (8GB - 256MB)) {
-        throw 'Docker Desktop requiere al menos 8 GB de RAM. No se instalara en este equipo.'
+        if (-not $AllowLowMemory) {
+            throw 'Docker Desktop requiere al menos 8 GB de RAM. Para un ensayo limitado use validar-windows.cmd.'
+        }
+        Write-Warning 'Modo de validacion con menos de 8 GB: se omite solo el control de RAM de Eventify.'
     }
     if (-not $cpu.VirtualizationFirmwareEnabled -and -not $computer.HypervisorPresent) {
         throw 'Active la virtualizacion en BIOS/UEFI antes de instalar Docker.'
@@ -121,11 +125,13 @@ function Wait-EventifyDocker {
 }
 
 function New-EventifyDesktopShortcuts {
-    param([string]$Root, [string]$Desktop = [Environment]::GetFolderPath('Desktop'))
+    param([string]$Root, [string]$Desktop = [Environment]::GetFolderPath('Desktop'), [switch]$AllowLowMemory)
     if (-not $Desktop) { throw 'No se encontro el escritorio del usuario.' }
     $shell = New-Object -ComObject WScript.Shell
+    $startFile = 'iniciar-windows.cmd'
+    if ($AllowLowMemory) { $startFile = 'validar-windows.cmd' }
     foreach ($entry in @(
-        @{ Name = 'Iniciar Eventify'; File = 'iniciar-windows.cmd' },
+        @{ Name = 'Iniciar Eventify'; File = $startFile },
         @{ Name = 'Detener Eventify'; File = 'detener-windows.cmd' }
     )) {
         $link = $shell.CreateShortcut((Join-Path $Desktop ($entry.Name + '.lnk')))
@@ -138,8 +144,8 @@ function New-EventifyDesktopShortcuts {
 }
 
 function Invoke-EventifyWindowsSetup {
-    param([string]$Root, [string]$SetupScript)
-    Assert-EventifyWindowsHost
+    param([string]$Root, [string]$SetupScript, [switch]$AllowLowMemory)
+    Assert-EventifyWindowsHost -AllowLowMemory:$AllowLowMemory
     Update-EventifyWindowsPath
     if (-not (Test-EventifyDockerReady)) {
         $desktop = Find-EventifyDockerDesktop
@@ -160,7 +166,7 @@ function Invoke-EventifyWindowsSetup {
     & (Join-Path $Root 'scripts\start-windows.ps1') | Out-Host
     if ($LASTEXITCODE -ne 0) { throw 'Eventify no pudo iniciar. Revise el mensaje anterior.' }
     try {
-        New-EventifyDesktopShortcuts -Root $Root
+        New-EventifyDesktopShortcuts -Root $Root -AllowLowMemory:$AllowLowMemory
         Write-Host 'Accesos creados en el escritorio: Iniciar Eventify y Detener Eventify.'
     } catch {
         Write-Warning 'No se pudieron crear los accesos. Use iniciar-windows.cmd y detener-windows.cmd en esta carpeta.'

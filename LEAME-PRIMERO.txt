@@ -1,9 +1,17 @@
-EVENTIFY dev.47 — instalación en Windows
+EVENTIFY dev.48 — instalación en Windows
 
 Esta carpeta contiene la aplicación y una base MySQL local independiente.
 La URL pública https://eventify-academico.onrender.com sigue siendo otra instalación.
 No se sincronizan usuarios, eventos, reservas ni contraseñas entre ambas.
 No necesita cuentas de Render, Aiven o GitHub para ejecutar esta copia.
+
+ENSAYO EN VM CON MENOS DE 8 GB
+Solo para validar: abra VALIDAR-EVENTIFY.cmd en vez del instalador normal.
+Omite unicamente el control de RAM de Eventify, conservando arquitectura,
+virtualizacion, WSL, firma y controles propios de Docker. Si solicita reiniciar,
+vuelva a abrir VALIDAR-EVENTIFY.cmd despues. Los accesos de inicio creados
+por este modo continuan permitiendo memoria reducida. Esto no certifica
+estabilidad ni cambia los requisitos oficiales de Docker Desktop.
 
 1. EXTRAER TODO EL ZIP
 Use Extraer todo, por ejemplo en C:\Proyectos\EventifyEntrega.

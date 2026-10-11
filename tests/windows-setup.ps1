@@ -9,6 +9,7 @@ $realWait = ${function:Wait-EventifyDocker}
 $realInstall = ${function:Install-EventifyDockerDesktop}
 $realWsl = ${function:Test-EventifyWslInstalled}
 $realReady = ${function:Test-EventifyDockerReady}
+$realHost = ${function:Assert-EventifyWindowsHost}
 $testRoot = Join-Path ([IO.Path]::GetTempPath()) ("Eventify ensayo ' " + [Guid]::NewGuid().ToString('N'))
 $script:checks = 0
 function Assert-Setup($Condition, $Message) {
@@ -26,6 +27,23 @@ try {
         Assert-Setup ($link.WorkingDirectory -eq $testRoot) 'Ruta con espacios y apostrofo'
         Assert-Setup ($link.Arguments -eq ('/c ""' + (Join-Path $testRoot ($name.ToLowerInvariant() + '-windows.cmd')) + '""')) 'Comillas del acceso'
     }
+    & $realShortcuts -Root $testRoot -Desktop (Join-Path $testRoot 'desktop') -AllowLowMemory
+    $validationLink = $shell.CreateShortcut((Join-Path $testRoot 'desktop\Iniciar Eventify.lnk'))
+    Assert-Setup ($validationLink.Arguments.Contains('validar-windows.cmd')) 'Acceso conserva modo de validacion'
+    function Get-CimInstance {
+        param($ClassName)
+        switch ($ClassName) {
+            'Win32_OperatingSystem' { return @{BuildNumber=26100} }
+            'Win32_Processor' { return @{Architecture=9;VirtualizationFirmwareEnabled=$true} }
+            'Win32_ComputerSystem' { return @{TotalPhysicalMemory=4GB;HypervisorPresent=$true} }
+        }
+    }
+    $failed=$false
+    try { & $realHost } catch { $failed=$true }
+    Assert-Setup $failed 'Modo normal rechaza host simulado de 4 GB'
+    & $realHost -AllowLowMemory
+    Assert-Setup $true 'Modo de ensayo acepta host simulado de 4 GB'
+    Remove-Item Function:\Get-CimInstance
     foreach ($layout in @('directo','entrega')) {
         $base = Join-Path $testRoot ('CMD ' + $layout)
         $project = $base
@@ -49,6 +67,8 @@ Write-Output 'Salida de Compose: no debe mezclarse con el codigo de retorno.'
 if ($global:EventifySetupTestContext.Scenario -eq 'app-fails') { $global:LASTEXITCODE = 1 } else { $global:LASTEXITCODE = 0 }
 '@
     function Assert-EventifyWindowsHost {
+        param([switch]$AllowLowMemory)
+        $script:lastMemoryFlag = [bool]$AllowLowMemory
         $script:calls.Add('host')
         if ($script:scenario -eq 'bad-host') { throw 'Equipo incompatible' }
     }
@@ -105,6 +125,11 @@ if ($global:EventifySetupTestContext.Scenario -eq 'app-fails') { $global:LASTEXI
         if ($case -eq 'bad-host') { Assert-Setup ($script:calls.Count -eq 1) 'Sin instalaciones en host incompatible' }
     }
     $script:scenario = 'ready'
+    $script:installed = $false
+    $script:calls.Clear()
+    $global:EventifySetupTestContext = @{ Calls = $script:calls; Scenario = 'ready' }
+    $code = Invoke-EventifyWindowsSetup -Root $testRoot -SetupScript 'setup.ps1' -AllowLowMemory
+    Assert-Setup ($code -eq 0 -and $script:lastMemoryFlag) 'Modo RAM se transmite al control del host'
     $script:calls.Clear()
     & $realWait -DesktopPath $null -TimeoutSeconds 0
     Assert-Setup ($script:calls.Count -eq 0) 'Motor disponible no vuelve a abrir Docker'

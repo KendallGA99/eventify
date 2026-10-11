@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.48 — Ensayo Windows con memoria reducida
+
+- VALIDAR-EVENTIFY.cmd permite omitir expresamente solo el control de RAM de Eventify para evaluar una VM.
+- La instalación normal conserva su requisito y los accesos creados durante el ensayo mantienen ese modo.
+- No altera controles de Docker/WSL ni certifica estabilidad con recursos insuficientes.
+
 ## 0.1.0-dev.47 — Instalador Windows por CMD
 
 - Preparación de WSL/Docker desde instalar-windows.cmd, con continuación después del reinicio y sin borrar instalaciones existentes.

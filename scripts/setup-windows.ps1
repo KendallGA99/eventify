@@ -1,4 +1,4 @@
-param([switch]$PrepareWsl)
+param([switch]$PrepareWsl, [switch]$AllowLowMemory)
 $ErrorActionPreference = 'Stop'
 try {
     if ($PrepareWsl) {
@@ -20,7 +20,7 @@ try {
     . "$PSScriptRoot/windows-setup-functions.ps1"
     $root = Split-Path -Parent $PSScriptRoot
     Set-Location -LiteralPath $root
-    $code = Invoke-EventifyWindowsSetup -Root $root -SetupScript $PSCommandPath
+    $code = Invoke-EventifyWindowsSetup -Root $root -SetupScript $PSCommandPath -AllowLowMemory:$AllowLowMemory
     exit $code
 } catch {
     Write-Error $_ -ErrorAction Continue
