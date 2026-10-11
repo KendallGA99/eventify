@@ -97,7 +97,7 @@ Scripts preparados para Windows PowerShell 5.1+, sin requerir bash/PHP/MySQL loc
 
 ### Ensayo con menos de 8 GB
 
-Por autorización del usuario, dev.48 incluye `VALIDAR-EVENTIFY.cmd` en la raíz del ZIP y `validar-windows.cmd` dentro de Eventify. Invocan el asistente con `-AllowLowMemory`, que omite únicamente la comprobación de RAM propia de Eventify. Los controles de arquitectura, build, virtualización, firma, motor Linux y los requisitos internos de Docker/WSL siguen vigentes. Si pide reinicio, repetir ese mismo CMD. El acceso Iniciar Eventify creado en este modo apunta al CMD de validación; ejecutar el instalador normal vuelve a crear accesos normales. Ninguna base, configuración o volumen se borra por cambiar de modo. Esta opción permite ensayar; no afirma soporte oficial ni estabilidad de una VM con memoria insuficiente.
+Desde dev.49, el instalador principal `INSTALAR-EVENTIFY.cmd` muestra un aviso si detecta menos de 8 GB y continúa. Ya no exige un archivo o parámetro especial para omitir ese bloqueo. `VALIDAR-EVENTIFY.cmd` se conserva como entrada compatible, con el mismo tratamiento de RAM. Los controles de arquitectura, build, virtualización, firma y motor Linux siguen vigentes; los controles propios de Docker/WSL tampoco se modifican. Esta autorización del usuario permite evaluar la VM; no cambia los requisitos oficiales ni certifica estabilidad. No se borra configuración ni datos al cambiar de versión del asistente.
 
 ## Configuración y persistencia
 

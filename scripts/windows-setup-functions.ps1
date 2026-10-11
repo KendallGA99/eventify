@@ -22,10 +22,7 @@ function Assert-EventifyWindowsHost {
         throw 'Windows necesita actualizarse. Revise los requisitos oficiales de Docker Desktop.'
     }
     if ([long]$computer.TotalPhysicalMemory -lt (8GB - 256MB)) {
-        if (-not $AllowLowMemory) {
-            throw 'Docker Desktop requiere al menos 8 GB de RAM. Para un ensayo limitado use validar-windows.cmd.'
-        }
-        Write-Warning 'Modo de validacion con menos de 8 GB: se omite solo el control de RAM de Eventify.'
+        Write-Warning 'Este equipo tiene menos de 8 GB de RAM. Eventify continuara para validar la instalacion; Docker puede necesitar mas recursos.'
     }
     if (-not $cpu.VirtualizationFirmwareEnabled -and -not $computer.HypervisorPresent) {
         throw 'Active la virtualizacion en BIOS/UEFI antes de instalar Docker.'

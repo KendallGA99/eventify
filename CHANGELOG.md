@@ -1,5 +1,10 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.49 — Aviso de RAM sin bloqueo
+
+- El instalador principal permite ensayar con menos de 8 GB: muestra un aviso y continúa, sin elegir otro CMD.
+- Se mantienen los demás controles y los requisitos internos de Docker/WSL.
+
 ## 0.1.0-dev.48 — Ensayo Windows con memoria reducida
 
 - VALIDAR-EVENTIFY.cmd permite omitir expresamente solo el control de RAM de Eventify para evaluar una VM.

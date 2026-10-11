@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 11 de octubre de 2026, America/Costa_Rica. Paquete Windows **0.1.0-dev.48**; aplicación pública dev.46, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
+Corte: 11 de octubre de 2026, America/Costa_Rica. Paquete Windows **0.1.0-dev.49**; aplicación pública dev.46, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
 
 ## Alcance y autorizaciones
 
@@ -414,3 +414,8 @@ Entrega CMD dev.47 comprobada: fuente7ffb65f91f7d, ZIP output/entrega/eventify-d
 Solicitud directa: omitir el requisito de RAM para ensayar Windows. Rama codex/b09-validacion-ram. VALIDAR-EVENTIFY.cmd/validar-windows.cmd pasan AllowLowMemory al asistente y al acceso de inicio. Solo omiten el control propio de RAM; instalación normal mantiene el límite, controles restantes y datos intactos. Después de un reinicio se debe repetir el CMD de validación. No se alteran los requisitos internos de Docker ni la memoria de la VM. Parser PowerShell5.1 sobre nueve fuentes y61 comprobaciones correctas, incluidos host simulado4GiB/parametrización/acceso. Operaciones de instalación simuladas; sin instalar ni reiniciar VM. Evidencia privada storage/windows-cmd-dev48/guest-result.json. Linux, web pública dev.46, datos y PDF de aplicación conservados. ZIP nuevo en preparación; aceptación Windows sigue pendiente.
 
 Entrega dev.48: output/entrega/eventify-desarrollo-c13916bde03f/Eventify-Windows-dev.48.zip, fuentec13916bde03f9d8c3c02934465204c81249df1f4, 260 archivos fuente, SHA256 f557ae1dfe2270ef996bc9279b049eb4582b71d517aaae6a6a2c99e950539b53. CRC, huellas y contenido Git comprobados con CRLF esperado. VALIDAR-EVENTIFY.cmd disponible en raiz; paquete dev.47 conservado. Sin secretos/datos privados. Instalacion integral Windows pendiente.
+
+
+## B09 — RAM informativa en el instalador principal dev.49
+
+Tras informar el usuario que seguía viendo el bloqueo, se eliminó el rechazo por RAM del instalador principal; ahora advierte y continúa incluso sin AllowLowMemory. No se afirma cuál archivo anterior ejecutó el usuario. Se conservan los otros controles, datos e infraestructura. Parser real PowerShell5.1: nueve fuentes correctas;61 controles aprobados, incluido host simulado4GiB con/sin parámetro. Evidencia storage/windows-cmd-dev49/guest-result.json. No se instaló software ni reinició VM; no se repitieron Linux/MySQL ni se publicó Render. ZIP nuevo en preparación; Windows integral pendiente.

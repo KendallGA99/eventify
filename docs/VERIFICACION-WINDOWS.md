@@ -55,3 +55,8 @@ Al probar la entrega real, abrir INSTALAR-EVENTIFY.cmd desde una carpeta definit
 ## Ensayo de RAM dev.48
 
 El usuario pidió omitir el límite propio del instalador para validar. Se añadió un modo explícito de prueba, sin quitar la comprobación normal. Parser Windows PowerShell5.1.26100.9444 sobre nueve archivos correcto;61 comprobaciones aprobadas. Los casos nuevos verifican rechazo normal/aceptación con parámetro ante host simulado de4GiB, propagación del modo y destino del acceso directo de inicio. No se instaló Docker ni se modificó memoria/virtualización de la VM durante estas comprobaciones. Evidencia privada storage/windows-cmd-dev48/guest-result.json. Instalación completa pendiente.
+
+
+## Aviso sin bloqueo dev.49
+
+El usuario informó que seguía viendo el bloqueo de RAM. Sin atribuir una causa no comprobada al archivo que ejecutó, se cambió el asistente principal para advertir y continuar con menos de8GiB. Parser PowerShell5.1, nueve fuentes correctas y61 comprobaciones aprobadas: el host simulado4GiB continúa tanto sin parámetro como con el antiguo parámetro de validación. No se instaló Docker ni se reinició la VM. Evidencia privada storage/windows-cmd-dev49/guest-result.json. La instalación integral sigue pendiente.

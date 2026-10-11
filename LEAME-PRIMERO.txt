@@ -1,17 +1,15 @@
-EVENTIFY dev.48 — instalación en Windows
+EVENTIFY dev.49 — instalación en Windows
 
 Esta carpeta contiene la aplicación y una base MySQL local independiente.
 La URL pública https://eventify-academico.onrender.com sigue siendo otra instalación.
 No se sincronizan usuarios, eventos, reservas ni contraseñas entre ambas.
 No necesita cuentas de Render, Aiven o GitHub para ejecutar esta copia.
 
-ENSAYO EN VM CON MENOS DE 8 GB
-Solo para validar: abra VALIDAR-EVENTIFY.cmd en vez del instalador normal.
-Omite unicamente el control de RAM de Eventify, conservando arquitectura,
-virtualizacion, WSL, firma y controles propios de Docker. Si solicita reiniciar,
-vuelva a abrir VALIDAR-EVENTIFY.cmd despues. Los accesos de inicio creados
-por este modo continuan permitiendo memoria reducida. Esto no certifica
-estabilidad ni cambia los requisitos oficiales de Docker Desktop.
+PRUEBA EN VM CON MENOS DE 8 GB
+En esta version, INSTALAR-EVENTIFY.cmd ya NO bloquea por memoria RAM.
+Muestra un aviso y continua, sin tener que elegir otro archivo o parametro.
+Docker y WSL conservan sus propios requisitos. Este cambio permite ensayar;
+no certifica estabilidad de una VM con memoria insuficiente.
 
 1. EXTRAER TODO EL ZIP
 Use Extraer todo, por ejemplo en C:\Proyectos\EventifyEntrega.
@@ -34,9 +32,9 @@ El uso educativo de Docker Desktop es gratuito bajo sus condiciones.
 La primera construccion puede tardar varios minutos. Al terminar se abre
 la pagina http://localhost:8080 en el navegador predeterminado.
 
-Windows necesita ser una version compatible con Docker y tener al menos
-8 GB de RAM y virtualizacion disponible. Si falta un requisito, el asistente
-se detiene con el motivo. Una BIOS deshabilitada requiere ajuste manual.
+Windows necesita ser compatible con Docker y tener virtualizacion disponible.
+Docker indica al menos 8 GB de RAM; para este ensayo, menos RAM muestra
+un aviso y permite continuar. Los otros requisitos siguen comprobándose. Una BIOS deshabilitada requiere ajuste manual.
 No se desactivan antivirus ni politicas de seguridad permanentes.
 
 3. BOTONES PARA USARLO DESPUES

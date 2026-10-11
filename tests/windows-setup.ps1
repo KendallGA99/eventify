@@ -40,7 +40,7 @@ try {
     }
     $failed=$false
     try { & $realHost } catch { $failed=$true }
-    Assert-Setup $failed 'Modo normal rechaza host simulado de 4 GB'
+    Assert-Setup (-not $failed) 'Instalador principal continua con host simulado de 4 GB'
     & $realHost -AllowLowMemory
     Assert-Setup $true 'Modo de ensayo acepta host simulado de 4 GB'
     Remove-Item Function:\Get-CimInstance
