@@ -15,7 +15,7 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.43**, tod
 | Destino | Referencia y alcance |
 | --- | --- |
 | Rama actual | `codex/b07-qa-firefox`; QA autónomo en `547d7df`. Dev.43 simplifica la tarjeta del pronóstico y está aplicada a8086/Render; versiones anteriores conservadas. |
-| Aplicación comprobada | Dev.43 sobre `f9eac94`: sintaxis, clima58, presupuesto44 y navegador móvil/escritorio correctos. Integración234 y HTTPS81 corresponden a dev.42; no se repiten por el cambio de presentación. Dev.41 conserva evidencia de corrección nativa; Windows/Firefox restantes pendientes. |
+| Aplicación comprobada | Dev.43 sobre `f9eac94`: sintaxis, clima58, presupuesto44 y navegador móvil/escritorio correctos. Integración234 y HTTPS81 corresponden a dev.42; no se repiten por el cambio de presentación. Dev.41 conserva evidencia de corrección nativa; Windows pendiente; Firefox cerrado con evidencia combinada descrita al final. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `f9eac9454cd24b2bb85ad865a00d0a3d78804017`, dev.43. |
 | Render | Free, AutoDeployOff; deploy `dep-db57le7lk1mc7391a8u0`, fuente f9eac94, iniciado10oct11:49:44CST y Live tras21,7s. Dev.42 conservada para rollback. |
@@ -71,7 +71,7 @@ Registro, catálogo/AJAX, respuesta perdida de reserva, errores de clima y admin
 
 ## Pendientes y próxima acción
 
-1. **C-07 Firefox:** QA autónomo de54 comprobaciones aprobado sobre dev.43; filtros, perfil, ticket/QR, roles/logout y administración con pantallas a390/768/1280. Límite restante: entrada segmentada/selección visual del calendario nativo no acreditada por WebDriver; el filtrado de fecha sí fue comprobado. [Resultado](VERIFICACION-FIREFOX.md).
+1. **C-07 Firefox:** QA autónomo de54 comprobaciones aprobado sobre dev.43; filtros, perfil, ticket/QR, roles/logout y administración con pantallas a390/768/1280. Selección y borrado del calendario nativo completados por confirmación del usuario («1 listo»); C-07 cerrado con evidencia manual y automatizada separadas. [Resultado](VERIFICACION-FIREFOX.md).
 2. **C-09 seguridad, corregida en el corte dev.41:** tres imágenes finales sin avisos, 234 controles y TLS positivo/negativo aprobados. Aplicación a destinos y referencias de publicación se registran al final; no atribuir estos resultados a las versiones anteriores.
 3. **C-08/C-11 Windows, al final:** instalación del paquete elegido en un Windows compatible con Docker Desktop/WSL2 y recursos suficientes; arranque, roles, reserva/ticket/cancelación y persistencia reales. La VM revisada no acredita esas condiciones. [Procedimiento](VERIFICACION-WINDOWS.md).
 4. **C-12 entrega humana:** revisión del receptor, acceso del evaluador al repositorio privado/cuentas y ensayo de defensa. No inventar participación o dominio del código.
@@ -314,3 +314,9 @@ El usuario informó que Kendall no está disponible ahora. ENSAYO-DEFENSA actual
 El usuario pidió realizar las pruebas Firefox como QA sin intervención manual. Se ejecutó Firefox157.0.1 con geckodriver0.37.1 oficial, digest verificado, Selenium4.51.0, perfil temporal y cuentas ficticias de8086/dev.43. Resultado final:54 comprobaciones aprobadas, ocho pantallas a390/768/1280 efectivos con viewport BiDi, capturas revisadas. Evidencia `storage/firefox-qa-20261010/verified` y `data-comparison.json`. Nueve tablas conservadas; auth_limits cambió por los ingresos. Sin creación/cancelación de reservas, edición de perfiles o administración, ni cambios de runtime.
 
 Ensayo versionado en tests/browser; dependencias de QA separadas de la aplicación. VERIFICACION-FIREFOX conserva los intentos fallidos y el límite del calendario: valor/change probado; escritura segmentada/selección visual nativa no acreditadas. No se marca esa interacción como aprobada. No se repitió instalación Linux, suites MySQL o despliegue. VERSION y etiqueta dev.43 permanecen. ZIP/PDF anteriores conservan su referencia; no contienen este nuevo script. Kendall no está disponible para ensayo humano y Windows sigue al final.
+
+## C-07 — Confirmación manual y preparación de exportación
+
+El 10 de octubre el usuario respondió «1 listo» al punto pendiente del calendario Firefox. Se registra selección/borrado como completados por el usuario, sin inventar captura, nueva ejecución WebDriver ni cobertura total de escritura segmentada. Las 54 comprobaciones automatizadas conservan su resultado y alcance. CIERRE y VERIFICACION-FIREFOX sincronizados. No se repiten pruebas Linux ni se modifica la aplicación, runtime o despliegue.
+
+Se prepara un ZIP actualizado con las guías y el ensayo QA Firefox. El PDF técnico dev.43 de18 páginas se conserva sin cambios: describe la misma implementación, pero no incorpora este último registro operativo de Firefox. La aceptación Windows y la participación de Kendall/evaluador siguen pendientes.

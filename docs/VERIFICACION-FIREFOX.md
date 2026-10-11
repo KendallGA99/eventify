@@ -1,6 +1,6 @@
 # Recorrido de Firefox y diseño adaptable
 
-B07/C-06/C-07. Copia local dev.43, instalación limpia y persistencia originales dev.33. El 10 de octubre el usuario pidió expresamente realizar QA autónomo en Firefox, reemplazando para este ensayo la preferencia anterior de mantener solo el control disponible. Se ejecutó Firefox157.0.1 real mediante geckodriver oficial0.37.1/Selenium4.51.0, con perfil temporal y sin pestañas personales. Resultado:54 comprobaciones aprobadas. No confundir este recorrido con IAB ni con una instalación nueva. El calendario nativo mantiene el límite específico descrito abajo.
+B07/C-06/C-07. Copia local dev.43, instalación limpia y persistencia originales dev.33. El 10 de octubre el usuario pidió expresamente realizar QA autónomo en Firefox, reemplazando para este ensayo la preferencia anterior de mantener solo el control disponible. Se ejecutó Firefox157.0.1 real mediante geckodriver oficial0.37.1/Selenium4.51.0, con perfil temporal y sin pestañas personales. Resultado:54 comprobaciones aprobadas. No confundir este recorrido con IAB ni con una instalación nueva. La interacción nativa del calendario se completó mediante confirmación del usuario, separada de las 54 comprobaciones automatizadas.
 
 1. Abrir Firefox y consultar su versión en Ayuda/Acerca de Firefox. Abrir http://localhost:8086/eventos. Buscar Encuentro y limpiar filtros; comprobar un resultado y recuperación del catálogo, sin errores visibles.
 2. Comprobar navegación con Tab y Shift+Tab: búsqueda, categoría, fechas, disponibilidad, estado y botón. El foco debe ser visible. Abrir los campos de fecha con teclado; comprobar selección/cancelación del calendario sin enviar un rango accidental.
@@ -59,4 +59,8 @@ Ensayo reproducible: [tests/browser/firefox-qa.py](../tests/browser/firefox-qa.p
 
 Intentos conservados: entorno venv del host no tenía ensurepip; se usó Python empaquetado y Selenium en directorio privado. Entrada nativa de fecha no funcionó en el automatismo y se separó de la prueba de filtrado. Una aserción leyó la tarjeta de rechazo durante su animación inicial; se corrigió la espera de contenido y de fin de animaciones, sin cambiar la aplicación. Primera medición con set_window_size tuvo mínimo500px de Firefox; se sustituyó por viewport BiDi y se verificaron390px reales. No se relajaron permisos o reglas para aprobar.
 
-C-07 dispone ahora de QA autónomo de los flujos centrales. Sigue sin acreditarse la interacción visual/segmentada del calendario nativo; las capturas humanas anteriores sí muestran el calendario abierto. La evidencia no acredita escaneo óptico del QR, Windows ni ensayo individual.
+C-07 dispone de QA autónomo de los flujos centrales y de la confirmación manual indicada a continuación. La evidencia no acredita escaneo óptico del QR, Windows ni ensayo individual.
+
+## Confirmación manual del calendario — 10 de octubre de 2026
+
+Después de señalar como punto 1 pendiente la selección y el borrado de una fecha en el calendario nativo de Firefox, el usuario respondió «1 listo». Se registra ese punto como completado por el usuario. Esta confirmación complementa las 54 comprobaciones automatizadas; no añade una comprobación WebDriver ni acredita por separado todos los gestos de entrada segmentada. No se aportaron nuevas capturas o registros técnicos para ese paso. C-07 queda cerrado con este alcance combinado.
