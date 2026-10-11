@@ -1,4 +1,4 @@
-EVENTIFY dev.49 — instalación en Windows
+EVENTIFY dev.50 — instalación en Windows
 
 Esta carpeta contiene la aplicación y una base MySQL local independiente.
 La URL pública https://eventify-academico.onrender.com sigue siendo otra instalación.
@@ -29,6 +29,10 @@ reinicia sin aviso: reinicie usted y abra INSTALAR-EVENTIFY.cmd otra vez.
 Si Docker muestra sus terminos, lealos y aceptelos para continuar.
 No necesita registrarse ni iniciar sesion en Docker, Render, Aiven o GitHub.
 El uso educativo de Docker Desktop es gratuito bajo sus condiciones.
+La descarga directa de Docker muestra porcentaje, MB y tiempo transcurrido.
+Si el servidor no informa el tamano total, muestra los MB sin porcentaje.
+WinGet mantiene su propio indicador. La instalacion posterior muestra su
+etapa: no se inventa un porcentaje cuando Docker no lo informa.
 La primera construccion puede tardar varios minutos. Al terminar se abre
 la pagina http://localhost:8080 en el navegador predeterminado.
 

@@ -75,6 +75,56 @@ function Initialize-EventifyWsl {
     return 3010
 }
 
+function Get-EventifyDownloadStatus {
+    param([long]$Received, [long]$Total, [double]$ElapsedSeconds)
+    $mb = $Received / 1MB
+    $elapsed = [TimeSpan]::FromSeconds([Math]::Max(0, $ElapsedSeconds)).ToString('hh\:mm\:ss')
+    if ($Total -gt 0) {
+        $percent = [Math]::Min(100, [Math]::Floor(100.0 * $Received / $Total))
+        return ('Descarga Docker: {0}% | {1:N1} / {2:N1} MB | {3}' -f $percent, $mb, ($Total / 1MB), $elapsed)
+    }
+    return ('Descarga Docker: {0:N1} MB | {1} | tamano total no informado' -f $mb, $elapsed)
+}
+
+function Receive-EventifyDockerInstaller {
+    param([uri]$Uri, [string]$OutFile)
+    if ($Uri.Scheme -ne 'https' -and -not ($Uri.Scheme -eq 'http' -and $Uri.IsLoopback)) {
+        throw 'La descarga requiere HTTPS.'
+    }
+    $response = $null
+    $inputStream = $null
+    $outputStream = $null
+    try {
+        $request = [Net.HttpWebRequest]::Create($Uri)
+        $request.Timeout = 30000
+        $request.ReadWriteTimeout = 60000
+        $request.UserAgent = 'Eventify-Windows-Installer'
+        $response = $request.GetResponse()
+        $total = $response.ContentLength
+        $inputStream = $response.GetResponseStream()
+        $outputStream = [IO.File]::Create($OutFile)
+        $buffer = New-Object byte[] 65536
+        $received = [long]0
+        $watch = [Diagnostics.Stopwatch]::StartNew()
+        $nextUpdate = 0.0
+        while (($read = $inputStream.Read($buffer, 0, $buffer.Length)) -gt 0) {
+            $outputStream.Write($buffer, 0, $read)
+            $received += $read
+            if ($watch.Elapsed.TotalSeconds -ge $nextUpdate) {
+                Write-Host -NoNewline ("`r" + (Get-EventifyDownloadStatus $received $total $watch.Elapsed.TotalSeconds) + '     ')
+                $nextUpdate = $watch.Elapsed.TotalSeconds + 1
+            }
+        }
+        if ($total -ge 0 -and $received -ne $total) { throw 'La descarga quedo incompleta. Vuelva a ejecutar el instalador.' }
+        Write-Host ("`r" + (Get-EventifyDownloadStatus $received $total $watch.Elapsed.TotalSeconds) + '     ')
+        Write-Host 'Descarga terminada. Verificando la firma del instalador...'
+    } finally {
+        if ($outputStream) { $outputStream.Dispose() }
+        if ($inputStream) { $inputStream.Dispose() }
+        if ($response) { $response.Dispose() }
+    }
+}
+
 function Install-EventifyDockerDesktop {
     if (Get-Command winget.exe -ErrorAction SilentlyContinue) {
         Write-Host 'Instalando Docker Desktop desde el catalogo oficial de WinGet...'
@@ -91,11 +141,12 @@ function Install-EventifyDockerDesktop {
     $installer = Join-Path $folder 'Docker Desktop Installer.exe'
     try {
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-        Invoke-WebRequest -UseBasicParsing -Uri 'https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe' -OutFile $installer
+        Receive-EventifyDockerInstaller -Uri 'https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe' -OutFile $installer
         $signature = Get-AuthenticodeSignature -LiteralPath $installer
         if ($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notmatch '(^|,\s*)O="?Docker Inc\.?"?(,|$)') {
             throw 'No se pudo verificar la firma de Docker. El archivo no se ejecutara.'
         }
+        Write-Host 'Firma correcta. Instalando Docker Desktop; esta etapa no informa un porcentaje.'
         $process = Start-Process -FilePath $installer -Verb RunAs -Wait -PassThru -ArgumentList 'install --quiet --backend=wsl-2'
         if ($process.ExitCode -eq 3010 -or $process.ExitCode -eq 1641) { return 3010 }
         if ($process.ExitCode -ne 0) { throw 'El instalador de Docker no termino correctamente.' }

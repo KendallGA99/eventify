@@ -95,6 +95,10 @@ Para detener: `detener-windows.cmd`. Para pruebas: `powershell.exe -NoProfile -E
 
 Scripts preparados para Windows PowerShell 5.1+, sin requerir bash/PHP/MySQL locales. La sintaxis de seis scripts fue analizada en Windows PowerShell5.1 real; su ejecución completa con Docker y la compatibilidad de entrega siguen pendientes.
 
+### Progreso de descarga
+
+Dev.50 muestra porcentaje calculado con Content-Length, MB recibidos/total y tiempo transcurrido en la descarga directa del instalador de Docker. Si el servidor transmite sin tamaño total, muestra MB y tiempo; no estima un porcentaje. La descarga tiene límites de conexión/lectura, comprueba el número de bytes cuando hay total y conserva la verificación Authenticode antes de ejecutar. WinGet conserva su indicador propio. Verificar firma e instalar son etapas separadas; la instalación de Docker no expone aquí un porcentaje. Una descarga ya iniciada con un paquete anterior continúa con su indicador original y no debe interrumpirse solo para cambiarlo.
+
 ### Ensayo con menos de 8 GB
 
 Desde dev.49, el instalador principal `INSTALAR-EVENTIFY.cmd` muestra un aviso si detecta menos de 8 GB y continúa. Ya no exige un archivo o parámetro especial para omitir ese bloqueo. `VALIDAR-EVENTIFY.cmd` se conserva como entrada compatible, con el mismo tratamiento de RAM. Los controles de arquitectura, build, virtualización, firma y motor Linux siguen vigentes; los controles propios de Docker/WSL tampoco se modifican. Esta autorización del usuario permite evaluar la VM; no cambia los requisitos oficiales ni certifica estabilidad. No se borra configuración ni datos al cambiar de versión del asistente.

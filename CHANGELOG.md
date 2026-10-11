@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.50 — Progreso de descarga Windows
+
+- Descarga directa de Docker con porcentaje, MB recibidos/total y tiempo transcurrido cuando el servidor informa el tamaño.
+- Si no informa el tamaño, muestra MB y tiempo sin inventar un porcentaje.
+- Etapas separadas de descarga, verificación de firma e instalación; se conserva WinGet y el aviso de RAM sin bloqueo.
+
 ## 0.1.0-dev.49 — Aviso de RAM sin bloqueo
 
 - El instalador principal permite ensayar con menos de 8 GB: muestra un aviso y continúa, sin elegir otro CMD.

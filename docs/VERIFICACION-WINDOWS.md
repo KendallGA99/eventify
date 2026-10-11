@@ -60,3 +60,8 @@ El usuario pidió omitir el límite propio del instalador para validar. Se añad
 ## Aviso sin bloqueo dev.49
 
 El usuario informó que seguía viendo el bloqueo de RAM. Sin atribuir una causa no comprobada al archivo que ejecutó, se cambió el asistente principal para advertir y continuar con menos de8GiB. Parser PowerShell5.1, nueve fuentes correctas y61 comprobaciones aprobadas: el host simulado4GiB continúa tanto sin parámetro como con el antiguo parámetro de validación. No se instaló Docker ni se reinició la VM. Evidencia privada storage/windows-cmd-dev49/guest-result.json. La instalación integral sigue pendiente.
+
+
+## Indicador de descarga dev.50
+
+Parser Windows PowerShell5.1 sobre nueve fuentes correcto;68 controles aprobados. Incluye dos descargas reales de contenido ficticio desde un servidor TCP/HTTP temporal en loopback de la VM, una con Content-Length y otra chunked sin total, verificando el contenido final. Servidor/job/archivos temporales retirados. Se comprueban porcentajes0/25/100, límite superior y ausencia de porcentaje sin total. Las operaciones de instalar WSL/Docker continúan simuladas; no se interrumpió la descarga del usuario ni se reinició la VM. Evidencia privada storage/windows-cmd-dev50.

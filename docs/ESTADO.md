@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 11 de octubre de 2026, America/Costa_Rica. Paquete Windows **0.1.0-dev.49**; aplicación pública dev.46, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
+Corte: 11 de octubre de 2026, America/Costa_Rica. Paquete Windows **0.1.0-dev.50**; aplicación pública dev.46, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
 
 ## Alcance y autorizaciones
 
@@ -421,3 +421,10 @@ Entrega dev.48: output/entrega/eventify-desarrollo-c13916bde03f/Eventify-Windows
 Tras informar el usuario que seguía viendo el bloqueo, se eliminó el rechazo por RAM del instalador principal; ahora advierte y continúa incluso sin AllowLowMemory. No se afirma cuál archivo anterior ejecutó el usuario. Se conservan los otros controles, datos e infraestructura. Parser real PowerShell5.1: nueve fuentes correctas;61 controles aprobados, incluido host simulado4GiB con/sin parámetro. Evidencia storage/windows-cmd-dev49/guest-result.json. No se instaló software ni reinició VM; no se repitieron Linux/MySQL ni se publicó Render. ZIP nuevo en preparación; Windows integral pendiente.
 
 Entrega dev.49: output/entrega/eventify-desarrollo-799c8955fec1/Eventify-Windows-dev.49.zip, fuente799c8955fec1ea42e7272a26664f2029997cb9cf, SHA256 77f3a6a461f2890b7714029e747d86ab71a70ae3425dbb922a329d8664fc342c. CRC/huellas/contenido Git correctos, CRLF esperado. Verificado que el código del ZIP ya no contiene el mensaje de rechazo anterior. Sin datos privados; paquetes anteriores preservados. Windows integral pendiente.
+
+
+## B09 — Progreso de descarga dev.50
+
+Solicitud: mostrar porcentaje. Descarga directa mediante stream HTTP con Content-Length, MB y tiempo; total desconocido muestra únicamente bytes/tiempo. Comprobación de integridad por longitud cuando existe, conexión30s/lectura60s, TLS/firma/editor conservados. WinGet mantiene indicador propio. Etapas claras de verificación/instalación sin porcentaje ficticio. No se intervino en la descarga dev.49 que el usuario tiene en curso.
+
+Parser real PowerShell5.1 de nueve fuentes y68 controles correctos, con dos descargas reales de fixture desde loopback (total conocido/chunked), contenido idéntico y recursos retirados. No instala ni reinicia la VM. La carga del ensayo superó el máximo de línea de comando de Windows; se transfirió a un archivo temporal mediante guest-file, ejecutado y retirado después. Evidencia storage/windows-cmd-dev50. Infraestructura, aplicación pública, datos y PDF dev.46 conservados. Nueva exportación en preparación; Windows integral sigue pendiente.

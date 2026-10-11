@@ -19,6 +19,56 @@ function Assert-Setup($Condition, $Message) {
 try {
     New-Item -ItemType Directory -Path (Join-Path $testRoot 'scripts') -Force | Out-Null
     New-Item -ItemType Directory -Path (Join-Path $testRoot 'desktop') | Out-Null
+    foreach ($chunked in @($false,$true)) {
+        $probe = New-Object Net.Sockets.TcpListener([Net.IPAddress]::Loopback,0)
+        $probe.Start()
+        $port = $probe.LocalEndpoint.Port
+        $probe.Stop()
+        $job = Start-Job -ArgumentList $port,$chunked -ScriptBlock {
+            param($Port,$Chunked)
+            $server = New-Object Net.Sockets.TcpListener([Net.IPAddress]::Loopback,$Port)
+            $server.Start()
+            Write-Output 'ready'
+            $client = $null
+            try {
+                $client = $server.AcceptTcpClient()
+                $stream = $client.GetStream()
+                $stream.ReadTimeout = 10000
+                $request = ''
+                while (-not $request.EndsWith("`r`n`r`n")) {
+                    $byte = $stream.ReadByte()
+                    if ($byte -lt 0) { throw 'Cliente desconectado' }
+                    $request += [char]$byte
+                }
+                $body = 'Eventify descarga local'
+                $length = $body.Length
+                if ($Chunked) {
+                    $response = "HTTP/1.1 200 OK`r`nTransfer-Encoding: chunked`r`nConnection: close`r`n`r`n" + $length.ToString('X') + "`r`n$body`r`n0`r`n`r`n"
+                } else {
+                    $response = "HTTP/1.1 200 OK`r`nContent-Length: $length`r`nConnection: close`r`n`r`n$body"
+                }
+                $bytes = [Text.Encoding]::ASCII.GetBytes($response)
+                $stream.Write($bytes,0,$bytes.Length)
+                $stream.Flush()
+            } finally {
+                if ($client) { $client.Dispose() }
+                $server.Stop()
+            }
+        }
+        try {
+            $watch = [Diagnostics.Stopwatch]::StartNew()
+            while (-not ((Receive-Job $job -Keep) -contains 'ready')) {
+                if ($watch.Elapsed.TotalSeconds -gt 15) { throw 'Servidor local de ensayo no disponible' }
+                Start-Sleep -Milliseconds 100
+            }
+            $download = Join-Path $testRoot ('download-' + $chunked + '.txt')
+            Receive-EventifyDockerInstaller -Uri ("http://127.0.0.1:$port/installer") -OutFile $download
+            Assert-Setup ([IO.File]::ReadAllText($download) -eq 'Eventify descarga local') 'Descarga real por stream con/sin total'
+        } finally {
+            Stop-Job $job
+            Remove-Job $job
+        }
+    }
     & $realShortcuts -Root $testRoot -Desktop (Join-Path $testRoot 'desktop')
     $shell = New-Object -ComObject WScript.Shell
     foreach ($name in @('Iniciar', 'Detener')) {
@@ -163,8 +213,8 @@ if ($global:EventifySetupTestContext.Scenario -eq 'app-fails') { $global:LASTEXI
         }
     }
     $script:hasWinget = $false
-    function Invoke-WebRequest {
-        param($Uri,$OutFile,[switch]$UseBasicParsing)
+    function Receive-EventifyDockerInstaller {
+        param($Uri,$OutFile)
         Assert-Setup ($Uri -eq 'https://desktop.docker.com/win/main/amd64/Docker%20Desktop%20Installer.exe') 'Descarga desde Docker oficial'
         [IO.File]::WriteAllText($OutFile,'Instalador ficticio, no ejecutable')
         $script:downloadPath = $OutFile
@@ -219,6 +269,12 @@ if ($global:EventifySetupTestContext.Scenario -eq 'app-fails') { $global:LASTEXI
         if ($case -eq 'windows') { Assert-Setup $failed 'Modo Windows no cambia backend automaticamente' }
         else { Assert-Setup (-not $failed -and $ready -eq ($case -eq 'linux')) 'Docker apagado no interrumpe deteccion' }
     }
+    Assert-Setup ((Get-EventifyDownloadStatus 25 100 5).Contains('25%')) 'Porcentaje con tamano conocido'
+    Assert-Setup ((Get-EventifyDownloadStatus 100 100 60).Contains('100%')) 'Descarga completa al cien por ciento'
+    Assert-Setup ((Get-EventifyDownloadStatus 200 100 60).Contains('100%')) 'Porcentaje limitado al cien'
+    Assert-Setup ((Get-EventifyDownloadStatus 0 100 0).Contains('0%')) 'Descarga inicial sin avance'
+    $unknown = Get-EventifyDownloadStatus 1048576 -1 65
+    Assert-Setup (-not $unknown.Contains('%') -and $unknown.Contains('00:01:05')) 'Sin total no se inventa porcentaje'
     Write-Host "Instalador Windows: $script:checks comprobaciones correctas. Operaciones de sistema simuladas; accesos creados solo en carpeta temporal."
 } finally {
     Remove-Variable -Name EventifySetupTestContext -Scope Global -ErrorAction SilentlyContinue
