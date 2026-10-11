@@ -66,11 +66,16 @@ assert str(c["services"]["web"]["ports"][0]["published"])==sys.argv[2], "Puerto 
 assert all(v["type"]=="volume" for service in c["services"].values() for v in service.get("volumes",[])), "Montaje no aislado"
 ' "$EVENTIFY_CLEAN_PROJECT" "$EVENTIFY_CLEAN_PORT"
 bash "$EVENTIFY_CLEAN_COPY/scripts/start-linux.sh" --project "$EVENTIFY_CLEAN_PROJECT"
-"${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web php bin/seed-demo.php
+EVENTIFY_CLEAN_CREDENTIALS=demo-credentials.json
+if "${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web test -f storage/example-credentials.json; then
+    EVENTIFY_CLEAN_CREDENTIALS=example-credentials.json
+else
+    "${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web php bin/seed-demo.php
+fi
 "${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web php bin/qa-persistence.php before
 "${EVENTIFY_CLEAN_COMPOSE[@]}" up --force-recreate --detach --wait --wait-timeout 180
 "${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web php bin/qa-persistence.php after
-"${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web cat storage/demo-credentials.json > "$EVENTIFY_CLEAN_DIR/demo-credentials.json"
+"${EVENTIFY_CLEAN_COMPOSE[@]}" exec -T web cat "storage/$EVENTIFY_CLEAN_CREDENTIALS" > "$EVENTIFY_CLEAN_DIR/demo-credentials.json"
 printf '%s\n' "$EVENTIFY_CLEAN_PROJECT" > "$EVENTIFY_CLEAN_DIR/project.txt"
 echo "Copia limpia iniciada en http://localhost:$EVENTIFY_CLEAN_PORT; falta comprobar el flujo en navegador."
 echo "Resultado/credenciales privados: storage/clean-$EVENTIFY_CLEAN_ID"

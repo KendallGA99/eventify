@@ -395,3 +395,7 @@ Render publicó f9eac94, deploy dep-db57le7lk1mc7391a8u0. La revisión del 10 de
 ## Ampliación solicitada: autorización de administradores
 
 Desde Administración → Usuarios se busca una cuenta por nombre o correo, se abre Hacer administrador y se confirma con la contraseña del administrador actual. El servidor exige sesión administrativa vigente, CSRF, confirmación explícita, cuenta activa y contraseña correcta. Limita intentos y revalida las cuentas dentro de una transacción antes de cambiar únicamente role_id. El registro público continúa asignando USUARIO. Las sesiones existentes consultan el rol vigente en MySQL. Esta ampliación fue solicitada por el usuario el10oct; no se atribuye al enunciado académico. No incorpora revocación ni borrado de cuentas.
+
+## Catálogo de entrega dev.46
+
+El arranque de una copia local vacía prepara ocho eventos ilustrados, cinco categorías y accesos de administrador/visitante con claves únicas. Las fechas son relativas al primer inicio, las cuentas se guardan con hash y el archivo de acceso queda en almacenamiento privado. No se crean reservas ficticias. Una transacción y un marcador conservan el catálogo y las claves en los reinicios. La demostración antigua permanece separada para pruebas de estados extremos.

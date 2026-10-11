@@ -12,6 +12,7 @@ EVENTIFY_START_COMPOSE=("${EVENTIFY_DOCKER[@]}" compose -p "$EVENTIFY_START_PROJ
 "${EVENTIFY_START_COMPOSE[@]}" config --quiet
 "${EVENTIFY_START_COMPOSE[@]}" up --build --detach --wait --wait-timeout 180
 "${EVENTIFY_START_COMPOSE[@]}" exec -T web php bin/migrate.php
+"${EVENTIFY_START_COMPOSE[@]}" exec -T web php bin/prepare-examples.php
 EVENTIFY_PORT="$(sed -n 's/^APP_PORT=//p' .env | head -n 1)"
 if [[ ! "$EVENTIFY_PORT" =~ ^[0-9]+$ ]]; then
     echo 'Compruebe APP_PORT en .env.' >&2

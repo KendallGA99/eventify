@@ -21,12 +21,13 @@ try {
             $snapshot['tables'][$table]=['count'=>count($rows),'sha256'=>hash('sha256',json_encode($rows,JSON_THROW_ON_ERROR))];
         }
     } finally { $pdo->rollBack(); }
-    foreach(['marker'=>$marker,'credentials'=>PROJECT_ROOT.'/storage/demo-credentials.json'] as $name=>$file) {
+    $credentials = is_file(PROJECT_ROOT.'/storage/example-credentials.json') ? PROJECT_ROOT.'/storage/example-credentials.json' : PROJECT_ROOT.'/storage/demo-credentials.json';
+    foreach(['marker'=>$marker,'credentials'=>$credentials] as $name=>$file) {
         if (!is_file($file)) { throw new RuntimeException('Falta archivo persistente.'); }
         $digest=hash_file('sha256',$file); if($digest===false) { throw new RuntimeException('Archivo no legible.'); }
         $snapshot['files'][$name]=$digest;
     }
-    $images=glob(PROJECT_ROOT.'/public/assets/images/*.svg') ?: [];
+    $images=array_merge(glob(PROJECT_ROOT.'/public/assets/images/*.svg') ?: [], glob(PROJECT_ROOT.'/public/assets/events/*.svg') ?: []);
     if(count($images)<3) { throw new RuntimeException('Galería incompleta.'); }
     foreach($images as $file) { $digest=hash_file('sha256',$file); if($digest===false) { throw new RuntimeException('Imagen no legible.'); } $snapshot['files']['image:'.basename($file)]=$digest; }
     if ($argv[1]==='before') {

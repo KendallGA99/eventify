@@ -40,7 +40,7 @@ os.execvp(sys.argv[1],sys.argv[1:])
         checks += 1
         calls = [json.loads(line) for line in trace.read_text().splitlines()]
         mutations = [a for a in calls if 'up' in a or 'exec' in a]
-        assert len(mutations) == 2
+        assert len(mutations) == 3
         checks += 1
         assert all(a[:3] == ['compose','-p',expected] for a in mutations)
         checks += 1

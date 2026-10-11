@@ -2,7 +2,7 @@
 
 ## Estado de esta guía
 
-El proyecto incluye autenticación, catálogo, reservas, tickets con QR y administración. La referencia de desarrollo y la publicación son dev.45. La instalación limpia Linux y la persistencia tienen evidencia sobre dev.33; dev.41 conserva la evidencia de corrección nativa y dev.45 incorpora la revisión visual integral. El ZIP nuevo no tiene aceptación de instalación propia en Windows. Consulte [ESTADO.md](ESTADO.md) para distinguir estos resultados.
+El proyecto incluye autenticación, catálogo, reservas, tickets con QR y administración. La referencia de desarrollo y la publicación son dev.46 (publicación en preparación; consulte ESTADO). La instalación limpia Linux y la persistencia tienen evidencia sobre dev.33; dev.41 conserva la evidencia de corrección nativa y dev.45 incorpora la revisión visual integral. El ZIP nuevo no tiene aceptación de instalación propia en Windows. Consulte [ESTADO.md](ESTADO.md) para distinguir estos resultados.
 
 Ejecute los comandos desde la carpeta raíz de EVENTIFY.
 
@@ -44,6 +44,8 @@ Después:
 bash scripts/start-linux.sh
 ```
 
+En una instalación local vacía se crean automáticamente ocho eventos futuros, un administrador y un visitante con claves únicas. El acceso se guarda en `storage/example-credentials.json` dentro del contenedor; Windows lo copia también a la carpeta `storage` del proyecto. Un arranque posterior conserva cuentas, fechas y datos. Las instalaciones con datos previos no se rellenan ni se modifican. La demostración antigua de pruebas es una operación distinta y no debe ejecutarse después de esta preparación.
+
 El script genera `.env` con claves únicas solo si no existe, valida Compose, construye e inicia servicios, espera a las comprobaciones de disponibilidad y aplica migraciones sin reinicializar los datos. Cuando termine correctamente: `http://localhost:8080`.
 
 Si el usuario no tiene acceso directo al servicio Docker, el script solicita sudo en su terminal para las operaciones Docker. No guarda la contraseña. Introducirla únicamente en la terminal que solicita sudo.
@@ -79,6 +81,7 @@ Para volver a la imagen empaquetada: `bash scripts/start-linux.sh`; conserva dat
 3. Descomprimir el proyecto completo.
 4. Ejecutar `iniciar-windows.cmd` o, desde PowerShell en la carpeta, `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\start-windows.ps1`.
 5. Abrir la URL que indique el script al finalizar correctamente.
+6. Abrir `storage/example-credentials.json` en privado: contiene el administrador y visitante creados en esa instalación. No reutiliza claves públicas ni del desarrollador. Si ya tenía datos, conserva sus cuentas existentes.
 
 El ajuste ExecutionPolicy se aplica al proceso lanzado, no cambia la política permanente del sistema. Los scripts deben provenir del paquete del proyecto que se revisó. Si una política administrada los impide, resolverlo con el administrador del equipo; no alterar políticas globales.
 

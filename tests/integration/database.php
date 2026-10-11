@@ -31,6 +31,7 @@ try {
     $runner = new MigrationRunner($pdo, PROJECT_ROOT . '/database/migrations');
     $assert($runner->run() === ['001_initial_schema', '002_auth_limits', '003_weather_budget'], 'Primera migración');
     $assert($runner->run() === [], 'Repetición sin modificar esquema');
+    require __DIR__ . '/example-installer.php';
     require __DIR__ . '/weather-budget.php';
     require __DIR__ . '/weather-budget-races.php';
     require __DIR__ . '/admin-read.php';

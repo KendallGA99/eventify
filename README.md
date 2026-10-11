@@ -32,7 +32,7 @@ En Windows: instalar/abrir Docker Desktop en modo Linux y ejecutar `iniciar-wind
 
 Detener: `bash scripts/stop-linux.sh` o `detener-windows.cmd`. Verificaciones locales: `bash scripts/test-linux.sh` o `scripts/test-windows.ps1` desde PowerShell. No borrar volúmenes para resolver fallos.
 
-Pruebas MySQL aisladas: `bash scripts/test-database-linux.sh`; demostración opcional: `bash scripts/demo-linux.sh`. Consulte [DATOS.md](docs/DATOS.md).
+Pruebas MySQL aisladas: `bash scripts/test-database-linux.sh`; el primer arranque local vacío prepara ocho eventos y cuentas con claves únicas (`storage/example-credentials.json`). La demostración antigua de QA es independiente y no se ejecuta sobre ese catálogo. Consulte [DATOS.md](docs/DATOS.md).
 
 Actualizar y verificar Linux: `bash scripts/verify-linux.sh`. La instalación completa en Windows sigue pendiente de prueba. El receptor no necesita PHP/MySQL instalados aparte de Docker. Internet es necesario en la preparación inicial y para la API de clima.
 

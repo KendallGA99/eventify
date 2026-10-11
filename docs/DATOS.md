@@ -49,7 +49,15 @@ MySQL confirma DDL implícitamente. El ejecutor registra progreso y utiliza un b
 
 Ante fallo: detener cambios, conservar registros, respaldar la base y revisar las sentencias aplicadas frente al esquema real. Preparar una reparación específica y revisar antes de actualizar el registro técnico. No borrar tablas/volúmenes ni marcar APLICADA sin comprobar el resultado. No existe un reset automático.
 
-## Demostración opcional
+## Catálogo inicial de entrega dev.46
+
+El inicio normal de una base local vacía carga ocho eventos de `database/example-events.json`, cinco categorías, un administrador y un visitante; no inventa reservas. Las fechas se calculan respecto del primer arranque y se conservan después. Las ilustraciones SVG son locales. El marcador `catalogo_entrega_v1`, un bloqueo y una transacción evitan duplicados; un fallo de almacenamiento revierte cuentas y eventos.
+
+Credenciales únicas: `storage/example-credentials.json` dentro de web. Windows las copia a `storage/example-credentials.json` del proyecto. Linux: `docker compose cp web:/var/www/html/storage/example-credentials.json ./storage/example-credentials.json`. Mantener el archivo privado. No ejecutar el sembrador antiguo sobre esta instalación. No se cambian instalaciones que ya contienen usuarios, categorías, eventos o reservas.
+
+El servidor público no ejecuta esta preparación al arrancar. La renovación del catálogo requiere la operación CLI explícita `php bin/prepare-examples.php --public-evaluation`, respaldo previo y autorización. Retira eventos anteriores a BORRADOR si no tienen reservas, o CANCELADO si tienen historial; conserva reservas, tickets, usuarios y categorías. Crea accesos propios con claves nuevas, guardados fuera del código y del paquete. Repetir no renueva fechas ni contraseñas.
+
+## Demostración opcional de pruebas antiguas
 
 Después del arranque, Linux: `bash scripts/demo-linux.sh`. Windows: `powershell -ExecutionPolicy Bypass -File scripts/demo-windows.ps1`.
 

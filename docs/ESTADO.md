@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.45**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
+Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.46**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
 
 ## Alcance y autorizaciones
 
@@ -14,7 +14,7 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.45**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-revision-visual`; revisión integral de presentación dev.45. Aplicación `b383cb2` y etiqueta `v0.1.0-dev.45` enviados; versiones anteriores conservadas. |
+| Rama actual | `codex/b09-catalogo-entrega`; catálogo inicial dev.46 en preparación. Revisión integral dev.45 conservada. Aplicación `b383cb2` y etiqueta `v0.1.0-dev.45` enviados; versiones anteriores conservadas. |
 | Aplicación comprobada | Dev.45 sobre `b383cb2`: sintaxis, integración256 MySQL/HTTP, clima58, presupuesto44 y Firefox173 correctos (22 pantallas, seis tamaños). Administración de usuarios verificada local y pública; ninguna cuenta existente promovida. Dev.41 conserva evidencia de corrección nativa; Windows pendiente. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `b383cb273ffbf311d60dbee77e123d8b9f83b78a`, dev.45. |
@@ -361,3 +361,11 @@ Exportación dev.45 verificada: fuente `046f8ced8a0a307aa399090c684c1dba123abf2c
 B09 — Preparación del traslado a Windows: se añade LEAME-PRIMERO.txt con preparación Docker, extracción, inicio, demostración, acceso privado a cuentas, persistencia y separación entre localhost/URL pública. Se corrige la referencia antigua de la portada del manual de instalación. Sin cambios de aplicación, migraciones o despliegue; la prueba Windows sigue pendiente.
 
 ZIP para traslado Windows: output/entrega/eventify-desarrollo-c1ae58faeddd/Eventify-Windows-dev.45.zip, fuente c1ae58faedddd830939f37e001f70713f370e22c, 241 archivos, SHA256 bf4a55f357a7d7c8d1682fcf899f211ab036b980d890bcaeebc7e164bb3fac6c. CRC y todas las huellas comprobados; contiene guía inicial y scripts Windows. Copia idéntica al archivo fuente exportado; sin datos privados. La aplicación pública permanece b383cb2/dev.45.
+
+## B09/B08 — Catálogo y acceso preparados dev.46
+
+Solicitud: limpiar catálogo público y entregar ocho eventos verosímiles con administrador listo. Se añaden ocho ejemplos académicos con ilustraciones propias locales; se evita presentarlos como convocatorias reales. Preparación local automática solo en base vacía; pública únicamente por CLI explícita. Claves independientes aleatorias, transacción, marcador y conservación en reinicios. Demostración antigua de QA conservada por separado. Respaldo público privado de diez tablas antes de operar, SHA256 9114510006f2057de6510e864df836e69268ae9beab110986e8b0cffe0cdc103. Los dos eventos anteriores se retirarán de la vista principal conservando historial. Pruebas, publicación y exportación todavía en curso.
+
+Verificación inicial dev.46: sintaxis PHP completa correcta; integración efímera290 comprobaciones, incluidas34 nuevas para catálogo/cuentas/archivo privado/rollback/repetición y retiro con historial. Primer ensayo se detuvo por un recorte equivocado del archivo de prueba durante su edición; corregido y ejecutado de nuevo completo, exit0. Orquestación Linux9 controles correctos y sintaxis bash correcta. Instalación nueva aislada en8090 en preparación; instalaciones8080–8086 conservadas.
+
+Instancia nueva8090: ocho eventos y dos accesos creados; repetición conserva datos. Recreación de web/MySQL conserva las diez tablas y la huella de claves. IAB confirmó ingreso del administrador, panel con ocho eventos activos/cero reservas, portadas cargadas8/8 y móvil390 sin desbordamiento. Sesión cerrada y viewport restablecido. Imágenes finales local/pública construidas; sintaxis y unidades clima58/presupuesto44 correctas. Solo el arranque inicial y su persistencia se ensayaron de nuevo por el cambio; no se repitió aceptación completa de Linux.

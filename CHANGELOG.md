@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.46
+
+- Catálogo inicial con ocho eventos ilustrados y cuentas con claves únicas, solo para instalaciones locales vacías.
+- Preparación pública explícita de evaluación; retiro del catálogo anterior conservando historial.
+- Arranque Windows con copia local del acceso privado; reinicios conservan datos y fechas.
+
 ## 0.1.0-dev.45 — Revisión visual integral
 
 - Navegación con sección activa y controles táctiles; enlace para saltar al contenido.

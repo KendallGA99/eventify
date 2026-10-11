@@ -1,4 +1,4 @@
-EVENTIFY dev.45 — instalación en Windows
+EVENTIFY dev.46 — instalación en Windows
 
 Esta carpeta contiene la aplicación y una base MySQL local independiente.
 La URL pública https://eventify-academico.onrender.com sigue siendo otra instalación.
@@ -24,20 +24,22 @@ Si finaliza correctamente, abra http://localhost:8080 en Chrome o Firefox.
 Si Windows muestra un bloqueo, no desactive protecciones globales:
 revise docs/INSTALACION.md y anote el mensaje exacto.
 
-4. CREAR DATOS Y CUENTAS DE PRUEBA
-El arranque normal no crea un administrador ni carga la demostración.
-Abra PowerShell desde la carpeta Eventify y ejecute:
-
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\demo-windows.ps1
-
-Después copie el archivo de credenciales generado:
-
-docker compose cp web:/var/www/html/storage/demo-credentials.json .\storage\demo-credentials.json
-
-Abra storage\demo-credentials.json con Bloc de notas y use la cuenta
-con el rol necesario. Cada instalación genera contraseñas distintas.
+4. ENTRAR CON LAS CUENTAS PREPARADAS
+El primer arranque de una instalación vacía crea ocho eventos de ejemplo,
+un administrador y un visitante. No tiene que crearlos desde cero.
+Al terminar, abra storage\example-credentials.json con Bloc de notas.
+Use el correo y la contraseña de ADMINISTRADOR para entrar al panel.
+Cada instalación genera contraseñas distintas, sin una clave universal.
 Guarde ese archivo en privado; no lo publique ni lo adjunte a reportes.
-La demostración usa datos ficticios y no procesa pagos reales.
+Los eventos son ejemplos académicos y no procesan pagos reales.
+
+Si necesita volver a copiar el acceso, abra PowerShell en Eventify:
+
+docker compose cp web:/var/www/html/storage/example-credentials.json .\storage\example-credentials.json
+
+No ejecute demo-windows.ps1: es otro conjunto de pruebas y no se necesita
+para usar este catálogo. Si ya existían datos, el arranque los conserva y
+no añade eventos ni cuentas. Los reinicios tampoco cambian las claves.
 
 5. COMPROBAR
 Ingrese como usuario: explore eventos, reserve y consulte el ticket/QR.
