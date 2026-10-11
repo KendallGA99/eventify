@@ -1,7 +1,7 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Aplicación local: dev.44; publicación dev.43, actualización dev.44 en curso; dependencias nativas corregidas en dev.41. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Aplicación local y publicación: dev.44; dependencias nativas corregidas en dev.41. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
 Este documento explica cómo funciona el sistema y qué se ha comprobado. Dev.44 incorpora autorización de administradores desde Usuarios, con256 controles de integración y65 comprobaciones Firefox aprobados. Dev.43 simplifica la tarjeta de clima y reúne sus detalles en un desplegable accesible. Dev.42 añadió un respaldo meteorológico verificado en la web pública. Dev.41 corrigió las dependencias nativas de las imágenes web y MySQL, con cero avisos en su escaneo del 10 de octubre, sin exclusiones; ese resultado no audita el host ni el proveedor ni descarta vulnerabilidades futuras.
 
