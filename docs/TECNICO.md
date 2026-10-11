@@ -1,9 +1,9 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Aplicación local y publicación: dev.44; dependencias nativas corregidas en dev.41. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Aplicación local y publicación: dev.45; dependencias nativas corregidas en dev.41. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
-Este documento explica cómo funciona el sistema y qué se ha comprobado. Dev.44 incorpora autorización de administradores desde Usuarios, con256 controles de integración y65 comprobaciones Firefox aprobados. Dev.43 simplifica la tarjeta de clima y reúne sus detalles en un desplegable accesible. Dev.42 añadió un respaldo meteorológico verificado en la web pública. Dev.41 corrigió las dependencias nativas de las imágenes web y MySQL, con cero avisos en su escaneo del 10 de octubre, sin exclusiones; ese resultado no audita el host ni el proveedor ni descarta vulnerabilidades futuras.
+Este documento explica cómo funciona el sistema y qué se ha comprobado. Dev.45 mejora navegación táctil, filtros desplegables y presentación de estados;256 controles MySQL/HTTP y173 comprobaciones Firefox aprobados en22 pantallas. Dev.44 incorporó autorización de administradores desde Usuarios. Dev.43 simplifica la tarjeta de clima y reúne sus detalles en un desplegable accesible. Dev.42 añadió un respaldo meteorológico verificado en la web pública. Dev.41 corrigió las dependencias nativas de las imágenes web y MySQL, con cero avisos en su escaneo del 10 de octubre, sin exclusiones; ese resultado no audita el host ni el proveedor ni descarta vulnerabilidades futuras.
 
 Se conservan PHP 8.4/MySQL 8.4 y las reglas de negocio. Dev.41 y dev.42 aprobaron 234 controles MySQL/HTTP en sus ensayos; dev.43 aprobó sintaxis, unidades de clima y presupuesto meteorológico, construcción y revisión visual en móvil/escritorio. No se repite ni se atribuye la integración anterior al cambio de presentación. La actualización dev.41 conservó diez tablas locales y públicas; dev.42 conservó nueve tablas públicas y solo cambió el contador de consultas del clima. Dev.43 recreó únicamente web, sin cambiar esquema o volúmenes. La instalación limpia Linux original corresponde al ZIP dev.33. Firefox se comprobó mediante QA autónomo y confirmación manual del calendario. Windows y la defensa humana siguen pendientes.
 
@@ -122,7 +122,7 @@ Las siguientes obligaciones y criterios proceden de la referencia operativa REQU
 
 ### RF-06 — Filtros combinables
 
-- Categoría, fecha o rango temporal y disponibilidad; combinables; al menos un filtro mediante AJAX.
+- Nombre y categoría visibles; fecha, disponibilidad y estado en un desplegable accesible. Los criterios se combinan mediante AJAX y también funcionan por GET.
 - Aceptación: combinación de los tres criterios, limpiar filtros, rango inválido y consulta sin resultados; validar parámetros en servidor.
 
 ### RF-07 — Detalle y disponibilidad

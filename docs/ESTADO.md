@@ -14,13 +14,13 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.45**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-revision-visual`; revisión integral de presentación dev.45. QA autónomo en `547d7df`. Dev.43 simplifica la tarjeta del pronóstico y está aplicada a8086/Render; versiones anteriores conservadas. |
-| Aplicación comprobada | Dev.44 sobre `d9cf58a`: sintaxis, integración256 MySQL/HTTP, clima58, presupuesto44 y Firefox65 correctos. Administración de usuarios verificada local y pública; ninguna cuenta existente promovida. Dev.41 conserva evidencia de corrección nativa; Windows pendiente. |
+| Rama actual | `codex/b07-revision-visual`; revisión integral de presentación dev.45. Aplicación `b383cb2` y etiqueta `v0.1.0-dev.45` enviados; versiones anteriores conservadas. |
+| Aplicación comprobada | Dev.45 sobre `b383cb2`: sintaxis, integración256 MySQL/HTTP, clima58, presupuesto44 y Firefox173 correctos (22 pantallas, seis tamaños). Administración de usuarios verificada local y pública; ninguna cuenta existente promovida. Dev.41 conserva evidencia de corrección nativa; Windows pendiente. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
-| Web pública | https://eventify-academico.onrender.com, commit `d9cf58ac2e2555c4f313c7c47cc30e706ffda9ca`, dev.44. |
-| Render | Free, AutoDeployOff; deploy `dep-db5f22ijnfac73a8ismg`, fuente d9cf58a, Live tras23,1s. Dev.43 conservada para rollback. |
-| Local8086 | Web dev.44 y MySQL dev.41 saludables; solo se recreó web, sin cambiar migraciones, configuración ni volúmenes. Diez tablas idénticas tras actualizar a dev.44, antes de los logins de evaluación; después solo cambió auth_limits. Proyecto `eventify-clean-20261009035638-598f411d`; instalación limpia original dev.33 y actualización dev.41 con evidencia propia. |
-| Paquete dev.44 vigente | `output/entrega/eventify-desarrollo-ff612654f03c/eventify-source.zip`, 239 archivos, fuente `ff612654f03c5b91b3251eb0b9788e2d04684b8c`. PDF18 páginas actualizado y adjunto. CRC, huellas y contenido contra Git comprobados; Windows pendiente. |
+| Web pública | https://eventify-academico.onrender.com, commit `b383cb273ffbf311d60dbee77e123d8b9f83b78a`, dev.45. |
+| Render | Free, AutoDeployOff; deploy `dep-db5faptckfvc73a0tj0g`, fuente b383cb2, Live tras23,0s. Dev.44 conservada para rollback. |
+| Local8086 | Web dev.45 y MySQL dev.41 saludables; solo se recreó web, sin cambiar migraciones, configuración ni volúmenes. Diez tablas idénticas tras actualizar a dev.45, antes de los logins de evaluación; después solo cambió auth_limits. Proyecto `eventify-clean-20261009035638-598f411d`; instalación limpia original dev.33 y actualización dev.41 con evidencia propia. |
+| Paquete dev.44 anterior conservado | `output/entrega/eventify-desarrollo-ff612654f03c/eventify-source.zip`, 239 archivos, fuente `ff612654f03c5b91b3251eb0b9788e2d04684b8c`. PDF18 páginas actualizado y adjunto. CRC, huellas y contenido contra Git comprobados; Windows pendiente. |
 | Paquete dev.43 anterior con QA Firefox | `output/entrega/eventify-desarrollo-ac7051dfdcf3/eventify-source.zip`, 235 archivos, fuente `ac7051dfdcf3f2d87199c0de37e147ef3a45f94a`. PDF dev.43 adjunto sin regenerar. Integridad y contenido contra Git comprobados; Windows pendiente. |
 | Paquete documental dev.43 anterior conservado | `output/entrega/eventify-desarrollo-b9262591da07/eventify-source.zip`, 232 archivos, fuente `b9262591da071531a91cb8f3e671d5c62d5429e6`, PDF18 páginas adjunto. CRC, inventario y huellas comprobados; Windows pendiente. |
 | Paquete documental dev.42 conservado | `output/entrega/eventify-desarrollo-05ab8db4fb01/eventify-source.zip`, 232 archivos, fuente `05ab8db4fb0131b224d2c14b85a0538d283efc6e`, PDF de18 páginas adjunto. CRC/inventario/huellas verificados; Windows pendiente. |
@@ -79,7 +79,7 @@ Registro, catálogo/AJAX, respuesta perdida de reserva, errores de clima y admin
 4. **C-12 entrega humana:** revisión del receptor, acceso del evaluador al repositorio privado/cuentas y ensayo de defensa. No inventar participación o dominio del código.
 5. **Operación pública:** Aiven Free estaba apagado por inactividad y se reactivó antes del deploy. Render puede dormir. Comprobar ambos antes de evaluar; la disponibilidad del clima depende también del proveedor.
 
-B01/B02 comprobados; B03–B06 implementados con evidencia por flujo. B07 sigue abierto por los pendientes anteriores. B08 tiene deploy dev.43 y controles anteriores con sus límites. B09 tiene manual/PDF/paquete preparados, sin aceptación final. [CIERRE.md](CIERRE.md) organiza los casos; implementado, probado y publicado son estados distintos.
+B01/B02 comprobados; B03–B06 implementados con evidencia por flujo. B07 sigue abierto por los pendientes anteriores. B08 tiene deploy dev.45 y controles anteriores con sus límites. B09 tiene manual/PDF/paquete preparados, sin aceptación final. [CIERRE.md](CIERRE.md) organiza los casos; implementado, probado y publicado son estados distintos.
 
 ## Operación y conservación
 
@@ -352,3 +352,5 @@ IAB detectó una hoja CSS anterior en una pestaña abierta tras actualizar. Se a
 Sintaxis PHP completa correcta. Integración aislada256 controles MySQL/HTTP exit0 con el helper de recursos incorporado. Primer QA151 controles; tras ajustar espacios, textos largos y checkbox se amplió a173 comprobaciones correctas,22 pantallas a360/390/768/1280/1440 y844×390 horizontal. Capturas completas390/1440 y vistas de escritorio revisadas; sin desbordamiento horizontal. Evidencia privada storage/visual-dev45/firefox-reviewed. No es una prueba en teléfonos físicos ni Windows. Las pruebas anteriores conservan su propio corte.
 
 Solo web8086 recreada; diez tablas idénticas en ambas comparaciones de actualización, antes de los recorridos de login. Cuentas ficticias, sin guardar perfiles/eventos/categorías/reservas ni otorgar permisos. MySQL dev.41 y volúmenes conservados. Publicación dev.45 pendiente en este punto; pública dev.44 y paquete/PDF dev.44 conservados hasta registrar el nuevo despliegue y la nueva exportación.
+
+Cierre público dev.45: Render Live sobre b383cb2, deploy dep-db5faptckfvc73a0tj0g,23,0s. Diez tablas idénticas antes/después del despliegue. IAB público confirma filtros AJAX, desplegable por teclado, limpieza, CSS con huella y detalle con pronóstico real18,1–25,9°C. Móvil390px sin desbordamiento (scrollWidth375px). Recorrido público de comprobación puntual; revisión completa en Firefox local. No se repitió instalación limpia ni auditoría nativa: imágenes base dev.41 sin cambios. PDF técnico actualizado18 páginas, render completo revisado, texto dentro de límites. Windows y participación humana pendientes.
