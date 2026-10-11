@@ -139,3 +139,9 @@ El ensayo desde ZIP Linux y sus límites están en COPIA-LIMPIA.md. Para el rece
 Desde el repositorio de desarrollo, `bash scripts/test-clean-linux.sh f4d6c5a05011c57e47295b06cedf11129a052681 8086` exporta esa referencia, genera configuración nueva e inicia un proyecto aislado en una ruta con espacios. El puerto es opcional; por defecto8083. Seleccione uno libre: no detenga otras instalaciones para reutilizar su puerto. Este ensayo requiere Git/Python/OpenSSL en el equipo de desarrollo; el receptor no los necesita para iniciar el ZIP ya extraído.
 
 Los datos de demostración se crean solo en el destino nuevo del ensayo, explícitamente; los volúmenes anteriores permanecen. Al terminar correctamente quedan registros y credenciales ficticias privados en storage/clean-ID. Para la referencia f4d6c5a, el destino8086 ya aprobó recorrido de navegador y persistencia posterior. Ejecutar nuevamente este guion crearía otra copia distinta; no repetirlo para acreditar la ya comprobada. Windows sigue pendiente.
+
+## Autorizar a otro administrador
+
+Ingrese con una cuenta administradora y abra **Administración → Usuarios**. Busque a la persona por nombre o correo y seleccione **Hacer administrador**. Revise la cuenta elegida, escriba su propia contraseña de administrador, marque la confirmación y presione **Confirmar administrador**. La persona debe tener una cuenta activa registrada en Eventify. El cambio conserva sus reservas y tickets; los permisos se reconocen en la siguiente petición, incluso si ya tenía sesión abierta. No comparta su contraseña con la persona autorizada.
+
+Esta pantalla permite otorgar administración; no elimina cuentas ni retira permisos. Tras diez intentos de confirmación en quince minutos, el servidor limita temporalmente nuevos intentos de esa cuenta/dirección.
