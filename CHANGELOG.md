@@ -1,5 +1,12 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.47 — Instalador Windows por CMD
+
+- Preparación de WSL/Docker desde instalar-windows.cmd, con continuación después del reinicio y sin borrar instalaciones existentes.
+- Inicio abre Docker y el navegador; accesos de escritorio para iniciar y detener conservando datos.
+- Verificación de recursos, firma del instalador de respaldo y errores claros. Windows completo sigue pendiente de aceptación.
+- Aplicación y catálogo conservan el comportamiento dev.46; el PDF dev.46 se mantiene como documento de esa implementación y las guías actuales describen el instalador nuevo.
+
 ## 0.1.0-dev.46
 
 - Catálogo inicial con ocho eventos ilustrados y cuentas con claves únicas, solo para instalaciones locales vacías.

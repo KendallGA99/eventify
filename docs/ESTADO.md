@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.46**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
+Corte: 11 de octubre de 2026, America/Costa_Rica. Paquete Windows **0.1.0-dev.47**; aplicación pública dev.46, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
 
 ## Alcance y autorizaciones
 
@@ -14,7 +14,7 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.46**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b09-catalogo-entrega`; catálogo inicial dev.46 publicado y probado en instalación nueva8090. Revisión integral dev.45 conservada. Aplicación `b383cb2` y etiqueta `v0.1.0-dev.45` enviados; versiones anteriores conservadas. |
+| Rama actual | `codex/b09-instalador-cmd`; instalador dev.47 preparado, catálogo inicial dev.46 publicado y probado en instalación nueva8090. Revisión integral dev.45 conservada. Aplicación `b383cb2` y etiqueta `v0.1.0-dev.45` enviados; versiones anteriores conservadas. |
 | Aplicación comprobada | Dev.46 sobre `23ede6f`: sintaxis, integración290 MySQL/HTTP, clima58, presupuesto44 y recorrido IAB dirigido del catálogo/acceso inicial. Firefox173 corresponde a dev.45 (22 pantallas, seis tamaños). Administración de usuarios verificada local y pública; ninguna cuenta existente promovida. Dev.41 conserva evidencia de corrección nativa; Windows pendiente. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `23ede6ffd57fe4f84b7106b9417508383a27d35c`, dev.46. |
@@ -394,3 +394,12 @@ El usuario renovó el acceso y sudo -n id confirmó root. Inventario:20 contened
 Se retiraron62 etiquetas EVENTIFY sin contenedores asociados, conservando versiones actuales/dev.45 y runtime dev.41, además de todas las imágenes referenciadas por contenedores. Docker pasó de87 a47 imágenes. Caché de construcción sin uso eliminada:219 entradas a0, Docker informó1.372GB reclamados; la medición física de espacio disponible aumentó626.950.144 bytes, de12.743.282.688 a13.370.232.832. No sumar tamaños de capas compartidas como ahorro físico. No se tocaron imágenes de otros repositorios ni se borraron contenedores/volúmenes.
 
 Verificación: mismos20 contenedores, mismos21 volúmenes, mismas imágenes y montajes por contenedor; comparación de montajes normalizada por destino porque Docker devuelve distinto orden al detener. /salud y /eventos respondieron HTTP200 tanto en8086 como8090. No se inspeccionaron ni modificaron filas MySQL; las instancias antiguas se apagaron mediante docker stop. No se repitieron suites de aplicación. Evidencia privada plan.json, result.json, políticas anteriores y logs en storage/cleanup-20261011/docker. Se conserva el ZIP dev.46 sin cambios y el pendiente Windows.
+
+
+## B09/U-03 — Instalador Windows por CMD dev.47
+
+Solicitud: preparar instalación por CMD en el ZIP y botones de iniciar/detener. Rama codex/b09-instalador-cmd. INSTALAR-EVENTIFY.cmd/instalar-windows.cmd preparan el host x64, WSL2.1.5+ y Docker mediante WinGet oficial o descarga Docker con firma Authenticode/editor comprobados. Elevación limitada a WSL/instalador; no cambia políticas globales ni reinicia automáticamente. Repetición tras reinicio y conservación de Docker existente. Inicio abre Desktop, espera motor Linux, ejecuta el arranque y abre la URL configurada; accesos LNK en escritorio. Detener conserva volúmenes y no cierra otros proyectos. Se corrigió el retorno explícito exitoso de start-windows.ps1 para no heredar el código del test de archivo de credenciales en instalaciones previas.
+
+Sintaxis real Windows PowerShell5.1.26100.9444: nueve fuentes correctas. 57 comprobaciones correctas: orquestación con operaciones de sistema simuladas, Docker existente/no disponible/modo Windows, WSL mínimo, reinicio, errores de instalación/arranque, firma/editor correctos e inválidos, limpieza del instalador temporal y accesos LNK reales en carpeta temporal con espacios/apóstrofo. VM existente utilizada solo para estas pruebas, sin instalar WSL/Docker ni reiniciar; temporales retirados. Primer envío de pruebas excedió el formato admitido por guest-exec y se sustituyó por carga comprimida; ejecución inicial pidió política de scripts y se aplicó Bypass únicamente al proceso de evaluación, igual que el CMD del paquete. Un error de ámbito del doble de prueba se corrigió antes del resultado final. Evidencia privada storage/windows-cmd-dev47.
+
+No cambia reglas, esquema, dependencias nativas ni despliegue. No se repiten Linux/MySQL. El PDF dev.46 se conserva como documento de la aplicación; las guías del nuevo ZIP describen explícitamente el instalador dev.47. Preparación completa en un Windows compatible, flujos y persistencia siguen pendientes de aceptación real. Nueva exportación en preparación; ZIP dev.46 anterior intacto.

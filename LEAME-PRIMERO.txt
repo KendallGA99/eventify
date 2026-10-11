@@ -1,28 +1,43 @@
-EVENTIFY dev.46 — instalación en Windows
+EVENTIFY dev.47 — instalación en Windows
 
 Esta carpeta contiene la aplicación y una base MySQL local independiente.
 La URL pública https://eventify-academico.onrender.com sigue siendo otra instalación.
 No se sincronizan usuarios, eventos, reservas ni contraseñas entre ambas.
 No necesita cuentas de Render, Aiven o GitHub para ejecutar esta copia.
 
-1. PREPARAR WINDOWS
-Consulte los requisitos oficiales de Docker Desktop:
-https://docs.docker.com/desktop/setup/install/windows-install/
-Instale Docker Desktop con soporte para contenedores Linux (normalmente WSL2).
-Reinicie si la instalación lo pide y abra Docker Desktop hasta que esté listo.
-No necesita instalar PHP, MySQL, Git ni Python por separado.
-Necesita Internet para la primera construcción y para consultar el clima.
-
-2. EXTRAER TODO EL ZIP
+1. EXTRAER TODO EL ZIP
 Use Extraer todo, por ejemplo en C:\Proyectos\EventifyEntrega.
-Entre a la carpeta Eventify. No ejecute los archivos dentro del ZIP.
+No ejecute los archivos dentro del ZIP. Conserve esta carpeta en su lugar:
+los accesos del escritorio apuntaran a ella.
 
-3. INICIAR
-Haga doble clic en iniciar-windows.cmd.
-Espere a que termine; la primera construcción puede tardar varios minutos.
-Si finaliza correctamente, abra http://localhost:8080 en Chrome o Firefox.
-Si Windows muestra un bloqueo, no desactive protecciones globales:
-revise docs/INSTALACION.md y anote el mensaje exacto.
+2. INSTALAR E INICIAR
+Haga doble clic en INSTALAR-EVENTIFY.cmd, ubicado junto a esta guia.
+Tambien puede abrir Eventify e iniciar instalar-windows.cmd desde CMD.
+El asistente comprueba Windows x64, RAM y virtualizacion; prepara WSL
+si Docker no esta instalado, instala Docker Desktop y abre Eventify.
+No necesita escribir comandos ni instalar PHP, MySQL, Git o Python.
+Internet es necesario para la primera instalacion.
+
+Windows puede pedir permiso de administrador y reiniciar. El asistente no
+reinicia sin aviso: reinicie usted y abra INSTALAR-EVENTIFY.cmd otra vez.
+Si Docker muestra sus terminos, lealos y aceptelos para continuar.
+No necesita registrarse ni iniciar sesion en Docker, Render, Aiven o GitHub.
+El uso educativo de Docker Desktop es gratuito bajo sus condiciones.
+La primera construccion puede tardar varios minutos. Al terminar se abre
+la pagina http://localhost:8080 en el navegador predeterminado.
+
+Windows necesita ser una version compatible con Docker y tener al menos
+8 GB de RAM y virtualizacion disponible. Si falta un requisito, el asistente
+se detiene con el motivo. Una BIOS deshabilitada requiere ajuste manual.
+No se desactivan antivirus ni politicas de seguridad permanentes.
+
+3. BOTONES PARA USARLO DESPUES
+El asistente crea dos accesos en su escritorio:
+- Iniciar Eventify: abre Docker si hace falta, inicia el proyecto y abre la web.
+- Detener Eventify: detiene solo el proyecto; conserva cuentas y reservas.
+Tambien puede usar iniciar-windows.cmd y detener-windows.cmd en Eventify.
+Docker Desktop puede seguir abierto al detener: no se afectan otros proyectos.
+Si mueve la carpeta, ejecute de nuevo el instalador para actualizar los accesos.
 
 4. ENTRAR CON LAS CUENTAS PREPARADAS
 El primer arranque de una instalación vacía crea ocho eventos de ejemplo,
@@ -49,7 +64,8 @@ Confirme que las cuentas y las reservas siguen presentes.
 Complete docs/VERIFICACION-WINDOWS.md con los resultados reales.
 
 6. USO POSTERIOR
-Abra Docker Desktop y ejecute iniciar-windows.cmd para volver a usarlo.
+Ejecute Iniciar Eventify en el escritorio para volver a usarlo.
+El acceso abre Docker Desktop si hace falta.
 Use detener-windows.cmd para detenerlo conservando los datos.
 No borre volúmenes ni ejecute docker compose down -v.
 Los datos se guardan en volúmenes Docker: copiar esta carpeta a otro equipo
@@ -64,7 +80,9 @@ Servicio Docker no disponible: compruebe que Docker Desktop esté listo.
 No repita la demostración para intentar recuperar una clave perdida.
 
 MANUALES
-El ZIP de entrega incluye también el documento técnico en PDF.
+El ZIP incluye el documento tecnico de la aplicacion dev.46 en PDF.
+El instalador y las instrucciones Windows se actualizaron en dev.47;
+consulte esta guia y docs/INSTALACION.md para ese cambio.
 - docs/INSTALACION.md: instalación, configuración y problemas frecuentes.
 - docs/DATOS.md: cuentas y demostración.
 - docs/VERIFICACION-WINDOWS.md: prueba de instalación y persistencia.

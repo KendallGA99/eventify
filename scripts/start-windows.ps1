@@ -15,6 +15,7 @@ try {
     if (-not $portLine) { throw 'Compruebe APP_PORT en .env.' }
     $port = $portLine.Substring('APP_PORT='.Length)
     Write-Host "Eventify disponible en http://localhost:$port"
+    exit 0
 } catch {
     Write-Error $_ -ErrorAction Continue
     exit 1

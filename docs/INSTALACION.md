@@ -76,12 +76,18 @@ Para volver a la imagen empaquetada: `bash scripts/start-linux.sh`; conserva dat
 
 ## Windows del receptor
 
-1. Comprobar requisitos vigentes en [Docker Desktop para Windows](https://docs.docker.com/desktop/setup/install/windows-install/). Registrar versión de Windows, arquitectura y disponibilidad de virtualización; no dar por compatible cualquier Windows.
-2. Instalar Docker Desktop, habilitar su backend Linux compatible (normalmente WSL2), reiniciar si lo requiere y abrir Docker Desktop.
-3. Descomprimir el proyecto completo.
-4. Ejecutar `iniciar-windows.cmd` o, desde PowerShell en la carpeta, `powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\start-windows.ps1`.
-5. Abrir la URL que indique el script al finalizar correctamente.
-6. Abrir `storage/example-credentials.json` en privado: contiene el administrador y visitante creados en esa instalación. No reutiliza claves públicas ni del desarrollador. Si ya tenía datos, conserva sus cuentas existentes.
+1. Extraer todo el ZIP en una carpeta definitiva. Abrir `INSTALAR-EVENTIFY.cmd` en la raíz de la entrega, o `instalar-windows.cmd` dentro de Eventify.
+2. El asistente comprueba arquitectura x64, build mínimo, memoria física y virtualización. El mínimo automático no acredita por sí solo edición/build con soporte vigente: consultar [Docker Desktop para Windows](https://docs.docker.com/desktop/setup/install/windows-install/). ARM requiere preparación específica.
+3. Si Docker ya responde en modo Linux, lo reutiliza. Si Desktop existe y está apagado, lo abre. No cambia el backend de una instalación existente ni borra sus datos; si está en modo Windows, indica que se seleccione Linux containers.
+4. Si no existe Desktop, comprueba WSL y lo instala sin distribución mediante una elevación UAC. Después solicita reiniciar y ejecutar el mismo archivo; no reinicia Windows automáticamente ni programa tareas de inicio.
+5. Instala Docker Desktop con WinGet desde su catálogo oficial. Si WinGet falta, descarga el instalador oficial x64 y comprueba su firma Authenticode antes de ejecutarlo con elevación. Los acuerdos del catálogo/paquete de WinGet se aceptan durante la instalación solicitada; los términos iniciales de Docker quedan en su ventana para que los lea y acepte el receptor. No hace falta iniciar sesión.
+6. Espera hasta cinco minutos a Docker; si aún no responde, muestra el motivo y pide revisar su ventana/WSL/virtualización. Ejecuta el arranque existente, migraciones y ejemplos solo en base vacía; abre la URL real del puerto configurado.
+7. Crea `Iniciar Eventify` y `Detener Eventify` en el escritorio del usuario. Si la carpeta de escritorio no permite escribir, los CMD dentro del proyecto siguen disponibles. Al mover la carpeta, repetir el instalador actualiza los accesos.
+8. Abrir `storage/example-credentials.json` en privado: contiene administrador y visitante de esa instalación. Si ya tenía datos, conserva sus cuentas existentes.
+
+En CMD, desde la carpeta Eventify, basta `instalar-windows.cmd` la primera vez. Para uso posterior, `iniciar-windows.cmd` también comprueba/abre Docker e inicia la página. `detener-windows.cmd` solo detiene los servicios del proyecto y conserva sus volúmenes. No cierra Docker ni otros proyectos. El instalador requiere Internet y puede solicitar permisos, aceptación de términos o reinicio; no promete instalación sin interacción del sistema operativo.
+
+Referencias de preparación: [WSL por terminal](https://learn.microsoft.com/en-us/windows/wsl/install), [instalador Docker por línea de comandos](https://docs.docker.com/desktop/setup/install/windows-install/#install-from-the-command-line). No se instalan dependencias de la aplicación en el host.
 
 El ajuste ExecutionPolicy se aplica al proceso lanzado, no cambia la política permanente del sistema. Los scripts deben provenir del paquete del proyecto que se revisó. Si una política administrada los impide, resolverlo con el administrador del equipo; no alterar políticas globales.
 

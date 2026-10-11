@@ -1,5 +1,7 @@
 # EVENTIFY
 
+Preparación Windows dev.47: extraer el ZIP y abrir `INSTALAR-EVENTIFY.cmd`. Prepara WSL/Docker cuando faltan y crea accesos para iniciar/detener. Puede requerir permisos, reinicio y aceptar términos. Aplicación pública y catálogo conservan dev.46; instalación completa Windows pendiente.
+
 Plataforma académica PHP/MySQL para descubrir eventos, reservar entradas, consultar tickets digitales y administrar experiencias.
 
 ## Estado del proyecto

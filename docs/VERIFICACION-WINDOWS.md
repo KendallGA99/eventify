@@ -43,3 +43,10 @@ WSL --version reportó subsistema no instalado. Docker Desktop no encontrado en 
 A través del canal de integración QEMU existente se ejecutó únicamente diagnóstico y el parser real de Windows PowerShell5.1.26100.1591 sobre fuentes en memoria: common/start/stop/demo/test/test-database-windows.ps1, seis scripts sin errores de sintaxis. No se ejecutaron sus acciones, no se creó .env ni se inició Docker. Esto supera la comprobación sintáctica anterior; arranque, pruebas MySQL, navegador/persistencia y compatibilidad completa siguen pendientes.
 
 Para completar la prueba, preferir un Windows con recursos compatibles; no asignar toda la RAM del host a la VM, activar servicios de pago ni borrar datos para sortear el límite. No instalar/reiniciar esta VM automáticamente mientras conserve trabajo del usuario.
+
+
+## Instalador CMD dev.47
+
+El 11 de octubre se añadieron preparar WSL/Docker, continuación manual tras reinicio, detección de motor Linux, espera de Desktop y accesos de escritorio. No modifica características ni software en la VM de evaluación: se usaron parser y operaciones de sistema simuladas. Windows PowerShell5.1.26100.9444 analizó nueve fuentes sin errores; 57 comprobaciones correctas del asistente, incluidas claves de retorno, equipo incompatible, reinicios, errores, WSL mínimo, motor apagado/modo Windows y firma/editor del instalador de respaldo. CMD reales ejecutados en ambos formatos de carpeta, propagando errores del asistente. Accesos LNK reales creados y leídos únicamente en carpeta temporal con espacios/apóstrofo, después retirada. Evidencia privada: storage/windows-cmd-dev47.
+
+Al probar la entrega real, abrir INSTALAR-EVENTIFY.cmd desde una carpeta definitiva. Registrar preparación de WSL, elevación, reinicio y repetición, instalación WinGet o respaldo firmado, aceptación inicial de Docker, navegador y accesos Iniciar/Detener. Comprobar que detener/reiniciar conserva cuentas/reservas y que los accesos se actualizan al mover la carpeta. No confundir estas verificaciones pendientes con las simulaciones ya aprobadas.
