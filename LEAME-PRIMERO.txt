@@ -1,0 +1,71 @@
+EVENTIFY dev.45 — instalación en Windows
+
+Esta carpeta contiene la aplicación y una base MySQL local independiente.
+La URL pública https://eventify-academico.onrender.com sigue siendo otra instalación.
+No se sincronizan usuarios, eventos, reservas ni contraseñas entre ambas.
+No necesita cuentas de Render, Aiven o GitHub para ejecutar esta copia.
+
+1. PREPARAR WINDOWS
+Consulte los requisitos oficiales de Docker Desktop:
+https://docs.docker.com/desktop/setup/install/windows-install/
+Instale Docker Desktop con soporte para contenedores Linux (normalmente WSL2).
+Reinicie si la instalación lo pide y abra Docker Desktop hasta que esté listo.
+No necesita instalar PHP, MySQL, Git ni Python por separado.
+Necesita Internet para la primera construcción y para consultar el clima.
+
+2. EXTRAER TODO EL ZIP
+Use Extraer todo, por ejemplo en C:\Proyectos\EventifyEntrega.
+Entre a la carpeta Eventify. No ejecute los archivos dentro del ZIP.
+
+3. INICIAR
+Haga doble clic en iniciar-windows.cmd.
+Espere a que termine; la primera construcción puede tardar varios minutos.
+Si finaliza correctamente, abra http://localhost:8080 en Chrome o Firefox.
+Si Windows muestra un bloqueo, no desactive protecciones globales:
+revise docs/INSTALACION.md y anote el mensaje exacto.
+
+4. CREAR DATOS Y CUENTAS DE PRUEBA
+El arranque normal no crea un administrador ni carga la demostración.
+Abra PowerShell desde la carpeta Eventify y ejecute:
+
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\demo-windows.ps1
+
+Después copie el archivo de credenciales generado:
+
+docker compose cp web:/var/www/html/storage/demo-credentials.json .\storage\demo-credentials.json
+
+Abra storage\demo-credentials.json con Bloc de notas y use la cuenta
+con el rol necesario. Cada instalación genera contraseñas distintas.
+Guarde ese archivo en privado; no lo publique ni lo adjunte a reportes.
+La demostración usa datos ficticios y no procesa pagos reales.
+
+5. COMPROBAR
+Ingrese como usuario: explore eventos, reserve y consulte el ticket/QR.
+Ingrese como administrador: revise eventos, categorías, reservas y usuarios.
+Ejecute detener-windows.cmd y después iniciar-windows.cmd.
+Confirme que las cuentas y las reservas siguen presentes.
+Complete docs/VERIFICACION-WINDOWS.md con los resultados reales.
+
+6. USO POSTERIOR
+Abra Docker Desktop y ejecute iniciar-windows.cmd para volver a usarlo.
+Use detener-windows.cmd para detenerlo conservando los datos.
+No borre volúmenes ni ejecute docker compose down -v.
+Los datos se guardan en volúmenes Docker: copiar esta carpeta a otro equipo
+no transfiere reservas existentes. Consulte docs/RESPALDO.md para ello.
+Con la computadora apagada o Docker detenido, localhost no estará disponible.
+Internet no es necesario para los flujos centrales ya instalados; el clima sí.
+
+SI ALGO FALLA
+Conserve las últimas líneas del error sin contraseñas.
+Puerto 8080 ocupado: revise APP_PORT en .env según docs/INSTALACION.md.
+Servicio Docker no disponible: compruebe que Docker Desktop esté listo.
+No repita la demostración para intentar recuperar una clave perdida.
+
+MANUALES
+- docs/INSTALACION.md: instalación, configuración y problemas frecuentes.
+- docs/DATOS.md: cuentas y demostración.
+- docs/VERIFICACION-WINDOWS.md: prueba de instalación y persistencia.
+- docs/RESPALDO.md: respaldo y traslado de datos.
+
+Este paquete se entrega para validar Windows. La instalación completa en
+Windows sigue pendiente; no se presenta como una versión estable certificada.
