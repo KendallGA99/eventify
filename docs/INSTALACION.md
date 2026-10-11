@@ -2,7 +2,7 @@
 
 ## Estado de esta guía
 
-El proyecto incluye autenticación, catálogo, reservas, tickets con QR y administración. La referencia de desarrollo y la publicación son dev.46 (publicación en preparación; consulte ESTADO). La instalación limpia Linux y la persistencia tienen evidencia sobre dev.33; dev.41 conserva la evidencia de corrección nativa y dev.45 incorpora la revisión visual integral. El ZIP nuevo no tiene aceptación de instalación propia en Windows. Consulte [ESTADO.md](ESTADO.md) para distinguir estos resultados.
+El proyecto incluye autenticación, catálogo, reservas, tickets con QR y administración. La referencia de desarrollo y la publicación son dev.46. La instalación limpia Linux y la persistencia tienen evidencia sobre dev.33; dev.41 conserva la evidencia de corrección nativa y dev.45 incorpora la revisión visual integral. El ZIP nuevo no tiene aceptación de instalación propia en Windows. Consulte [ESTADO.md](ESTADO.md) para distinguir estos resultados.
 
 Ejecute los comandos desde la carpeta raíz de EVENTIFY.
 

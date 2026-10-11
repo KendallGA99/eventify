@@ -64,6 +64,7 @@ Servicio Docker no disponible: compruebe que Docker Desktop esté listo.
 No repita la demostración para intentar recuperar una clave perdida.
 
 MANUALES
+El ZIP de entrega incluye también el documento técnico en PDF.
 - docs/INSTALACION.md: instalación, configuración y problemas frecuentes.
 - docs/DATOS.md: cuentas y demostración.
 - docs/VERIFICACION-WINDOWS.md: prueba de instalación y persistencia.

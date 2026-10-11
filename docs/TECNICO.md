@@ -1,9 +1,9 @@
 # EVENTIFY
 ## Documento técnico - borrador de evaluación
 
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Aplicación local y publicación: dev.45; dependencias nativas corregidas en dev.41. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
+Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Aplicación local y publicación: dev.46; dependencias nativas corregidas en dev.41. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
 
-Este documento explica cómo funciona el sistema y qué se ha comprobado. Dev.45 mejora navegación táctil, filtros desplegables y presentación de estados;256 controles MySQL/HTTP y173 comprobaciones Firefox aprobados en22 pantallas. Dev.44 incorporó autorización de administradores desde Usuarios. Dev.43 simplifica la tarjeta de clima y reúne sus detalles en un desplegable accesible. Dev.42 añadió un respaldo meteorológico verificado en la web pública. Dev.41 corrigió las dependencias nativas de las imágenes web y MySQL, con cero avisos en su escaneo del 10 de octubre, sin exclusiones; ese resultado no audita el host ni el proveedor ni descarta vulnerabilidades futuras.
+Este documento explica cómo funciona el sistema y qué se ha comprobado. Dev.46 prepara ocho eventos ilustrados y accesos propios al iniciar una copia local vacía. Integración290 controles aprobados y conservación de diez tablas/claves tras recreación; el sitio público tiene ocho eventos activos y nuevo administrador verificado. Dev.45 mejora navegación táctil, filtros desplegables y presentación de estados;256 controles MySQL/HTTP y173 comprobaciones Firefox aprobados en22 pantallas. Dev.44 incorporó autorización de administradores desde Usuarios. Dev.43 simplifica la tarjeta de clima y reúne sus detalles en un desplegable accesible. Dev.42 añadió un respaldo meteorológico verificado en la web pública. Dev.41 corrigió las dependencias nativas de las imágenes web y MySQL, con cero avisos en su escaneo del 10 de octubre, sin exclusiones; ese resultado no audita el host ni el proveedor ni descarta vulnerabilidades futuras.
 
 Se conservan PHP 8.4/MySQL 8.4 y las reglas de negocio. Dev.41 y dev.42 aprobaron 234 controles MySQL/HTTP en sus ensayos; dev.43 aprobó sintaxis, unidades de clima y presupuesto meteorológico, construcción y revisión visual en móvil/escritorio. No se repite ni se atribuye la integración anterior al cambio de presentación. La actualización dev.41 conservó diez tablas locales y públicas; dev.42 conservó nueve tablas públicas y solo cambió el contador de consultas del clima. Dev.43 recreó únicamente web, sin cambiar esquema o volúmenes. La instalación limpia Linux original corresponde al ZIP dev.33. Firefox se comprobó mediante QA autónomo y confirmación manual del calendario. Windows y la defensa humana siguen pendientes.
 
@@ -311,7 +311,7 @@ La base funcional y la web pública tienen evidencia real de sus flujos principa
 
 ## 12. Referencias y trazabilidad
 
-Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/migrations/, composer.lock y scripts/ del código dev.40 (aplicación dev.39 y restricción de privilegios de Compose; imagen MySQL reducida). Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
+Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/, composer.lock y scripts/ del código dev.46. Los ensayos de versiones anteriores conservan sus referencias y límites. Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
 
 Documentos operativos: INSTALACION.md, ARQUITECTURA.md, DATOS.md, PUBLICACION.md, RESPALDO.md, VERSIONADO.md, PAQUETE.md, COPIA-LIMPIA.md, SEGURIDAD.md, AVISOS-IMAGENES.md y CIERRE.md. Los documentos históricos pueden describir etapas anteriores: las migraciones/código y el estado vigente prevalecen al comprobar una afirmación técnica.
 
