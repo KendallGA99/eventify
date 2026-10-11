@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.44 — Autorización de administradores (B06/RNF-03)
+
+- Añade búsqueda paginada de usuarios y confirmación para otorgar administración a una cuenta activa.
+- Comprueba rol vigente, CSRF, contraseña del administrador y límite de intentos; actualiza solo el rol, conservando reservas e historial.
+- Ampliación solicitada por el usuario; no es una exigencia adicional del enunciado académico. Evidencia y publicación en ESTADO.
+
 ## 0.1.0-dev.43 — Presentación del clima (B07/RF-15/RNF-01)
 
 - Destaca el rango de temperatura y presenta la lluvia solo cuando existe ese dato.

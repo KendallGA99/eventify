@@ -85,6 +85,7 @@ Dependencia: B04; puede avanzar junto con partes independientes de B05 sin agent
 3. Cancelar evento y transición finalizado con efectos documentados; proteger carreras con reserva/modificación de cupo.
 4. Dashboard: cinco indicadores base y dos derivados; cálculos contrastados con datos conocidos.
 5. Tablas y acciones adaptables al móvil, validaciones seguras de imágenes si hay uploads.
+6. Ampliación solicitada10oct: usuarios con búsqueda paginada y autorización de administradores. Exigir rol vigente, CSRF, confirmación y contraseña del administrador; limitar intentos y conservar datos. No forma parte de los requisitos originales del PDF.
 
 Cierre: administrador realiza operaciones y usuario no; estado/precio/capacidad/historial/indicadores correctos; ningún dato estático simula un indicador.
 

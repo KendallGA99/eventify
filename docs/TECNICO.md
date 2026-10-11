@@ -45,7 +45,7 @@ PHP/MySQL son obligatorios. Docker reproduce el entorno local; el receptor no in
 | Pública | /, /eventos, /eventos/{slug}, /registro, /ingresar. Los borradores no son públicos. |
 | Cuenta | GET/POST /cuenta: consultar perfil y editar nombre con sesión/CSRF; correo y rol conservados. POST /salir destruye sesión. Login redirige al inicio. |
 | Usuario | /experiencias, /tickets/{code}, /tickets/{code}/qr.svg; propiedad verificada en MySQL. |
-| Administrador | /admin, /admin/categorias, /admin/eventos, /admin/reservas y detalles/formularios. |
+| Administrador | /admin, /admin/categorias, /admin/eventos, /admin/reservas, /admin/usuarios y detalles/formularios. |
 | AJAX | /api/eventos, /api/experiencias, /api/reservas, cancelación y clima. |
 | Disponibilidad | /salud informa ok/unavailable; no expone claves ni consultas. |
 
@@ -391,3 +391,7 @@ Verificación del respaldo el 10 de octubre: 58 controles de clima y 234 de MySQ
 La tarjeta destaca el rango de temperatura y muestra la probabilidad de lluvia únicamente cuando el proveedor entrega ese dato. «Sobre el pronóstico» reúne fuente, licencia CC BY4.0, adaptación, hora de consulta y límites del rango mostrado. El desplegable funciona con teclado y empieza cerrado. Los avisos de carga, indisponibilidad e información almacenada se mantienen; el clima no bloquea una reserva.
 
 Render publicó f9eac94, deploy dep-db57le7lk1mc7391a8u0. La revisión del 10 de octubre comprobó el pronóstico real, el desplegable y el botón de actualización. A ancho efectivo de 375px, la tarjeta mide 327px y la página no presenta desbordamiento horizontal. No cambia API, proveedores, migraciones ni datos de negocio.
+
+## Ampliación solicitada: autorización de administradores
+
+Desde Administración → Usuarios se busca una cuenta por nombre o correo, se abre Hacer administrador y se confirma con la contraseña del administrador actual. El servidor exige sesión administrativa vigente, CSRF, confirmación explícita, cuenta activa y contraseña correcta. Limita intentos y revalida las cuentas dentro de una transacción antes de cambiar únicamente role_id. El registro público continúa asignando USUARIO. Las sesiones existentes consultan el rol vigente en MySQL. Esta ampliación fue solicitada por el usuario el10oct; no se atribuye al enunciado académico. No incorpora revocación ni borrado de cuentas.

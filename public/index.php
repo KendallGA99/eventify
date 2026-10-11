@@ -15,7 +15,7 @@ $authRoutes = ['/registro', '/ingresar', '/cuenta', '/salir'];
 $reserveApi = $path === '/api/reservas' || preg_match('#\A/api/reservas/([1-9][0-9]{0,9})/cancelar\z#', (string) $path, $cancelMatch);
 $adminRoute = $path === '/admin' || str_starts_with((string) $path, '/admin/');
 $adminWrite = $path === '/admin/categorias' || preg_match('#\A/admin/(categorias/[1-9][0-9]{0,9}/editar|eventos/(nuevo|[1-9][0-9]{0,9}/editar))\z#', (string) $path);
-$adminState = preg_match('#\A/admin/eventos/[1-9][0-9]{0,9}/estado\z#', (string) $path);
+$adminState = preg_match('#\A/admin/eventos/[1-9][0-9]{0,9}/estado\z#', (string) $path) || preg_match('#\A/admin/usuarios/[1-9][0-9]{0,9}/promover\z#', (string) $path);
 $allowed = $adminState ? ['POST'] : ($adminWrite ? ['GET', 'HEAD', 'POST'] : (in_array($path, ['/registro', '/ingresar', '/cuenta'], true) ? ['GET', 'HEAD', 'POST'] : ($path === '/salir' || $reserveApi ? ['POST'] : ['GET', 'HEAD'])));
 if (!in_array($method, $allowed, true)) {
     http_response_code(405);

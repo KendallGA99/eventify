@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.43**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
+Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.44**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
 
 ## Alcance y autorizaciones
 
@@ -14,7 +14,7 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.43**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b07-qa-firefox`; QA autónomo en `547d7df`. Dev.43 simplifica la tarjeta del pronóstico y está aplicada a8086/Render; versiones anteriores conservadas. |
+| Rama actual | `codex/b06-usuarios-admin`; autorización de usuarios dev.44. QA autónomo en `547d7df`. Dev.43 simplifica la tarjeta del pronóstico y está aplicada a8086/Render; versiones anteriores conservadas. |
 | Aplicación comprobada | Dev.43 sobre `f9eac94`: sintaxis, clima58, presupuesto44 y navegador móvil/escritorio correctos. Integración234 y HTTPS81 corresponden a dev.42; no se repiten por el cambio de presentación. Dev.41 conserva evidencia de corrección nativa; Windows pendiente; Firefox cerrado con evidencia combinada descrita al final. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `f9eac9454cd24b2bb85ad865a00d0a3d78804017`, dev.43. |
@@ -323,3 +323,11 @@ El 10 de octubre el usuario respondió «1 listo» al punto pendiente del calend
 Se prepara un ZIP actualizado con las guías y el ensayo QA Firefox. El PDF técnico dev.43 de18 páginas se conserva sin cambios: describe la misma implementación, pero no incorpora este último registro operativo de Firefox. La aceptación Windows y la participación de Kendall/evaluador siguen pendientes.
 
 Exportación con QA Firefox comprobada: fuente `ac7051dfdcf3f2d87199c0de37e147ef3a45f94a`, 235 archivos, ZIP SHA256 `e7f7607a5fe092a0e2176a2d1742bac1b68af8d88e1184d1960f4519c80281e3`. Destino `output/entrega/eventify-desarrollo-ac7051dfdcf3`. CRC, inventario, todas las huellas y contenido contra Git correctos con normalización CRLF de scripts Windows. PDF dev.43 conservado sin regeneración, SHA256 `012dd9954cc4b7e1016d939fa8d978bc91fa6f22a618bc4280de87517d5055f4`; registro operativo Firefox y guías actualizadas incluidos en el ZIP. No hubo instalación nueva, cambio de datos, despliegue o etiqueta estable.
+
+## B06 — Autorización de administradores dev.44
+
+Solicitud directa del usuario: permitir elegir qué usuarios se convierten en administradores desde el panel. Rama codex/b06-usuarios-admin. Implementación: listado paginado/búsqueda, confirmación con identidad y alcance, contraseña actual con control de intentos, CSRF y revalidación transaccional de actor/cuenta activa. Solo otorga administración; no incorpora eliminación ni degradación de cuentas. Auth consulta el rol en MySQL en cada petición, también para sesiones abiertas. No cambia esquema ni migra datos. Pruebas y aplicación a destinos todavía pendientes en este punto.
+
+Verificación dev.44: sintaxis PHP completa correcta; integración aislada MySQL/HTTP256 comprobaciones (22 nuevas), exit0. Incluye denegación por rol, CSRF, método GET, contraseña/confirmación, cuenta inactiva/inexistente, repetición, escape, búsqueda literal, cambio reconocido por sesión abierta, límite429 y conservación de eventos/reservas/tickets. Proyecto eventify-admin44-tests retirado al terminar, sin volúmenes de aplicación.
+
+Web8086 actualizada únicamente a eventify-admin-web:0.1.0-dev.44; diez tablas idénticas antes/después. IAB confirmó búsqueda y formulario, ojo y diseño adaptable. Captura inicial tomada durante redistribución del viewport descartada; vista móvil posterior y capturas Firefox revisadas. Firefox157.0.1:65 comprobaciones aprobadas, diez pantallas a390/768/1280, incluidas usuarios/confirmación. Sin promover cuentas existentes fuera del ensayo aislado. Sesiones de navegador cerradas. Evidencia storage/admin-users-dev44. No se repitió instalación Linux ni se cambió MySQL. Publicación dev.44 aún pendiente en este punto. PDF/ZIP dev.43 conservados, sin la nueva función; no presentarlos como paquete dev.44.

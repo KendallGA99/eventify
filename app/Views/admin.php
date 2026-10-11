@@ -5,17 +5,19 @@ $escape = static fn (mixed $value): string => htmlspecialchars(is_string($value)
 $value = static fn (string $key, string $default = ''): string => $escape($values[$key] ?? $default);
 $date = static fn (string $start): string => (new DateTimeImmutable($start, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('America/Costa_Rica'))->format('d/m/Y H:i');
 $csrf = Session::token();
-$title = match ($view) { 'reservations' => 'Reservas', 'reservation' => 'Detalle de reserva', 'categories' => 'Categorías', 'category' => 'Editar categoría', 'events' => 'Eventos', 'event' => $record === null ? 'Crear evento' : 'Detalle y edición del evento', default => 'Administración' };
+$title = match ($view) { 'users' => 'Usuarios', 'user-promotion' => 'Autorizar administrador', 'reservations' => 'Reservas', 'reservation' => 'Detalle de reserva', 'categories' => 'Categorías', 'category' => 'Editar categoría', 'events' => 'Eventos', 'event' => $record === null ? 'Crear evento' : 'Detalle y edición del evento', default => 'Administración' };
 $terminal = $record !== null && isset($record['status']) && in_array($record['status'], ['CANCELADO', 'FINALIZADO'], true);
 ?>
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title><?= $escape($title) ?> · Eventify</title><link rel="stylesheet" href="/assets/css/app.css"><link rel="icon" href="/assets/icon.svg"></head>
-<body><header class="site-header"><a class="brand" href="/">eventify<span>.</span></a><nav aria-label="Administración"><a href="/admin">Administración</a><a href="/admin/categorias">Categorías</a><a href="/admin/eventos">Eventos</a><a href="/admin/reservas">Reservas</a><a href="/cuenta">Mi cuenta</a></nav></header>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title><?= $escape($title) ?> · Eventify</title><link rel="stylesheet" href="/assets/css/app.css"><link rel="icon" href="/assets/icon.svg"><script src="/assets/js/ui.js" defer></script></head>
+<body><header class="site-header"><a class="brand" href="/">eventify<span>.</span></a><nav aria-label="Administración"><a href="/admin">Administración</a><a href="/admin/categorias">Categorías</a><a href="/admin/eventos">Eventos</a><a href="/admin/reservas">Reservas</a><a href="/admin/usuarios">Usuarios</a><a href="/cuenta">Mi cuenta</a></nav></header>
 <main class="events-main"><p class="eyebrow">Administración de Eventify</p><h1 class="page-title"><?= $escape($title) ?></h1>
 <?php if ($errors !== []): ?><div class="form-errors" role="alert"><?php foreach ($errors as $error): ?><p><?= $escape($error) ?></p><?php endforeach; ?></div><?php endif; ?>
 <?php if (($_GET['guardado'] ?? '') === 'ok'): ?><p class="notice" role="status">Cambios guardados correctamente.</p><?php endif; ?>
 <?php if ($view === 'home'): ?>
 <?php require PROJECT_ROOT . '/app/Views/admin-dashboard.php'; ?>
-<div class="event-grid"><article class="event-card"><h2>Categorías</h2><p>Organice las experiencias y gestione las categorías activas.</p><a class="return-link" href="/admin/categorias">Gestionar categorías</a></article><article class="event-card"><h2>Eventos</h2><p>Cree experiencias, actualice sus datos y gestione su publicación.</p><a class="return-link" href="/admin/eventos">Gestionar eventos</a></article></div>
+<div class="event-grid"><article class="event-card"><h2>Usuarios</h2><p>Busque una cuenta y autorice a las personas que administrarán Eventify.</p><a class="return-link" href="/admin/usuarios">Gestionar usuarios</a></article><article class="event-card"><h2>Categorías</h2><p>Organice las experiencias y gestione las categorías activas.</p><a class="return-link" href="/admin/categorias">Gestionar categorías</a></article><article class="event-card"><h2>Eventos</h2><p>Cree experiencias, actualice sus datos y gestione su publicación.</p><a class="return-link" href="/admin/eventos">Gestionar eventos</a></article></div>
+<?php elseif (in_array($view, ['users', 'user-promotion'], true)): ?>
+<?php require PROJECT_ROOT . '/app/Views/admin-users.php'; ?>
 <?php elseif (in_array($view, ['reservations', 'reservation'], true)): ?>
 <?php require PROJECT_ROOT . '/app/Views/admin-reservations.php'; ?>
 <?php elseif (in_array($view, ['categories', 'category'], true)): ?>

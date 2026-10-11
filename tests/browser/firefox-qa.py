@@ -161,11 +161,21 @@ try:
     check(urlparse(driver.current_url).path == '/ingresar', 'Ticket requiere ingreso después de cerrar sesión')
     step = 'administración'
     login('ADMINISTRADOR')
-    for path, label in [('/admin', 'administracion'), ('/admin/categorias', 'categorias'), ('/admin/eventos', 'eventos-admin'), ('/admin/reservas', 'reservas-admin')]:
+    for path, label in [('/admin', 'administracion'), ('/admin/categorias', 'categorias'), ('/admin/eventos', 'eventos-admin'), ('/admin/reservas', 'reservas-admin'), ('/admin/usuarios', 'usuarios-admin')]:
         go(path)
         check(urlparse(driver.current_url).path == path and css('main').text != '', label + ': pantalla accesible')
         check(css('link[rel=stylesheet]').get_attribute('href').endswith('/assets/css/app.css'), label + ': estilos presentes')
         fit(label)
+    step = 'confirmación administrativa'
+    candidate_link = css('a[href$="/administrador"]')
+    candidate_link.click()
+    wait.until(lambda d: d.find_elements(By.CSS_SELECTOR, '#admin-password'))
+    check(css('#admin-password').get_attribute('value') == '', 'Confirmación no precarga contraseña')
+    css('[data-password-toggle]').click()
+    check(css('#admin-password').get_attribute('type') == 'text', 'Ojo administrativo muestra el campo')
+    css('[data-password-toggle]').click()
+    check(not css('input[name=confirm]').is_selected(), 'Autorización exige confirmación sin premarcar')
+    fit('confirmacion-admin')
     logout()
     result['status'] = 'passed'
 except Exception as error:

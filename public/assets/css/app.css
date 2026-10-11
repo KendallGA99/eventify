@@ -133,3 +133,7 @@ textarea:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; 
 input[readonly] { color: var(--muted); background: var(--paper) !important; }
 @media (max-width: 767px) { .account-grid { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+
+.user-email { overflow-wrap: anywhere; }
+.promotion-confirm { display: flex; align-items: flex-start; gap: .7rem; }
+.promotion-confirm input[type="checkbox"] { width: 1.15rem; min-width: 1.15rem; height: 1.15rem; margin-top: .25rem; }

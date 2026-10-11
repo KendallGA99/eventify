@@ -105,6 +105,10 @@ try {
     [$status] = $request('/admin/categorias', ['csrf' => $logoutToken, 'name' => 'Intento', 'slug' => 'intento']);
     $assert($status === 403, 'Escritura administrativa rechaza rol usuario');
     foreach (['/admin/reservas', '/admin/reservas/1'] as $privatePath) { [$status] = $request($privatePath); $assert($status === 403, 'Consulta de reservas exige rol administrador'); }
+    [$status] = $request('/admin/usuarios');
+    $assert($status === 403, 'Usuarios privados para administrador');
+    [$status] = $request('/admin/usuarios/1/promover', ['csrf' => $logoutToken, 'password' => $input['password'], 'confirm' => '1']);
+    $assert($status === 403, 'Usuario no puede promover cuentas');
     $musicId = (int) $pdo->query("SELECT id FROM events WHERE slug = 'musica-ultimos-cupos'")->fetchColumn();
     [$status, $body] = $request('/api/reservas', ['csrf' => $logoutToken, 'event_id' => $musicId, 'quantity' => '1', 'price' => '0', 'total' => '0']);
     $created = json_decode($body, true, 512, JSON_THROW_ON_ERROR);
@@ -151,6 +155,7 @@ try {
     $assert($status === 404, 'Ticket de otra cuenta rechazado');
     [$status] = $request($created['ticket_url'] . '/qr.svg');
     $assert($status === 404, 'QR de otra cuenta rechazado');
+    require __DIR__ . '/http-admin-users.php';
     require __DIR__ . '/http-session-expiry.php';
 } finally {
     proc_terminate($server);

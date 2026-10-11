@@ -39,7 +39,16 @@ final class AdminController
         $id = null;
         $dashboard = null;
         $filter = null;
-        if ($path === '/admin/categorias') { $view = 'categories'; }
+        $search = '';
+        $users = new \Eventify\Infrastructure\AdminUserRepository($pdo);
+        if ($path === '/admin/usuarios') { $view = 'users'; }
+        elseif (preg_match('#\A/admin/usuarios/([1-9][0-9]{0,9})/(administrador|promover)\z#', $path, $match)) {
+            $view = 'user-promotion';
+            $id = (int) $match[1];
+            $record = $users->find($id);
+            if ($record === null) { $this->missing(); return; }
+        }
+        elseif ($path === '/admin/categorias') { $view = 'categories'; }
         elseif (preg_match('#\A/admin/categorias/([1-9][0-9]{0,9})/editar\z#', $path, $match)) { $view = 'category'; $id = (int) $match[1]; }
         elseif ($path === '/admin/eventos') { $view = 'events'; }
         elseif ($path === '/admin/eventos/nuevo') { $view = 'event'; }
@@ -55,7 +64,14 @@ final class AdminController
         if ($method === 'POST') {
             try {
                 $service = new AdminService($pdo);
-                if (in_array($view, ['category', 'categories'], true)) { $service->category($id, $_POST); $destination = '/admin/categorias'; }
+                if ($view === 'user-promotion') {
+                    if (!(new Auth($pdo))->allowAttempt('admin-promotion:' . $user['id'], $_SERVER['REMOTE_ADDR'] ?? 'unknown')) {
+                        throw new BusinessError('Demasiados intentos. Espere 15 minutos antes de intentarlo de nuevo.', 429);
+                    }
+                    (new \Eventify\Domain\AdminUserService($pdo))->promote((int) $user['id'], $id, $_POST['password'] ?? null, $_POST['confirm'] ?? null);
+                    $destination = '/admin/usuarios';
+                }
+                elseif (in_array($view, ['category', 'categories'], true)) { $service->category($id, $_POST); $destination = '/admin/categorias'; }
                 elseif ($view === 'event') {
                     if (str_ends_with($path, '/estado')) { $service->state($id, $_POST['status'] ?? null); }
                     else { $service->event($id, $_POST); }
@@ -85,6 +101,18 @@ final class AdminController
                 catch (BusinessError $e) { http_response_code($e->httpStatus); $errors[] = $e->getMessage(); $filter = AdminReservationFilter::fromQuery([]); }
                 $result = $errors === [] ? $read->reservations($filter) : ['rows' => [], 'hasMore' => false];
                 $rows = $result['rows']; $hasMore = $result['hasMore']; $number = $filter->page;
+            }
+        }
+        if ($view === 'users') {
+            try {
+                $result = $users->search($_GET['q'] ?? '', $_GET['page'] ?? '1');
+                $rows = $result['rows'];
+                $hasMore = $result['hasMore'];
+                $number = $result['page'];
+                $search = $result['search'];
+            } catch (BusinessError $error) {
+                http_response_code($error->httpStatus);
+                $errors[] = $error->getMessage();
             }
         }
         if ($view === 'event') { $categories = $pdo->query('SELECT id, name, is_active FROM categories ORDER BY name, id')->fetchAll(); }
