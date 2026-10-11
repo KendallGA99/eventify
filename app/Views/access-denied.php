@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Acceso restringido · Eventify</title>
     <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="<?= Eventify\Support\Assets::url('/assets/css/app.css') ?>">
 </head>
 <body>
+    <a class="skip-link" href="#contenido">Ir al contenido</a>
     <header class="site-header">
         <a class="brand" href="/">eventify<span>.</span></a>
         <nav aria-label="Navegación principal">
@@ -15,7 +16,7 @@
             <a href="/cuenta">Mi cuenta</a>
         </nav>
     </header>
-    <main class="auth-main">
+    <main id="contenido" class="auth-main">
         <section class="auth-card" aria-labelledby="access-title">
             <p class="eyebrow">Acceso restringido · 403</p>
             <h1 id="access-title">Esta sección es para administradores.</h1>

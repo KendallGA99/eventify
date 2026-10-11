@@ -7,11 +7,11 @@ $escape = static fn (string $value): string => htmlspecialchars($value, ENT_QUOT
 <head>
     <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mi cuenta · Eventify</title>
-    <link rel="stylesheet" href="/assets/css/app.css"><link rel="icon" href="/assets/icon.svg">
+    <link rel="stylesheet" href="<?= Eventify\Support\Assets::url('/assets/css/app.css') ?>"><link rel="icon" href="/assets/icon.svg">
 </head>
 <body>
 <?php require PROJECT_ROOT . '/app/Views/navigation.php'; ?>
-<main class="account-main">
+<main id="contenido" class="account-main">
     <div class="account-heading"><p class="eyebrow">Su espacio en Eventify</p><h1 class="page-title">Mi cuenta</h1><p>Actualice su nombre y tenga sus próximos planes a mano.</p></div>
     <div class="account-grid">
         <section class="auth-card profile-card" aria-labelledby="profile-title">

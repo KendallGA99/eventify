@@ -5,10 +5,10 @@ $title = $register ? 'Crear cuenta' : 'Iniciar sesión';
 ?>
 <!doctype html>
 <html lang="es">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title><?= $title ?> · Eventify</title><link rel="stylesheet" href="/assets/css/app.css"><link rel="icon" href="/assets/icon.svg"><script src="/assets/js/ui.js" defer></script></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title><?= $title ?> · Eventify</title><link rel="stylesheet" href="<?= Eventify\Support\Assets::url('/assets/css/app.css') ?>"><link rel="icon" href="/assets/icon.svg"><script src="<?= Eventify\Support\Assets::url('/assets/js/ui.js') ?>" defer></script></head>
 <body>
 <?php require PROJECT_ROOT . '/app/Views/navigation.php'; ?>
-<main class="auth-main">
+<main id="contenido" class="auth-main">
     <section class="auth-card" aria-labelledby="form-title">
         <p class="eyebrow">Tu próxima experiencia</p><h1 id="form-title"><?= $title ?></h1>
         <p><?= $register ? 'Guarda tus próximos planes en un solo lugar.' : 'Qué bueno tenerte de vuelta.' ?></p>

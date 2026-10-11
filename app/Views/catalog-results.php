@@ -4,7 +4,7 @@
 <article class="event-card">
     <img class="catalog-image" src="<?= $escape($item['image_path']) ?>" alt="" width="480" height="240" loading="lazy" decoding="async">
     <p class="eyebrow"><?= $escape($item['category']) ?></p>
-    <h2><a href="/eventos/<?= $escape($item['slug']) ?>"><?= $escape($item['name']) ?></a></h2>
+    <h2 class="card-title"><a href="/eventos/<?= $escape($item['slug']) ?>"><?= $escape($item['name']) ?></a></h2>
     <p><?= $date($item['starts_at']) ?> (Costa Rica)</p><p><?= $escape($item['location']) ?></p><p><?= $money($item['price']) ?> por entrada</p>
     <?php if ($item['display_status'] !== 'PUBLICADO'): ?><p class="event-status"><?= $item['display_status'] === 'CANCELADO' ? 'Evento cancelado' : 'Evento finalizado' ?></p>
     <?php elseif ((int) $item['available'] === 0): ?><p class="event-status">Entradas agotadas</p>

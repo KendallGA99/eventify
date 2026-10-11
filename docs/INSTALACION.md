@@ -145,3 +145,7 @@ Los datos de demostración se crean solo en el destino nuevo del ensayo, explíc
 Ingrese con una cuenta administradora y abra **Administración → Usuarios**. Busque a la persona por nombre o correo y seleccione **Hacer administrador**. Revise la cuenta elegida, escriba su propia contraseña de administrador, marque la confirmación y presione **Confirmar administrador**. La persona debe tener una cuenta activa registrada en Eventify. El cambio conserva sus reservas y tickets; los permisos se reconocen en la siguiente petición, incluso si ya tenía sesión abierta. No comparta su contraseña con la persona autorizada.
 
 Esta pantalla permite otorgar administración; no elimina cuentas ni retira permisos. Tras diez intentos de confirmación en quince minutos, el servidor limita temporalmente nuevos intentos de esa cuenta/dirección.
+
+### Navegación y filtros
+
+La sección actual queda resaltada en el menú. En celulares, las opciones se distribuyen en dos columnas con espacio para tocarlas. El catálogo muestra nombre y categoría; abra «Fechas, disponibilidad y estado» para los criterios adicionales. Si abre un enlace con esos filtros aplicados, el desplegable aparece abierto. «Limpiar filtros» restaura la búsqueda. CSS y JavaScript llevan una huella en el enlace para actualizarse cuando cambia el archivo.

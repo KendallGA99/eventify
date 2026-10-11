@@ -8,9 +8,10 @@ $escape = static fn (string $value): string => htmlspecialchars($value, ENT_QUOT
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?= $escape($title) ?> · Eventify</title>
     <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="<?= Eventify\Support\Assets::url('/assets/css/app.css') ?>">
 </head>
 <body>
+    <a class="skip-link" href="#contenido">Ir al contenido</a>
     <header class="site-header">
         <a class="brand" href="/">eventify<span>.</span></a>
         <nav aria-label="Navegación principal">
@@ -18,7 +19,7 @@ $escape = static fn (string $value): string => htmlspecialchars($value, ENT_QUOT
             <a href="/cuenta">Mi cuenta</a>
         </nav>
     </header>
-    <main class="auth-main">
+    <main id="contenido" class="auth-main">
         <section class="auth-card" aria-labelledby="error-title">
             <p class="eyebrow">Solicitud no completada · <?= $status ?></p>
             <h1 id="error-title"><?= $escape($title) ?></h1>

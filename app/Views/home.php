@@ -6,7 +6,7 @@
     <meta name="description" content="Eventify: descubre experiencias, reserva tus entradas y disfruta tu próximo plan.">
     <title>Eventify — Tu próximo plan empieza aquí</title>
     <link rel="icon" href="/assets/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="<?= Eventify\Support\Assets::url('/assets/css/app.css') ?>">
 </head>
 <body>
     <?php require PROJECT_ROOT . '/app/Views/navigation.php'; ?>

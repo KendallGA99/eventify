@@ -17,6 +17,7 @@ parser.add_argument('--base', required=True)
 parser.add_argument('--driver', required=True)
 parser.add_argument('--accounts', required=True)
 parser.add_argument('--output', required=True)
+parser.add_argument('--application-version', required=True)
 args = parser.parse_args()
 base = args.base.rstrip('/')
 if urlparse(base).hostname not in {'localhost', '127.0.0.1'}:
@@ -59,13 +60,16 @@ def catalog_ready(query=None):
 
 
 def fit(label):
-    for width in (390, 768, 1280):
-        driver.browsing_context.set_viewport(context=driver.current_window_handle, viewport={'width': width, 'height': 900})
+    for width, height in ((360, 800), (390, 844), (768, 1024), (1280, 900), (1440, 900), (844, 390)):
+        driver.browsing_context.set_viewport(context=driver.current_window_handle, viewport={'width': width, 'height': height})
+        driver.execute_script('window.scrollTo(0, 0)')
         data = driver.execute_script('return {width: innerWidth, content: document.documentElement.scrollWidth}')
         measurements.append({'page': label, **data})
         check(data['width'] == width and data['content'] <= data['width'], label + ': sin desbordamiento a ' + str(data['width']) + 'px')
         wait.until(lambda d: d.execute_script("return document.getAnimations().every(a => a.playState !== 'running')"))
         driver.save_screenshot(str(out / (label + '-' + str(width) + '.png')))
+        if width in (390, 1440):
+            driver.get_full_page_screenshot_as_file(str(out / (label + '-full-' + str(width) + '.png')))
     driver.save_screenshot(str(out / (label + '.png')))
 
 
@@ -87,12 +91,17 @@ def logout():
 
 
 result = {'browser': driver.capabilities['browserName'], 'version': driver.capabilities['browserVersion'],
-          'mode': 'headless, perfil temporal generado por geckodriver', 'application': 'dev.43',
+          'mode': 'headless, perfil temporal generado por geckodriver', 'application': args.application_version,
           'base': base, 'checks': checks, 'measurements': measurements,
           'limits': ['Fecha seleccionada/borrada mediante valor y evento change; no acredita entrada con teclas o selección del calendario nativo.',
                      'No crea reservas ni modifica perfiles, categorías o eventos.',
                      'No acredita instalación Windows ni ensayo del estudiante.']}
 try:
+    step = 'inicio, registro y acceso'
+    for path, label in [('/', 'inicio'), ('/registro', 'registro'), ('/ingresar', 'ingreso'), ('/pagina-inexistente-qa', 'no-encontrada')]:
+        go(path)
+        check(bool(css('footer').text), label + ': pie de página presente')
+        fit(label)
     step = 'catálogo, filtros y teclado'
     go('/eventos')
     search = css('#catalog-search')
@@ -114,6 +123,9 @@ try:
     css('[data-catalog-clear]').click()
     catalog_ready('q=&category=')
     check(css('#catalog-search').get_attribute('value') == '' and Select(css('#catalog-category')).first_selected_option.get_attribute('value') == '', 'Limpiar restaura nombre y categoría')
+    check(css('[data-catalog-more]').get_attribute('open') is None, 'Filtros avanzados plegados sin selección')
+    css('[data-catalog-more] summary').click()
+    check(css('#catalog-from').is_displayed(), 'Filtros avanzados accesibles al desplegar')
     date = css('#catalog-from')
     # Firefox headless no introduce segmentos de fecha mediante send_keys.
     # Probar el cambio de valor/evento por separado, sin atribuirlo al calendario nativo.
@@ -129,6 +141,9 @@ try:
     css('[data-catalog-clear]').click()
     catalog_ready('q=&category=')
     fit('catalogo')
+    for path, label in [('/eventos/encuentro-tecnologia', 'detalle'), ('/eventos/cocina-agotado', 'agotado'), ('/eventos/cultura-cancelado', 'cancelado')]:
+        go(path)
+        fit(label)
 
     step = 'contraseña e ingreso'
     go('/ingresar')
@@ -145,6 +160,7 @@ try:
     check(not driver.find_elements(By.CSS_SELECTOR, 'a[href="/admin"]'), 'Perfil de usuario sin acceso administrativo')
     fit('perfil')
     go('/experiencias')
+    fit('historial')
     card = next(c for c in driver.find_elements(By.CSS_SELECTOR, '.event-card') if 'Encuentro de tecnología' in c.text)
     check('CANCELADA' in card.text and '2 entradas' in card.text, 'Historial cancelado conserva dos entradas')
     ticket_path = urlparse(card.find_element(By.CSS_SELECTOR, 'a[href^="/tickets/"]').get_attribute('href')).path
@@ -164,8 +180,24 @@ try:
     for path, label in [('/admin', 'administracion'), ('/admin/categorias', 'categorias'), ('/admin/eventos', 'eventos-admin'), ('/admin/reservas', 'reservas-admin'), ('/admin/usuarios', 'usuarios-admin')]:
         go(path)
         check(urlparse(driver.current_url).path == path and css('main').text != '', label + ': pantalla accesible')
-        check(css('link[rel=stylesheet]').get_attribute('href').endswith('/assets/css/app.css'), label + ': estilos presentes')
+        check(urlparse(css('link[rel=stylesheet]').get_attribute('href')).path == '/assets/css/app.css', label + ': estilos presentes')
         fit(label)
+    step = 'formularios administrativos'
+    go('/admin/eventos/nuevo')
+    fit('nuevo-evento')
+    go('/admin/eventos')
+    css('a[href$="/editar"]').click()
+    wait.until(lambda d: d.find_elements(By.CSS_SELECTOR, '#event-name'))
+    fit('editar-evento')
+    go('/admin/categorias')
+    css('a[href$="/editar"]').click()
+    wait.until(lambda d: d.find_elements(By.CSS_SELECTOR, '#category-name'))
+    fit('editar-categoria')
+    go('/admin/reservas')
+    css('main a[href^="/admin/reservas/"]').click()
+    wait.until(lambda d: d.find_elements(By.CSS_SELECTOR, '.reservation-detail'))
+    fit('detalle-reserva')
+    go('/admin/usuarios')
     step = 'confirmación administrativa'
     candidate_link = css('a[href$="/administrador"]')
     candidate_link.click()

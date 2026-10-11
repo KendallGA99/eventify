@@ -7,23 +7,29 @@ $money = static fn (string $value): string => Eventify\Support\Format::money($va
 $title = match ($page) { 'event' => $event['name'], 'ticket' => 'Ticket de reserva', 'reservations' => 'Mis experiencias', default => 'Explora eventos' };
 ?>
 <!doctype html><html lang="es">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title><?= $escape($title) ?> · Eventify</title><link rel="stylesheet" href="/assets/css/app.css"><link rel="icon" href="/assets/icon.svg"><script src="/assets/lib/jquery-4.0.0.min.js" defer></script><script src="/assets/js/catalog.js" defer></script><script src="/assets/js/reservations.js" defer></script><script src="/assets/js/experiences.js" defer></script><script src="/assets/js/weather.js" defer></script></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title><?= $escape($title) ?> · Eventify</title><link rel="stylesheet" href="<?= Eventify\Support\Assets::url('/assets/css/app.css') ?>"><link rel="icon" href="/assets/icon.svg"><script src="/assets/lib/jquery-4.0.0.min.js" defer></script><script src="<?= Eventify\Support\Assets::url('/assets/js/catalog.js') ?>" defer></script><script src="<?= Eventify\Support\Assets::url('/assets/js/reservations.js') ?>" defer></script><script src="<?= Eventify\Support\Assets::url('/assets/js/experiences.js') ?>" defer></script><script src="<?= Eventify\Support\Assets::url('/assets/js/weather.js') ?>" defer></script></head>
 <body><?php require PROJECT_ROOT . '/app/Views/navigation.php'; ?>
-<main class="events-main"><p class="eyebrow">Experiencias para compartir</p><h1 class="page-title"><?= $escape($title) ?></h1>
+<main id="contenido" class="events-main"><p class="eyebrow">Experiencias para compartir</p><h1 class="page-title"><?= $escape($title) ?></h1>
 <?php if ($page === 'catalog'): ?>
-    <form class="catalog-filters" action="/eventos" method="get" data-catalog-filters>
+    <form class="catalog-filters catalog-search" action="/eventos" method="get" data-catalog-filters>
         <div><label for="catalog-search">Buscar por nombre</label><input id="catalog-search" name="q" type="search" maxlength="80" value="<?= $escape($filter->search) ?>" placeholder="¿Qué le gustaría hacer?"></div>
         <div><label for="catalog-category">Categoría</label><select id="catalog-category" name="category"><option value="">Todas las categorías</option><?php foreach ($categories as $category): ?><option value="<?= (int) $category['id'] ?>" <?= $filter->category === (int) $category['id'] ? 'selected' : '' ?>><?= $escape($category['name']) ?></option><?php endforeach; ?></select></div>
+        <?php $moreFilters = $filter->from !== '' || $filter->to !== '' || $filter->availability !== 'all' || $filter->state !== 'upcoming'; ?>
+        <details class="catalog-more" data-catalog-more <?= $moreFilters ? 'open' : '' ?>>
+            <summary>Fechas, disponibilidad y estado<span class="field-help">Ajustar filtros</span></summary>
+            <div class="catalog-extra-fields">
         <div><label for="catalog-from">Desde</label><input id="catalog-from" name="from" type="date" min="2000-01-01" max="2099-12-31" value="<?= $escape($filter->from) ?>"></div>
         <div><label for="catalog-to">Hasta</label><input id="catalog-to" name="to" type="date" min="2000-01-01" max="2099-12-31" value="<?= $escape($filter->to) ?>"></div>
         <div><label for="catalog-availability">Disponibilidad</label><select id="catalog-availability" name="availability"><?php foreach (['all' => 'Cualquier disponibilidad', 'available' => 'Con espacios', 'soldout' => 'Agotados'] as $value => $label): ?><option value="<?= $value ?>" <?= $filter->availability === $value ? 'selected' : '' ?>><?= $label ?></option><?php endforeach; ?></select></div>
         <div><label for="catalog-state">Estado</label><select id="catalog-state" name="state"><?php foreach (['upcoming' => 'Próximos eventos', 'all' => 'Todos los públicos', 'cancelled' => 'Cancelados', 'finished' => 'Finalizados'] as $value => $label): ?><option value="<?= $value ?>" <?= $filter->state === $value ? 'selected' : '' ?>><?= $label ?></option><?php endforeach; ?></select></div>
-        <button class="button" type="submit">Buscar eventos</button><a href="/eventos" data-catalog-clear>Limpiar filtros</a>
+            </div>
+        </details>
+        <div class="filter-actions"><button class="button" type="submit">Buscar eventos</button><a class="text-action" href="/eventos" data-catalog-clear>Limpiar filtros</a></div>
     </form>
     <p data-catalog-feedback role="status" aria-live="polite"><?= $escape($error) ?></p>
     <div data-catalog-results><?php require PROJECT_ROOT . '/app/Views/catalog-helpers.php'; require PROJECT_ROOT . '/app/Views/catalog-results.php'; ?></div>
 <?php elseif ($page === 'event'): ?>
-    <div class="event-detail"><section><img class="event-image" src="<?= $escape($event['image_path']) ?>" alt="<?= $escape($event['name']) ?>"><p class="eyebrow"><?= $escape($event['category']) ?></p><p class="event-description"><?= nl2br($escape($event['description'])) ?></p><dl><dt>Fecha y hora</dt><dd><?= $date($event['starts_at']) ?> (Costa Rica)</dd><dt>Ubicación</dt><dd><?= $escape($event['location']) ?></dd><dt>Capacidad</dt><dd><?= (int) $event['capacity'] ?> personas</dd><dt>Espacios disponibles</dt><dd><?= (int) $event['available'] ?></dd></dl>
+    <a class="text-action back-link" href="/eventos">← Volver a eventos</a><div class="event-detail"><section><img class="event-image" src="<?= $escape($event['image_path']) ?>" alt="<?= $escape($event['name']) ?>"><p class="eyebrow"><?= $escape($event['category']) ?></p><p class="event-description"><?= nl2br($escape($event['description'])) ?></p><dl class="event-facts"><div class="fact-wide"><dt>Fecha y hora</dt><dd><?= $date($event['starts_at']) ?> (Costa Rica)</dd></div><div class="fact-wide"><dt>Ubicación</dt><dd><?= $escape($event['location']) ?></dd></div><div><dt>Capacidad</dt><dd><?= (int) $event['capacity'] ?> personas</dd></div><div><dt>Espacios disponibles</dt><dd><?= (int) $event['available'] ?></dd></div></dl>
     <section class="weather-panel" data-event-weather="/api/eventos/<?= $escape($event['slug']) ?>/clima" aria-labelledby="weather-title">
         <div class="weather-heading">
             <span class="weather-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M9 14.5V5a3 3 0 0 1 6 0v9.5a5 5 0 1 1-6 0Z"/><path d="M12 8v10m6-12h3m-3 4h2"/></svg></span>

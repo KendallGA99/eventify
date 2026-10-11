@@ -1,6 +1,6 @@
 # EVENTIFY: estado actual y continuidad
 
-Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.44**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
+Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.45**, todavía sin certificación estable. Leer este resumen y el bloque activo de PLAN; consultar requisitos por identificador. Los registros anteriores se conservan íntegros en [HISTORIAL.md](HISTORIAL.md).
 
 ## Alcance y autorizaciones
 
@@ -14,7 +14,7 @@ Corte: 10 de octubre de 2026, America/Costa_Rica. Versión **0.1.0-dev.44**, tod
 
 | Destino | Referencia y alcance |
 | --- | --- |
-| Rama actual | `codex/b06-usuarios-admin`; autorización de usuarios dev.44. QA autónomo en `547d7df`. Dev.43 simplifica la tarjeta del pronóstico y está aplicada a8086/Render; versiones anteriores conservadas. |
+| Rama actual | `codex/b07-revision-visual`; revisión integral de presentación dev.45. QA autónomo en `547d7df`. Dev.43 simplifica la tarjeta del pronóstico y está aplicada a8086/Render; versiones anteriores conservadas. |
 | Aplicación comprobada | Dev.44 sobre `d9cf58a`: sintaxis, integración256 MySQL/HTTP, clima58, presupuesto44 y Firefox65 correctos. Administración de usuarios verificada local y pública; ninguna cuenta existente promovida. Dev.41 conserva evidencia de corrección nativa; Windows pendiente. |
 | Etiqueta anterior conservada | `v0.1.0-dev.37` resuelve a `7c3a3e28435566349efcd4b2a66eace89de978d2`; push confirmado. No moverla para actualizar documentos. |
 | Web pública | https://eventify-academico.onrender.com, commit `d9cf58ac2e2555c4f313c7c47cc30e706ffda9ca`, dev.44. |
@@ -342,3 +342,13 @@ Cierre B06 dev.44: Aiven alcanzó Running sin cambiar plan, secretos o permisos.
 ## Exportación dev.44 verificada
 
 Paquete `eventify-desarrollo-ff612654f03c`: 239 archivos, CRC y todas las huellas individuales correctas, contenido cotejado contra Git con CRLF esperado en los scripts Windows. ZIP SHA256 `e4bd748f5955bf5b17dfb81dafe96e8fbe1b0a7eb3d5263d2d4973b416b9577e`. PDF técnico actualizado de18 páginas, SHA256 `89020d7441b56253043a02853fbea380af90880f7c25421af5d729153f0b5ec7`; páginas renderizadas y revisadas. Manifiesto adjunto al paquete. Las exportaciones anteriores se conservan. No se repitió la instalación limpia Linux; Windows y la defensa humana siguen pendientes.
+
+## B07 — Revisión visual integral dev.45
+
+Solicitud directa: revisar toda la presentación y aplicar mejoras antes de continuar con Windows. RNF-01/02/05; sin cambios de permisos, reglas de negocio, esquema ni dependencias nativas. Navegación táctil en dos columnas y sección activa, salto al contenido, filtros avanzados nativos desplegables con valores conservados, tarjetas/estados/acciones uniformes, datos del evento agrupados, vuelta al catálogo, acceso a reservas desde el panel,404 con tarjeta y pie, ajustes de espacio/contraste y textos largos.
+
+IAB detectó una hoja CSS anterior en una pestaña abierta tras actualizar. Se añadió Assets::url con huella de contenido a CSS/JavaScript; recarga de esa misma pestaña confirmó estilos nuevos y controles de44px. Sin borrar caché o intervenir en el perfil personal. Capturas completas IAB tenían una redistribución incorrecta mientras las medidas DOM eran correctas; se usaron capturas de viewport y capturas completas Firefox para la revisión.
+
+Sintaxis PHP completa correcta. Integración aislada256 controles MySQL/HTTP exit0 con el helper de recursos incorporado. Primer QA151 controles; tras ajustar espacios, textos largos y checkbox se amplió a173 comprobaciones correctas,22 pantallas a360/390/768/1280/1440 y844×390 horizontal. Capturas completas390/1440 y vistas de escritorio revisadas; sin desbordamiento horizontal. Evidencia privada storage/visual-dev45/firefox-reviewed. No es una prueba en teléfonos físicos ni Windows. Las pruebas anteriores conservan su propio corte.
+
+Solo web8086 recreada; diez tablas idénticas en ambas comparaciones de actualización, antes de los recorridos de login. Cuentas ficticias, sin guardar perfiles/eventos/categorías/reservas ni otorgar permisos. MySQL dev.41 y volúmenes conservados. Publicación dev.45 pendiente en este punto; pública dev.44 y paquete/PDF dev.44 conservados hasta registrar el nuevo despliegue y la nueva exportación.

@@ -1,5 +1,14 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.45 — Revisión visual integral
+
+- Navegación con sección activa y controles táctiles; enlace para saltar al contenido.
+- Catálogo con filtros avanzados desplegables, tarjetas y estados más claros.
+- Detalle con datos agrupados, regreso al catálogo y formularios sin espacios vacíos de respuesta.
+- Recursos CSS/JavaScript con huella en el enlace para evitar estilos antiguos tras actualizar.
+- Acceso a reservas desde el resumen administrativo y presentación coherente de botones, estados y pie de página.
+
+
 ## 0.1.0-dev.44 — Autorización de administradores (B06/RNF-03)
 
 - Añade búsqueda paginada de usuarios y confirmación para otorgar administración a una cuenta activa.
