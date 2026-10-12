@@ -1,0 +1,29 @@
+EVENTIFY - QUÉ SE ENTREGA
+
+1. APLICACIÓN PUBLICADA
+Dirección: https://eventify-academico.onrender.com
+Comprobar su disponibilidad antes de la evaluación. El alojamiento gratuito
+puede tardar en responder después de un período sin uso.
+
+2. CÓDIGO E HISTORIAL EN GITHUB
+Usar el paquete 03-GITHUB para importarlos a la cuenta del receptor.
+Compartir el enlace del repositorio privado e invitar al profesor a su cuenta.
+Hasta completar la autorización no existe un repositorio nuevo en esa cuenta.
+El ZIP es una copia del historial; no sustituye conceder acceso en GitHub.
+
+3. DOCUMENTO TÉCNICO
+Documento-Tecnico-Eventify.pdf incluye descripción, tecnologías, requisitos,
+historias de usuario, navegación, arquitectura, modelo y diccionario de datos,
+API, reglas, seguridad, instalación, pruebas y conclusiones.
+Estudiante: Kendall Gamboa Arce.
+Docente: Rita Robles Loaiza.
+
+4. CUENTAS DE EVALUACIÓN
+Administrador y usuario de la página pública en el paquete privado de accesos.
+Administrador y usuario locales en storage\example-credentials.json después
+de instalar. Las claves son distintas entre las dos instalaciones.
+
+MATERIAL DE APOYO
+Instalador Windows, manual de uso y guía de demostración.
+La defensa es individual: hay que poder explicar el funcionamiento y realizar
+una modificación pequeña si se solicita. Tener esta guía no sustituye la práctica.

@@ -1,0 +1,33 @@
+EVENTIFY - PREPARAR LA DEMOSTRACIÓN
+
+RECORRIDO
+1. Abrir el catálogo y combinar filtros.
+2. Ingresar como usuario y reservar un evento futuro con cupos.
+3. Mostrar el ticket, el QR y Mis experiencias.
+4. Cancelar una reserva permitida y explicar por qué conserva su historial.
+5. Ingresar como administrador y mostrar eventos, categorías, reservas y métricas.
+6. Mostrar la API del clima y explicar qué ocurre si el proveedor falla.
+7. Detener e iniciar y comprobar que la información permanece guardada.
+
+PUNTOS PARA EXPLICAR
+- public/index.php recibe las solicitudes y selecciona la ruta y el método.
+- Los controladores coordinan permisos y respuestas; el dominio contiene reglas
+  y transacciones; la infraestructura realiza consultas y llamadas externas.
+- PDO utiliza consultas preparadas. PHP valida y escapa los datos según su uso.
+- Las contraseñas se guardan con hash. La sesión se regenera al ingresar.
+- CSRF protege las escrituras; los roles y la propiedad de tickets se validan
+  en el servidor, incluso si se escribe directamente una URL.
+- La reserva bloquea el evento dentro de una transacción y vuelve a comprobar
+  cupos, fecha, estado, duplicidad y precio antes de guardar.
+- Dos usuarios que ven el último cupo no pueden confirmarlo al mismo tiempo:
+  la segunda transacción revisa la disponibilidad después de la primera.
+- El precio unitario queda guardado en la reserva como valor histórico.
+- jQuery y AJAX actualizan catálogo e historial sin recargar toda la página.
+- La consulta meteorológica tiene timeout, caché y presupuesto global;
+  su fallo no debe impedir reservar.
+- El QR identifica la reserva. Su vigencia y permisos se consultan en Eventify.
+- Docker ejecuta PHP/Apache y MySQL; los volúmenes conservan los datos.
+
+Practique con datos de ejemplo y sin mostrar contraseñas. Revise cada punto
+en el código y prepare una modificación sencilla, como ajustar una etiqueta
+o una validación, explicando dónde se verifica también en el servidor.

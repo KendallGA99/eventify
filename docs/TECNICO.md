@@ -279,9 +279,9 @@ Se combinan pruebas de reglas de negocio, integración PHP/MySQL, peticiones HTT
 | Interfaz dev.45 | 173 comprobaciones en Firefox, 22 pantallas y seis tamaños/orientaciones. | Resultado de esa versión, con recorridos dirigidos posteriores del catálogo dev.46. |
 | Clima | 58 comprobaciones de proveedores y 44 del presupuesto de consultas. | Éxito real y fallos controlados documentados; el servicio externo puede no estar disponible. |
 | Persistencia | Reinicios y recreación conservan tablas, reservas, tickets y archivos en los ensayos registrados. | Los datos se conservaron en los destinos probados. |
-| Instalador Windows dev.50 | Nueve scripts analizados y 68 controles en PowerShell 5.1. | Instalación de Docker simulada en esas pruebas; instalación completa en la máquina virtual todavía en curso. |
+| Instalador Windows dev.52 | 68 controles del asistente y ocho de espera aprobados en PowerShell 5.1. | Operaciones de instalación simuladas en esos controles. El usuario confirmó después la reinstalación real de Eventify con Docker existente. |
 
-La instalación en Windows debe terminar y comprobarse con ambos roles, una reserva, su ticket y la conservación de datos después de detener e iniciar. Hasta completar ese recorrido no se considera validada la entrega para ese equipo. La defensa individual requiere explicar y modificar el código durante la evaluación; no se acredita mediante las pruebas automáticas.
+El usuario confirmó el funcionamiento del instalador dev.52 después de eliminar los contenedores, los volúmenes y las imágenes anteriores de Eventify, conservando Docker Desktop y WSL. También confirmó los accesos de inicio y detención. Este resultado corresponde a una máquina virtual con 4 GiB; no demuestra compatibilidad con todos los equipos ni repite la instalación inicial de Docker. La defensa individual requiere explicar y modificar el código durante la evaluación; no se acredita mediante las pruebas automáticas.
 
 ## 11. Conclusiones
 
@@ -289,7 +289,7 @@ EVENTIFY centraliza la consulta de eventos, las reservas y los tickets. La separ
 
 AJAX evita recargas completas en las búsquedas y en las operaciones de reserva. El clima aporta información útil sin convertirse en una dependencia para reservar. Docker facilita la instalación de PHP y MySQL en un entorno reproducible, con datos persistentes.
 
-La revisión final debe confirmar la instalación en Windows, el acceso del evaluador al repositorio y a las cuentas públicas, y la preparación del estudiante para la defensa individual.
+Antes de la evaluación se debe comprobar el acceso del profesor al repositorio y a las cuentas públicas, y practicar la demostración y la explicación del código.
 
 ## 12. Referencias
 
@@ -303,4 +303,4 @@ La revisión final debe confirmar la instalación en Windows, el acceso del eval
 - MET Norway: https://api.met.no/doc/Locationforecast/2.0/documentation
 - BaconQrCode: https://github.com/Bacon/BaconQrCode
 
-Código y versiones: https://github.com/USUARIO_DESTINO/eventify. El repositorio es privado; el evaluador necesita acceso. Las credenciales se entregan por separado y no forman parte del PDF ni del historial público.
+Código y versiones: el paquete GitHub incluye el historial y un asistente para importarlo a la cuenta del receptor. Al finalizar, el asistente muestra la dirección del repositorio privado; esa dirección debe compartirse con el evaluador y concederle acceso. Las credenciales de evaluación se entregan por separado y no forman parte del PDF ni del historial público.

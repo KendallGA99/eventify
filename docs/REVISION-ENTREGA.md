@@ -1,6 +1,6 @@
 # Revisión de la entrega académica
 
-Revisión del 11 de octubre de 2026. Fuente: enunciado de suficiencia, diez páginas, secciones 5 a 13. Este registro es interno; no sustituye el documento técnico ni certifica pruebas nuevas. Aplicación pública dev.46, instalador dev.50; instalación integral Windows en curso.
+Revisión del 11 de octubre de 2026. Fuente: enunciado de suficiencia, diez páginas, secciones 5 a 13. Este registro es interno; no sustituye el documento técnico ni certifica pruebas nuevas. Aplicación pública dev.46, instalador dev.52; reinstalación de Eventify con Docker existente confirmada por el usuario. La instalación inicial de Docker en un equipo compatible no se repitió.
 
 ## Entregables exigidos
 
