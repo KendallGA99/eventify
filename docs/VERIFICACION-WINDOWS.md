@@ -33,6 +33,16 @@ Registrar Windows/build/arquitectura, versión Docker Desktop, salida docker com
 
 Este documento es un procedimiento, no una certificación. URL pública y defensa son entregables separados. Errores y límites deben quedar en ESTADO/MATRIZ sin sustituirlos por pruebas Linux.
 
+## Diagnóstico del arranque tardío — 11 de octubre de 2026
+
+La VM Windows tiene 4 GiB y tres CPU virtuales; el anfitrión tiene 7801 MiB en total, unos 522 MiB disponibles y 4551 MiB de swap ocupados en la primera muestra. No se aumentó la RAM: asignar 8 GiB al huésped consumiría la memoria física del anfitrión. Tampoco se modificaron CPU, discos, volúmenes o configuración de virtualización. La virtualización anidada del anfitrión está habilitada y la VM usa host-passthrough.
+
+El registro de Docker informa que el motor linux/wsl quedó listo 15m16,969s después del inicio. El instalador dev.49 tiene una espera de 300 segundos: su mensaje de error no prueba que Docker no pueda arrancar después. WSL respondió con versión 3.0.1.0 y kernel 6.18.40.1; consulta directa al motor por named pipe devolvió Docker Engine29.8.2. No se encontró reinicio pendiente en la clave de Component Based Servicing consultada; esto no audita todas las causas de reinicio.
+
+Se retomó dev.49 en la sesión del usuario mediante una tarea temporal sin contraseña ni elevación nueva. El primer reintento creó .env con claves únicas, confirmó Compose5.5.1 y falló durante Compose, sin capturar su salida nativa completa. La comprobación directa posterior de config --quiet y ps devolvió exit0. Un segundo arranque nativo con stdout/stderr separados comenzó a descargar capas y construir web/db. No se atribuye el fallo transitorio a una causa no demostrada. La presión de memoria y el timeout de consultas WMI aparecen en la evidencia; no bastan para demostrar la causa única.
+
+El progreso de construcción no acredita todavía migraciones, ocho eventos, cuentas, navegador o persistencia. Windows sigue en evaluación sobre un equipo por debajo del requisito de RAM publicado por Docker. Evidencia privada: storage/windows-docker-diagnostico. La aceptación en un anfitrión compatible continúa pendiente.
+
 
 ## Diagnóstico real de la VM del usuario, 2026-10-08
 
@@ -65,3 +75,12 @@ El usuario informó que seguía viendo el bloqueo de RAM. Sin atribuir una causa
 ## Indicador de descarga dev.50
 
 Parser Windows PowerShell5.1 sobre nueve fuentes correcto;68 controles aprobados. Incluye dos descargas reales de contenido ficticio desde un servidor TCP/HTTP temporal en loopback de la VM, una con Content-Length y otra chunked sin total, verificando el contenido final. Servidor/job/archivos temporales retirados. Se comprueban porcentajes0/25/100, límite superior y ausencia de porcentaje sin total. Las operaciones de instalar WSL/Docker continúan simuladas; no se interrumpió la descarga del usuario ni se reinició la VM. Evidencia privada storage/windows-cmd-dev50.
+
+
+## Resultado de recuperación del arranque, 11 de octubre de 2026
+
+La construcción inicial agotó el límite de900s del proceso de diagnóstico; se conservó la caché y se reintentó sin borrar volúmenes. Compose dejó ambos contenedores saludables. El asistente completo todavía retornó1, por lo que no se certifican su finalización, accesos de escritorio o apertura automática del navegador.
+
+El script normal de arranque ejecutado posteriormente mediante PowerShell, con política Bypass solo para el proceso y conexión explícita al motor, terminó0. Aplicó migraciones001–003, preparó ocho eventos y las cuentas y copió sus credenciales al archivo privado de la instalación. La verificación HTTP desde Windows devolvió200 para inicio, catálogo, ingreso y registro; se contaron ocho tarjetas en el catálogo. El500 observado antes de migrar dejó de reproducirse tras la inicialización. No hubo cambio de código, RAM, CPU, discos o servicios. La tarea temporal utilizada para retomar la instalación fue eliminada.
+
+Evidencia privada: storage/windows-docker-diagnostico/start-script-result-2.json y http-final-result.json. Estas comprobaciones no cubren recorridos interactivos, persistencia, reinicio o instalación completa en un anfitrión compatible. Se mantienen pendientes los criterios de aceptación anteriores.
