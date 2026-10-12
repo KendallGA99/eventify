@@ -12,7 +12,7 @@ from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, PageBreak, 
 from reportlab.platypus.tableofcontents import TableOfContents
 
 ROOT = Path(__file__).resolve().parents[1]
-OUT = ROOT / 'output/pdf/EVENTIFY_Documento_Tecnico_Borrador.pdf'
+OUT = ROOT / 'output/pdf/EVENTIFY_Documento_Tecnico.pdf'
 OUT.parent.mkdir(parents=True, exist_ok=True)
 VERSION = (ROOT / 'VERSION').read_text().strip()
 for name, path in [('Body', '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf'), ('BodyBold', '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf')]:
@@ -85,15 +85,15 @@ def frame(canvas, doc):
     canvas.setFillColor(colors.HexColor('#60727a'))
     if doc.page > 1:
         canvas.drawString(48, A4[1]-29, 'EVENTIFY / Documento técnico / ' + VERSION)
-    canvas.drawString(48, 27, 'Corte: 10-10-2026 | Pendientes de evaluación indicados')
+    canvas.drawString(48, 27, 'EVENTIFY | SC-502 Ambiente Web Cliente-Servidor')
     canvas.drawRightString(A4[0]-48, 27, str(doc.page))
     canvas.restoreState()
 
 
 story = [Spacer(1, 75), Paragraph('EVENTIFY', styles['CoverTitle']),
-         Paragraph('Documento técnico<br/>Borrador de evaluación', styles['CoverSubtitle']),
-         Paragraph('SC-502 Ambiente Web Cliente-Servidor<br/>Código de referencia: ' + text(VERSION) + '<br/>10 de octubre de 2026', styles['Text']),
-         Spacer(1, 25), Paragraph('<b>Estado:</b> implementación con verificación parcial. Linux desde ZIP, integración y restauración de datos comprobados. Web pública y controles HTTPS comprobados. Pronóstico público útil comprobado. Windows, Firefox y criterios finales pendientes.', styles['Text']),
+         Paragraph('Documento técnico', styles['CoverSubtitle']),
+         Paragraph('SC-502 Ambiente Web Cliente-Servidor<br/>Código de referencia: ' + text(VERSION), styles['Text']),
+         Spacer(1, 25),
          Paragraph('<b>Estudiante:</b> Kendall Gamboa Arce<br/><b>Docente:</b> Rita Robles Loaiza', styles['Text']),
          PageBreak(), Paragraph('Contenido', styles['Subsection'])]
 toc = TableOfContents()
@@ -133,5 +133,5 @@ while i < len(lines):
         story.append(Paragraph(text(line[2:] if line.startswith('- ') else line), styles['Text'], bulletText='-' if line.startswith('- ') else None))
     i += 1
 Document(str(OUT), pagesize=A4, rightMargin=48, leftMargin=48, topMargin=50, bottomMargin=48,
-         title='EVENTIFY - Documento técnico (borrador)', author='').multiBuild(story, onFirstPage=frame, onLaterPages=frame)
+         title='EVENTIFY - Documento técnico', author='').multiBuild(story, onFirstPage=frame, onLaterPages=frame)
 print(str(OUT))

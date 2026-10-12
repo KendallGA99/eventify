@@ -1,19 +1,13 @@
 # EVENTIFY
-## Documento técnico - borrador de evaluación
-
-Curso: SC-502 Ambiente Web Cliente-Servidor. Fecha de corte: 10 de octubre de 2026. Aplicación local y publicación: dev.46; dependencias nativas corregidas en dev.41. Estudiante: Kendall Gamboa Arce. Docente: Rita Robles Loaiza.
-
-Este documento explica cómo funciona el sistema y qué se ha comprobado. Dev.46 prepara ocho eventos ilustrados y accesos propios al iniciar una copia local vacía. Integración290 controles aprobados y conservación de diez tablas/claves tras recreación; el sitio público tiene ocho eventos activos y nuevo administrador verificado. Dev.45 mejora navegación táctil, filtros desplegables y presentación de estados;256 controles MySQL/HTTP y173 comprobaciones Firefox aprobados en22 pantallas. Dev.44 incorporó autorización de administradores desde Usuarios. Dev.43 simplifica la tarjeta de clima y reúne sus detalles en un desplegable accesible. Dev.42 añadió un respaldo meteorológico verificado en la web pública. Dev.41 corrigió las dependencias nativas de las imágenes web y MySQL, con cero avisos en su escaneo del 10 de octubre, sin exclusiones; ese resultado no audita el host ni el proveedor ni descarta vulnerabilidades futuras.
-
-Se conservan PHP 8.4/MySQL 8.4 y las reglas de negocio. Dev.41 y dev.42 aprobaron 234 controles MySQL/HTTP en sus ensayos; dev.43 aprobó sintaxis, unidades de clima y presupuesto meteorológico, construcción y revisión visual en móvil/escritorio. No se repite ni se atribuye la integración anterior al cambio de presentación. La actualización dev.41 conservó diez tablas locales y públicas; dev.42 conservó nueve tablas públicas y solo cambió el contador de consultas del clima. Dev.43 recreó únicamente web, sin cambiar esquema o volúmenes. La instalación limpia Linux original corresponde al ZIP dev.33. Firefox se comprobó mediante QA autónomo y confirmación manual del calendario. Windows y la defensa humana siguen pendientes.
+## Documento técnico
 
 ## 1. Descripción y resultado esperado
 
 EVENTIFY es una aplicación web para descubrir eventos, reservar entradas y consultar tickets con QR. Un usuario se registra, inicia sesión, filtra eventos y confirma una cantidad de entradas. El administrador gestiona categorías, eventos, reservas y métricas. El pronóstico meteorológico ayuda a planificar eventos próximos; su fallo no debe bloquear reservas.
 
-El resultado final requerido incluye aplicación local portable, URL pública PHP/MySQL, repositorio con historial, cuentas de evaluación, documentación técnica y defensa individual. Actualmente hay código, pruebas registradas, GitHub privado, web pública y un paquete de desarrollo. No incluye cobros reales, aplicación móvil nativa ni control de acceso mediante escaneo.
+La entrega incluye una aplicación local para Windows, una URL pública, el código fuente con su historial en GitHub, cuentas de evaluación y este documento técnico. No incluye cobros reales, aplicación móvil nativa ni control de acceso mediante escaneo.
 
-La suficiencia define el alcance académico; las condiciones del usuario añaden gratuidad, Linux de desarrollo y transferencia a Windows. Las decisiones técnicas propias se distinguen de los requisitos en REQUISITOS.md. Los PDF no autorizan acciones externas.
+El alcance corresponde a la suficiencia especial del curso SC-502. La instalación local se facilita mediante un asistente y dos accesos de escritorio para iniciar y detener la aplicación.
 
 ## 2. Tecnologías y arquitectura
 
@@ -25,9 +19,9 @@ La suficiencia define el alcance académico; las condiciones del usuario añaden
 | Datos | MySQL 8.4 Community/InnoDB, restricciones, índices y migraciones versionadas. |
 | Identidad | Sesiones PHP, hashes de contraseña, CSRF y roles comprobados en servidor. |
 | QR | BaconQrCode 3.1.1 y dasprid/enum 1.0.7; generación SVG local con composer.lock. |
-| Entorno | Docker Compose, scripts Bash/PowerShell, volúmenes persistentes en local. |
+| Entorno | Docker Desktop y Docker Compose; asistente CMD/PowerShell y volúmenes persistentes. |
 | API externa | Open-Meteo y respaldo MET Norway por HTTPS, destinos fijos, timeout, caché y límite global. |
-| Desarrollo | Git/GitHub privado; pruebas PHP, Python y Node como herramientas de desarrollo. |
+| Desarrollo | Git y GitHub para conservar el historial; pruebas automatizadas de reglas e integración. |
 
 ```architecture
 Navegador -> Apache/PHP -> PDO -> MySQL
@@ -36,9 +30,9 @@ Navegador -> API clima PHP -> Open-Meteo HTTPS; MET Norway como respaldo
 
 public/index.php es el punto de entrada y decide ruta/método. app/Http coordina respuestas y autorización; app/Domain concentra reglas y transacciones; app/Infrastructure realiza acceso a MySQL/API y migraciones; app/Views renderiza; app/Security administra identidad; public/assets contiene estilos, JavaScript, bibliotecas e imágenes locales. La raíz pública es public, no el repositorio completo.
 
-PHP/MySQL son obligatorios. Docker reproduce el entorno local; el receptor no instala PHP/MySQL en su host. Python del empaquetador, herramientas PDF y Node de pruebas no son dependencias para ejecutar la aplicación extraída.
+PHP/MySQL son obligatorios. Docker reproduce el entorno local; el receptor no instala PHP/MySQL en su host. Las herramientas de pruebas y documentación no son necesarias para ejecutar la aplicación extraída.
 
-## 3. Navegación y roles
+## 3. Sitemap y navegación por roles
 
 | Área | Rutas principales y acceso |
 | --- | --- |
@@ -58,7 +52,7 @@ roles -> users -> reservations -> tickets
 categories -> events -> reservations
 ```
 
-Una categoría agrupa muchos eventos; un usuario realiza muchas reservas; un evento recibe muchas reservas; una reserva tiene como máximo un ticket. Las claves foráneas restringen eliminación y conservan historia. Las diez tablas incluyen seis entidades de negocio y cuatro técnicas. La migración 003 añade weather_budget; su aplicación real está comprobada en desarrollo, QA y Aiven.
+Una categoría agrupa muchos eventos; un usuario realiza muchas reservas; un evento recibe muchas reservas; una reserva tiene como máximo un ticket. Las claves foráneas restringen eliminación y conservan historia. Las diez tablas incluyen seis entidades de negocio y cuatro técnicas. La migración 003 añade weather_budget para limitar las consultas a los proveedores del clima.
 
 ### Diccionario y reglas
 | Tabla | Campos y reglas relevantes |
@@ -86,34 +80,31 @@ Cancelar verifica propietario y usa orden de bloqueo evento antes de reserva. So
 
 Administración conserva slug y precios históricos. Cualquier historial fija la fecha y prohíbe regresar a BORRADOR. No reduce capacidad por debajo de entradas confirmadas. Cancelar un evento impide nuevas reservas, conserva existentes y no equivale a cancelar cada reserva. Finalizar explícitamente exige que haya iniciado. Categoría inactiva conserva referencias.
 
-El dashboard distingue número de reservas de número de entradas e ingresos potenciales de pagos. Usa agregados y ocupación ponderada sobre el conjunto documentado; evita división por cero. Las métricas tienen pruebas con datos conocidos, sin inventar ventas reales.
+El dashboard cuenta todos los eventos para el total general. Para los indicadores activos utiliza eventos publicados con inicio futuro y sus reservas confirmadas. La ocupación es entradas reservadas divididas entre capacidad acumulada, multiplicada por 100; si la capacidad es cero muestra cero. Los rankings comparan entradas reservadas y resuelven empates por identificador. Los ingresos potenciales suman los totales históricos de esas reservas y no representan pagos. Las métricas tienen pruebas con datos conocidos, sin inventar ventas reales.
 
 ## 6. Requisitos e historias de aceptación
 
-Las siguientes obligaciones y criterios proceden de la referencia operativa REQUISITOS.md, derivada del enunciado. Son criterios de aceptación, no afirmaciones de que todos ya pasaron. MATRIZ.md relaciona cada RF con código, prueba y limitación. Los actores principales son visitante, usuario y administrador.
+Los siguientes requisitos corresponden al enunciado de la suficiencia especial. Los criterios indican cómo revisar el comportamiento esperado. Los actores son visitante, usuario y administrador.
 
 ### RF-01 — Registro de usuarios
 
 - Solicitar nombre completo, correo, contraseña y confirmación; validar cliente y servidor; correo único; contraseñas sin texto plano.
-- Aceptación: alta válida persistida; campos inválidos y confirmación distinta rechazados; correo duplicado rechazado también por petición directa; hash en MySQL. La regla de normalización del correo se documenta, no se inventa un formato que excluya direcciones válidas.
-- Evidencia prevista: integración de registro y verificación del navegador/esquema.
+- Aceptación: alta válida persistida; campos inválidos y confirmación distinta rechazados; correo duplicado rechazado también por petición directa; hash en MySQL. El correo se normaliza antes de comprobar duplicados.
 
 ### RF-02 — Autenticación y cierre
 
 - Ingresar con correo/contraseña y mantener sesión PHP; mensajes comprensibles sin información sensible; destruir sesión al salir.
 - Aceptación: acceso válido/incorrecto, persistencia entre peticiones y acceso denegado tras logout. Verificar renovación de identificador de sesión como medida de implementación.
-- Evidencia: pruebas de autenticación, sesión y navegador.
 
 ### RF-03 — Roles y autorización
 
 - Roles ADMINISTRADOR y USUARIO; autorización en servidor; rechazar URL directa no autorizada. Ocultar botones no es protección.
 - Aceptación: visitante/usuario rechazados en endpoints administrativos; administrador accede; registro público no puede elevar su rol enviando campos adicionales.
-- Evidencia: matriz de permisos UI y HTTP, con respuestas correctas según HTML/API.
 
 ### RF-04 — Catálogo
 
 - Tarjetas u otra vista apropiada con imagen, nombre, categoría, fecha/hora, ubicación, precio, disponibilidad y enlace; distinguir cancelados/finalizados.
-- Aceptación: información real de MySQL, estados visibles y caso sin resultados. Borradores accesibles solo al administrador según D-02.
+- Aceptación: información real de MySQL, estados visibles y caso sin resultados. Borradores accesibles solo al administrador según su estado.
 
 ### RF-05 — Búsqueda dinámica
 
@@ -134,13 +125,13 @@ Las siguientes obligaciones y criterios proceden de la referencia operativa REQU
 ### RF-08 — Crear reservación
 
 - Usuario autenticado selecciona una o más entradas; total dinámico precio × cantidad; persistir en MySQL.
-- Aceptación: reserva válida tiene usuario/evento/cantidad/valor; no autenticado rechazado; cantidades cero/negativas/fraccionarias/inválidas rechazadas. Manipular precio/total en la petición no cambia el cálculo autoritativo del servidor (DECISIÓN de seguridad).
+- Aceptación: reserva válida tiene usuario/evento/cantidad/valor; no autenticado rechazado; cantidades cero/negativas/fraccionarias/inválidas rechazadas. Manipular precio/total en la petición no cambia el cálculo autoritativo del servidor.
 
 ### RF-09 — Control de cupos
 
 - Comprobar disponibilidad en servidor inmediatamente antes de confirmar; no superar disponible; nunca disponibilidad negativa.
 - Aceptación: reservar exactamente los cupos restantes funciona; pedir uno de más falla; dos peticiones simultáneas al último cupo no pueden confirmar ambas. Un fallo a mitad de operación no deja reserva/ticket parcial ni consume cupos.
-- Implementación prevista: transacción, protección de concurrencia y lectura autoritativa de MySQL; mecanismo concreto documentado en B02/B04.
+- Implementación: transacción, bloqueo de la fila del evento y lectura autoritativa de MySQL antes de guardar.
 
 ### RF-10 — Últimos espacios
 
@@ -150,7 +141,7 @@ Las siguientes obligaciones y criterios proceden de la referencia operativa REQU
 ### RF-11 — Reserva activa duplicada
 
 - No mantener dos reservaciones activas independientes del mismo usuario/evento; informar y evitar duplicado.
-- Aceptación: segunda petición secuencial y dos peticiones simultáneas no crean dos activas. Nueva reserva tras cancelación permitida solo si el evento admite reservar y existen cupos (DECISIÓN).
+- Aceptación: segunda petición secuencial y dos peticiones simultáneas no crean dos activas. Nueva reserva tras cancelación permitida solo si el evento admite reservar y existen cupos.
 
 ### RF-12 — Mis experiencias
 
@@ -160,13 +151,13 @@ Las siguientes obligaciones y criterios proceden de la referencia operativa REQU
 ### RF-13 — Cancelar reservación
 
 - Solo si faltan más de 24 horas; cambiar estado sin borrar fila; liberar cupos; con 24 horas o menos impedir e informar motivo.
-- Aceptación: 24 h + 1 s permitido, exactamente 24 h y 24 h − 1 s rechazados; usar reloj controlable para pruebas. Repetir cancelación no libera dos veces; solo propietario o acción administrativa expresamente definida.
+- Aceptación: 24 h + 1 s permitido, exactamente 24 h y 24 h − 1 s rechazados; comprobar el límite con un reloj controlado en las pruebas. Repetir cancelación no libera dos veces; solo propietario o acción administrativa expresamente definida.
 
 ### RF-14 — Ticket digital
 
 - Cada reservación confirmada genera ticket con identificador único, evento, usuario, fecha/hora, cantidad, código de reservación y QR generado con biblioteca apropiada.
 - Aceptación: registro persistido, código único, QR real renderizable, datos coinciden con reserva; rechazo de acceso ajeno. Un ticket por reserva puede representar varias entradas; no exigir un ticket por entrada.
-- No se requiere escáner. Contenido del QR y comportamiento al cancelar definidos en D-04; no exponer datos privados sin autorización por incorporar una URL al QR.
+- El QR contiene el identificador de la reserva y no datos personales. El ticket permanece como historial después de cancelar, pero deja de estar vigente. No se incluye un sistema de escaneo de acceso.
 
 ### RF-15 — API externa útil
 
@@ -178,7 +169,7 @@ Las siguientes obligaciones y criterios proceden de la referencia operativa REQU
 
 - Datos reales: total eventos, eventos activos, reservas activas, entradas reservadas y porcentaje global de ocupación.
 - Al menos dos derivados: evento más reservado, categoría más popular, mayor ocupación o ingresos potenciales.
-- Aceptación: comparar con conjunto de datos conocido; cantidades de entradas no confundidas con cantidad de reservas; cálculo ponderado y conjunto coherente según D-03; sin división por cero. Ingresos potenciales claramente identificados, nunca pagos reales.
+- Aceptación: comparar con conjunto de datos conocido; cantidades de entradas no confundidas con cantidad de reservas; cálculo ponderado y conjunto de eventos publicados cuyo inicio es futuro; sin división por cero. Ingresos potenciales claramente identificados, nunca pagos reales.
 
 ### RF-17 — Categorías
 
@@ -209,7 +200,7 @@ Las siguientes obligaciones y criterios proceden de la referencia operativa REQU
 - Resolver carrera entre cancelación y confirmación de reserva bajo la misma política transaccional.
 
 
-### Historias para validar con la persona responsable
+### Historias de usuario y criterios de aceptación
 
 | Historia | Actor y objetivo | Criterio de aceptación concreto |
 | --- | --- | --- |
@@ -226,10 +217,10 @@ Las siguientes obligaciones y criterios proceden de la referencia operativa REQU
 | ID | Obligación PDF | Criterio verificable |
 | --- | --- | --- |
 | RNF-01 | Usabilidad consistente e intuitiva; retroalimentación. | Formularios etiquetados, mensajes de éxito/error/carga, vacío y confirmaciones pertinentes; navegación por teclado y foco visible como medidas de calidad. |
-| RNF-02 | Móvil, tableta y computadora; no solo reducir proporcionalmente. | Verificar 360/390, 768 y 1280/1440 px, zoom y orientación; menú, formularios, tarjetas, tablas y QR utilizables; sin desbordamiento de la página. Estos tamaños son decisiones de QA. |
-| RNF-03 | Hashing, sesiones, autorización/validación servidor, consultas parametrizadas, escape y secretos por entorno. | Pruebas de permisos/propiedad, inyección SQL/XSS, sesión/logout y exclusión de secretos; controles extra en SEG. |
+| RNF-02 | Móvil, tableta y computadora; no solo reducir proporcionalmente. | Verificar 360/390, 768 y 1280/1440 px, zoom y orientación; menú, formularios, tarjetas, tablas y QR utilizables; sin desbordamiento de la página. Estos tamaños cubren móviles, tabletas y escritorio. |
+| RNF-03 | Hashing, sesiones, autorización/validación servidor, consultas parametrizadas, escape y secretos por entorno. | Pruebas de permisos/propiedad, inyección SQL/XSS, sesión/logout y exclusión de secretos; protecciones adicionales de sesión y CSRF. |
 | RNF-04 | Manejar errores auth/validación/BD/API/cupos/permisos sin revelar datos internos. | Mensajes seguros y respuestas HTTP coherentes; logs redactados; probar fallos y servicio externo caído. |
-| RNF-05 | Evitar consultas y recursos innecesarios; optimizar imágenes; evitar recargas injustificadas. | Revisar consultas repetidas, índices/filtros, tamaño de imágenes, caché API y operaciones AJAX. No inventar objetivo de rendimiento no medido. |
+| RNF-05 | Evitar consultas y recursos innecesarios; optimizar imágenes; evitar recargas injustificadas. | Revisar consultas repetidas, índices/filtros, tamaño de imágenes, caché API y operaciones AJAX. Las mediciones se registran antes de establecer metas de rendimiento. |
 | RNF-06 | Chrome y Firefox actuales. | Flujo real en ambos navegadores; registrar versiones. Herramientas automatizadas no sustituyen una revisión de los navegadores requeridos. |
 | RNF-07 | Separar responsabilidades, nombres claros y reutilización; no un único PHP. | Revisión de estructura, funciones compartidas, manejo central de conexión/errores y separación de vistas/reglas/acceso a datos. |
 
@@ -239,13 +230,12 @@ Las contraseñas se guardan con password_hash y se comprueban con password_verif
 
 Las operaciones de escritura requieren CSRF. El servidor limita métodos HTTP, valida entradas, usa consultas preparadas y escapa el contenido de las vistas. Las consultas de reservas y tickets incluyen el propietario. Un usuario no decide su rol, precio, total ni cupos enviando campos desde el navegador. La web rechaza tokens de otra sesión, tickets y QR ajenos y rutas administrativas sin el rol necesario.
 
-.env y los datos privados de storage quedan fuera de Git y de las imágenes. Los errores no muestran consultas, claves ni trazas al visitante. La revisión dirigida de 505 blobs históricos no encontró los secretos privados conocidos; no sustituye un detector completo de secretos ni el escaneo de las imágenes.
+La configuración privada se obtiene mediante variables de entorno y queda fuera del repositorio y de la raíz pública. Los errores no muestran consultas, claves ni trazas al visitante.
 
-En producción MySQL exige TLS con CA e identidad del servidor verificadas. La aplicación comprueba Ssl_cipher antes de entregar PDO. Ensayos MySQL 8.4 rechazaron CA y hostname incorrectos y un servidor sin cifrado. En Render se prepara una copia de la CA para el trabajador www-data, en un directorio privado con permisos 700 y archivo 600, fuera de public. La configuración y conexión se verifican como ese trabajador antes de servir.
+La conexión pública a MySQL usa TLS y valida el certificado y la identidad del servidor. Las cuentas públicas de evaluación se preparan expresamente con claves únicas; no se crean administradores con una contraseña universal al iniciar el servidor. La cuenta de la aplicación tiene permisos limitados a su base de datos.
 
-Las cuentas públicas de evaluación se crean por una operación CLI explícita, con claves únicas y datos ficticios; nunca por siembra automática al arrancar. Render utiliza eventify_app, limitado a SELECT, INSERT, UPDATE, DELETE y CREATE en una sola base. CREATE permite las comprobaciones de tablas del gestor de migraciones; no se conceden DROP, ALTER ni permisos globales de administración.
+Los contenedores locales usan no-new-privileges para impedir que los procesos adquieran privilegios adicionales al ejecutar archivos. Las dependencias están fijadas por versión. El escaneo de las tres imágenes corregidas del 10 de octubre de 2026 no reportó avisos con la base utilizada en esa fecha. Es un resultado de ese corte: requiere revisiones posteriores y no audita el equipo del usuario ni los proveedores.
 
-La web de Compose y el servicio de integración dev.40 usan no-new-privileges. Esta opción impide adquirir privilegios adicionales al ejecutar archivos; Apache conserva su proceso principal root y trabajadores www-data. En aislamiento se comprobó el servicio de CSS y la restricción en cinco trabajadores; la integración MySQL/HTTP aprobó 225 controles. Después se aplicó solo a la web local: salud y seis respuestas HTTP correctas, contenedor e imagen MySQL conservados. La opción no parchea las bibliotecas ni configura automáticamente Render.
 
 ## 8. AJAX y API externa
 
@@ -257,145 +247,60 @@ La web de Compose y el servicio de integración dev.40 usan no-new-privileges. E
 | GET /api/experiencias | Cookie de sesión. | JSON html/message del usuario; sin sesión 401. |
 | GET /api/eventos/{slug}/clima | Slug de evento público. | JSON status/message y forecast cuando válido; desconocido 404. |
 
-Errores de negocio usan códigos HTTP acordes (401, 403, 404, 409, 422); métodos no admitidos 405. Un error inesperado puede devolver 500 con texto seguro desde el manejador global, por lo que el cliente debe tolerar respuesta no JSON. No es una API de pagos.
+Los errores de negocio usan códigos HTTP acordes (401, 403, 404, 409, 422); métodos no admitidos 405. Un error inesperado puede devolver 500 con texto seguro desde el manejador global, por lo que el cliente debe tolerar respuesta no JSON. No es una API de pagos.
 
 jQuery aporta dos funciones significativas: catálogo con debounce/aborto/control de secuencia e historial actualizado tras cancelar. AJAX tiene más de tres operaciones. El total visual orienta al usuario; el precio definitivo lo calcula PHP/MySQL.
 
-La confirmación cliente tiene espera máxima de 15 s incluyendo JSON. Bloquea doble envío; ante timeout/red/5xx o respuesta inválida dirige a consultar experiencias y evita reintento inmediato desde el formulario. Abortar la espera no cancela una reserva ya confirmada en MySQL. Su activación en QA y navegación automática al ticket fueron comprobadas en Chrome.
+La confirmación cliente tiene espera máxima de 15 s incluyendo JSON. Bloquea doble envío; ante timeout/red/5xx o respuesta inválida dirige a consultar experiencias y evita reintento inmediato desde el formulario. Abortar la espera no cancela una reserva ya confirmada en MySQL. El recorrido de Chrome comprobó el aviso y la navegación al ticket.
 
 Open-Meteo se consulta desde PHP por HTTPS, coordenadas validadas y destino fijo. Lectura acotada a 3 s y 128 KiB, sin seguir redirects; unidades/rangos/fecha revisados. Pronóstico diario solo para evento público futuro dentro de 15 días, con atribución. Caché positiva 1 h, negativa 10 min y resultado anterior hasta 6 h. El fallo permite continuar con la reserva.
 
 La aplicación mantiene una cuota global MySQL de 30 intentos/h y 10/min, consumida antes del HTTP externo bajo lock de fila. Los errores externos cuentan; falla de presupuesto omite la llamada. La caché puede perderse en alojamiento efímero, pero la cuota MySQL debe conservarse. Reglas/callback, migración, límites en MySQL y persistencia/restauración comprobados. Dos carreras reales del presupuesto fueron comprobadas en la integración MySQL de 219 controles.
 
-## 9. Despliegue, instalación y transferencia
+## 9. Instalación, despliegue y datos
 
-Linux usa scripts/start-linux.sh; Windows usa la guía PowerShell de INSTALACION.md con Docker Desktop y contenedores Linux. El inicio genera claves si no existe .env, espera disponibilidad MySQL y ejecuta migraciones. No borra volúmenes ni siembra destructivamente. Demo es operación local separada. Windows aún no fue ejecutado en un equipo compatible.
+En Windows se extrae el paquete y se ejecuta INSTALAR-EVENTIFY.cmd. El asistente prepara Docker Desktop cuando hace falta, configura la aplicación, espera a MySQL y aplica las migraciones. Windows puede solicitar permisos de administrador o un reinicio. Después se usan Iniciar Eventify y Detener Eventify desde el escritorio.
 
-Volúmenes locales mysql_data y app_storage conservan datos y archivos al recrear contenedores. Migraciones mantienen firma SHA-256 y progreso DDL; una incompleta bloquea reintento inseguro. No alterar firmas ni borrar historial para arrancar. Git conserva código, no los datos de la base.
+Una instalación vacía recibe ocho eventos de ejemplo, cinco categorías y cuentas de administrador y usuario con contraseñas únicas. Los accesos se guardan en storage/example-credentials.json de la carpeta instalada. Si ya existen datos, el arranque los conserva y no reemplaza cuentas ni eventos. Los ejemplos no representan cobros ni actividades contratadas.
 
-El paquete se exporta desde un commit concreto, con manifiesto y SHA-256 del ZIP y de cada archivo. Contiene código, scripts, migraciones, licencias y .env.example; no contiene claves, .git, volúmenes ni datos de MySQL. El receptor no necesita Python, Git ni cuentas en Render, Aiven o GitHub para ejecutar la copia local. Sí necesita Docker/Compose y conexión a Internet para descargar las imágenes y dependencias inicialmente.
+Los volúmenes mysql_data y app_storage conservan datos al detener o recrear contenedores. La copia del código no contiene las reservas de una instalación existente: para trasladarlas hay que realizar un respaldo de MySQL y de los archivos. No se deben borrar los volúmenes como parte del uso normal.
 
-El ZIP dev.33 del commit f4d6c5a arrancó en Linux desde una ruta con espacios en el puerto8086. Se comprobaron ambos roles, reserva, ticket/QR, cancelación e historial. La recreación posterior conservó las huellas de diez tablas y cinco archivos, ocho reservas y ocho tickets; el navegador volvió a mostrar el ticket cancelado y su QR. El ZIP fuente coincide con la huella del paquete probado. Windows tiene evidencia de sintaxis PowerShell, pero no de ejecución completa del stack.
+La aplicación pública está en https://eventify-academico.onrender.com. Usa PHP/Apache en Render y MySQL en Aiven. La copia local es independiente: no comparte automáticamente cuentas, reservas ni contraseñas con la web pública y no necesita cuentas en esos proveedores. Los planes gratuitos pueden suspender servicios por inactividad; antes de la evaluación se debe comprobar la URL y los accesos.
 
-La restauración QA usó una base y volúmenes nuevos, un dump consistente y comparación de filas y archivos. No importó encima de una base existente. El navegador también comprobó el destino restaurado autenticado. Para transferir reservas ya creadas hay que exportar los datos por separado, siguiendo RESPALDO.md; el ZIP de código no los incluye.
+Git conserva el código y las versiones, pero no reemplaza un respaldo de la base de datos. Para volver a una versión anterior hay que revisar primero su compatibilidad con las migraciones y los datos existentes.
 
-La web de evaluación está en https://eventify-academico.onrender.com, con PHP/Apache en Render Free y MySQL 8.4.11 en Aiven Free. Se publicó solo EVENTIFY desde el repositorio privado. No se usó tarjeta ni un plan pagado. Los límites e inactividad de los planes gratuitos deben revisarse para la fecha de evaluación; una URL publicada no implica disponibilidad permanente.
+## 10. Pruebas y validación
 
-La demostración pública comprobó login de ambos roles, creación de categoría y evento ficticio, reserva de dos entradas por un total calculado de 5000 colones, ticket/QR y cancelación con historial. Un reinicio real conservó filas y huellas de diez tablas. Los archivos de sesión están en el almacenamiento efímero de Render: tras recrear la web puede requerirse otro login, sin perder reservas de MySQL. El proveedor respondió HTTP 429 en una visita y el sistema mantuvo disponible la reserva. El 8 de octubre a las 18:22 CST, la API pública devolvió HTTP 200 con un pronóstico útil visible para el evento ficticio: RF-15 tiene evidencia de éxito y fallo controlado. No se garantiza que un servicio gratuito nunca limite las consultas.
+Se combinan pruebas de reglas de negocio, integración PHP/MySQL, peticiones HTTP y recorridos de navegador. Se revisan autenticación, permisos, propiedad del ticket, CSRF, cantidades inválidas, precio calculado en servidor y los límites de cancelación. Las pruebas de concurrencia envían solicitudes simultáneas para revisar el último cupo y las reservas duplicadas.
 
-## 10. Pruebas y límites de evidencia
-
-| Evidencia ejecutada | Resultado | Qué no demuestra |
+| Área | Resultado documentado | Alcance |
 | --- | --- | --- |
-| Desarrollo Linux | 266 comprobaciones unitarias, sintaxis PHP 8.4 y QR en cada imagen local/pública dev.32; módulos Apache revisados ausentes en ejecución. | No cubre por inferencia cambios posteriores ni Windows. |
-| Integración MySQL/HTTP | 219 comprobaciones, tres migraciones y carreras de reserva, administración y presupuesto; 16:31:25 UTC. | No equivale a pruebas completas de la web pública. |
-| Persistencia Linux | ZIP dev.33, ruta con espacios: diez tablas y cinco archivos idénticos tras recrear después de reservar/cancelar; ocho reservas y tickets. | Comprobado el ZIP fuente dev.33 exacto; no certifica Windows u otro paquete. |
-| Chrome y diseño adaptable | Flujos de ambos roles, reserva, QR, cancelación y vistas en móvil/tableta/escritorio. | Registro móvil con foco/teclado y validación vacía comprobados; Firefox con capturas humanas parciales; matriz restante pendiente. Zoom200% opcional por indicación del usuario. |
-| TLS real | CA/hostname incorrectos y servidor sin TLS rechazados; conexión externa válida en Aiven/Render. | No es una auditoría universal de la infraestructura. |
-| Publicación dev.30 | Render Live (390b1ef); parche xz/liblzma, sintaxis y 39 controles de clima más 44 de presupuesto en construcción; diez tablas conservadas y 81 controles HTTPS posteriores. | Pronóstico público útil observado tras actualizar; disponibilidad permanente y todas las variantes administrativas no garantizadas. |
-| Flujos públicos dev.25/26 | Login, administración, reserva/ticket/cancelación y conservación de diez tablas tras reiniciar. | Disponibilidad permanente o todas las variantes de redeploy. |
-| Seguridad pública dev.27 | 81 controles HTTPS de cookies, sesión, CSRF, permisos y ticket/QR ajenos aprobados. | Todas las variantes de ataque o revisión de imágenes. |
-| Dependencias e historial | Composer sin avisos; jQuery verificado; 505 blobs sin secretos conocidos. | Ausencia de futuras vulnerabilidades o secretos desconocidos. |
-| Imágenes dev.30 | Construcción, unidades y escaneo confirman corrección xz/liblzma, cuatro filas de avisos eliminadas. | Persisten avisos y revisión de alcance; no equivale a seguridad completa. Despliegue documentado en su fila propia. |
-| Windows | Seis scripts analizados por PowerShell 5.1 real. | Instalación y ejecución con Docker/WSL aún pendientes. |
+| Integración de la aplicación dev.46 | 290 comprobaciones MySQL/HTTP aprobadas. | Incluye catálogo inicial y conservación de datos; no demuestra instalación en Windows. |
+| Interfaz dev.45 | 173 comprobaciones en Firefox, 22 pantallas y seis tamaños/orientaciones. | Resultado de esa versión, con recorridos dirigidos posteriores del catálogo dev.46. |
+| Clima | 58 comprobaciones de proveedores y 44 del presupuesto de consultas. | Éxito real y fallos controlados documentados; el servicio externo puede no estar disponible. |
+| Persistencia | Reinicios y recreación conservan tablas, reservas, tickets y archivos en los ensayos registrados. | Los datos se conservaron en los destinos probados. |
+| Instalador Windows dev.50 | Nueve scripts analizados y 68 controles en PowerShell 5.1. | Instalación de Docker simulada en esas pruebas; instalación completa en la máquina virtual todavía en curso. |
 
-Cada fila corresponde a su ejecución y alcance. No se suman como una suite única ni se atribuyen pruebas antiguas a código posterior. ESTADO.md y las evidencias por bloque conservan comandos, resultados e incidencias. Los ensayos previos con fallos no se consideran aprobados por una corrección posterior.
+La instalación en Windows debe terminar y comprobarse con ambos roles, una reserva, su ticket y la conservación de datos después de detener e iniciar. Hasta completar ese recorrido no se considera validada la entrega para ese equipo. La defensa individual requiere explicar y modificar el código durante la evaluación; no se acredita mediante las pruebas automáticas.
 
-## 11. Preparación de defensa y conclusiones
+## 11. Conclusiones
 
-La persona responsable debe explicar ruta navegador-PHP-PDO-MySQL, sesión/rol/CSRF, total del servidor, bloqueo de cupos, estados e historia, jQuery/AJAX, API externa y limitaciones de despliegue. Ensayar demo con datos ficticios y una modificación menor real. ENSAYO-DEFENSA.md organiza un recorrido de 15 minutos, archivos de lectura, preguntas y un ejercicio del límite de cancelación; SEGURIDAD-ENTREGA.md explica los controles y riesgos. Son material de estudio, no una práctica humana ya realizada. Registrar participación y resultados humanos cuando ocurran; este documento no acredita comprensión ni defensa.
+EVENTIFY centraliza la consulta de eventos, las reservas y los tickets. La separación entre interfaz, reglas de negocio y acceso a datos permite mantener las validaciones en el servidor. Las transacciones protegen los cupos y el precio histórico permite conservar el valor de una reserva aunque cambie el evento.
 
-Ejercicios sugeridos: explicar por qué un ticket ajeno devuelve 404; demostrar rechazo a exactamente 24 h; localizar el cálculo del precio y contrastarlo con el total visual; recorrer una migración y explicar qué pasa si se interrumpe; mostrar que el clima falla sin impedir reservar. Son propuestas de preparación, no evidencias ejecutadas.
+AJAX evita recargas completas en las búsquedas y en las operaciones de reserva. El clima aporta información útil sin convertirse en una dependencia para reservar. Docker facilita la instalación de PHP y MySQL en un entorno reproducible, con datos persistentes.
 
-La base funcional y la web pública tienen evidencia real de sus flujos principales. Para cerrar quedan la instalación Windows, los casos restantes de Firefox y la revisión del documento por el estudiante. La corrección de imágenes dev.41 tiene sus pruebas y límites registrados en el apartado final. La preparación y defensa individual necesitan participación humana real. Este documento mantiene visibles esas limitaciones.
+La revisión final debe confirmar la instalación en Windows, el acceso del evaluador al repositorio y a las cuentas públicas, y la preparación del estudiante para la defensa individual.
 
-## 12. Referencias y trazabilidad
+## 12. Referencias
 
-Fuentes de requisitos: SC-502_Suficiencia_Especial_Eventify.pdf y SC-502 Ambiente Web Cliente-Servidor.pdf, analizados previamente en REQUISITOS.md. Fuente de implementación: public/index.php, app/, database/, composer.lock y scripts/ del código dev.46. Los ensayos de versiones anteriores conservan sus referencias y límites. Fuente de evidencia: ESTADO.md, MATRIZ.md y docs/evidencias por bloque.
+- Enunciado SC-502 Suficiencia Especial: EVENTIFY, secciones 5 a 13.
+- Programa del curso SC-502 Ambiente Web Cliente-Servidor.
+- PHP: https://www.php.net/manual/es/
+- MySQL: https://dev.mysql.com/doc/refman/8.4/en/
+- jQuery: https://api.jquery.com/
+- Docker: https://docs.docker.com/
+- Open-Meteo: https://open-meteo.com/en/docs
+- MET Norway: https://api.met.no/doc/Locationforecast/2.0/documentation
+- BaconQrCode: https://github.com/Bacon/BaconQrCode
 
-Documentos operativos: INSTALACION.md, ARQUITECTURA.md, DATOS.md, PUBLICACION.md, RESPALDO.md, VERSIONADO.md, PAQUETE.md, COPIA-LIMPIA.md, SEGURIDAD.md, AVISOS-IMAGENES.md y CIERRE.md. Los documentos históricos pueden describir etapas anteriores: las migraciones/código y el estado vigente prevalecen al comprobar una afirmación técnica.
-
-Repositorio privado: https://github.com/USUARIO_DESTINO/eventify. La visibilidad privada no garantiza acceso del evaluador; gestionarlo cuando se acuerde. No se incluyen claves ni datos personales de cuentas de prueba en este documento.
-
-## Ampliación de seguridad: dev.33
-
-Se analizó el binario oficial gosu de la imagen MySQL linux/amd64 con govulncheck, sin exclusiones: no se detectaron funciones vulnerables presentes; siguen registradas coincidencias por versión de módulo/paquete. Esto no certifica toda la imagen ni el servidor administrado. ACL, ncurses y montajes requieren rutas privilegiadas o herramientas que la aplicación no llama; XML y Python conservan límites de revisión. El detalle y fuentes están en docs/AVISOS-IMAGENES.md y el conteo completo por paquete en docs/INVENTARIO-IMAGENES.md.
-
-La imagen derivada conserva MySQL 8.4.11 y corrige tres avisos de gawk con el paquete Oracle 5.1.0-6.el9_8.1. Dev.33 aprobó construcción, 219 comprobaciones de integración, TLS, cuentas y rechazo del arranque sin TLS. El escaneo confirma 69→66 avisos, sin nuevos ni exclusiones. Las instalaciones anteriores conservan su versión; la copia limpia dev.33 aprobó recorrido y persistencia posterior.
-
-
-## Experiencia de uso y aceptación local: dev.37
-
-El ingreso válido redirige al inicio. La navegación distingue visitante, usuario y administrador; ocultar enlaces no reemplaza la autorización en servidor. Registro e ingreso permiten mostrar u ocultar cada contraseña con un botón accesible. Sin JavaScript, los campos siguen protegidos y utilizables. No se conserva la contraseña en almacenamiento del navegador al alternar su visibilidad.
-
-Mi cuenta permite editar el nombre completo con POST, token CSRF, validación de servidor y consulta preparada sobre el identificador de sesión. El correo y el rol no son editables desde ese formulario. Las reservas y tickets siguen vinculados al identificador del usuario. El perfil ofrece acceso a experiencias, administración cuando corresponde y cierre de sesión. Se retiró el aviso provisional del inicio y se incorporaron transiciones breves, desactivadas cuando el sistema solicita reducir movimiento.
-
-Dev.37 aprobó 225 comprobaciones de integración MySQL/HTTP, sintaxis PHP 8.4, 23 controles de registro/CSRF y 7 de páginas de error. En la instalación 8086 se comprobó ingreso al inicio de ambos roles, edición y persistencia del nombre tras una nueva sesión, navegación al panel y conservación del historial. El nombre ficticio original se restauró; no se crearon reservas durante esa revisión. Perfil adaptado a 390/768/1280px sin desbordamiento en los tamaños observados. No certifica instalación Windows, toda la matriz Firefox o un ZIP nuevo por inferencia.
-
-## Reducción del runtime y riesgos conservados: dev.34–37
-
-Dev.34 retiró 32 paquetes de construcción de ambas imágenes PHP y mantuvo versiones de los paquetes conservados. Imágenes finales, unidades y arranque público con TLS positivo/negativo tienen evidencia propia sobre 6d41df5. Con la misma base Trivy almacenada, el informe pasó de 2011 a 424 filas por imagen, sin identificadores/paquetes/versiones nuevos ni exclusiones: 1 crítico, 91 altos, 162 medios, 166 bajos y 4 sin clasificación. Esta reducción no corrige el kernel del host ni demuestra que las bibliotecas restantes estén libres de vulnerabilidades.
-
-El informe histórico MySQL dev.33 conserva 66 filas. La reducción sin Shell dev.38 elimina 19 filas de bibliotecas Python sin uso; los 47 avisos conservados mantienen sus límites documentados. No se acepta el riesgo residual automáticamente ni se presenta la versión como estable. En ese corte la web pública ejecutaba dev.37; su despliegue y controles históricos se registran a continuación. La publicación vigente es dev.43; los avisos de este apartado son históricos. El paquete dev.37 requiere aceptación propia; Windows se ensaya al final.
-
-
-### Publicación y límites del alojamiento: corte dev.37
-
-Render Free publicó el commit 7c3a3e28435566349efcd4b2a66eace89de978d2 el 9 de octubre a las 17:09:37 CST. Diez tablas conservaron filas y huellas antes y después del despliegue. Las comprobaciones HTTPS posteriores aprobaron 81 controles de usuarios y 31 del administrador, sin escrituras de negocio.
-
-Aiven MySQL Free estaba apagado por inactividad; se reactivó el servicio existente. Render también puede dormir: conviene comprobar ambos antes de evaluar. Una muestra de Eventos cargó en 101,9 ms localmente y 1060,2 ms públicamente con el servicio activo; no mide arranque en frío ni garantiza latencia.
-
-El pronóstico recibió HTTP 429 del proveedor. Se mostró el aviso de indisponibilidad y se mantuvo el acceso a reservar. Un reintento posterior mantuvo la indisponibilidad. La respuesta útil anterior conserva su propia evidencia; no se inventan valores ni se eluden límites.
-
-Packagist no devolvió avisos para las dos bibliotecas de Composer. En aquel corte libxml2 seguía abierto en la imagen base; no se instaló un parche nativo sin pruebas. El documento sigue siendo borrador hasta completar la aceptación.
-
-
-### Reducción de MySQL: dev.38
-
-La imagen final retira mysql-shell mediante RPM y comprueba que servidor, clientes SQL, gosu y entrypoint conserven sus huellas. RPM puede dejar cachés Python; solo se elimina su directorio después de comprobar que ningún resto pertenece a otro paquete. La candidata aprobó 225 controles MySQL/HTTP, respaldo/restauración ficticios y TLS positivo/negativo.
-
-La imagen final de 9321f68 aprobó construcción,225 controles, TLS positivo/negativo y escaneo propios en mysql-image-check-YmuG4fAM. El escaneo con la misma base Trivy del 8 de octubre confirma 47 filas idénticas a la candidata, sin avisos nuevos o exclusiones: 1 crítico, 21 altos, 22 medios, 2 bajos y 1 sin clasificación. Retirar componentes no corrige vulnerabilidades de gosu o del host, ni los avisos PHP/libxml2.
-
-No hay cambios de aplicación o esquema. En el corte dev.38 la web pública permanecía en dev.37 y Aiven no cambió; la receta MySQL afecta futuras construcciones locales. Las instalaciones existentes conservan datos e imágenes. La instalación Windows, las comprobaciones restantes de Firefox y la aceptación humana continúan pendientes.
-
-
-### Presentación y publicación: dev.39
-
-El historial y su actualización AJAX muestran FINALIZADO cuando un evento publicado ya pasó, conservando el estado almacenado. Las reservas administrativas usan «1 entrada» en singular. No cambian cupos, precios, permisos ni esquema. La integración aprobó 225 controles MySQL/HTTP; IAB comprobó filtros, perfil persistente y restaurado, logout, tickets, roles y administración. El panel se revisó a 390, 768 y 1280 píxeles sin desbordamiento. Estas pruebas no certifican Firefox.
-
-Render Free desplegó el commit 0e3aae247da50deaa0150be4e235728cbe3db12a el 10 de octubre. El despliegue dep-db52frajnfac7390qf80 quedó Live y tardó 32,7 segundos. Las diez tablas mantuvieron filas y huellas; después se aprobaron 81 controles HTTPS de usuarios y 36 administrativos. IAB confirmó panel, reserva cancelada existente y catálogo; las sesiones se cerraron. No se crearon reservas o cuentas públicas. Dev.37 se conserva como referencia anterior para rollback compatible.
-
-El paquete actualizado requiere su comprobación Windows; la instalación Linux original dev.33 conserva evidencia propia. Los avisos nativos de esas imágenes anteriores se corrigieron en dev.41, con el alcance descrito a continuación. Este documento sigue siendo borrador de evaluación; la defensa y comprensión requieren participación real del estudiante.
-
-
-### Corrección de dependencias y publicación: dev.41
-
-La web usa Alpine 3.24.2 fijada por digest, PHP 8.4.26 y Apache 2.4.69. libxml2 es 2.13.9-r2; CVE-2026-6653 estaba corregida desde 2.11.0, mientras Debian conservaba una base 2.9.14. Se incorporan Expat 2.8.5, OpenSSL 3.5.9 y zlib 1.3.2-r1. Las recetas local y pública comparten versiones y configuración; mantienen UID/GID 33, almacenamiento persistente y comprobaciones del arranque público.
-
-MySQL conserva servidor 8.4.11 y clientes oficiales. Su OpenSSL se actualiza a 3.5.8-2.0.1.el9_8. gosu 1.19 se reconstruye con Go 1.27.2 y sus dos dependencias corregidas, con código, huella y archivos de módulos fijados. El compilador no queda en la imagen final. No cambia el esquema ni se borran datos.
-
-Las tres imágenes finales se escanearon con Trivy 0.75.0 y base del 10 de octubre a las 12:33:35 UTC: cero avisos, sin exclusiones. Cada reporte se vinculó a la configuración OCI de su imagen. Pasaron 234 controles MySQL/HTTP, unidades, TLS válido, rechazo de CA/hostname incorrectos y servidor sin TLS, recreación y restricción de privilegios en cinco trabajadores Apache. Cero avisos conocidos no garantiza ausencia de vulnerabilidades futuras, ni audita el host o el proveedor administrado.
-
-Código probado y etiqueta v0.1.0-dev.41: 28c73cdd63386527ad4a07e03a8c1385198d9bf7. Actualización local 8086 saludable y diez tablas idénticas, ocho reservas/tickets conservados. Recorrido real: login al inicio, catálogo, historial, ticket/QR, perfil y logout. Render Free publicó ese mismo commit, dep-db5744rrjlhs73clgpj0, Live el 10 de octubre a las 11:13:25 CST; diez tablas Aiven conservadas y 81 controles HTTPS de usuarios y 36 de administración aprobados. Se mantienen respaldos y versiones anteriores. Windows conserva su prueba real pendiente.
-
-### Respaldo del clima dev.42
-
-Open-Meteo continúa como proveedor principal. Ante un fallo de su consulta, se consulta MET Norway desde PHP, con destino HTTPS fijo y certificado verificado. Es gratuito, sin clave ni cuenta, con datos CC BY4.0 y atribución visible. Conserva respuesta por ubicación al menos una hora, respeta Expires y revalida con If-Modified-Since. No se envían datos de cuentas o ubicación del visitante.
-
-El respaldo cubre hasta nueve días. El rango mostrado corresponde a muestras horarias o cada seis horas de la fecha en Costa Rica, con cobertura validada; no equivale a extremos exactos diarios. No se muestra una probabilidad de lluvia que el respaldo no entregue. Si ambos proveedores fallan o no cubren la fecha, el aviso permite continuar con la reserva. La disponibilidad no está garantizada. Resultados concretos y versión pública se consultan en ESTADO.md.
-
-Verificación del respaldo el 10 de octubre: 58 controles de clima y 234 de MySQL/HTTP correctos. Render publicó bd7e3e5 y el navegador mostró un rango de 17,9 a 26,4 °C para las muestras del 12 de octubre, con fuente MET Norway. El despliegue conservó nueve tablas de Aiven; únicamente cambió el contador weather_budget durante las consultas. La instalación local conservó sus diez tablas. Estas pruebas no certifican la instalación en Windows ni el recorrido restante de Firefox.
-
-### Presentación del clima dev.43
-
-La tarjeta destaca el rango de temperatura y muestra la probabilidad de lluvia únicamente cuando el proveedor entrega ese dato. «Sobre el pronóstico» reúne fuente, licencia CC BY4.0, adaptación, hora de consulta y límites del rango mostrado. El desplegable funciona con teclado y empieza cerrado. Los avisos de carga, indisponibilidad e información almacenada se mantienen; el clima no bloquea una reserva.
-
-Render publicó f9eac94, deploy dep-db57le7lk1mc7391a8u0. La revisión del 10 de octubre comprobó el pronóstico real, el desplegable y el botón de actualización. A ancho efectivo de 375px, la tarjeta mide 327px y la página no presenta desbordamiento horizontal. No cambia API, proveedores, migraciones ni datos de negocio.
-
-## Ampliación solicitada: autorización de administradores
-
-Desde Administración → Usuarios se busca una cuenta por nombre o correo, se abre Hacer administrador y se confirma con la contraseña del administrador actual. El servidor exige sesión administrativa vigente, CSRF, confirmación explícita, cuenta activa y contraseña correcta. Limita intentos y revalida las cuentas dentro de una transacción antes de cambiar únicamente role_id. El registro público continúa asignando USUARIO. Las sesiones existentes consultan el rol vigente en MySQL. Esta ampliación fue solicitada por el usuario el10oct; no se atribuye al enunciado académico. No incorpora revocación ni borrado de cuentas.
-
-## Catálogo de entrega dev.46
-
-El arranque de una copia local vacía prepara ocho eventos ilustrados, cinco categorías y accesos de administrador/visitante con claves únicas. Las fechas son relativas al primer inicio, las cuentas se guardan con hash y el archivo de acceso queda en almacenamiento privado. No se crean reservas ficticias. Una transacción y un marcador conservan el catálogo y las claves en los reinicios. La demostración antigua permanece separada para pruebas de estados extremos.
+Código y versiones: https://github.com/USUARIO_DESTINO/eventify. El repositorio es privado; el evaluador necesita acceso. Las credenciales se entregan por separado y no forman parte del PDF ni del historial público.

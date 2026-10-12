@@ -2,6 +2,10 @@
 
 Revisión vigente: 10 de octubre de 2026. IDs y criterios completos en [REQUISITOS.md](REQUISITOS.md); resultados vigentes en [ESTADO.md](ESTADO.md), detalle en [B07](evidencias/B07.md). Esta matriz es un índice para revisión, no una certificación de entrega. Los nombres de pruebas indican cobertura relevante; resultados aprobados corresponden a las ejecuciones registradas, no al simple hecho de existir archivos.
 
+## Corte documental del 11 de octubre de 2026
+
+La revisión actual está en [REVISION-ENTREGA.md](REVISION-ENTREGA.md). Las tablas siguientes conservan referencias históricas y no deben usarse para inferir pendientes actuales: Firefox dev.45 tiene173 controles/22 pantallas; integración dev.46 tiene290 controles; instalador dev.50 tiene nueve scripts analizados y68 controles PowerShell. La instalación completa Windows está en curso, sin aceptación final. El PDF técnico reorganizado conserva21RF/7RNF y todos los apartados de ENT-C. No se repitieron esos ensayos por una revisión editorial.
+
 ## Funciones
 
 Rutas de código y pruebas relativas a la raíz del repositorio. Integración aislada vigente: 234 comprobaciones MySQL/HTTP sobre el runtime corregido dev.41, incluidas caducidad y rechazo de sesión inventada. Las 266 unidades/QR pertenecen a sus ejecuciones históricas indicadas en ESTADO. Recorrido IAB dev.39 terminado; Firefox conserva evidencia humana parcial y no está disponible en el control autorizado. No se atribuyen pruebas de una referencia a otra por compartir este índice.

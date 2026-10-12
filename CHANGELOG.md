@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## Revisión documental de entrega — 11 de octubre de 2026
+
+- Guía Windows simplificada con instalación, inicio/detención, cuentas y conservación de datos.
+- Documento técnico reorganizado por funcionamiento y requisitos; registro de entregables exigidos y pendientes.
+- Sin cambios de aplicación, instalador o versión; historial y paquetes anteriores conservados.
+
 ## 0.1.0-dev.50 — Progreso de descarga Windows
 
 - Descarga directa de Docker con porcentaje, MB recibidos/total y tiempo transcurrido cuando el servidor informa el tamaño.

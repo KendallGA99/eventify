@@ -1,102 +1,66 @@
-EVENTIFY dev.50 — instalación en Windows
+EVENTIFY - INSTALACIÓN EN WINDOWS
 
-Esta carpeta contiene la aplicación y una base MySQL local independiente.
-La URL pública https://eventify-academico.onrender.com sigue siendo otra instalación.
-No se sincronizan usuarios, eventos, reservas ni contraseñas entre ambas.
-No necesita cuentas de Render, Aiven o GitHub para ejecutar esta copia.
+1. PREPARAR LA CARPETA
+Extraiga todo el ZIP, por ejemplo en C:\Proyectos\EventifyEntrega.
+No abra el instalador dentro del ZIP. Mantenga la carpeta en esa ubicación.
+Necesita conexión a Internet para la primera instalación, Windows de 64 bits
+compatible con Docker Desktop y virtualización habilitada. Docker indica
+al menos 8 GB de RAM. Con menos memoria, el instalador muestra un aviso;
+continuar no garantiza que Docker pueda funcionar correctamente.
 
-PRUEBA EN VM CON MENOS DE 8 GB
-En esta version, INSTALAR-EVENTIFY.cmd ya NO bloquea por memoria RAM.
-Muestra un aviso y continua, sin tener que elegir otro archivo o parametro.
-Docker y WSL conservan sus propios requisitos. Este cambio permite ensayar;
-no certifica estabilidad de una VM con memoria insuficiente.
+2. INSTALAR
+Abra INSTALAR-EVENTIFY.cmd con doble clic.
+El asistente prepara los componentes necesarios, instala Docker Desktop
+si hace falta y luego inicia Eventify. No necesita instalar PHP ni MySQL
+por separado ni crear cuentas en los servicios de alojamiento.
 
-1. EXTRAER TODO EL ZIP
-Use Extraer todo, por ejemplo en C:\Proyectos\EventifyEntrega.
-No ejecute los archivos dentro del ZIP. Conserve esta carpeta en su lugar:
-los accesos del escritorio apuntaran a ella.
+Acepte el permiso de administrador cuando Windows lo solicite.
+Si se pide reiniciar, reinicie el equipo y abra el mismo instalador otra vez.
+Si Docker muestra sus condiciones de uso, revíselas para continuar.
+Deje la ventana abierta hasta que termine. La descarga y la preparación
+inicial pueden tardar varios minutos, según la conexión y el equipo.
+Al finalizar, se abre http://localhost:8080 en el navegador.
 
-2. INSTALAR E INICIAR
-Haga doble clic en INSTALAR-EVENTIFY.cmd, ubicado junto a esta guia.
-Tambien puede abrir Eventify e iniciar instalar-windows.cmd desde CMD.
-El asistente comprueba Windows x64, RAM y virtualizacion; prepara WSL
-si Docker no esta instalado, instala Docker Desktop y abre Eventify.
-No necesita escribir comandos ni instalar PHP, MySQL, Git o Python.
-Internet es necesario para la primera instalacion.
+3. INICIAR Y DETENER
+La instalación crea dos accesos en el escritorio:
+- Iniciar Eventify: inicia los servicios y abre la página.
+- Detener Eventify: apaga el proyecto y conserva los datos.
 
-Windows puede pedir permiso de administrador y reiniciar. El asistente no
-reinicia sin aviso: reinicie usted y abra INSTALAR-EVENTIFY.cmd otra vez.
-Si Docker muestra sus terminos, lealos y aceptelos para continuar.
-No necesita registrarse ni iniciar sesion en Docker, Render, Aiven o GitHub.
-El uso educativo de Docker Desktop es gratuito bajo sus condiciones.
-La descarga directa de Docker muestra porcentaje, MB y tiempo transcurrido.
-Si el servidor no informa el tamano total, muestra los MB sin porcentaje.
-WinGet mantiene su propio indicador. La instalacion posterior muestra su
-etapa: no se inventa un porcentaje cuando Docker no lo informa.
-La primera construccion puede tardar varios minutos. Al terminar se abre
-la pagina http://localhost:8080 en el navegador predeterminado.
+También puede usar iniciar-windows.cmd y detener-windows.cmd dentro de
+la carpeta Eventify. Si mueve la carpeta, abra nuevamente el instalador
+para actualizar los accesos. Docker puede seguir abierto al detener Eventify.
 
-Windows necesita ser compatible con Docker y tener virtualizacion disponible.
-Docker indica al menos 8 GB de RAM; para este ensayo, menos RAM muestra
-un aviso y permite continuar. Los otros requisitos siguen comprobándose. Una BIOS deshabilitada requiere ajuste manual.
-No se desactivan antivirus ni politicas de seguridad permanentes.
+4. CUENTAS DE ACCESO
+Una instalación nueva incluye ocho eventos de ejemplo y dos cuentas:
+- ADMINISTRADOR: permite gestionar eventos, categorías, reservas y usuarios.
+- USUARIO: permite explorar eventos, reservar y consultar sus tickets.
 
-3. BOTONES PARA USARLO DESPUES
-El asistente crea dos accesos en su escritorio:
-- Iniciar Eventify: abre Docker si hace falta, inicia el proyecto y abre la web.
-- Detener Eventify: detiene solo el proyecto; conserva cuentas y reservas.
-Tambien puede usar iniciar-windows.cmd y detener-windows.cmd en Eventify.
-Docker Desktop puede seguir abierto al detener: no se afectan otros proyectos.
-Si mueve la carpeta, ejecute de nuevo el instalador para actualizar los accesos.
+Para ver los correos y las contraseñas, abra la carpeta Eventify, entre en
+storage y abra example-credentials.json con Bloc de notas.
+Busque cada cuenta por su campo role; email es el correo y password la clave.
+Las claves se generan para esa instalación. Conserve el archivo en privado.
+No hace falta volver a crear las cuentas y los reinicios no cambian sus claves.
+Si la base ya contiene datos, el instalador los conserva.
 
-4. ENTRAR CON LAS CUENTAS PREPARADAS
-El primer arranque de una instalación vacía crea ocho eventos de ejemplo,
-un administrador y un visitante. No tiene que crearlos desde cero.
-Al terminar, abra storage\example-credentials.json con Bloc de notas.
-Use el correo y la contraseña de ADMINISTRADOR para entrar al panel.
-Cada instalación genera contraseñas distintas, sin una clave universal.
-Guarde ese archivo en privado; no lo publique ni lo adjunte a reportes.
-Los eventos son ejemplos académicos y no procesan pagos reales.
+5. COMPROBAR QUE FUNCIONA
+Ingrese como usuario, reserve un evento y abra el ticket con su código QR.
+Ingrese como administrador y revise los eventos y las reservas.
+Detenga e inicie Eventify y compruebe que los datos siguen disponibles.
+Los eventos son ejemplos académicos; la aplicación no recibe pagos reales.
 
-Si necesita volver a copiar el acceso, abra PowerShell en Eventify:
+6. PÁGINA LOCAL Y PÁGINA PÚBLICA
+Esta copia funciona en su computadora. La dirección localhost solo abre
+mientras el proyecto está encendido en ese equipo.
+La página pública es https://eventify-academico.onrender.com.
+Son instalaciones independientes: sus cuentas y reservas no se sincronizan.
+Las claves de esta carpeta corresponden únicamente a la copia local.
 
-docker compose cp web:/var/www/html/storage/example-credentials.json .\storage\example-credentials.json
+7. SI ALGO FALLA
+Si Docker aún está iniciando, espere a que esté listo y vuelva a iniciar Eventify.
+Si se indica que el puerto 8080 está ocupado, conserve el mensaje del error.
+No borre los datos ni reinstale todo como primer intento de solución.
+No elimine los volúmenes de Docker: allí se guardan las cuentas y las reservas.
+Copiar esta carpeta a otro equipo no copia las reservas ya realizadas.
+Internet se necesita para el pronóstico; si falla, puede seguir reservando.
 
-No ejecute demo-windows.ps1: es otro conjunto de pruebas y no se necesita
-para usar este catálogo. Si ya existían datos, el arranque los conserva y
-no añade eventos ni cuentas. Los reinicios tampoco cambian las claves.
-
-5. COMPROBAR
-Ingrese como usuario: explore eventos, reserve y consulte el ticket/QR.
-Ingrese como administrador: revise eventos, categorías, reservas y usuarios.
-Ejecute detener-windows.cmd y después iniciar-windows.cmd.
-Confirme que las cuentas y las reservas siguen presentes.
-Complete docs/VERIFICACION-WINDOWS.md con los resultados reales.
-
-6. USO POSTERIOR
-Ejecute Iniciar Eventify en el escritorio para volver a usarlo.
-El acceso abre Docker Desktop si hace falta.
-Use detener-windows.cmd para detenerlo conservando los datos.
-No borre volúmenes ni ejecute docker compose down -v.
-Los datos se guardan en volúmenes Docker: copiar esta carpeta a otro equipo
-no transfiere reservas existentes. Consulte docs/RESPALDO.md para ello.
-Con la computadora apagada o Docker detenido, localhost no estará disponible.
-Internet no es necesario para los flujos centrales ya instalados; el clima sí.
-
-SI ALGO FALLA
-Conserve las últimas líneas del error sin contraseñas.
-Puerto 8080 ocupado: revise APP_PORT en .env según docs/INSTALACION.md.
-Servicio Docker no disponible: compruebe que Docker Desktop esté listo.
-No repita la demostración para intentar recuperar una clave perdida.
-
-MANUALES
-El ZIP incluye el documento tecnico de la aplicacion dev.46 en PDF.
-El instalador y las instrucciones Windows se actualizaron en dev.47;
-consulte esta guia y docs/INSTALACION.md para ese cambio.
-- docs/INSTALACION.md: instalación, configuración y problemas frecuentes.
-- docs/DATOS.md: cuentas y demostración.
-- docs/VERIFICACION-WINDOWS.md: prueba de instalación y persistencia.
-- docs/RESPALDO.md: respaldo y traslado de datos.
-
-Este paquete se entrega para validar Windows. La instalación completa en
-Windows sigue pendiente; no se presenta como una versión estable certificada.
+Estado de esta edición: la instalación completa en Windows está en evaluación.
