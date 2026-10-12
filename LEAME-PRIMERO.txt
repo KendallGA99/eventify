@@ -67,4 +67,4 @@ No elimine los volúmenes de Docker: allí se guardan las cuentas y las reservas
 Copiar esta carpeta a otro equipo no copia las reservas ya realizadas.
 Internet se necesita para el pronóstico; si falla, puede seguir reservando.
 
-Estado de esta edición: la instalación completa en Windows está en evaluación.
+Instalador dev.52: reinstalación de Eventify confirmada con Docker y WSL existentes.
