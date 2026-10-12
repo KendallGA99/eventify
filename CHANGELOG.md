@@ -1,5 +1,10 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.51 — Consola del instalador Windows
+
+- Compose usa salida simple sin controles ANSI para iniciar desde el asistente, incluso cuando PowerShell redirige su salida.
+- Conserva los datos, las credenciales y las imágenes ya construidas.
+
 ## Publicador GitHub v1 — 11 de octubre de 2026
 
 - CMD independiente para autorizar GitHub, crear un repositorio privado e importar el historial entregado sin copiar direcciones.

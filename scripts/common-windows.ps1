@@ -35,6 +35,7 @@ function Initialize-EventifyEnv {
 }
 
 function Invoke-EventifyCompose {
-    & docker compose @args
+    # La salida simple funciona también cuando el asistente redirige la consola.
+    & docker compose --ansi never --progress plain @args
     if ($LASTEXITCODE -ne 0) { throw 'Docker Compose no pudo completar la operación. Revise el mensaje anterior.' }
 }
