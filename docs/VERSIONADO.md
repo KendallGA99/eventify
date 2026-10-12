@@ -128,3 +128,7 @@ Rama codex/b07-runtime-corregido, commit28c73cdd63386527ad4a07e03a8c1385198d9bf7
 ## Respaldo meteorológico dev.42
 
 Rama codex/b07-clima-respaldo; código bd7e3e5802c91e3a81412e7cae76060a7feec42a con push confirmado. Render dep-db57g12jnfac739gk1eg, iniciado10oct11:38:12CST y Live tras27,1s. Local8086 conserva MySQL dev.41 y volúmenes. Pruebas:58 controles de clima,234 MySQL/HTTP y81 HTTPS públicos; pronóstico de respaldo visible y muestra móvil revisada. Código dev.41 y su despliegue anterior conservados para rollback; sin cambio de esquema. Los documentos y el paquete posterior tienen su propia referencia y no alteran el código publicado. No marcar estable: Windows, Firefox restante y defensa humana pendientes.
+
+## Publicador GitHub v1
+
+Herramienta de entrega independiente en codex/b09-publicador-github. No cambia VERSION de la aplicacion ni etiquetas anteriores. El bundle203/56/47 conserva su huella y se acompana de un CMD; los archivos nuevos no se incorporan retroactivamente. El asistente crea un destino privado con la cuenta autenticada y conserva autores/fechas/referencias de la copia. Publicacion real del receptor pendiente; original sin reescritura o push forzado. Paquete y verificaciones en ESTADO.

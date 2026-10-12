@@ -1,5 +1,12 @@
 # Historial de versiones de Eventify
 
+## Publicador GitHub v1 — 11 de octubre de 2026
+
+- CMD independiente para autorizar GitHub, crear un repositorio privado e importar el historial entregado sin copiar direcciones.
+- Herramientas portables oficiales con huellas fijadas; conserva ramas/etiquetas y rechaza destinos ajenos o cambios distintos.
+- Reintento comprobado por identidad del repositorio y referencias; GitHub Actions desactivado antes de importar.
+- Aplicación dev.46 e instalador dev.50 sin cambios. Publicación real pendiente de autenticación del receptor.
+
 ## Revisión documental de entrega — 11 de octubre de 2026
 
 - Guía Windows simplificada con instalación, inicio/detención, cuentas y conservación de datos.
