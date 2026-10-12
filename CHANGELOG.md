@@ -1,5 +1,11 @@
 # Historial de versiones de Eventify
 
+## 0.1.0-dev.52 — Espera visible de Docker
+
+- Espera de hasta 30 minutos para el primer arranque de Docker, con tiempo transcurrido y avisos periódicos.
+- Indicador de actividad sin porcentaje ficticio y cuatro etapas del asistente.
+- Si Docker sigue sin responder, explica cómo retomar sin reinstalar ni borrar datos.
+
 ## 0.1.0-dev.51 — Consola del instalador Windows
 
 - Compose usa salida simple sin controles ANSI para iniciar desde el asistente, incluso cuando PowerShell redirige su salida.

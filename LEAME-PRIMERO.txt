@@ -17,7 +17,11 @@ por separado ni crear cuentas en los servicios de alojamiento.
 Acepte el permiso de administrador cuando Windows lo solicite.
 Si se pide reiniciar, reinicie el equipo y abra el mismo instalador otra vez.
 Si Docker muestra sus condiciones de uso, revíselas para continuar.
-Deje la ventana abierta hasta que termine. La descarga y la preparación
+Deje la ventana abierta hasta que termine. El asistente muestra cuatro etapas.
+El arranque de Docker muestra el tiempo transcurrido y espera hasta 30 minutos;
+no muestra porcentaje porque Docker no informa ese dato. Si se agota la espera,
+no reinstale: espere a que Docker esté listo y abra el mismo instalador otra vez.
+La descarga y la preparación
 inicial pueden tardar varios minutos, según la conexión y el equipo.
 Al finalizar, se abre http://localhost:8080 en el navegador.
 

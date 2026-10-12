@@ -157,19 +157,37 @@ function Install-EventifyDockerDesktop {
 }
 
 function Wait-EventifyDocker {
-    param([string]$DesktopPath, [int]$TimeoutSeconds = 300)
+    param([string]$DesktopPath, [int]$TimeoutSeconds = 1800, [int]$PollSeconds = 5)
     if (Test-EventifyDockerReady) { return }
     if (-not $DesktopPath) {
         throw 'No se encontro Docker Desktop en su ruta habitual. Abralo manualmente y vuelva a iniciar.'
     }
     Start-Process -FilePath $DesktopPath | Out-Null
-    Write-Host 'Esperando Docker. Acepte sus terminos si aparecen; no necesita iniciar sesion.'
+    Write-Host 'Abriendo Docker. Acepte sus terminos si aparecen; no necesita iniciar sesion.'
+    Write-Host 'El primer inicio puede tardar varios minutos. Eventify continuara cuando el motor este listo.'
     $watch = [Diagnostics.Stopwatch]::StartNew()
-    while ($watch.Elapsed.TotalSeconds -lt $TimeoutSeconds) {
-        if (Test-EventifyDockerReady) { return }
-        Start-Sleep -Seconds 5
+    $nextNotice = 0
+    try {
+        while ($watch.Elapsed.TotalSeconds -lt $TimeoutSeconds) {
+            $elapsed = $watch.Elapsed.ToString('hh\:mm\:ss')
+            $status = "Esperando el motor de Docker | Tiempo transcurrido: $elapsed"
+            # Docker no informa un porcentaje de arranque; mostrar tiempo evita inventarlo.
+            Write-Progress -Id 2 -Activity 'Iniciando Docker Desktop' -Status $status -PercentComplete -1
+            if ($watch.Elapsed.TotalSeconds -ge $nextNotice) {
+                Write-Host $status
+                $nextNotice = $watch.Elapsed.TotalSeconds + 15
+            }
+            if (Test-EventifyDockerReady) {
+                Write-Host "Docker esta listo. Tiempo de espera: $elapsed. Continuando con Eventify."
+                return
+            }
+            Start-Sleep -Seconds $PollSeconds
+        }
+        throw 'Docker no estuvo disponible dentro del tiempo de espera. No necesita reinstalar ni borrar datos: espere a que Docker indique Engine running y vuelva a abrir INSTALAR-EVENTIFY.cmd. Si no inicia, revise WSL, virtualizacion y memoria.'
+    } finally {
+        Write-Progress -Id 2 -Activity 'Iniciando Docker Desktop' -Completed
+        $watch.Stop()
     }
-    throw 'Docker aun no responde. Revise su ventana, WSL y virtualizacion; vuelva a iniciar Eventify cuando este listo.'
 }
 
 function New-EventifyDesktopShortcuts {
@@ -193,8 +211,10 @@ function New-EventifyDesktopShortcuts {
 
 function Invoke-EventifyWindowsSetup {
     param([string]$Root, [string]$SetupScript, [switch]$AllowLowMemory)
+    Write-Host '[1/4] Comprobando el equipo.'
     Assert-EventifyWindowsHost -AllowLowMemory:$AllowLowMemory
     Update-EventifyWindowsPath
+    Write-Host '[2/4] Preparando Docker y comprobando su motor.'
     if (-not (Test-EventifyDockerReady)) {
         $desktop = Find-EventifyDockerDesktop
         if (-not $desktop) {
@@ -211,8 +231,10 @@ function Invoke-EventifyWindowsSetup {
         }
         Wait-EventifyDocker -DesktopPath $desktop
     }
+    Write-Host '[3/4] Preparando Eventify y su base de datos. La primera construccion puede tardar.'
     & (Join-Path $Root 'scripts\start-windows.ps1') | Out-Host
     if ($LASTEXITCODE -ne 0) { throw 'Eventify no pudo iniciar. Revise el mensaje anterior.' }
+    Write-Host '[4/4] Creando accesos y abriendo Eventify.'
     try {
         New-EventifyDesktopShortcuts -Root $Root -AllowLowMemory:$AllowLowMemory
         Write-Host 'Accesos creados en el escritorio: Iniciar Eventify y Detener Eventify.'
