@@ -5,7 +5,7 @@
 
 EVENTIFY es una aplicación web para descubrir eventos, reservar entradas y consultar tickets con QR. Un usuario se registra, inicia sesión, filtra eventos y confirma una cantidad de entradas. El administrador gestiona categorías, eventos, reservas y métricas. El pronóstico meteorológico ayuda a planificar eventos próximos; su fallo no debe bloquear reservas.
 
-La entrega incluye una aplicación local para Windows, una URL pública, el código fuente con su historial en GitHub, cuentas de evaluación y este documento técnico. No incluye cobros reales, aplicación móvil nativa ni control de acceso mediante escaneo.
+La aplicación funciona en un entorno local de Windows y en un despliegue web público. Su alcance no incluye cobros reales, aplicación móvil nativa ni control de acceso mediante escaneo.
 
 El alcance corresponde a la suficiencia especial del curso SC-502. La instalación local se facilita mediante un asistente y dos accesos de escritorio para iniciar y detener la aplicación.
 
@@ -30,7 +30,7 @@ Navegador -> API clima PHP -> Open-Meteo HTTPS; MET Norway como respaldo
 
 public/index.php es el punto de entrada y decide ruta/método. app/Http coordina respuestas y autorización; app/Domain concentra reglas y transacciones; app/Infrastructure realiza acceso a MySQL/API y migraciones; app/Views renderiza; app/Security administra identidad; public/assets contiene estilos, JavaScript, bibliotecas e imágenes locales. La raíz pública es public, no el repositorio completo.
 
-PHP/MySQL son obligatorios. Docker reproduce el entorno local; el receptor no instala PHP/MySQL en su host. Las herramientas de pruebas y documentación no son necesarias para ejecutar la aplicación extraída.
+PHP y MySQL se ejecutan dentro de contenedores. Docker reproduce el entorno local sin instalar esos componentes directamente en Windows. Las herramientas de pruebas y generación de documentos son independientes de la ejecución de la aplicación.
 
 ## 3. Sitemap y navegación por roles
 
@@ -259,13 +259,13 @@ La aplicación mantiene una cuota global MySQL de 30 intentos/h y 10/min, consum
 
 ## 9. Instalación, despliegue y datos
 
-En Windows se extrae el paquete y se ejecuta INSTALAR-EVENTIFY.cmd. El asistente prepara Docker Desktop cuando hace falta, configura la aplicación, espera a MySQL y aplica las migraciones. Windows puede solicitar permisos de administrador o un reinicio. Después se usan Iniciar Eventify y Detener Eventify desde el escritorio.
+El despliegue local utiliza Docker Desktop y Docker Compose en Windows. El asistente CMD/PowerShell comprueba las dependencias, configura la aplicación, espera la disponibilidad de MySQL y aplica las migraciones. Los accesos de inicio y detención controlan los servicios sin eliminar los datos persistentes.
 
 Una instalación vacía recibe ocho eventos de ejemplo, cinco categorías y cuentas de administrador y usuario con contraseñas únicas. Los accesos se guardan en storage/example-credentials.json de la carpeta instalada. Si ya existen datos, el arranque los conserva y no reemplaza cuentas ni eventos. Los ejemplos no representan cobros ni actividades contratadas.
 
 Los volúmenes mysql_data y app_storage conservan datos al detener o recrear contenedores. La copia del código no contiene las reservas de una instalación existente: para trasladarlas hay que realizar un respaldo de MySQL y de los archivos. No se deben borrar los volúmenes como parte del uso normal.
 
-La aplicación pública está en https://eventify-academico.onrender.com. Usa PHP/Apache en Render y MySQL en Aiven. La copia local es independiente: no comparte automáticamente cuentas, reservas ni contraseñas con la web pública y no necesita cuentas en esos proveedores. Los planes gratuitos pueden suspender servicios por inactividad; antes de la evaluación se debe comprobar la URL y los accesos.
+La aplicación pública está en https://eventify-academico.onrender.com. Usa PHP/Apache en Render y MySQL en Aiven. La copia local es independiente: no comparte automáticamente cuentas, reservas ni contraseñas con la web pública y no necesita cuentas en esos proveedores. Los planes gratuitos pueden suspender servicios por inactividad, lo que afecta su disponibilidad y el tiempo de la primera respuesta.
 
 Git conserva el código y las versiones, pero no reemplaza un respaldo de la base de datos. Para volver a una versión anterior hay que revisar primero su compatibilidad con las migraciones y los datos existentes.
 
@@ -281,15 +281,13 @@ Se combinan pruebas de reglas de negocio, integración PHP/MySQL, peticiones HTT
 | Persistencia | Reinicios y recreación conservan tablas, reservas, tickets y archivos en los ensayos registrados. | Los datos se conservaron en los destinos probados. |
 | Instalador Windows dev.52 | 68 controles del asistente y ocho de espera aprobados en PowerShell 5.1. | Operaciones de instalación simuladas en esos controles. El usuario confirmó después la reinstalación real de Eventify con Docker existente. |
 
-El usuario confirmó el funcionamiento del instalador dev.52 después de eliminar los contenedores, los volúmenes y las imágenes anteriores de Eventify, conservando Docker Desktop y WSL. También confirmó los accesos de inicio y detención. Este resultado corresponde a una máquina virtual con 4 GiB; no demuestra compatibilidad con todos los equipos ni repite la instalación inicial de Docker. La defensa individual requiere explicar y modificar el código durante la evaluación; no se acredita mediante las pruebas automáticas.
+El usuario confirmó el funcionamiento del instalador dev.52 después de eliminar los contenedores, los volúmenes y las imágenes anteriores de Eventify, conservando Docker Desktop y WSL. También confirmó los accesos de inicio y detención. Este resultado corresponde a una máquina virtual con 4 GiB; no demuestra compatibilidad con todos los equipos ni repite la instalación inicial de Docker.
 
 ## 11. Conclusiones
 
 EVENTIFY centraliza la consulta de eventos, las reservas y los tickets. La separación entre interfaz, reglas de negocio y acceso a datos permite mantener las validaciones en el servidor. Las transacciones protegen los cupos y el precio histórico permite conservar el valor de una reserva aunque cambie el evento.
 
 AJAX evita recargas completas en las búsquedas y en las operaciones de reserva. El clima aporta información útil sin convertirse en una dependencia para reservar. Docker facilita la instalación de PHP y MySQL en un entorno reproducible, con datos persistentes.
-
-Antes de la evaluación se debe comprobar el acceso del profesor al repositorio y a las cuentas públicas, y practicar la demostración y la explicación del código.
 
 ## 12. Referencias
 
@@ -302,5 +300,3 @@ Antes de la evaluación se debe comprobar el acceso del profesor al repositorio 
 - Open-Meteo: https://open-meteo.com/en/docs
 - MET Norway: https://api.met.no/doc/Locationforecast/2.0/documentation
 - BaconQrCode: https://github.com/Bacon/BaconQrCode
-
-Código y versiones: el paquete GitHub incluye el historial y un asistente para importarlo a la cuenta del receptor. Al finalizar, el asistente muestra la dirección del repositorio privado; esa dirección debe compartirse con el evaluador y concederle acceso. Las credenciales de evaluación se entregan por separado y no forman parte del PDF ni del historial público.

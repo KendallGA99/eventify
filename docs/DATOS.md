@@ -1,22 +1,13 @@
-# Modelo y operación de datos
+# Modelo de datos y reglas
 
-El modelo y los flujos de autenticación, reservas, tickets y administración están implementados. La imagen MySQL dev.38 aprobó 225 comprobaciones MySQL/HTTP; la persistencia y restauración conservan sus referencias propias en [ESTADO.md](ESTADO.md). Requisitos afectados: RF-01–RF-13, RF-17–RF-21 y RNF-03/RNF-04. Esta guía describe la operación local; no certifica Windows ni la entrega final.
-
-## Relaciones
-
-```mermaid
-erDiagram
-    roles ||--o{ users : define
-    categories ||--o{ events : clasifica
-    users ||--o{ reservations : realiza
-    events ||--o{ reservations : recibe
-    reservations ||--o| tickets : genera
+```text
+roles -> users -> reservations -> tickets
+categories -> events -> reservations
 ```
 
-Las seis tablas de negocio usan InnoDB, claves primarias autoincrementales y claves foráneas con eliminación restringida. `schema_migrations`, `auth_limits`, `demo_seed_runs` y `weather_budget` registran operaciones técnicas; son diez tablas en total. No hay eliminaciones en cascada del historial.
+Una categoría agrupa muchos eventos; un usuario realiza muchas reservas; un evento recibe muchas reservas; una reserva tiene como máximo un ticket. Las claves foráneas restringen eliminación y conservan historia. Las diez tablas incluyen seis entidades de negocio y cuatro técnicas. La migración 003 añade weather_budget para limitar las consultas a los proveedores del clima.
 
-## Diccionario
-
+### Diccionario y reglas
 | Tabla | Campos y reglas relevantes |
 | --- | --- |
 | roles | `id` TINYINT; `code` ASCII único y nombre. Roles ADMINISTRADOR/USUARIO creados en migración. |
@@ -24,80 +15,20 @@ Las seis tablas de negocio usan InnoDB, claves primarias autoincrementales y cla
 | categories | `id` BIGINT; nombre 120 y slug ASCII 120 únicos; indicador activo y fechas. |
 | events | `id`, categoría; slug ASCII único 160; nombre 180; descripción TEXT; ruta de imagen 255; inicio DATETIME; ubicación 255; coordenadas DECIMAL(9,6) opcionales con límites; capacidad INT positiva; precio DECIMAL(12,2) no negativo; estado y fechas. |
 | reservations | `id`, usuario/evento; código ASCII único de 32 caracteres; cantidad INT positiva; precio unitario histórico DECIMAL(12,2); total DECIMAL(22,2), igual a precio × cantidad; estado; fecha de cancelación y auditoría temporal. |
-| tickets | `id`; reserva única; código ASCII único de 64 caracteres; creación. Un ticket representa la reserva y su cantidad; la vista y el QR se generan al consultar el ticket, sin almacenar una copia visual redundante. |
+| tickets | `id`; reserva única; código ASCII único de 64 caracteres; creación. Un ticket representa la reserva completa y su cantidad; QR SVG generado localmente. |
 | schema_migrations | Versión, SHA-256, estado EN_PROCESO/APLICADA, número de sentencias ejecutadas, inicio/finalización. |
 | auth_limits | Migración 002: clave HMAC de acción/IP, inicio de ventana y contador; protección persistente de intentos. |
 | demo_seed_runs | Identificador de demostración aplicada y fecha; evita sembrar de nuevo. |
-| weather_budget | Migración003: ventanas de minuto/hora y contadores compartidos para limitar consultas al proveedor meteorológico. |
+| weather_budget | Migración 003: scope global, ventanas hora/minuto y contadores con máximos 30/h y 10/min; persistencia/transacción PDO preparadas. |
 
-El esquema de negocio está en `database/migrations/001_initial_schema.php`;002_auth_limits.php y003_weather_budget.php incorporan límites de autenticación y clima. Los campos son obligatorios salvo coordenadas, fecha de cancelación y fecha de finalización técnica. Fechas DATETIME en UTC; presentación en America/Costa_Rica. Los importes se guardan como decimales, sin números flotantes para cálculos monetarios de negocio.
+El esquema exacto está en database/migrations/001_initial_schema.php, 002_auth_limits.php y 003_weather_budget.php. Fechas en UTC, presentación en America/Costa_Rica. Precio histórico unit_price y total se guardan en DECIMAL; el servidor calcula precio por cantidad. active_event_id es columna generada: el índice único impide dos reservas activas por usuario/evento y permite conservar cancelaciones.
 
-## Decisiones y límites
+No existe una fila de cupos disponibles: se deriva capacidad menos suma de entradas CONFIRMADAS. Reserva y evento tienen estados separados; un evento cancelado invalida el ticket sin borrar su reserva. Imágenes actuales pertenecen a una galería del código; no hay carga arbitraria de archivos.
 
-- Evento: BORRADOR, PUBLICADO, CANCELADO o FINALIZADO. Reserva: CONFIRMADA o CANCELADA. Ticket válido se deriva de su reserva y evento; no duplicar un estado que pueda desincronizarse.
-- Una reserva confirmada por usuario/evento. La columna generada `active_event_id` y el índice único permiten conservar varias cancelaciones históricas y volver a reservar después de cancelar.
-- Cupos disponibles = capacidad menos cantidades confirmadas. Canceladas no ocupan. Últimos espacios cuando disponibles ≤ 20% de capacidad; con cero se presenta agotado.
-- Cancelar exige más de 86.400 segundos hasta el inicio; exactamente 24 horas no basta. La política usa instantes, independientemente de la zona horaria.
-- La base impide cantidades/precios/totales incoherentes, referencias inexistentes y duplicidad activa. ReservationService confirma dentro de una transacción y bloquea la fila del evento antes de revalidar aforo, fecha y estado. Las restricciones del esquema complementan ese bloqueo; no sustituyen la comprobación del total ocupado.
-- Índices de catálogo por estado/fecha y categoría/fecha; ocupación por evento/estado; historial por usuario/fecha. No guardar contadores de disponibilidad redundantes.
+Confirmar reserva inicia una transacción, bloquea la fila del evento FOR UPDATE y revalida estado, fecha, duplicidad, cantidad y disponibilidad. Inserta reserva y ticket antes de COMMIT. Un fallo revierte ambos. La base añade índice único y restricciones, pero el límite de aforo necesita ese bloqueo de servicio.
 
-## Migraciones y arranque
+Cancelar verifica propietario y usa orden de bloqueo evento antes de reserva. Solo se permite a más de 86400 segundos del inicio; exactamente 24 horas se rechaza. Repetir una cancelación ya realizada no libera cupos dos veces. No se borra historia ni se altera el precio guardado.
 
-`start-linux.sh` y `start-windows.ps1` esperan MySQL y ejecutan `php bin/migrate.php`. Repetir el arranque conserva los datos y omite migraciones ya aplicadas con la misma firma. Los archivos aplicados son inmutables; toda modificación futura usa una nueva versión.
+Administración conserva slug y precios históricos. Cualquier historial fija la fecha y prohíbe regresar a BORRADOR. No reduce capacidad por debajo de entradas confirmadas. Cancelar un evento impide nuevas reservas, conserva existentes y no equivale a cancelar cada reserva. Finalizar explícitamente exige que haya iniciado. Categoría inactiva conserva referencias.
 
-MySQL confirma DDL implícitamente. El ejecutor registra progreso y utiliza un bloqueo de aplicación para evitar dos migraciones simultáneas. Si falla una sentencia, conserva el estado EN_PROCESO y bloquea el reintento automático. No se garantiza un rollback global de todas las tablas.
-
-Ante fallo: detener cambios, conservar registros, respaldar la base y revisar las sentencias aplicadas frente al esquema real. Preparar una reparación específica y revisar antes de actualizar el registro técnico. No borrar tablas/volúmenes ni marcar APLICADA sin comprobar el resultado. No existe un reset automático.
-
-## Catálogo inicial de entrega dev.46
-
-El inicio normal de una base local vacía carga ocho eventos de `database/example-events.json`, cinco categorías, un administrador y un visitante; no inventa reservas. Las fechas se calculan respecto del primer arranque y se conservan después. Las ilustraciones SVG son locales. El marcador `catalogo_entrega_v1`, un bloqueo y una transacción evitan duplicados; un fallo de almacenamiento revierte cuentas y eventos.
-
-Credenciales únicas: `storage/example-credentials.json` dentro de web. Windows las copia a `storage/example-credentials.json` del proyecto. Linux: `docker compose cp web:/var/www/html/storage/example-credentials.json ./storage/example-credentials.json`. Mantener el archivo privado. No ejecutar el sembrador antiguo sobre esta instalación. No se cambian instalaciones que ya contienen usuarios, categorías, eventos o reservas.
-
-El servidor público no ejecuta esta preparación al arrancar. La renovación del catálogo requiere la operación CLI explícita `php bin/prepare-examples.php --public-evaluation`, respaldo previo y autorización. Retira eventos anteriores a BORRADOR si no tienen reservas, o CANCELADO si tienen historial; conserva reservas, tickets, usuarios y categorías. Crea accesos propios con claves nuevas, guardados fuera del código y del paquete. Repetir no renueva fechas ni contraseñas.
-
-## Demostración opcional de pruebas antiguas
-
-Después del arranque, Linux: `bash scripts/demo-linux.sh`. Windows: `powershell -ExecutionPolicy Bypass -File scripts/demo-windows.ps1`.
-
-Inserta tres cuentas ficticias, cuatro categorías, ocho eventos y siete reservas con tickets. Incluye evento gratuito, últimos espacios, agotado, borrador, cancelado, finalizado y próximo a iniciar. Fechas relativas a la primera ejecución; repetir no las mueve. Es una transacción y no modifica datos existentes; un conflicto aborta la operación.
-
-Contraseñas aleatorias: hashes en MySQL y credenciales de evaluación en `/var/www/html/storage/demo-credentials.json`, dentro del volumen privado, fuera de la raíz pública y de Git. El comando no imprime claves. Se permite solo APP_ENV local/test. No es un mecanismo de creación de administradores públicos. Las cuentas se consultan por el procedimiento privado de la siguiente sección.
-
-Si existe un archivo de credenciales sin marca en la base, el sembrador se detiene para revisión. No lo sobrescribe. Si se pierde el archivo tras una siembra exitosa, las cuentas no se recrean ni se cambian sus claves automáticamente.
-
-## Acceso a las cuentas de demostración
-
-El arranque normal no crea estas cuentas. Ejecute primero la demostración explícita de la sección anterior. Cada instalación genera contraseñas distintas; no existe una clave universal para admin@eventify.test o usuario@eventify.test. Una cuenta registrada desde la web tiene rol de usuario y no sustituye al administrador de prueba.
-
-Desde la raíz de su instalación Linux, puede copiar las credenciales a un archivo privado del propio proyecto:
-
-```bash
-umask 077
-docker compose exec -T web cat storage/demo-credentials.json > storage/demo-credentials.json
-```
-
-Si Docker exige sudo, anteponga sudo al comando docker en su terminal; la redirección debe quedar fuera de sudo para crear el archivo con su usuario. Abra storage/demo-credentials.json con un editor local y use la entrada del rol necesario. No pegue su contenido en chats, logs o documentación. El archivo está excluido de Git y del paquete fuente.
-
-En Windows PowerShell, con Docker Desktop abierto:
-
-```powershell
-docker compose cp web:/var/www/html/storage/demo-credentials.json .\storage\demo-credentials.json
-```
-
-Conserve la copia en una carpeta privada de su perfil y ábrala localmente. El comando corresponde a la instalación Compose de la carpeta actual; no apunta al entorno público ni a otra instalación. Si inició un proyecto con nombre explícito, utilice ese mismo nombre con docker compose -p NOMBRE en ambos sistemas. Los ensayos QA y copia limpia guardan sus propias credenciales en la ruta que informa cada script.
-
-Si la demostración aún no se ejecutó, el archivo no existirá. Un error de copia no autoriza a volver a crear usuarios o cambiar contraseñas. La recuperación y la transferencia de datos se tratan por separado en [RESPALDO.md](RESPALDO.md).
-
-## Pruebas aisladas
-
-Linux: `bash scripts/test-database-linux.sh`. Windows: `powershell -ExecutionPolicy Bypass -File scripts/test-database-windows.ps1`.
-
-Usan `docker-compose.test.yml`, proyecto `eventify-tests`, base `eventify_test` en memoria temporal, sin puertos ni volúmenes de la aplicación. Al finalizar se retiran únicamente sus contenedores y red; los datos de prueba son efímeros. No ejecutarlas contra una base de negocio.
-
-La suite verifica migraciones repetibles, siembra no destructiva, hashes, cupos derivados, restricciones, historial cancelado, bloqueo de semillas en producción y detección de migraciones alteradas/incompletas. La suite también ejecuta comprobaciones HTTP de permisos, propiedad y transacciones/carreras; cada resultado corresponde a la referencia de código registrada. No sustituye navegador, persistencia de entrega o Windows.
-
-## Edición administrativa
-
-No cambia esquema. Evento actualizado bajo bloqueo FOR UPDATE: capacidad >= entradas confirmadas; slug se conserva. Cualquier historial de reservas fija fecha y prohíbe volver a BORRADOR. Cancelados/finalizados conservan datos y no se reactivan. Cancelar evento no cancela individualmente sus reservas: tickets muestran invalidez por estado del evento, con historial/precio conservados. Finalización explícita solo después del inicio; el catálogo ya trata PUBLICADO pasado como finalizado sin modificar fila automáticamente. Categoría desactivada conserva referencias; no se asigna a un nuevo evento. Precio nuevo no actualiza unit_price/total de reservas. La integración comprueba reglas y carreras administrativas; consulte sus referencias en ESTADO y evidencias/B04.md. La aceptación de navegador conserva sus límites propios.
+El dashboard cuenta todos los eventos para el total general. Para los indicadores activos utiliza eventos publicados con inicio futuro y sus reservas confirmadas. La ocupación es entradas reservadas divididas entre capacidad acumulada, multiplicada por 100; si la capacidad es cero muestra cero. Los rankings comparan entradas reservadas y resuelven empates por identificador. Los ingresos potenciales suman los totales históricos de esas reservas y no representan pagos. Las métricas tienen pruebas con datos conocidos, sin inventar ventas reales.
